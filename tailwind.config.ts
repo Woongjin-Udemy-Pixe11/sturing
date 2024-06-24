@@ -37,6 +37,7 @@ const config = {
         'main-200': 'rgba(217, 227, 255, 1)',
         'main-100': 'rgba(236, 241, 255, 1)',
         red: 'rgba(255, 65, 65, 1)',
+
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -108,6 +109,9 @@ const config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      boxShadow: {
+        modal: '0px 0px 4px rgba(0, 0, 0, 0.1)',
       },
     },
   },
