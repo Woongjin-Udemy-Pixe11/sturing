@@ -9,7 +9,7 @@ export default function SectionNavigator(props: TSectionNavigator) {
   const { title, moveLink = '/' } = props;
   return (
     <>
-      <div className="w-full px-[1.6rem] bg-rose-400 flex justify-between items-center text-headline-3 font-semibold mb-[2rem]">
+      <div className="w-full px-[1.6rem] flex justify-between items-center text-headline-3 font-semibold mb-[2rem]">
         <span>{title}</span>
         <Link href={moveLink}>
           <IoIosArrowForward />
