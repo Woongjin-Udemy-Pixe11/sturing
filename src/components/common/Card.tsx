@@ -44,14 +44,14 @@ export default function Card(props: TCardProps) {
           {studyMeetings}
         </div>
       </div>
-      <div className="mb-[0.4rem]">
+      <div className="mb-[0.4rem] [&>span]:ml-0 [&>span]:mr-2">
         <Label isBlue={studyTypeisBlue} content={studyType} />
         <Label isBlue={studyCategoryisBlue} content={studyCatecory} />
       </div>
       <div className="mb-[0.8rem]">
         <div className="font-bold mt-[0.1rem] mb-[1.2rem]">{studyName}</div>
-        <div className="flex justify-between mb-1 text-gray-600 text-content-2">
-          <div className="flex">
+        <div className="flex items-center mb-1 text-gray-600 text-content-2">
+          <div className="flex flex-row pr-[0.8rem]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -76,8 +76,8 @@ export default function Card(props: TCardProps) {
               {studyStart}~{studyEnd}
             </span>
           </div>
-          <div className="leading-[1.2rem] border-l border-gray-400 "></div>
-          <div className="flex">
+          <div className="h-[1.2rem] leading-[1.2rem] border-l border-gray-400"></div>
+          <div className="flex flex-row pl-[0.8rem]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
