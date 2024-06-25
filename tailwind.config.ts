@@ -111,7 +111,7 @@ const config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       boxShadow: {
-        modal: '0px 0px 4px rgba(0, 0, 0, 0.1)',
+        modal: '0 0 0.4rem rgba(0, 0, 0, 0.1)',
       },
     },
   },
