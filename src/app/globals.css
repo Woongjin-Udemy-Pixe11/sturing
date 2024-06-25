@@ -18,3 +18,11 @@ body {
   src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
     format('woff');
 }
+
+.tab-trigger {
+  @apply bg-gray-300;
+}
+
+.tab-trigger[data-state='active'] {
+  @apply text-gray-100 bg-main-600;
+}
