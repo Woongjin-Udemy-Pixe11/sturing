@@ -1,5 +1,5 @@
 import { dummyUserCardList } from '@/dummy/mainPage';
-import ScrollableContainer from './ScrollableContainer';
+import ScrollableContainer from '../common/ScrollableContainer';
 import UserCard from './UserCard';
 
 export default function UserCardList() {

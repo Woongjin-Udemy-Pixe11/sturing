@@ -1,4 +1,4 @@
-import ScrollableContainer from './ScrollableContainer';
+import ScrollableContainer from '../common/ScrollableContainer';
 import { searchLabelList } from '@/constant/searchLabelList';
 
 export default function SearchLabelList() {

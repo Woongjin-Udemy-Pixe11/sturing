@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
 import SectionNavigator from '@/components/common/SectionNavigator';
 import SearchLabelList from '@/components/main/SearchLabelList';
-import StudyCardList from '@/components/main/StudyCardList';
+import StudyCardList from '@/components/common/StudyCardList';
 import UserCardList from '@/components/main/UserCardList';
 import Footer from '@/components/common/Footer';
 
