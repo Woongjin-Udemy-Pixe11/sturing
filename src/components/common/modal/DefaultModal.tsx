@@ -2,7 +2,7 @@ type TModalProps = {
   message: string;
 };
 
-export function DefaultModal(props: TModalProps) {
+export default function DefaultModal(props: TModalProps) {
   const { message } = props;
 
   const buttonStyle = 'h-[3.3rem] px-[1.2rem] rounded-[0.3rem] text-content-1';
@@ -22,18 +22,6 @@ export function DefaultModal(props: TModalProps) {
             아니오
           </button>
         </div>
-      </div>
-    </>
-  );
-}
-
-export function KebabModal() {
-  return (
-    <>
-      <div className="flex flex-col justify-center items-center rounded-[0.5rem] shadow-modal w-[8.8rem] h-[8rem]">
-        <button className="text-content-1 py-[0.8rem] w-full">수정</button>
-        <span className="border border-gray-300 w-full"></span>
-        <button className="text-content-1 py-[0.8rem] w-full">삭제</button>
       </div>
     </>
   );
