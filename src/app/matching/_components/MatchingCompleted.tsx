@@ -69,7 +69,7 @@ export default function MatchingCompleted() {
         </div>
       </section>
       <footer>
-        <div className="w-full absolute bottom-0 px-[1.6rem] py-[1.2rem] flex flex-col gap-[1.2rem]">
+        <div className="w-full absolute bottom-[-10%] px-[1.6rem] py-[1.2rem] flex flex-col gap-[1.2rem]">
           <LongButton color="blue">내 프로필 보러가기</LongButton>
           <LongButton color="gray">홈으로 가기</LongButton>
         </div>

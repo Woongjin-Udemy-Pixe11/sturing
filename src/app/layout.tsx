@@ -12,9 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body className="w-[375px] m-auto">{children}</body>
     </html>
   );
 }
-
-//TODO: body 에 className="w-[375px] m-auto" 스타일 추가하기
