@@ -10,7 +10,7 @@ export default function Search() {
     <>
       <Header />
       <TabBar />
-      <SearchInput />
+      <SearchInput placeholderText="관심 스터디 분야나 강의명을 검색해 보세요" />
       <CurrentSearch />
       <RecommendSearch />
       <CurrentStudy />
