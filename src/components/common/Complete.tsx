@@ -2,15 +2,13 @@ import LongButton from './LongButton';
 
 type TCompleteProps = {
   heading: string;
-  subheading1: string;
-  subheading2: string;
+  subheading: string;
   onButtonClick?: () => void;
 };
 
 export default function Complete({
   heading,
-  subheading1,
-  subheading2,
+  subheading,
   onButtonClick,
 }: TCompleteProps) {
   return (
@@ -45,10 +43,8 @@ export default function Complete({
       <h1 className="text-large-title font-semibold mb-[0.8rem] tracking-[-0.03rem]">
         {heading}
       </h1>
-      <p className="text-content-1 text-gray-700 text-center">
-        {subheading1}
-        <br />
-        {subheading2}
+      <p className="text-content-1 text-gray-700 text-center whitespace-pre-line">
+        {subheading}
       </p>
       <div className="w-full absolute bottom-0 px-[1.6rem] py-[1.2rem]">
         <LongButton color="blue" onClick={onButtonClick}>
