@@ -33,7 +33,7 @@ export default function ClientMatching() {
     6: <MatchingCompleted />,
   };
   return (
-    <main className="flex flex-col w-full h-[750px] relative ">
+    <main className="flex flex-col w-full  relative mt-[6rem] ">
       <header>
         <GoChevronLeft size={30} className="mb-4" />
 
@@ -46,18 +46,20 @@ export default function ClientMatching() {
           </div>
         )}
       </header>
-      {stepComponet[step]}
-      {step <= 5 && (
-        <MatchingFooter
-          step={step}
-          Forward={() => {
-            onClickForwardStep();
-          }}
-          Backward={() => {
-            onClickBackwardStep();
-          }}
-        />
-      )}
+      <div className="w-full m-auto relative">
+        {stepComponet[step]}
+        {step <= 5 && (
+          <MatchingFooter
+            step={step}
+            Forward={() => {
+              onClickForwardStep();
+            }}
+            Backward={() => {
+              onClickBackwardStep();
+            }}
+          />
+        )}
+      </div>
     </main>
   );
 }

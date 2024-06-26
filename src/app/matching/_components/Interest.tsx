@@ -4,7 +4,7 @@ import FlexContainer from '@/components/(jonghoo)/FlexContainer';
 
 export default function Interest() {
   return (
-    <div className="w-[37.5rem] px-[1.6rem] py-[2rem]">
+    <div className="w-full px-[1.6rem] py-[2rem]">
       <section>
         <h1 className="font-black text-headline-3">웅진님 안녕하세요.</h1>{' '}
         <h1 className="font-black text-headline-3">
@@ -20,7 +20,7 @@ export default function Interest() {
           .map((label) => (
             <SelectMatching key={label.title} type="interest">
               <img src={label.imgSrc} alt={label.imgAlt} />
-              <div className="ml-2">{label.title}</div>
+              <div>{label.title}</div>
             </SelectMatching>
           ))}
       </FlexContainer>
