@@ -54,6 +54,9 @@ const config: Config = {
         pretendard: ['Pretendard-Regular', 'sans-serif'],
       },
     },
+    boxShadow: {
+      modal: '0px 0px 4px rgba(0, 0, 0, 0.1)',
+    },
   },
   plugins: [],
 };
