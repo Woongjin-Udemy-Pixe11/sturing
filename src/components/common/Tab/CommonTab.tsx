@@ -5,6 +5,7 @@ import { area } from '@/constant/region';
 import { useState } from 'react';
 import TabLabel from './TabLabel';
 import { CiSearch } from 'react-icons/ci';
+import { IoSearch } from 'react-icons/io5';
 
 export default function CommonTab() {
   const [selected, setSelected] = useState<string[]>([]);
@@ -22,17 +23,23 @@ export default function CommonTab() {
   };
   return (
     <div className="flex flex-col gap-3">
-      {/* <div className="relative pb-4 ">
-        <input
-          placeholder="스터디 선호지역을 입력해 주세요"
-          className="rounded-full bg-main-200 py-[1.3rem] px-[2rem] text-content-1 w-full"
-        />
-        <CiSearch
-          size={20}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-main-600"
-        />
-      </div> */}
-      <div>인풋창들어가면넣습니다.</div>
+      <>
+        <label
+          htmlFor="search-input"
+          className="block w-[calc(100% - 3.2rem)] mx-[1.6rem] mt-[2rem] bg-main-100 flex justify-between px-[2rem] rounded-[2.5rem]"
+        >
+          <input
+            type="text"
+            name="search-input"
+            id="search-input"
+            placeholder="스터디 선호지역을 입력해 주세요"
+            className="w-[27rem] inline-block bg-inherit py-[1.3rem] pr-[2rem] text-content-1 placeholder-gray-700"
+          />
+          <button>
+            <IoSearch className="w-[2.4rem] h-[2.4rem] text-main-600" />
+          </button>
+        </label>
+      </>
 
       <Tabs.Root defaultValue="서울" className="flex ">
         <Tabs.List className="flex flex-col   w-[13.2rem] text-[1.4rem] text-[#909090]">
