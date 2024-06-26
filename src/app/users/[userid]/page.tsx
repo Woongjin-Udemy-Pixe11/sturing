@@ -1,3 +1,4 @@
+import AccountCancelMoadl from './_componets/AccountCancelModal';
 import StudyReviewCard from './_componets/StudyReviewCard';
 import MyBookMarkList from './_pages/MyBookMarkList';
 import MyPage from './_pages/MyPage';
@@ -8,7 +9,7 @@ import StudyLog from './_pages/StudyLog';
 export default function page() {
   return (
     <div>
-      <MyPageDetail />
+      <AccountCancelMoadl />
     </div>
   );
 }
