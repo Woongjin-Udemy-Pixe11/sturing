@@ -1,4 +1,3 @@
-import MatchingFooter from '@/components/(jonghoo)/MatchingFooter';
 import CommonTab from '@/components/common/Tab/CommonTab';
 
 export default function Region() {

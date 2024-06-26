@@ -41,16 +41,16 @@ export default function CommonTab() {
         </label>
       </>
 
-      <Tabs.Root defaultValue="서울" className="flex  ">
-        <Tabs.List className="flex flex-col   w-[13.2rem] text-[1.4rem] text-[#909090]">
-          <ScrollArea.Root className="w-full h-[33.3rem]  overflow-hidden  bg-white">
+      <Tabs.Root defaultValue="서울" className="flex w-full  ">
+        <Tabs.List className="flex flex-col    w-[33%] text-[1.4rem] text-[#909090]">
+          <ScrollArea.Root className=" h-[33.3rem]    bg-white">
             <ScrollArea.Viewport className="w-full h-full ">
               {Object.keys(area).map((key, index) => {
                 return (
                   <Tabs.Trigger
                     value={`${key}`}
                     key={index}
-                    className={`w-[13.2rem] h-[4.9rem] py-[1.4rem] px-[4.65rem] tab-trigger`}
+                    className={` w-full md:max-w-[13.3rem]  h-[4.9rem] py-[1.4rem] px-[4.65rem] tab-trigger`}
                   >
                     {key}
                   </Tabs.Trigger>
@@ -62,45 +62,46 @@ export default function CommonTab() {
             </ScrollArea.Scrollbar>
           </ScrollArea.Root>
         </Tabs.List>
+        <Tabs.List className="w-[63%]">
+          {Object.keys(area).map((key: string, index) => {
+            return (
+              <Tabs.Content value={`${key}`} key={index}>
+                <ScrollArea.Root className=" h-[33.3rem]  overflow-hidden  ">
+                  <ScrollArea.Viewport className="w-full h-full overflow-auto ">
+                    {area[key].map((item: any, index) => {
+                      let newid: string = item;
 
-        {Object.keys(area).map((key: string, index) => {
-          return (
-            <Tabs.Content value={`${key}`} key={index}>
-              <ScrollArea.Root className="w-[24rem] h-[33.3rem]  overflow-hidden  ">
-                <ScrollArea.Viewport className="w-full h-full overflow-auto ">
-                  {area[key].map((item: any, index) => {
-                    let newid: string = item;
-
-                    const bg = selected.includes(newid)
-                      ? 'bg-[#ECF1FF] text-[#4171FF]'
-                      : 'bg-white';
-                    return (
-                      <Tabs.Content
-                        value={`${key}`}
-                        key={index}
-                        className={`${bg}  w-[24rem] h-[4.9rem] py-[1.4rem] ps-[2rem] border-b-[0.1rem] border-[#E4E4E4]`}
-                        onClick={() => {
-                          onSelectContent(item);
-                        }}
-                      >
-                        <p className="w-[90%]">{item}</p>
-                      </Tabs.Content>
-                    );
-                  })}
-                </ScrollArea.Viewport>
-                <ScrollArea.Scrollbar
-                  forceMount={true}
-                  className="flex select-none touch-none p-0.5 bg-transparent transition-colors duration-160 ease-out hover:bg-gray-200 data-[orientation=vertical]:w-2 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-2"
-                  orientation="vertical"
-                >
-                  <ScrollArea.Thumb className="flex-1 h-[90%] bg-[#D0D0D0] rounded-[4px]  " />
-                </ScrollArea.Scrollbar>
-              </ScrollArea.Root>
-            </Tabs.Content>
-          );
-        })}
+                      const bg = selected.includes(newid)
+                        ? 'bg-[#ECF1FF] text-[#4171FF]'
+                        : 'bg-white';
+                      return (
+                        <Tabs.Content
+                          value={`${key}`}
+                          key={index}
+                          className={`${bg}  w-full h-[4.9rem] py-[1.4rem] ps-[2rem] border-b-[0.1rem] border-[#E4E4E4]`}
+                          onClick={() => {
+                            onSelectContent(item);
+                          }}
+                        >
+                          <p className="w-[90%]">{item}</p>
+                        </Tabs.Content>
+                      );
+                    })}
+                  </ScrollArea.Viewport>
+                  <ScrollArea.Scrollbar
+                    forceMount={true}
+                    className="flex select-none touch-none p-0.5 bg-transparent transition-colors duration-160 ease-out hover:bg-gray-200 data-[orientation=vertical]:w-2 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-2"
+                    orientation="vertical"
+                  >
+                    <ScrollArea.Thumb className="flex-1 h-[90%] bg-[#D0D0D0] rounded-[4px]  " />
+                  </ScrollArea.Scrollbar>
+                </ScrollArea.Root>
+              </Tabs.Content>
+            );
+          })}
+        </Tabs.List>
       </Tabs.Root>
-      <div className="flex gap-4 p-4 flex-wrap">
+      <div className="flex gap-4 p-4 flex-wrap m-auto">
         {selected.map((item, index) => {
           return (
             <TabLabel
