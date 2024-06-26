@@ -27,6 +27,11 @@ const config: Config = {
         'main-200': 'rgba(217, 227, 255, 1)',
         'main-100': 'rgba(236, 241, 255, 1)',
         red: 'rgba(255, 65, 65, 1)',
+
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
       },
       fontSize: {
         'large-title': '2.4rem',
@@ -47,6 +52,9 @@ const config: Config = {
       fontFamily: {
         pretendard: ['Pretendard-Regular', 'sans-serif'],
       },
+    },
+    boxShadow: {
+      modal: '0px 0px 4px rgba(0, 0, 0, 0.1)',
     },
   },
   plugins: [],
