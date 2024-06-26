@@ -7,7 +7,9 @@ import StudyLog from './_pages/StudyLog';
 export default function page() {
   return (
     <div>
-      <MyPage auth={true} />
+      {/* <MyPage auth={true} /> */}
+      <StudyLog />
+      <MyBookMarkList />
     </div>
   );
 }

@@ -6,11 +6,12 @@ export default function StudyLog() {
   return (
     <main>
       <MyPageHeader>스터디 이력</MyPageHeader>
-      <section className="flex flex-wrap gap-2 px-[1.6rem] py-[2.0rem]">
+      <section className="flex flex-wrap gap-2  py-[2rem] ">
         {dummyCardList &&
           dummyCardList.map((card) => (
             <div key={card.studyName}>
               <Card
+                width="167"
                 studyImage={card.studyImage}
                 studyMeetings={card.studyMettings}
                 studyTypeisBlue={card.studyTypeisBlue}
