@@ -10,7 +10,7 @@ export default function MatchingFooter({
   Backward: () => void;
 }) {
   return (
-    <footer className="flex justify-between w-[36.5rem]   px-[1.6rem] absolute bottom-0">
+    <footer className="flex justify-between w-full  px-[1.6rem] absolute bottom-[-10rem] right-[10%] ">
       {step === 1 ? (
         <div></div>
       ) : (

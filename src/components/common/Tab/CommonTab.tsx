@@ -22,7 +22,7 @@ export default function CommonTab() {
     setSelected(filter);
   };
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 w-full, overflow-y-hidden">
       <>
         <label
           htmlFor="search-input"
@@ -41,9 +41,9 @@ export default function CommonTab() {
         </label>
       </>
 
-      <Tabs.Root defaultValue="서울" className="flex ">
+      <Tabs.Root defaultValue="서울" className="flex  ">
         <Tabs.List className="flex flex-col   w-[13.2rem] text-[1.4rem] text-[#909090]">
-          <ScrollArea.Root className="w-[13.2rem] h-[33.3rem]  overflow-hidden  bg-white">
+          <ScrollArea.Root className="w-full h-[33.3rem]  overflow-hidden  bg-white">
             <ScrollArea.Viewport className="w-full h-full ">
               {Object.keys(area).map((key, index) => {
                 return (
@@ -100,7 +100,7 @@ export default function CommonTab() {
           );
         })}
       </Tabs.Root>
-      <div className="flex gap-4 p-4">
+      <div className="flex gap-4 p-4 flex-wrap">
         {selected.map((item, index) => {
           return (
             <TabLabel

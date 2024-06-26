@@ -50,6 +50,7 @@ export default function MatchingCompleted() {
               .map((card) => (
                 <div key={card.studyName}>
                   <Card
+                    width="182"
                     studyImage={card.studyImage}
                     studyMeetings={card.studyMettings}
                     studyTypeisBlue={card.studyTypeisBlue}

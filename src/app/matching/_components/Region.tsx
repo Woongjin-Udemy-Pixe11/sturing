@@ -3,7 +3,7 @@ import CommonTab from '@/components/common/Tab/CommonTab';
 
 export default function Region() {
   return (
-    <div className="w-[37.5rem] flex flex-col gap-5">
+    <div className="w-full">
       <section className="pt-[2rem] px-[1.6rem]">
         <h1 className="font-black text-headline-3">웅진님이 선호하는</h1>
         <h1 className="font-black text-headline-3">
@@ -14,7 +14,6 @@ export default function Region() {
         </p>
       </section>
       <CommonTab />
-    
     </div>
   );
 }
