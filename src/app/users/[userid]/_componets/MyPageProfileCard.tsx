@@ -2,7 +2,7 @@ import { FaChevronRight } from 'react-icons/fa6';
 import MyPageLabel from './MyPageLabel';
 export default function MyPageProfileCard({ auth }: { auth?: boolean }) {
   return (
-    <section className="flex border-[0.1rem] border-gray-100 py-[2.4rem] px-[2rem] mt-5 rounded-md  gap-3">
+    <section className="flex border-[0.1rem] border-gray-200 py-[2.4rem] px-[2rem] mt-5 rounded-md  gap-3">
       <div className="w-[7rem] h-[7rem] border border-gray-500 rounded-full ">
         <img src="/images/user-card-dummy.png" className="object-fit"></img>
       </div>
