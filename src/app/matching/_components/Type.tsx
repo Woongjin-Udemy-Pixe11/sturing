@@ -3,7 +3,7 @@ import { FaCheck } from 'react-icons/fa6';
 
 export default function Type() {
   return (
-    <div className="w-[37.5rem] px-[1.4rem]">
+    <div className="w-full px-[1.4rem]">
       <section className="py-[2rem] ">
         <h1 className="font-black text-headline-3">웅진님이 선호하는</h1>
         <h1 className="font-black text-headline-3">
