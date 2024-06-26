@@ -22,7 +22,7 @@ type TCardProps = {
   studyMember: number;
 };
 
-type TcardSizeList = {
+type TCardSizeList = {
   [key: string]: string;
 };
 export default function Card(props: TCardProps) {
@@ -46,7 +46,7 @@ export default function Card(props: TCardProps) {
   const onBookmarkClick = () => {
     setIsBookmarked(!isBookmarked);
   };
-  const cardSizeList: TcardSizeList = {
+  const cardSizeList: TCardSizeList = {
     '182': 'w-[18.2rem] h-[25rem]',
     '167': 'w-[16.7rem] h-[25rem]',
   };
