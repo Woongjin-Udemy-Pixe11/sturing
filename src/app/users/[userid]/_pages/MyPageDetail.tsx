@@ -1,6 +1,7 @@
 import MyPageHeader from '../_componets/MypageHeader';
 import UserDetailInfo from '../_componets/UserDetailInfo';
 import { FaCamera } from 'react-icons/fa';
+import UserMatchingInfo from '../_componets/UserMatchingInfo';
 
 export default function MyPageDetail() {
   return (
@@ -18,6 +19,7 @@ export default function MyPageDetail() {
         </div>
       </div>
       <UserDetailInfo />
+      <UserMatchingInfo />
     </main>
   );
 }
