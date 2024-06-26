@@ -1,3 +1,5 @@
+//TODO:UserProfile componet 사용할지말지 width 7,9rem 둘중하나
+
 type TUserProfileProps = {
   url: string;
   center?: boolean;
