@@ -7,6 +7,7 @@ import { FaBookmark } from 'react-icons/fa6';
 import { useState } from 'react';
 
 type TCardProps = {
+  width: string;
   studyImage: string;
   studyMeetings: string;
   studyTypeisBlue: boolean;
@@ -20,8 +21,13 @@ type TCardProps = {
   studyJoinMember: number;
   studyMember: number;
 };
+
+type TcardSizeList = {
+  [key: string]: string;
+};
 export default function Card(props: TCardProps) {
   const {
+    width,
     studyImage,
     studyMeetings,
     studyTypeisBlue,
@@ -40,9 +46,12 @@ export default function Card(props: TCardProps) {
   const onBookmarkClick = () => {
     setIsBookmarked(!isBookmarked);
   };
-
+  const cardSizeList: TcardSizeList = {
+    '182': 'w-[18.2rem] h-[25rem]',
+    '167': 'w-[16.7rem] h-[25rem]',
+  };
   return (
-    <div className="w-[18.2rem] h-[25rem]">
+    <div className={cardSizeList[width]}>
       <div className="relative w-full h-[10rem] mb-[1.2rem]">
         <Image
           src={studyImage}
@@ -110,7 +119,7 @@ export default function Card(props: TCardProps) {
                 d="M9.076 1a6.072 6.072 0 0 0-4.294 1.788A6.118 6.118 0 0 0 3 7.098a6.052 6.052 0 0 0 1.224 3.66s.166.22.193.25l4.659 5.516 4.661-5.518c.025-.03.19-.248.19-.248l.001-.001a6.05 6.05 0 0 0 1.224-3.658 6.118 6.118 0 0 0-1.782-4.31A6.072 6.072 0 0 0 9.076 1Zm0 8.317a2.203 2.203 0 0 1-2.041-1.37 2.226 2.226 0 0 1 .479-2.416 2.207 2.207 0 0 1 3.771 1.568c0 .588-.233 1.152-.648 1.567-.414.416-.975.65-1.561.65Z"
               />
             </svg>
-            <span>{studyPlace}</span>
+            <span className="w-[5.1rem] truncate">{studyPlace}</span>
           </div>
         </div>
       </div>
