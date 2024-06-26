@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 type TButtonProps = {
-  color: 'blue' | 'gray' | 'white';
+  color: 'blue' | 'gray' | 'red' | 'white';
   width?: string;
   children: ReactNode;
   onClick?: () => void;
@@ -16,6 +16,7 @@ export default function LongButton({
   const colorVariants = {
     blue: 'bg-main-600 text-white',
     gray: 'bg-main-100 text-main-600',
+    red: 'text-red border border-red',
     white: 'bg-white text-gray-700 border border-gray-300',
   };
 
