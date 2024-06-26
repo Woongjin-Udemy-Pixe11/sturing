@@ -4,6 +4,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { area } from '@/constant/region';
 import { useState } from 'react';
 import TabLabel from './TabLabel';
+import { CiSearch } from 'react-icons/ci';
 
 export default function CommonTab() {
   const [selected, setSelected] = useState<string[]>([]);
@@ -21,7 +22,19 @@ export default function CommonTab() {
   };
   return (
     <div className="flex flex-col gap-3">
-      <Tabs.Root defaultValue="account" className="flex ">
+      {/* <div className="relative pb-4 ">
+        <input
+          placeholder="스터디 선호지역을 입력해 주세요"
+          className="rounded-full bg-main-200 py-[1.3rem] px-[2rem] text-content-1 w-full"
+        />
+        <CiSearch
+          size={20}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-main-600"
+        />
+      </div> */}
+      <div>인풋창들어가면넣습니다.</div>
+
+      <Tabs.Root defaultValue="서울" className="flex ">
         <Tabs.List className="flex flex-col   w-[13.2rem] text-[1.4rem] text-[#909090]">
           <ScrollArea.Root className="w-[13.2rem] h-[33.3rem]  overflow-hidden  bg-white">
             <ScrollArea.Viewport className="w-full h-full ">
