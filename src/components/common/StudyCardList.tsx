@@ -1,6 +1,6 @@
-import { dummyCardList } from '@/dummy/mainPage';
-import Card from '../common/Card';
 import ScrollableContainer from './ScrollableContainer';
+import { dummyCardList } from '@/dummy/mainPage';
+import Card from './Card';
 
 export default function StudyCardList() {
   return (
