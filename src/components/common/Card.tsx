@@ -1,5 +1,10 @@
+'use client';
+
 import Image from 'next/image';
 import Label from './Label';
+import { FaRegBookmark } from 'react-icons/fa6';
+import { FaBookmark } from 'react-icons/fa6';
+import { useState } from 'react';
 
 type TCardProps = {
   studyImage: string;
@@ -30,6 +35,12 @@ export default function Card(props: TCardProps) {
     studyJoinMember,
     studyMember,
   } = props;
+
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const onBookmarkClick = () => {
+    setIsBookmarked(!isBookmarked);
+  };
+
   return (
     <div className="w-[18.2rem] h-[25rem]">
       <div className="relative w-full h-[10rem] mb-[1.2rem]">
@@ -40,11 +51,21 @@ export default function Card(props: TCardProps) {
           alt="Card Image"
           className="rounded-[0.8rem]"
         />
-        <div className="absolute bottom-0 left-0 right-0 rounded-b-[0.8rem] bg-black bg-opacity-80 text-white text-center text-content-2 p-[0.3rem]">
+        <div
+          className="absolute top-0 right-0 m-[0.8rem] p-[0.15rem] text-white"
+          onClick={onBookmarkClick}
+        >
+          {isBookmarked ? (
+            <FaBookmark size={13} />
+          ) : (
+            <FaRegBookmark size={13} />
+          )}
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 rounded-b-[0.8rem] bg-black bg-opacity-80 text-white text-center text-content-2 p-[0.3rem] select-none">
           {studyMeetings}
         </div>
       </div>
-      <div className="mb-[0.4rem] [&>span]:ml-0 [&>span]:mr-2">
+      <div className="mb-[0.4rem] [&>span]:ml-0 [&>span]:mr-2 select-none">
         <Label isBlue={studyTypeisBlue} content={studyType} />
         <Label isBlue={studyCategoryisBlue} content={studyCatecory} />
       </div>
