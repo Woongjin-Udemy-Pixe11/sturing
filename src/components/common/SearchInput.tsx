@@ -1,6 +1,10 @@
 import { IoSearch } from 'react-icons/io5';
 
-export default function SearchInput() {
+type TSearchInputProps = {
+  placeholderText: string;
+};
+export default function SearchInput(props: TSearchInputProps) {
+  const { placeholderText } = props;
   return (
     <>
       <label
@@ -11,7 +15,7 @@ export default function SearchInput() {
           type="text"
           name="search-input"
           id="search-input"
-          placeholder="관심 스터디 분야나 강의명을 검색해 보세요"
+          placeholder={placeholderText}
           className="w-[27rem] inline-block bg-inherit py-[1.3rem] pr-[2rem] text-content-1 placeholder-gray-700"
         />
         <button>
