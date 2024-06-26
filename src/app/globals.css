@@ -26,3 +26,11 @@ body {
 .tab-trigger[data-state='active'] {
   @apply text-gray-100 bg-main-600;
 }
+
+.minitab-trigger {
+  @apply border-b-2 border-gray-200 text-gray-700;
+}
+
+.minitab-trigger[data-state='active'] {
+  @apply border-b-2 border-main-600 text-main-600;
+}
