@@ -1,4 +1,4 @@
-import Button from './Button';
+import LongButton from './LongButton';
 
 type TCompleteProps = {
   heading: string;
@@ -51,9 +51,9 @@ export default function Complete({
         {subheading2}
       </p>
       <div className="w-full absolute bottom-0 px-[1.6rem] py-[1.2rem]">
-        <Button color="blue" onClick={onButtonClick}>
+        <LongButton color="blue" onClick={onButtonClick}>
           확인
-        </Button>
+        </LongButton>
       </div>
     </div>
   );
