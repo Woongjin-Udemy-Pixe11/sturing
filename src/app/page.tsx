@@ -3,9 +3,10 @@ import TabBar from '@/components/main/TabBar';
 import Banner from '@/components/main/Banner';
 import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
+import SearchInput from '@/components/common/SearchInput';
 import SectionNavigator from '@/components/common/SectionNavigator';
 import SearchLabelList from '@/components/main/SearchLabelList';
-import StudyCardList from '@/components/main/StudyCardList';
+import StudyCardList from '@/components/common/StudyCardList';
 import UserCardList from '@/components/main/UserCardList';
 import Footer from '@/components/common/Footer';
 
@@ -24,6 +25,7 @@ export default function page() {
           <IoIosArrowForward />
         </Link>
       </p>
+      <SearchInput placeholderText="관심 스터디 분야나 강의명을 검색해 보세요" />
       <SectionNavigator title="분야별 스터디 탐색하기" moveLink="/search" />
       <SearchLabelList />
       <hr className="w-full block h-[0.8rem] bg-gray-100 border-0 my-[4rem]" />
