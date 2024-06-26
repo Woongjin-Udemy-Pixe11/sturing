@@ -4,8 +4,8 @@ import { emojiLabelList } from '@/constant/emojiLabelList';
 
 export default function Mood() {
   return (
-    <div className="w-[37.5rem] flex flex-col gap-5">
-      <section className=" px-[1.6rem] py-[2rem]">
+    <div className="w-full px-[1.6rem] py-[2rem]">
+      <section>
         <h1 className="font-black text-headline-3">웅진님이 선호하는</h1>
         <h1 className="font-black text-headline-3">
           스터디 분위기를 선택해 주세요.
