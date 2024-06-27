@@ -18,10 +18,10 @@ export default function MyBookMarkList() {
         </Tabs.List>
         <div className="py-5">
           <Tabs.Content value="스터디" className="flex flex-col gap-[1rem]">
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3 m-auto">
               {dummyCardList &&
-                dummyCardList.map((card) => (
-                  <div key={card.studyName}>
+                dummyCardList.map((card, index) => (
+                  <div key={card.studyName} id={String(index)}>
                     <Card
                       width="167"
                       studyImage={card.studyImage}
