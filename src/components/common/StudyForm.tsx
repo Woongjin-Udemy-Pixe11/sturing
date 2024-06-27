@@ -6,6 +6,7 @@ type TStudyFormProps = {
   contentPlaceholder: string;
   titleMaxLength?: number;
   contentMaxLength?: number;
+  children?: React.ReactNode;
   heading: string;
   titleLabel: string;
   contentLabel: string;
@@ -17,6 +18,7 @@ export default function StudyForm(props: TStudyFormProps) {
     contentPlaceholder,
     titleMaxLength = 24,
     contentMaxLength = 500,
+    children,
     heading,
     titleLabel,
     contentLabel,
@@ -30,6 +32,7 @@ export default function StudyForm(props: TStudyFormProps) {
       <h1 className="font-semibold text-[2.0rem] tracking-[-0.03rem] text-gray-1000 mb-[2.0rem]">
         {heading}
       </h1>
+      {children}
       <div className="flex flex-col items-start">
         <div className="w-full flex flex-col">
           <label
