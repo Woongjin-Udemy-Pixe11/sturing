@@ -1,5 +1,5 @@
-import StudyReviewCard from '../_componets/StudyReviewCard';
-import MyPageHeader from '../_componets/MypageHeader';
+import MyPageHeader from '@/components/users/MypageHeader';
+import StudyReviewCard from '@/components/users/StudyReviewCard';
 
 export default function MyStudyReviewList() {
   const number = [1, 2, 3, 4];

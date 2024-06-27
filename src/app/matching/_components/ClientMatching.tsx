@@ -1,6 +1,6 @@
 'use client';
 
-import MatchingFooter from '@/components/(jonghoo)/MatchingFooter';
+import MatchingFooter from '@/components/matching/MatchingFooter';
 import { GoChevronLeft } from 'react-icons/go';
 import Type from './Type';
 import { useState } from 'react';

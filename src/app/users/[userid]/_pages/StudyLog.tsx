@@ -1,5 +1,6 @@
 import Card from '@/components/common/Card';
-import MyPageHeader from '../_componets/MypageHeader';
+import MyPageHeader from '@/components/users/MypageHeader';
+
 import { dummyCardList } from '@/dummy/mainPage';
 
 export default function StudyLog() {

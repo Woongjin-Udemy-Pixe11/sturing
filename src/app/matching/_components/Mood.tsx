@@ -1,5 +1,5 @@
-import FlexContainer from '@/components/(jonghoo)/FlexContainer';
-import SelectMatching from '@/components/(jonghoo)/SelectMatching';
+import FlexContainer from '@/components/matching/FlexContainer';
+import SelectMatching from '@/components/matching/SelectMatching';
 import { emojiLabelList } from '@/constant/emojiLabelList';
 
 export default function Mood() {

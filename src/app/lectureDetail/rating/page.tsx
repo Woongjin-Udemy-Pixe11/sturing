@@ -1,6 +1,6 @@
 import Label from '@/components/common/Label';
 import { dummyCardList } from '@/dummy/lectureRating';
-import TitleNavigator from '@/components/(jisubin)/TitleNavigator';
+import TitleNavigator from '@/components/lectureStudyDetail/TitleNavigator';
 
 export default function LectureDetailRatingPage() {
   const rating = <Label isBlue={false}>{'4.5'}</Label>;

@@ -1,7 +1,7 @@
-import MyPageHeader from '../_componets/MypageHeader';
-import UserDetailInfo from '../_componets/UserDetailInfo';
+import MyPageHeader from '@/components/users/MypageHeader';
+import UserDetailInfo from '@/components/users/UserDetailInfo';
 import { FaCamera } from 'react-icons/fa';
-import UserMatchingInfo from '../_componets/UserMatchingInfo';
+import UserMatchingInfo from '@/components/users/UserMatchingInfo';
 
 export default function MyPageDetail() {
   return (

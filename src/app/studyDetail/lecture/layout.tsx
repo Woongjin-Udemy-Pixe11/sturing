@@ -1,5 +1,5 @@
-import BookmarkBtnNavigationBar from '@/components/(jisubin)/BookmarkBtnNavigationBar';
-import DetailTabBar from '@/components/(jisubin)/DetailTabBar';
+import BookmarkBtnNavigationBar from '@/components/lectureStudyDetail/BookmarkBtnNavigationBar';
+import DetailTabBar from '@/components/lectureStudyDetail/DetailTabBar';
 import CourseLink from '@/components/common/CourseLink';
 import Label from '@/components/common/Label';
 import { useState } from 'react';

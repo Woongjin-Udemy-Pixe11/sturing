@@ -1,4 +1,4 @@
-import TitleNavigator from '@/components/(jisubin)/TitleNavigator';
+import TitleNavigator from '@/components/lectureStudyDetail/TitleNavigator';
 import Label from '@/components/common/Label';
 import TeamMembersPage from './teamMembers/page';
 import CommentPage from './comment/page';
