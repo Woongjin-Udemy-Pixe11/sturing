@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import MainLabel from './MainLabel';
 
 type TUserCardProps = {
@@ -22,7 +23,8 @@ export default function UserCard(props: TUserCardProps) {
   } = props;
 
   return (
-    <div className="w-[13.4rem] flex flex-col gap-[.8rem]">
+    // TODO: '남'이 보는 마이 페이지 링크 자체 or 여기서 조합해야 함
+    <Link href={`my-page`} className="w-[13.4rem] flex flex-col gap-[.8rem]">
       <div className="w-full bg-main-200 rounded-[.5rem] p-[1.6rem] flex justify-center items-center flex-col">
         <img
           src={userImage}
@@ -51,6 +53,6 @@ export default function UserCard(props: TUserCardProps) {
           <MainLabel content={studyMoodContent} />
         </li>
       </ul>
-    </div>
+    </Link>
   );
 }

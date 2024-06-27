@@ -1,5 +1,6 @@
 export const dummyCardList = [
   {
+    id: 1,
     studyImage: '/images/card-dummy-img1.png',
     studyMettings: '스터디 시간 미정',
     studyTypeisBlue: true,
@@ -14,6 +15,7 @@ export const dummyCardList = [
     studyMember: 4,
   },
   {
+    id: 2,
     studyImage: '/images/card-dummy-img2.png',
     studyMettings: '모임 날짜 미정',
     studyTypeisBlue: true,
@@ -28,6 +30,7 @@ export const dummyCardList = [
     studyMember: 4,
   },
   {
+    id: 3,
     studyImage: '/images/card-dummy-img3.png',
     studyMettings: '매주 목 오후 8:00',
     studyTypeisBlue: true,
@@ -42,6 +45,7 @@ export const dummyCardList = [
     studyMember: 4,
   },
   {
+    id: 4,
     studyImage: '/images/card-dummy-img1.png',
     studyMettings: '스터디 시간 미정',
     studyTypeisBlue: true,
@@ -56,6 +60,7 @@ export const dummyCardList = [
     studyMember: 4,
   },
   {
+    id: 5,
     studyImage: '/images/card-dummy-img2.png',
     studyMettings: '모임 날짜 미정',
     studyTypeisBlue: true,
@@ -70,6 +75,7 @@ export const dummyCardList = [
     studyMember: 4,
   },
   {
+    id: 6,
     studyImage: '/images/card-dummy-img3.png',
     studyMettings: '매주 목 오후 8:00',
     studyTypeisBlue: true,

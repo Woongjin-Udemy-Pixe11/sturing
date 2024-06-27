@@ -3,10 +3,10 @@ import Link from 'next/link';
 import SideBarToggle from './SideBarToggle';
 import UserProfile from './UserProfile';
 
-export default function SideBar() {
+export default function SideBar({ onClose }: { onClose: () => void }) {
   return (
     <>
-      <dialog className="block fixed top-0 left-0 m-0 w-[32.4rem] px-[2.4rem] h-screen z-10">
+      <dialog className="block fixed top-0 left-0 w-[32.4rem] px-[2.4rem] h-screen z-10 ">
         <button className="absolute top-[4rem] right-[2.4rem] w-[2.4rem] h-[2.4rem]">
           <IoClose />
         </button>

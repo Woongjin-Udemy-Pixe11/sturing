@@ -12,7 +12,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="w-[375px] m-auto">{children}</body>
+      <body className="w-screen overflow-x-hidden border border-black max-w-screen-md m-auto relative">
+        {children}
+      </body>
     </html>
   );
 }

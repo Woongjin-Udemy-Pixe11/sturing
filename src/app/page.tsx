@@ -30,8 +30,10 @@ export default function page() {
       <SearchLabelList />
       <hr className="w-full block h-[0.8rem] bg-gray-100 border-0 my-[4rem]" />
       <SectionNavigator title="이번주 인기 스터디" moveLink="/search" />
+      {/* TODO: 스터디 카드 클릭 시 페이지 이동, Tab으로 접근, cursor-pointer */}
       <StudyCardList />
       <SectionNavigator title="새로 개설된 스터디" moveLink="/search" />
+      {/* TODO: 스터디 카드 클릭 시 페이지 이동, Tab으로 접근, cursor-pointer */}
       <StudyCardList />
       <span className="w-full px-[1.6rem] flex justify-between items-center text-headline-3 font-semibold mb-[2rem] mt-[4rem]">
         스터링 활동 우수 팀원
