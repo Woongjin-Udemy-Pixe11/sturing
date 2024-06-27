@@ -24,7 +24,7 @@ export default function StudyList(props: TStudyListProps) {
             스터디
           </span>
         )}
-        <ul className="w-full pl-[1rem] flex justify-start items-center flex-wrap gap-x-[1.6rem] gap-y-[.8rem] py-[2rem]">
+        <ul className="w-full flex justify-stretch items-center flex-wrap gap-x-[1.6rem] gap-y-[.8rem] py-[2rem]">
           {cardList &&
             cardList.map((card) => (
               <li key={card.id}>
