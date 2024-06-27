@@ -1,4 +1,4 @@
-import Header from '@/components/(suwan)/my-study/Header';
+import Header from '@/components/(suwan)/my-study/common/Header';
 
 export default function Layout({ children }) {
   return (

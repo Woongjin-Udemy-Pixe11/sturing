@@ -1,6 +1,6 @@
-import Top from '@/components/(suwan)/my-study/Top';
+import Top from '@/components/(suwan)/my-study/top/Top';
 
-import CalenderContainer from '@/components/(suwan)/my-study/calender/CalenderContainer.tsx';
+import CalenderContainer from '@/components/(suwan)/my-study/calender/CalenderContainer';
 export default function Calender() {
   return (
     <>

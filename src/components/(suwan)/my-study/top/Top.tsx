@@ -1,5 +1,5 @@
-import MyStudyInfo from '@/components/(suwan)/make-study-form/top/MyStudyInfo';
-import TabBar from '@/components/(suwan)/make-study-form/common/Tabar';
+import MyStudyInfo from '@/components/(suwan)/my-study/top/MyStudyInfo';
+import TabBar from '@/components/(suwan)/my-study/common/Tabar';
 
 export default function Top() {
   return (

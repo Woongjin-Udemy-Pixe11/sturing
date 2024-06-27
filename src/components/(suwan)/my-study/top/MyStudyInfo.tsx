@@ -33,8 +33,8 @@ export default function MyStudyInfo() {
         <div className="p-6">
           <div className="flex items-center gap-2.5">
             <div>
-              <Label isBlue="true" content={STUDY_TYPE} />
-              <Label content="디자인" />
+              <Label isBlue={true} children={STUDY_TYPE} />
+              <Label children="디자인" />
             </div>
             <span>4주 진행 | </span>
             <span>
