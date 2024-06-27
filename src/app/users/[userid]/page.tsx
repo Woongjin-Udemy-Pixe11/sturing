@@ -10,7 +10,7 @@ import StudyLog from './_pages/StudyLog';
 export default function page() {
   return (
     <div>
-      <MyPageDetail />
+      <MiniAgreeModal />
     </div>
   );
 }
