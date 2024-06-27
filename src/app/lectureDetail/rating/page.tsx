@@ -3,7 +3,7 @@ import { dummyCardList } from '@/dummy/lectureRating';
 import TitleNavigator from '@/components/(jisubin)/TitleNavigator';
 
 export default function LectureDetailRatingPage() {
-  const rating = <Label content="4.5" isBlue={false} />;
+  const rating = <Label isBlue={false}>{'4.5'}</Label>;
   return (
     <div>
       <div className="mt-[5rem]">

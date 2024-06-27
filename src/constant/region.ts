@@ -1,6 +1,10 @@
 type TAreaType = {
   [key: string]: string[];
 };
+
+type Tlevel = {
+  [key: string]: string;
+};
 export const area: TAreaType = {
   서울: [
     '강남구',
@@ -254,4 +258,11 @@ export const area: TAreaType = {
   대구: ['남구', '달서구', '동구', '북구', '서구', '수성구', '중구', '달성군'],
   울산: ['남구', '동구', '북구', '중구', '울주군'],
   제주: ['서귀포시', '제주시'],
+};
+
+export const level: Tlevel = {
+  비기너: '관련 공부를 이제 막 시작했어요',
+  신입: '관련 분야에서 일한지 아직 1년이 안됐어요',
+  주니어: '1~3년 정도 관련 분야 업무경험이 있어요',
+  시니어: '4년 이상의 관련 분야 업무경험이 있어요',
 };

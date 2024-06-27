@@ -75,8 +75,8 @@ export default function Card(props: TCardProps) {
         </div>
       </div>
       <div className="mb-[0.4rem] [&>span]:ml-0 [&>span]:mr-2 select-none">
-        <Label isBlue={studyTypeisBlue} content={studyType} />
-        <Label isBlue={studyCategoryisBlue} content={studyCatecory} />
+        <Label isBlue={studyTypeisBlue} children={studyType} />
+        <Label isBlue={studyCategoryisBlue} children={studyCatecory} />
       </div>
       <div className="mb-[0.8rem]">
         <div className="font-bold mt-[0.1rem] mb-[1.2rem]">{studyName}</div>

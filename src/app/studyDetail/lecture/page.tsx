@@ -113,8 +113,8 @@ export default function StudyDetailPage() {
           <hr className="mx-[2rem] mb-[1.2rem] w-[30.3rem] border-b-gray-300 border-b-1"></hr>
           <div className="flex flex-col mx-[2rem]">
             <div>
-              <Label content="온라인" isBlue={true} />
-              <Label content="4.5" isBlue={false} />
+              <Label isBlue={true}>{'온라인'}</Label>
+              <Label isBlue={false}>{'4.5'}</Label>
             </div>
             <div className="text-content-1 flex flex-col my-[1.2rem] gap-y-[0.4rem]">
               <span className="text-gray-950">

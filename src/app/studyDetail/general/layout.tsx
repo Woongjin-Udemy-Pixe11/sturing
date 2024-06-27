@@ -241,8 +241,8 @@ export default function StudyDetailLayout({
 
           <div className="mt-[3.8rem] pb-[4rem] flex flex-col items-center justify-center">
             <div>
-              <Label isBlue={true} content={'오프라인'}></Label>
-              <Label isBlue={false} content={'디자인'}></Label>
+              <Label isBlue={true}>{'오프라인'}</Label>
+              <Label isBlue={false}>{'디자인'}</Label>
             </div>
             <div className="w-[30rem] h-[5.4rem] mt-[1.8rem]">
               <h1 className="text-center font-semibold">

@@ -1,14 +1,15 @@
-import { dummyCardList } from '@/dummy/mainPage';
-import Card from '../common/Card';
 import ScrollableContainer from './ScrollableContainer';
+import { dummyCardList } from '@/dummy/mainPage';
+import Card from './Card';
 
 export default function StudyCardList() {
   return (
     <ScrollableContainer>
       {dummyCardList &&
-        dummyCardList.map((card) => (
-          <li key={card.studyName}>
+        dummyCardList.map((card, index) => (
+          <li key={index}>
             <Card
+              width="182"
               studyImage={card.studyImage}
               studyMeetings={card.studyMettings}
               studyTypeisBlue={card.studyTypeisBlue}
