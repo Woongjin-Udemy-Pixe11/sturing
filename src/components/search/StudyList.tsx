@@ -12,7 +12,7 @@ export default function StudyList(props: TStudyListProps) {
   let cardList = dummyCardList;
 
   if (!isDetail) {
-    isFull = dummyCardList.length > 4;
+    isFull = dummyCardList.length > 4 ? true : false;
     cardList = dummyCardList.slice(0, 4);
   }
 
@@ -24,10 +24,10 @@ export default function StudyList(props: TStudyListProps) {
             스터디
           </span>
         )}
-        <ul className="w-full flex justify-between items-center flex-wrap gap-y-[.8rem] py-[2rem]">
+        <ul className="w-full pl-[1rem] flex justify-start items-center flex-wrap gap-x-[1.6rem] gap-y-[.8rem] py-[2rem]">
           {cardList &&
-            cardList.map((card, index) => (
-              <li key={index}>
+            cardList.map((card) => (
+              <li key={card.id}>
                 <Card
                   width="167"
                   studyImage={card.studyImage}
