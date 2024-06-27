@@ -1,7 +1,8 @@
 export default function Banner() {
   return (
-    <figure>
+    <figure className="w-full">
       <img
+        className="w-full"
         src="/images/main-banner.png"
         alt="스터디 출석률 100% 달성하면 혜택을 받을 수 있는 이벤트 배너 이미지"
       />
