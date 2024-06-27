@@ -1,5 +1,5 @@
 import * as Tabs from '@radix-ui/react-tabs';
-import MyPageHeader from '../_componets/MypageHeader';
+import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import { dummyCardList } from '@/dummy/mainPage';
 import Card from '@/components/common/Card';
 

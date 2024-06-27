@@ -1,6 +1,6 @@
-import SelectMatching from '@/components/(jonghoo)/SelectMatching';
+import SelectMatching from '@/components/(JH)/matching/SelectMatching';
 import { searchLabelList } from '@/constant/searchLabelList';
-import FlexContainer from '@/components/(jonghoo)/FlexContainer';
+import FlexContainer from '@/components/(JH)/matching/FlexContainer';
 
 export default function Interest() {
   return (

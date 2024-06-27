@@ -1,5 +1,5 @@
-import BookmarkBtnNavigationBar from '@/components/(jisubin)/BookmarkBtnNavigationBar';
-import DetailTabBar from '@/components/(jisubin)/DetailTabBar';
+import BookmarkBtnNavigationBar from '@/components/(jisubin)/lectureStudyDetail/BookmarkBtnNavigationBar';
+import DetailTabBar from '@/components/(jisubin)/lectureStudyDetail/DetailTabBar';
 import CourseLink from '@/components/common/CourseLink';
 import Label from '@/components/common/Label';
 import { useState } from 'react';
@@ -258,14 +258,20 @@ export default function StudyDetailLayout({
         </div>
 
         <div className="bg-gray-100">
+          <div className="mx-[1.6rem] py-[2rem]">
+            <CourseLink
+              courseTitle="UXUI 디자이너가 피그마를 활용해 포트폴리오를 쌓는 법 A to Z"
+              courseLink="/"
+            />
+          </div>
           <div className="mx-[1.6rem]">
             <DetailTabBar
               text1="정보"
-              text1Link="/studyDetail/general"
+              text1Link="/studyDetail/lecture"
               text2="팀원"
-              text2Link="/studyDetail/general/teamMembers"
+              text2Link="/studyDetail/lecture/teamMembers"
               text3="댓글"
-              text3Link="/studyDetail/general/comment"
+              text3Link="/studyDetail/lecture/comment"
             />
           </div>
 

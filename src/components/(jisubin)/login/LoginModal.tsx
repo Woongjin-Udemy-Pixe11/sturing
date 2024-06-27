@@ -1,4 +1,4 @@
-import GitHubLoginBtn from '../common/GitHubLoginBtn';
+import GitHubLoginBtn from '../../common/GitHubLoginBtn';
 
 export default function LoginModal() {
   return (

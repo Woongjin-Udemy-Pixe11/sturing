@@ -7,6 +7,9 @@ type TButtonProps = {
   onClick?: () => void;
 };
 
+/*
+width 지정 가능
+*/
 export default function LongButton({
   color,
   width = 'w-full',

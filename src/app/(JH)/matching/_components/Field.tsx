@@ -1,7 +1,7 @@
-import MatchingContainer from '@/components/(jonghoo)/MatchingContainer';
+import MatchingContainer from '@/components/(JH)/matching/MatchingContainer';
 import * as Tabs from '@radix-ui/react-tabs';
 import { level } from '@/constant/region';
-import MatchingFooter from '@/components/(jonghoo)/MatchingFooter';
+import MatchingFooter from '@/components/(JH)/matching/MatchingFooter';
 export default function Field() {
   const levelComponet = Object.keys(level).map((key) => {
     return (

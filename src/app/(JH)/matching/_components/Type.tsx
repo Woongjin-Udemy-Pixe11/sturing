@@ -1,4 +1,4 @@
-import MatchingContainer from '@/components/(jonghoo)/MatchingContainer';
+import MatchingContainer from '@/components/(JH)/matching/MatchingContainer';
 import { FaCheck } from 'react-icons/fa6';
 
 export default function Type() {

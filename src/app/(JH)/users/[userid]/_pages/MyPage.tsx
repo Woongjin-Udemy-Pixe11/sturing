@@ -1,8 +1,8 @@
 import SectionNavigator from '@/components/common/SectionNavigator';
-import MyPageHeader from '../_componets/MypageHeader';
-import MyPageProfileCard from '../_componets/MyPageProfileCard';
-import MyStudyInfo from '../_componets/MyStudyInfo';
-import SturingRate from '../_componets/SturingRate';
+import MyPageHeader from '@/components/(JH)/users/MypageHeader';
+import MyPageProfileCard from '@/components/(JH)/users/MyPageProfileCard';
+import MyStudyInfo from '@/components/(JH)/users/MyStudyInfo';
+import SturingRate from '@/components/(JH)/users/SturingRate';
 
 export default function MyPage({ auth }: { auth?: boolean }) {
   const loginbg = auth && `bg-gradient-to-r from-main-200  to-pink`;
