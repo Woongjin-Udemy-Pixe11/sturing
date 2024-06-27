@@ -1,3 +1,4 @@
+import Header from '@/components/common/Header';
 import './globals.css';
 
 export const metadata = {
@@ -13,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="w-screen overflow-x-hidden border border-black max-w-screen-md m-auto relative">
+        <Header />
         {children}
       </body>
     </html>
