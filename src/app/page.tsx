@@ -12,7 +12,6 @@ import Footer from '@/components/common/Footer';
 export default function page() {
   return (
     <>
-      <Header />
       <TabBar />
       <Banner />
       <p className="w-full bg-gray-1000 text-gray-100 flex justify-start items-center gap-[0.8rem] px-[1.6rem] py-[1.2rem]">
