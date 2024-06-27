@@ -1,5 +1,5 @@
 import BookmarkBtnNavigationBar from '@/components/(jisubin)/BookmarkBtnNavigationBar';
-import LectureTabBar from '@/components/(jisubin)/LectureTabBar';
+import DetailTabBar from '@/components/(jisubin)/DetailTabBar';
 import CourseLink from '@/components/common/CourseLink';
 import Label from '@/components/common/Label';
 import { useState } from 'react';
@@ -256,12 +256,19 @@ export default function LectureDetailLayout({
           />
         </div>
         <div className="mx-[1.6rem]">
-          <LectureTabBar />
+          <DetailTabBar
+            text1="강의소개"
+            text1Link="/lectureDetail"
+            text2="스터디"
+            text2Link="/lectureDetail/study"
+            text3="평점"
+            text3Link="/lectureDetail/rating"
+          />
         </div>
 
         {children}
 
-        <BookmarkBtnNavigationBar />
+        <BookmarkBtnNavigationBar text="이 강의로 스터디 개설하기" />
       </body>
     </html>
   );

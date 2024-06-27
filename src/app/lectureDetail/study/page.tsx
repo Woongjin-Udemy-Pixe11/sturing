@@ -1,15 +1,12 @@
 import { dummyCardList } from '@/dummy/lectureStudy';
 import Card from '@/components/common/Card';
-import SectionNavigator from '@/components/common/SectionNavigator';
-import Link from 'next/link';
-import { IoIosArrowForward } from 'react-icons/io';
-import TitleCountNavigator from '@/components/(jisubin)/TitleCountNavigator';
+import TitleNavigator from '@/components/(jisubin)/TitleNavigator';
 
 export default function LectureDetailStudyPage() {
   return (
     <>
       <div className="mt-[5rem]">
-        <TitleCountNavigator
+        <TitleNavigator
           title="이 강의를 수강하는 스터디"
           count={10}
           moveLink="/"

@@ -1,17 +1,15 @@
 import Label from '@/components/common/Label';
-import { IoIosArrowForward } from 'react-icons/io';
-import Link from 'next/link';
 import { dummyCardList } from '@/dummy/lectureRating';
-import TitleCountNavigator from '@/components/(jisubin)/TitleCountNavigator';
+import TitleNavigator from '@/components/(jisubin)/TitleNavigator';
 
 export default function LectureDetailRatingPage() {
   const rating = <Label content="4.5" isBlue={false} />;
   return (
     <div>
       <div className="mt-[5rem]">
-        <TitleCountNavigator title="강의평점" count={13} moveLink="/">
+        <TitleNavigator title="강의평점" count={13} moveLink="/">
           {rating}
-        </TitleCountNavigator>
+        </TitleNavigator>
       </div>
 
       <div className="mx-[1.6rem] mb-[10rem] flex flex-col items-center justify-center">
