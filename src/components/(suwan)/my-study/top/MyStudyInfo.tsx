@@ -1,4 +1,4 @@
-import Label from '@/components/common/Label';
+import Label from '@/components/common/label/Label';
 import CourseLink from '../../../common/CourseLink';
 
 let studyData = {

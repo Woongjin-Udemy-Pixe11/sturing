@@ -1,5 +1,6 @@
 import RangeCalendar from '@/components/common/calender/RangeCalendar.tsx';
-import Tag from '../form/Tag';
+import SizeUpLabel from '../../../common/label/SizeUpLabel';
+import Label from '@/components/common/label/Label';
 
 export default function StudyDetail() {
   return (
@@ -15,10 +16,11 @@ export default function StudyDetail() {
       <div>스터디 분위기 키워드(선택)</div>
       <div>3개까지 선택 가능합니다.</div>
       <div className="flex">
-        <Tag text="친근한" />
-        <Tag text="친근한" />
-        <Tag text="친근한" />
+        <SizeUpLabel children="친근한" />
+        <SizeUpLabel children="친근한" />
+        <SizeUpLabel children="친근한" />
       </div>
+      <Label children="친근한" />
     </>
   );
 }

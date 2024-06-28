@@ -1,4 +1,4 @@
-import Label from '@/components/common/Label';
+import Label from '@/components/common/label/Label';
 import { dummyCardList } from '@/dummy/lectureRating';
 import TitleNavigator from '@/components/(jisubin)/lectureStudyDetail/TitleNavigator';
 

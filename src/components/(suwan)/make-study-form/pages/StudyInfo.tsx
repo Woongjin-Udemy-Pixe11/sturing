@@ -1,6 +1,6 @@
 import StudyForm from '@/components/common/StudyForm';
 import FormButton from '@/components/(suwan)/make-study-form/form/FormButton';
-import Tag from '@/components/(suwan)/make-study-form/form/Tag';
+import SizeUpLabel from '../../../common/label/SizeUpLabel';
 export default function StudyInfo() {
   return (
     <>
@@ -46,8 +46,8 @@ export default function StudyInfo() {
             contentLabel="스터디 소개"
           />
           <div className="flex gap-2">
-            <Tag text="온라인" isClicked={true} />
-            <Tag text="오프라인" />
+            <SizeUpLabel children="온라인" isClicked={true} />
+            <SizeUpLabel children="오프라인" />
           </div>
           <div>
             <input type="checkbox" />

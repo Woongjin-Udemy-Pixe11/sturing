@@ -1,10 +1,10 @@
-type TTagPros = {
+type TSizeUpLabelPros = {
   isClicked?: boolean;
-  text: string;
+  children: string;
 };
 
-export default function Tag(props: TTagPros) {
-  const { isClicked, text } = props;
+export default function SizeUpLabel(props: TSizeUpLabelPros) {
+  const { isClicked, children } = props;
 
   return (
     <>
@@ -15,7 +15,7 @@ export default function Tag(props: TTagPros) {
             : ''
         }flex justify-start items-start border text-gray-600 border-gray-300 px-[1.2rem] py-[0.4rem] text-content-1 rounded`}
       >
-        {text}
+        {children}
       </div>
     </>
   );
