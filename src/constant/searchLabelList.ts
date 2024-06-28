@@ -11,7 +11,7 @@ export const searchLabelList: TSearchLabel[] = [
     imgAlt: '디자인 아이콘',
   },
   {
-    title: '개발테크',
+    title: '개발 · 테크',
     imgSrc: '/images/searchLabel/developmentTech.svg',
     imgAlt: '개발테크 아이콘',
   },
