@@ -43,7 +43,7 @@ export default function CollectStudyClient() {
             setStep((prev) => prev + 1);
           }}
         >
-          다음
+          {step === 3 ? '등록하기' : '다음'}
         </LongButton>
       </footer>
     </main>
