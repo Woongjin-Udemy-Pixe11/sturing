@@ -1,5 +1,5 @@
-import BoardTop from '../_component/BoardTop';
-import NoticeBoardList from '../_component/NoticeBoardList';
+import BoardTop from '../../my-study-main/board/_component/BoardTop';
+import NoticeBoardList from '../../my-study-main/board/_component/NoticeBoardList';
 
 const notices = [
   {
