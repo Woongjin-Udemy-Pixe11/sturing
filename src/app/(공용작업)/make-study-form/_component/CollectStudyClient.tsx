@@ -1,9 +1,10 @@
 'use client';
 
+import LongButton from '@/components/common/LongButton';
 import { useState } from 'react';
 import SelectCateGory from './SelectCateGory';
-import LongButton from '@/components/common/LongButton';
 import StudyDetailInfoForm from './StudyDetailInfoForm';
+import StudyInfoForm from './StudyInfoForm';
 import StudyTeammateForm from './StudyTeammateForm';
 
 export default function CollectStudyClient() {
@@ -11,8 +12,9 @@ export default function CollectStudyClient() {
   //TODO:any 수정
   const collectstep: any = {
     1: <SelectCateGory />,
-    2: <StudyDetailInfoForm />,
-    3: <StudyTeammateForm />,
+    2: <StudyInfoForm />,
+    3: <StudyDetailInfoForm />,
+    4: <StudyTeammateForm />,
   };
   return (
     <main>
@@ -21,7 +23,7 @@ export default function CollectStudyClient() {
         <div className="w-full bg-gray-400 rounded-full h-[0.4rem]  ">
           <div
             className="bg-main-500 h-[0.4rem] rounded-full"
-            style={{ width: `${step * 33}%` }}
+            style={{ width: `${step * 25}%` }}
           ></div>
         </div>
       </header>
@@ -43,7 +45,7 @@ export default function CollectStudyClient() {
             setStep((prev) => prev + 1);
           }}
         >
-          {step === 3 ? '등록하기' : '다음'}
+          {step === 4 ? '등록하기' : '다음'}
         </LongButton>
       </footer>
     </main>
