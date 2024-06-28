@@ -11,7 +11,7 @@ let studyData = {
   STUDY_MEETINGS: '토요일 오후 8시 온라인 진행',
   STUDY_PLACE: '추후협의',
 };
-export default function MyStudyInfo() {
+export default function StudyInfo() {
   let {
     STUDY_NAME,
     STUDY_TYPE,
@@ -25,14 +25,14 @@ export default function MyStudyInfo() {
 
   return (
     <>
-      <div className="relative w-full text-white shadow-md overflow-hidden py-[3rem]">
-        <img
+      <div className="relative w-full text-white shadow-md overflow-hidden">
+        {/* <img
           className="absolute inset-0 w-full h-full object-cover -z-10"
           src={STUDY_IMAGE}
-        />
-        <div className="p-6">
+        /> */}
+        <div className="px-[1.5rem] pt-[1.2rem] pb-[3rem] flex flex-col space-y-[2rem]">
           <div className="flex items-center gap-2.5">
-            <div>
+            <div className="flex space-x-[0.8rem] mr-[1rem]">
               <Label isBlue={true} children={STUDY_TYPE} />
               <Label children="디자인" />
             </div>
@@ -42,17 +42,26 @@ export default function MyStudyInfo() {
             </span>
           </div>
           <h1 className="text-[2rem] font-semibold">{STUDY_NAME}</h1>
-          <div>
-            <CourseLink courseTitle={STUDY_SUBJECT} courseLink="" />
-            <div>
-              <div className="flex">
+          <CourseLink courseTitle={STUDY_SUBJECT} courseLink="" />
+
+          <div className="flex flex-col space-y-[0.8rem] text-content-1 font-medium">
+            <div className="flex">
+              <div className="flex w-[4.9rem] justify-between mr-[1.8rem]">
                 <img src="/images/studyLabel/note-text.svg" />
-                <span>{STUDY_MEETINGS}</span>
+                <div>일정</div>
               </div>
-              <div className="flex">
-                <img src="/images/studyLabel/location.svg" />
-                <span>{STUDY_PLACE}</span>
+              <span>{STUDY_MEETINGS}</span>
+            </div>
+
+            <div className="flex">
+              <div className="flex w-[4.9rem] justify-between mr-[1.8rem]">
+                <img
+                  src="/images/studyLabel/location.svg"
+                  className="ml-[0.3rem]"
+                />
+                <div>위치</div>
               </div>
+              <span>{STUDY_PLACE}</span>
             </div>
           </div>
         </div>

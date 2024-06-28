@@ -1,10 +1,17 @@
 import Header from '@/components/(suwan)/my-study/common/Header';
-import Top from '@/components/(suwan)/my-study/top/Top';
+import TabBar from '@/components/(suwan)/my-study/head/Tabar';
+import StudyInfo from '@/components/(suwan)/my-study/head/StudyInfo';
+
 export default function Layout({ children }) {
   return (
     <>
       <Header />
-      <Top />
+      <StudyInfo />
+      <TabBar />
+      <img
+        className="absolute inset-0 w-full h-full object-cover -z-10"
+        src="/images/study-img1.png"
+      />
       <main>{children}</main>
     </>
   );
