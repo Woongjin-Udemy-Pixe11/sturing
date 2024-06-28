@@ -53,21 +53,23 @@ export default function StudyInfoForm() {
         </div>
 
         {locationType === 'online' && (
-          <div className="mt-[1.2rem]">
+          <div className="flex items-center gap-[0.4rem]  mt-[1.2rem] px-[1.6rem] w-full border rounded-[0.5rem]">
+            <img src="/images/boardIcon/location.svg" alt="" />
             <input
               type="text"
               placeholder="온라인 플랫폼을 입력해주세요. ex)Zoom"
-              className="w-full p-[1.2rem] border rounded-[0.5rem] placeholder:text-content-1 text-gray-500"
+              className="w-full py-[1.2rem] placeholder:text-content-1 text-gray-500"
             />
           </div>
         )}
 
         {locationType === 'offline' && (
-          <div className="mt-[1.2rem]">
+          <div className="flex gap-[0.4rem] items-center mt-[1.2rem] px-[1.6rem] w-full border rounded-[0.5rem]">
+            <img src="/images/boardIcon/globe.svg" alt="" />
             <input
               type="text"
-              placeholder="오프라인 장소를 입력해주세요."
-              className="w-full p-[1.2rem] border rounded-[0.5rem] placeholder:text-content-1 text-gray-500"
+              placeholder="스터디 장소를 입력해주세요. ex) 등촌역 스타벅스"
+              className="w-full py-[1.2rem] placeholder:text-content-1 text-gray-500"
             />
           </div>
         )}
