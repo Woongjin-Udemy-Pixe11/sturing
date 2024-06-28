@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Label from './Label';
+import Label from './label/Label';
 import { FaRegBookmark } from 'react-icons/fa6';
 import { FaBookmark } from 'react-icons/fa6';
 import { useState } from 'react';

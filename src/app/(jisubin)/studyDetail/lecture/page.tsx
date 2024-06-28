@@ -1,5 +1,5 @@
 import TitleNavigator from '@/components/(jisubin)/lectureStudyDetail/TitleNavigator';
-import Label from '@/components/common/Label';
+import Label from '@/components/common/label/Label';
 import TeamMembersPage from './teamMembers/page';
 import CommentPage from './comment/page';
 

@@ -1,7 +1,7 @@
 import BookmarkBtnNavigationBar from '@/components/(jisubin)/lectureStudyDetail/BookmarkBtnNavigationBar';
 import DetailTabBar from '@/components/(jisubin)/lectureStudyDetail/DetailTabBar';
 import CourseLink from '@/components/common/CourseLink';
-import Label from '@/components/common/Label';
+import Label from '@/components/common/label/Label';
 import { useState } from 'react';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
 

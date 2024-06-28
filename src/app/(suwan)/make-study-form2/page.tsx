@@ -9,9 +9,9 @@ export default function page() {
   return (
     <>
       <Header />
-      {/* <SelectedCourse /> */}
+      <SelectedCourse />
       {/* <StudyInfo /> */}
-      <StudyDetail />
+      {/* <StudyDetail /> */}
       {/* <Wanted />; */}
       {/* <Completed />; */}
     </>

@@ -1,5 +1,5 @@
 'use client';
-import Label from '@/components/common/Label';
+import Label from '@/components/common/label/Label';
 import { searchLabelList } from '@/constant/searchLabelList';
 
 export default function SelectCateGory() {
