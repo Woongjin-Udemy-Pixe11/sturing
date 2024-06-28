@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import SelectCateGory from './SelectCateGory';
 import LongButton from '@/components/common/LongButton';
+import StudyDetailInfoForm from './StudyDetailInfoForm';
 
 export default function CollectStudyClient() {
   const [step, setStep] = useState<number>(1);
@@ -17,7 +18,7 @@ export default function CollectStudyClient() {
           ></div>
         </div>
       </header>
-      <SelectCateGory />
+      <StudyDetailInfoForm />
       <div className="flex m-auto gap-2 w-full p-4">
         <LongButton color="white" className="w-[40%]">
           이전

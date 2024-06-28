@@ -1,4 +1,4 @@
-import CollectStudyClient from './_componet/CollectStudyClient';
+import CollectStudyClient from './_component/CollectStudyClient';
 
 export default function page() {
   return <CollectStudyClient />;
