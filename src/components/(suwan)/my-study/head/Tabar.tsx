@@ -12,7 +12,7 @@ export default function TabBar() {
   ];
 
   return (
-    <ul className="w-full px-[1.6rem] flex justify-center items-center text-center border-b-2 border-t-2">
+    <ul className="w-full px-[1.6rem] flex justify-center items-center text-center border-b-2 border-t-2 bg-white">
       {tabs.map((tab) => (
         <li
           key={tab.name}
