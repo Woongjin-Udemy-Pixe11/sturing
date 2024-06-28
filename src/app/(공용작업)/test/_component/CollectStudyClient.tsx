@@ -4,6 +4,7 @@ import { useState } from 'react';
 import SelectCateGory from './SelectCateGory';
 import LongButton from '@/components/common/LongButton';
 import StudyDetailInfoForm from './StudyDetailInfoForm';
+import StudyTeammateForm from './StudyTeammateForm';
 
 export default function CollectStudyClient() {
   const [step, setStep] = useState<number>(1);
@@ -18,7 +19,7 @@ export default function CollectStudyClient() {
           ></div>
         </div>
       </header>
-      <StudyDetailInfoForm />
+      <StudyTeammateForm />
       <div className="flex m-auto gap-2 w-full p-4">
         <LongButton color="white" className="w-[40%]">
           이전
