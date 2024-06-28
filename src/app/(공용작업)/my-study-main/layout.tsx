@@ -2,7 +2,7 @@ import Header from '@/components/(suwan)/my-study/common/Header';
 import TabBar from '@/components/(suwan)/my-study/head/Tabar';
 import StudyInfo from '@/components/(suwan)/my-study/head/StudyInfo';
 
-export default function Layout({ children }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
