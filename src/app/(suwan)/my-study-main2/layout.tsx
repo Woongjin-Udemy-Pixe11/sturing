@@ -1,6 +1,7 @@
 import Header from '@/components/(suwan)/my-study/common/Header';
 import TabBar from '@/components/(suwan)/my-study/head/Tabar';
 import StudyInfo from '@/components/(suwan)/my-study/head/StudyInfo';
+import { study } from '@/dummy/studyList';
 
 export default function Layout({ children }) {
   return (
