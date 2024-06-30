@@ -5,10 +5,10 @@ import { usePathname } from 'next/navigation';
 export default function TabBar() {
   const pathname = usePathname();
   const tabs = [
-    { name: '팀', href: '/my-study/team' },
-    { name: '개인', href: '/my-study/my-todo' },
-    { name: '일정', href: '/my-study/calender' },
-    { name: '게시판', href: '/my-study/board' },
+    { name: '팀', href: '/my-study-main/team' },
+    { name: '개인', href: '/my-study-main/my-todo' },
+    { name: '일정', href: '/my-study-main/calendar' },
+    { name: '게시판', href: '/my-study-main/board' },
   ];
 
   return (

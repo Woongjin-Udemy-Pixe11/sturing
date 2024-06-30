@@ -1,7 +1,9 @@
-export default function TeamPage() {
+import TeamContainer from '@/components/(suwan)/my-study/team/TeamContainer';
+
+export default function Page() {
   return (
     <>
-      <h1>Team Component</h1>
+      <TeamContainer />
     </>
   );
 }

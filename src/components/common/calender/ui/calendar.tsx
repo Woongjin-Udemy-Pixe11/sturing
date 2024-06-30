@@ -30,12 +30,12 @@ function Calendar({
         //>버튼
         nav_button_next: 'absolute right-1',
         table:
-          'flex flex-col justify-center items-center w-[30.3rem] border-collapse space-y-1',
+          'flex flex-col justify-center items-center w-full border-collapse space-y-1',
         head_row: 'flex gap-[0.4rem]',
         head_cell:
           'hidden text-muted-foreground rounded-full font-normal text-content-1 h-[3rem] w-[3rem]',
-        row: 'flex w-full',
-        cell: 'p-3 text-center text-content-1 relative [&:has([aria-selected].day-range-end)]:rounded-r-full [&:has([aria-selected].day-range-start)]:rounded-l-full [&:has([aria-selected].day-outside)]:bg-accent/50 first:text-red last:text-main-700 first:[&:has([aria-selected])]:rounded-l-full last:[&:has([aria-selected])]:rounded-r-full focus-within:relative focus-within:z-20',
+        row: 'flex w-full justify-center gap-[.4rem]',
+        cell: 'flex w-full justify-centerp-3 text-center text-content-1 relative [&:has([aria-selected].day-range-end)]:rounded-r-full [&:has([aria-selected].day-range-start)]:rounded-l-full [&:has([aria-selected].day-outside)]:bg-accent/50 first:text-red last:text-main-700 first:[&:has([aria-selected])]:rounded-l-full last:[&:has([aria-selected])]:rounded-r-full focus-within:relative focus-within:z-20',
         day: 'h-[3rem] w-[3rem] font-normal rounded-full',
 
         day_range_end: 'day-range-end',

@@ -1,53 +1,42 @@
-export default function Todos() {
+import { TStudyMemberTodo, TTdo } from '@/dummy/studyMemberTodo';
+import Todo from '../common/Todo';
+
+export default function Todos(props: TTdo[]) {
+  const { todos } = props;
   return (
     <>
-      <div className="flex flex-row justify-start items-start flex-grow-0 flex-shrink-0 w-[90%] gap-3 px-5 py-6 rounded-[5px] bg-white border border-[#e4e4e4]">
-        <div className="flex">
-          <span className="flex-grow-0 flex-shrink-0 text-base font-semibold text-left">
-            체크리스트
-          </span>
-          <span className="font-semibold text-left text-[#4171ff]">3</span>
-          <img src="/images/studyLabel/add.svg" />
-        </div>
-        <svg
-          width={303}
-          height={1}
-          viewBox="0 0 303 1"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="self-stretch flex-grow-0 flex-shrink-0"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <line x1={303} y1="0.5" y2="0.5" stroke="#E4E4E4" />
-        </svg>
-        <div>
-          <div className="flex flex-cal">
-            <input type="checkbox"></input>
-            <p className="flex-grow-0 flex-shrink-0 text-sm font-medium">
-              1강 5분 복습하기
-            </p>
-            <img src="/images/studyLabel/edit.svg" />
-            <img src="/images/studyLabel/delete.svg" />
+      <div className="flex flex-col justify-center items-center w-[90%] mt-[2rem] rounded-[5px] bg-white border border-gray-300">
+        <div className=" bg-white p-6 rounded-lg w-full px-[2rem]">
+          <div className="flex items-center border-b-[0.1rem] border-gray-300 pb-4">
+            <h2 className="text-[1.6rem] font-semibold">체크리스트</h2>
+            <span className="text-[1.4rem] font-semibold text-main-600 px-[1rem]">
+              3
+            </span>
+            <img src="/images/studyLabel/add-square.svg" className="ml-auto" />
           </div>
-          <div className="flex">
-            <input type="checkbox"></input>
-            <p className="flex-grow-0 flex-shrink-0 text-sm font-medium">
-              1강 5분 복습하기
-            </p>
-            <img src="/images/studyLabel/edit.svg" />
-            <img src="/images/studyLabel/delete.svg" />
-          </div>
-          <div className="flex">
-            <input type="checkbox"></input>
-            <p className="flex-grow-0 flex-shrink-0 text-sm font-medium">
-              1강 5분 복습하기
-            </p>
-            <img src="/images/studyLabel/edit.svg" />
-            <img src="/images/studyLabel/delete.svg" />
-          </div>
-          <div className="border border-gray-300 flex">
-            <input type="text" placeholder="오늘 할 일을 입력하세요."></input>
-            <img src="/images/studyLabel/Check.svg" />
+
+          <div className=" bg-white p-6 rounded-lg w-full px-[1rem]">
+            <div className="text-[1.4rem]">
+              <div className="flex flex-col text-[1.4rem]">
+                {todos &&
+                  todos.map((todo) => (
+                    <>
+                      <Todo todo={todo.todo} checked={todo.checked} />
+                    </>
+                  ))}
+                <div className="flex-inline relative">
+                  <input
+                    type="text"
+                    className="border pl-[1.6rem] pr-[4rem] py-[1.2rem] w-full"
+                    placeholder="오늘 할 일을 입력하세요"
+                  ></input>
+                  <img
+                    className="absolute top-6 right-6"
+                    src="/images/studyLabel/check.svg"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
