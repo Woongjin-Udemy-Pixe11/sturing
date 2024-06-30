@@ -3,7 +3,6 @@ import Todo from '../common/Todo';
 
 export default function Todos(props: TTdo[]) {
   const { todos } = props;
-  console.log(todos);
   return (
     <>
       <div className="flex flex-col justify-center items-center w-[90%] mt-[2rem] rounded-[5px] bg-white border border-gray-300">
@@ -13,6 +12,7 @@ export default function Todos(props: TTdo[]) {
             <span className="text-[1.4rem] font-semibold text-main-600 px-[1rem]">
               3
             </span>
+            <img src="/images/studyLabel/add-square.svg" className="ml-auto" />
           </div>
 
           <div className=" bg-white p-6 rounded-lg w-full px-[1rem]">
@@ -24,6 +24,17 @@ export default function Todos(props: TTdo[]) {
                       <Todo todo={todo.todo} checked={todo.checked} />
                     </>
                   ))}
+                <div className="flex-inline relative">
+                  <input
+                    type="text"
+                    className="border pl-[1.6rem] pr-[4rem] py-[1.2rem] w-full"
+                    placeholder="오늘 할 일을 입력하세요"
+                  ></input>
+                  <img
+                    className="absolute top-6 right-6"
+                    src="/images/studyLabel/check.svg"
+                  />
+                </div>
               </div>
             </div>
           </div>

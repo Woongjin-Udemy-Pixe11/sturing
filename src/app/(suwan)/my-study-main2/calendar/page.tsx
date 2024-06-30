@@ -1,8 +1,8 @@
-import CalenderContainer from '@/components/(suwan)/my-study/calender/CalenderContainer';
+import CalendarContainer from '@/components/(suwan)/my-study/calendar/CalendarContainer';
 export default function Calender() {
   return (
     <>
-      <CalenderContainer />
+      <CalendarContainer />
     </>
   );
 }

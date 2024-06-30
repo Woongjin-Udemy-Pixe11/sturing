@@ -7,7 +7,7 @@ export default function TabBar() {
   const tabs = [
     { name: '팀', href: '/my-study/team' },
     { name: '개인', href: '/my-study/my-todo' },
-    { name: '일정', href: '/my-study/calender' },
+    { name: '일정', href: '/my-study/calendar' },
     { name: '게시판', href: '/my-study/board' },
   ];
 
