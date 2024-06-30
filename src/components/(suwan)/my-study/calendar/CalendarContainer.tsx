@@ -3,7 +3,7 @@ import Schedule from './Schedule';
 
 export default function CalendarContainer() {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 p-[2rem]">
       <Calendar />
       <Schedule />
     </div>
