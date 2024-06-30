@@ -1,58 +1,7 @@
-'use client';
-
-import { useState } from 'react';
-import { FiCheck } from 'react-icons/fi';
-import { FaCircleCheck } from 'react-icons/fa6';
-type TStudyMember = {
-  name: string;
-  profileImage: any;
-  progress?: number;
-  isLeader?: boolean;
-  todos: TTdo[];
-};
-type TTdo = {
-  todo: string;
-  checked: boolean;
-};
-
-const teamMembers: TStudyMember[] = [
-  {
-    name: '웅진',
-    profileImage: '/images/ungin_profile.png',
-    todos: [
-      { todo: '1강 5분 복습하기', checked: true },
-      { todo: '2강 듣고 과제노트 작성하기', checked: false },
-    ],
-  },
-  {
-    name: '갓생살자',
-    profileImage: '/images/ungin_profile.png',
-    todos: [
-      { todo: '밥먹기', checked: true },
-      { todo: '빵먹기', checked: false },
-    ],
-  },
-  {
-    name: '취뽀기원',
-    profileImage: '/images/ungin_profile.png',
-    todos: [
-      { todo: '밥먹기', checked: true },
-      { todo: '빵먹기', checked: false },
-    ],
-  },
-  {
-    name: '마스터',
-    profileImage: '/images/ungin_profile.png',
-    todos: [
-      { todo: '밥먹기', checked: true },
-      { todo: '빵먹기', checked: false },
-    ],
-  },
-];
+import Todo from '../common/Todo';
+import { studyMemberTodo } from '@/dummy/studyMemberTodo';
 
 export default function TeamTodo() {
-  const [checked, setChecked] = useState(false);
-
   return (
     <>
       <div className="flex flex-col justify-center items-center w-[90%] mt-[2rem] rounded-[5px] bg-white border border-gray-300">
@@ -64,7 +13,7 @@ export default function TeamTodo() {
 
           <div className="text-[1.4rem] py-[2rem]">
             <div className="flex justify-around items-center mb-4 text-[1.4rem]">
-              {teamMembers.map((member) => (
+              {studyMemberTodo.map((member) => (
                 <div key={member.name} className="flex flex-col items-center">
                   <img
                     src={member.profileImage}
@@ -75,36 +24,10 @@ export default function TeamTodo() {
               ))}
             </div>
 
-            <div className="flex flex-col space-y-[1.2rem] text-[1.4rem]">
-              {teamMembers[0].todos.map((todo) => (
+            <div className="flex flex-col text-[1.4rem]">
+              {studyMemberTodo[0].todos.map((todo) => (
                 <>
-                  <label className="inline-flex items-center space-x-2  relative">
-                    <input
-                      id="checkbox"
-                      type="checkbox"
-                      checked={todo.checked}
-                      onChange={() => {
-                        setChecked(!checked);
-                      }}
-                      className="form-checkbox hidden "
-                    />
-
-                    <label htmlFor="checkbox" className="">
-                      {checked ? (
-                        <FaCircleCheck
-                          size={20}
-                          color="rgba(65, 113, 255, 1)"
-                        />
-                      ) : (
-                        <FaCircleCheck
-                          size={20}
-                          color="rgba(227, 227, 227, 1)"
-                        />
-                      )}
-                    </label>
-
-                    <span className="text-content-1 text-ge">{todo.todo}</span>
-                  </label>
+                  <Todo todo={todo.todo} checked={todo.checked} />
                 </>
               ))}
             </div>
