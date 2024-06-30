@@ -36,7 +36,7 @@ export default function StudyDetailPage() {
               />
             </svg>
           </div>
-          <span className="w-[7rem]">팀원 </span> <span>최대 4명</span>
+          <span className="min-w-[7rem]">팀원 </span> <span>최대 4명</span>
         </div>
         <div className="flex flex-row text-content-1">
           <div className="mr-[0.7rem]">
@@ -70,7 +70,7 @@ export default function StudyDetailPage() {
               />
             </svg>
           </div>
-          <span className="w-[7rem]">일정</span>
+          <span className="min-w-[7rem]">일정</span>
           <span className="w-[25rem]">매주 토요일 오후 8:00 진행</span>
         </div>
         <div className="flex flex-row text-content-1">
@@ -88,33 +88,35 @@ export default function StudyDetailPage() {
               />
             </svg>
           </div>
-          <span className="w-[7rem]">장소</span>
+          <span className="min-w-[7rem]">장소</span>
           <span className="w-[25rem]">서울특별시 중구</span>
         </div>
       </div>
 
-      <div className="w-[34.3rem] bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[2.2rem]">
+      <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[2.2rem]">
         <div className="flex flex-col justify-center">
           <h2 className="mx-[2rem] mt-[2.4rem] pb-[1.2rem] font-semibold text-gray-950">
             스터디 소개
           </h2>
-          <hr className="mx-[2rem] mb-[1.2rem] w-[30.3rem] border-b-gray-300 border-b-1"></hr>
+          <hr className="mx-[2rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
           <p className="mx-[2rem] text-content-2 text-gray-800">
             글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기글자수세기
           </p>
         </div>
       </div>
 
-      <div className="w-[34.3rem] bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[1.2rem]">
+      <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[1.2rem]">
         <div className="mt-[2.4rem]">
           <div className="pl-[0.4rem]">
             <TitleNavigator title="진행 강의 정보" moveLink="/" />
           </div>
-          <hr className="mx-[2rem] mb-[1.2rem] w-[30.3rem] border-b-gray-300 border-b-1"></hr>
+          <hr className="mx-[2rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
           <div className="flex flex-col mx-[2rem]">
-            <div>
+            <div className="flex items-center gap-x-[0.4rem]">
               <Label isBlue={true}>{'온라인'}</Label>
-              <Label isBlue={false}>{'4.5'}</Label>
+              <Label isBlue={false} isStar={true}>
+                {'4.5'}
+              </Label>
             </div>
             <div className="text-content-1 flex flex-col my-[1.2rem] gap-y-[0.4rem]">
               <span className="text-gray-950">
@@ -126,12 +128,12 @@ export default function StudyDetailPage() {
         </div>
       </div>
 
-      <div className="w-[34.3rem] bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[2.4rem]">
+      <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[2.4rem]">
         <div className="flex flex-col justify-center">
           <h2 className="mx-[2rem] mt-[2.4rem] pb-[1.2rem] font-semibold text-gray-950">
             해당 스터디의 분위기
           </h2>
-          <hr className="mx-[2rem] mb-[1.2rem] w-[30.3rem] border-b-gray-300 border-b-1"></hr>
+          <hr className="mx-[2rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
           <div className="flex flex-row mx-[2rem] gap-x-[0.4rem]">
             <div className="flex flex-row items-center py-[0.55rem] px-[0.8rem] rounded-[0.3rem] border-main-600 border-[0.1rem] gap-x-[0.3rem]">
               <svg

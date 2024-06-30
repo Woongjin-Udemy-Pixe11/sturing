@@ -4,7 +4,7 @@ import { HiEllipsisVertical } from 'react-icons/hi2';
 export default function CommentPage() {
   return (
     <>
-      <div className="w-[34.3rem] bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[2.4rem]">
+      <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[2.4rem]">
         <div className="flex flex-col justify-center">
           <div className="flex flex-row items-center justify-between mt-[2.4rem] pb-[1.2rem]">
             <h2 className="mx-[2rem] font-semibold text-gray-950">댓글</h2>
@@ -13,7 +13,7 @@ export default function CommentPage() {
             </div>
           </div>
 
-          <hr className="mx-[2rem] mb-[1.2rem] w-[30.3rem] border-b-gray-300 border-b-1"></hr>
+          <hr className="mx-[2rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
 
           <div>
             <div className="flex flex-row items-center mx-[2rem] gap-x-[0.8rem] text-content-2 justify-between">
@@ -35,7 +35,7 @@ export default function CommentPage() {
             </p>
           </div>
 
-          <div className="w-[30.3rem] h-[3rem] rounded-[8rem] bg-gray-100 border-gray-300 border-[0.1rem] mx-[2rem] relative flex flex-row items-center">
+          <div className="h-[3rem] rounded-[8rem] bg-gray-100 border-gray-300 border-[0.1rem] mx-[2rem] relative flex flex-row items-center">
             <input
               placeholder="댓글을 입력하세요."
               className="text-content-2 text-gray-600 pl-[1.5rem] placeholder:bg-transparent focus:outline-none"
