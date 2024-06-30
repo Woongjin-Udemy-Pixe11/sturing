@@ -9,7 +9,7 @@ export default function page() {
           <div className="mx-[1.6rem]">
             <SectionNavigator
               title="공지사항"
-              moveLink="/my-study-main/board/noice-board"
+              moveLink="/my-study-main/board/notice-board"
             />
             <hr className="mx-[0.4rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
             <div className="flex flex-row items-center justify-center gap-x-[0.8rem] mb-[2.4rem]">
@@ -28,7 +28,7 @@ export default function page() {
           <div className="mx-[1.6rem]">
             <SectionNavigator
               title="과제 게시판"
-              moveLink="/my-study-main/board/noice-board"
+              moveLink="/my-study-main/board/task-board"
             />
             <hr className="mx-[0.4rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
           </div>
