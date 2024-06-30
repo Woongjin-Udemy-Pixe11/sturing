@@ -4,7 +4,7 @@ import TitleNavigator from '@/components/(jisubin)/lectureStudyDetail/TitleNavig
 
 export default function LectureDetailStudyPage() {
   return (
-    <>
+    <div className="w-full">
       <div className="mt-[5rem]">
         <TitleNavigator
           title="이 강의를 수강하는 스터디"
@@ -13,7 +13,7 @@ export default function LectureDetailStudyPage() {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-x-[0.9rem] gap-y-[2rem] mx-[1.6rem]">
+      <div className="min-w-[34.4rem] grid grid-cols-2  gap-y-[2rem] mx-[1.6rem]">
         {dummyCardList &&
           dummyCardList.map((card) => (
             <Card
@@ -33,6 +33,6 @@ export default function LectureDetailStudyPage() {
             />
           ))}
       </div>
-    </>
+    </div>
   );
 }

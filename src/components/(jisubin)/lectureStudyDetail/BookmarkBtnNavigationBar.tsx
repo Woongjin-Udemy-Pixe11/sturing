@@ -14,7 +14,7 @@ export default function BookmarkBtnNavigationBar(
 
   const { text } = props;
   return (
-    <div className="mb-[1.6rem] my-[4.6rem] flex flex-row items-center justify-between">
+    <div className="w-full mb-[1.6rem] my-[4.6rem] flex flex-row items-center justify-between">
       <div className="p-[1.2rem] text-main-600" onClick={onBookmarkClick}>
         {isBookmarked ? <FaBookmark size={17} /> : <FaRegBookmark size={17} />}
       </div>
