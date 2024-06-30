@@ -12,9 +12,9 @@ export default function StudyDetailLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="w-[375px] m-auto">
+      <body className="w-full m-auto">
         <div className="bg-[url('/images/study-preview-img.png')] text-white">
-          <div className="w-[37.5rem] h-[5.4rem] flex flex-row items-center justify-center">
+          <div className="h-[5.4rem] flex flex-row items-center justify-center">
             <div className="ml-[1.6rem] mr-auto">
               <svg
                 width="24"
@@ -240,7 +240,7 @@ export default function StudyDetailLayout({
           </div>
 
           <div className="mt-[3.8rem] pb-[4rem] flex flex-col items-center justify-center">
-            <div>
+            <div className="flex gap-x-[0.4rem]">
               <Label isBlue={true}>{'오프라인'}</Label>
               <Label isBlue={false}>{'디자인'}</Label>
             </div>

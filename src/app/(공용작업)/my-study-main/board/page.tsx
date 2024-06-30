@@ -4,7 +4,7 @@ import TaskInfo from './_jisubin_comp/TaskInfo';
 export default function page() {
   return (
     <>
-      <div className="bg-gray-100">
+      <div className="bg-gray-100 py-[2.4rem]">
         <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] my-[2.4rem] pb-[2.4rem]">
           <div className="mx-[1.6rem]">
             <SectionNavigator
@@ -12,8 +12,8 @@ export default function page() {
               moveLink="/my-study-main/board/notice-board"
             />
             <hr className="mx-[0.4rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
-            <div className="flex flex-row items-center justify-center gap-x-[0.8rem] mb-[2.4rem]">
-              <div className="min-w-[3.3rem] min-h-[2.2rem] px-[0.6rem] py-[0.2rem] bg-main-100 rounded-[0.3rem] text-center text-main-700 text-content-2 break-all">
+            <div className="flex flex-row items-center gap-x-[0.8rem] mb-[2.4rem] mx-[0.4rem]">
+              <div className="min-w-[3.3rem] min-h-[2.2rem] px-[0.6rem] py-[0.2rem] bg-main-100 rounded-[0.3rem] text-main-700 text-content-2 break-all">
                 필독
               </div>
               <span className="text-content-2 truncate">

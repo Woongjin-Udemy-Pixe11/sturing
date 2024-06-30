@@ -12,9 +12,9 @@ export default function StudyDetailLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="w-[375px] m-auto">
+      <body className="w-full m-auto">
         <div className="bg-[url('/images/study-preview-img.png')] text-white">
-          <div className="w-[37.5rem] h-[5.4rem] flex flex-row items-center justify-center">
+          <div className="h-[5.4rem] flex flex-row items-center justify-center">
             <div className="ml-[1.6rem] mr-auto">
               <svg
                 width="24"
