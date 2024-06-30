@@ -1,6 +1,7 @@
 import { GoChevronLeft } from 'react-icons/go';
 import { MdMoreHoriz, MdMoreVert } from 'react-icons/md';
 import Image from 'next/image';
+import EmojiSelectBtn from '../../_jisubin_comp/EmojiSelectBtn';
 export default function page() {
   return (
     <div className="w-full h-[5.4rem] bg-gray-100">
@@ -50,40 +51,7 @@ export default function page() {
             className="rounded-[0.8rem] aspect-square object-cover"
           />
         </div>
-
-        <div className="flex flex-row items-center gap-x-[0.8rem]">
-          <div className="w-[3.8rem] h-[2.2rem] rounded-[8rem] bg-main-100 border-[0.1rem] border-main-600">
-            <div className="flex flex-row items-center justify-center gap-x-[0.4rem] text-content-2">
-              <button>❤️</button>
-              <span>1</span>
-            </div>
-          </div>
-          <div className="w-[3.8rem] h-[2.2rem] rounded-[8rem] bg-main-100 border-[0.1rem] border-main-600">
-            <div className="flex flex-row items-center justify-center gap-x-[0.4rem] text-content-2">
-              <button>👍</button>
-              <span>1</span>
-            </div>
-          </div>
-          <div className="w-[3.8rem] h-[2.2rem] rounded-[8rem] bg-main-100 border-[0.1rem] border-main-600">
-            <div className="flex flex-row items-center justify-center gap-x-[0.4rem] text-content-2">
-              <button>😁</button>
-              <span>1</span>
-            </div>
-          </div>
-          <div className="w-[3.8rem] h-[2.2rem] rounded-[8rem] bg-main-100 border-[0.1rem] border-main-600">
-            <div className="flex flex-row items-center justify-center gap-x-[0.4rem] text-content-2">
-              <button>👏</button>
-              <span>1</span>
-            </div>
-          </div>
-          <div className="w-[3.8rem] h-[2.2rem] rounded-[8rem] bg-gray-100 border-[0.1rem] border-gray-300">
-            <div className="flex flex-row items-center justify-center gap-x-[0.4rem] text-content-2">
-              <button>😂</button>
-              <span>1</span>
-            </div>
-          </div>
-        </div>
-
+        <EmojiSelectBtn />
         <div>
           <div className="flex flex-row items-center justify-start gap-x-[0.4rem] text-content-2 mb-[1.2rem]">
             <div>댓글</div>
