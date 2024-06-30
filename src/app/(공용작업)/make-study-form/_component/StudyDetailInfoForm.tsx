@@ -1,7 +1,7 @@
 'use client';
 //TODO: 체크박스 공통스타일로 뺄것인가?
 //TODO: Select 공통스타일로 뺄것인가?
-import Label from '@/components/common/Label';
+import Label from '@/components/common/label/Label';
 import RangeCalendar from '@/components/common/calender/RangeCalendar';
 import { emojiLabelList } from '@/constant/emojiLabelList';
 import SelectInput from './SelectInput';

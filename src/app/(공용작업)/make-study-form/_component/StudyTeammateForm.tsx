@@ -1,5 +1,5 @@
 'use client';
-import Label from '@/components/common/Label';
+import Label from '@/components/common/label/Label';
 import { useState } from 'react';
 
 export const level: string[] = [
