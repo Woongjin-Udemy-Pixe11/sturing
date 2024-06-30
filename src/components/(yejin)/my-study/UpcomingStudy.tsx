@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/pagination'; // Pagination 스타일 import
 import { Pagination } from 'swiper/modules'; // Pagination 모듈 import
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Label from '../../common/Label';
+import Label from '../../common/label/Label';
 
 export type Study = {
   studyId: number;

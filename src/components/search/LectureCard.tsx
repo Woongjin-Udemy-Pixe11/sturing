@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import Label from '../common/Label';
+import Label from '../common/label/Label';
 import { FaStar } from 'react-icons/fa';
 import { CiBookmark } from 'react-icons/ci';
 import { IoIosBookmark } from 'react-icons/io';
