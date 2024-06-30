@@ -5,7 +5,7 @@ export type TStudyMemberTodo = {
   isLeader?: boolean;
   todos: TTdo[];
 };
-type TTdo = {
+export type TTdo = {
   todo: string;
   checked: boolean;
 };
