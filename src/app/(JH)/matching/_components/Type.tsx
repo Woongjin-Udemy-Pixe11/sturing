@@ -15,6 +15,7 @@ export default function Type({ studyType, onClickStudyType }: any) {
           onClick={() => {
             onClickStudyType('온라인');
           }}
+          active={studyType === '온라인' && true}
         >
           <div className="flex justify-between">
             <div>온라인 스터디</div>
@@ -27,6 +28,7 @@ export default function Type({ studyType, onClickStudyType }: any) {
           onClick={() => {
             onClickStudyType('오프라인');
           }}
+          active={studyType === '오프라인' && true}
         >
           <div className="flex justify-between">
             <div>오프라인 스터디</div>
@@ -39,6 +41,7 @@ export default function Type({ studyType, onClickStudyType }: any) {
           onClick={() => {
             onClickStudyType('상관없음');
           }}
+          active={studyType === '상관없음' && true}
         >
           <div className="flex justify-between">
             <div>온오프라인 스터디</div>

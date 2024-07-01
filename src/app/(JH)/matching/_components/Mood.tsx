@@ -22,6 +22,7 @@ export default function Mood({ moods, onClickMood }: any) {
             onClick={() => {
               onClickMood(label.title);
             }}
+            active={moods.includes(label.title) && true}
           >
             <img src={label.imgSrc} alt={label.imgAlt} />
             <div className="ml-2">{label.title}</div>

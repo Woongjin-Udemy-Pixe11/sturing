@@ -2,6 +2,8 @@ import MatchingContainer from '@/components/(JH)/matching/MatchingContainer';
 import * as Tabs from '@radix-ui/react-tabs';
 import { level } from '@/constant/region';
 
+//TODO:console.log(4번씩찍히는데 이거 최적화해서 memo, useCallback 해야될듯)
+
 export default function Field({ interest, onClickLevel, Level }: any) {
   return (
     <div className="w-full px-[1.4rem]">
@@ -32,7 +34,10 @@ export default function Field({ interest, onClickLevel, Level }: any) {
                   <div className="m-auto flex flex-col gap-3">
                     {Object.keys(level).map((key) => {
                       return (
-                        <MatchingContainer key={key}>
+                        <MatchingContainer
+                          key={key}
+                          active={Level[field] === key ? true : false}
+                        >
                           <div
                             className="flex gap-5"
                             onClick={() => {

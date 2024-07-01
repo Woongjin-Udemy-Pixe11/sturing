@@ -36,7 +36,7 @@ export default function ClientMatching() {
       preferMood: [],
     },
   );
-  console.log(state);
+
   const [step, setStep] = useState<number>(1);
 
   const onClickInterest = (field: string) => {
@@ -69,6 +69,7 @@ export default function ClientMatching() {
     }
     setStep((prev) => prev - 1);
   };
+  //TODO:dispatch 함수의 타입작성하기
   const stepComponet: any = {
     1: <Interest interest={state.interest} onClickInterest={onClickInterest} />,
     2: (
