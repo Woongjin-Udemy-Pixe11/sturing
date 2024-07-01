@@ -1,6 +1,7 @@
 import { GoChevronLeft } from 'react-icons/go';
 import { IoShareOutline } from 'react-icons/io5';
 import { BsThreeDots } from 'react-icons/bs';
+import { useRouter } from 'next/navigation';
 
 type TSubHeader = {
   isWhite?: boolean;
@@ -10,6 +11,7 @@ type TSubHeader = {
 };
 export default function SubHeader(props: TSubHeader) {
   const { isWhite, title, eddit, share } = props;
+  const router = useRouter();
   return (
     <>
       <div
@@ -17,7 +19,7 @@ export default function SubHeader(props: TSubHeader) {
           isWhite ? `text-white` : ''
         }`}
       >
-        <GoChevronLeft size={28} className="" />
+        <GoChevronLeft size={28} className="" onClick={() => router.back()} />
         <div className="text-headline-1 font-medium justify-self-center">
           {title}
         </div>
