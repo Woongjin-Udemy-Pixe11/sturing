@@ -18,7 +18,7 @@ export default function StudyDetailInfoForm() {
       </h1>
       <article className="border-b border-gray-300">
         <h3 className="text-content-1 py-[2rem]">스터디 진행 기간</h3>
-        <div className="border-gray-300 border p-[2rem] py-[1.2rem] w-[34.3rem]">
+        <div className="border-gray-300 border p-[2rem] py-[1.2rem] w-full">
           <RangeCalendar />
         </div>
 
