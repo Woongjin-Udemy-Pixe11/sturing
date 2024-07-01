@@ -26,6 +26,7 @@ type Tmatching = {
 export default function ClientMatching() {
   const [step, setStep] = useState<number>(1);
   const [interest, setInterest] = useState<string[]>([]);
+  const [level, setLevel] = useState<{ [key: string]: string }>({});
   const onClickInterest = (field: string) => {
     if (interest.length === 3) {
       interest.shift();
@@ -37,7 +38,10 @@ export default function ClientMatching() {
       setInterest((prev) => [...prev, field]);
     }
   };
-  console.log(interest);
+  const onClickLevel = (field: string, level: string) => {
+    setLevel((prev) => ({ ...prev, [field]: level }));
+  };
+
   const onClickForwardStep = () => {
     if (step === 6) {
       return;
@@ -52,7 +56,7 @@ export default function ClientMatching() {
   };
   const stepComponet: any = {
     1: <Interest interest={interest} onClickInterest={onClickInterest} />,
-    2: <Field />,
+    2: <Field interest={interest} onClickLevel={onClickLevel} Level={level} />,
     3: <Type />,
     4: <Region />,
     5: <Mood />,
