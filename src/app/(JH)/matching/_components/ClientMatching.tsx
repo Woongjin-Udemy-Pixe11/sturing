@@ -61,6 +61,25 @@ export default function ClientMatching() {
     if (step === 6) {
       return;
     }
+    if (state.interest.length === 0 && step === 1) {
+      return;
+    }
+    if (
+      Object.keys(state.level).length !== state.interest.length &&
+      step === 2
+    ) {
+      return;
+    }
+    if (state.studyType === '' && step === 3) {
+      return;
+    }
+    if (state.preferRegion.length === 0 && step === 4) {
+      return;
+    }
+    if (state.preferMood.length === 0 && step === 5) {
+      return;
+    }
+
     setStep((prev) => prev + 1);
   };
   const onClickBackwardStep = () => {

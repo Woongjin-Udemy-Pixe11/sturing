@@ -21,6 +21,7 @@ export default function Field({ interest, onClickLevel, Level }: any) {
                 <Tabs.Trigger
                   value={`${field}`}
                   className="flex-1 minitab-trigger"
+                  key={field}
                 >
                   {field}
                 </Tabs.Trigger>
@@ -30,7 +31,7 @@ export default function Field({ interest, onClickLevel, Level }: any) {
           <div className="py-5 ">
             {interest.map((field: string) => {
               return (
-                <Tabs.Content value={`${field}`}>
+                <Tabs.Content value={`${field}`} key={field}>
                   <div className="m-auto flex flex-col gap-3">
                     {Object.keys(level).map((key) => {
                       return (

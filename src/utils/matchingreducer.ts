@@ -26,6 +26,7 @@ export default function matchingreducer(state: Tmatching, action: TActionType) {
         };
       }
     }
+    //TODO:만약 이미선택된것이 한번더 선택된다면, 마찬가지로 취소가 되어야하는지?
     case 'setLevel': {
       return {
         ...state,
@@ -36,6 +37,13 @@ export default function matchingreducer(state: Tmatching, action: TActionType) {
       };
     }
     case 'setStudyType': {
+      let prev = state.studyType;
+      if (action.payload === prev) {
+        return {
+          ...state,
+          studyType: '',
+        };
+      }
       return {
         ...state,
         studyType: action.payload,
