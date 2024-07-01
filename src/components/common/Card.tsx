@@ -47,8 +47,8 @@ export default function Card(props: TCardProps) {
     setIsBookmarked(!isBookmarked);
   };
   const cardSizeList: TCardSizeList = {
-    '182': 'w-[18.2rem] h-[25rem]',
-    '167': 'w-[16.7rem] h-[25rem]',
+    '182': 'w-[18.2rem] h-[25rem] m-auto',
+    '167': 'w-[16.7rem] h-[25rem] m-auto',
   };
   return (
     <div className={cardSizeList[width]}>
