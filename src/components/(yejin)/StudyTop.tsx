@@ -1,12 +1,17 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
+
 type TStudyTopProps = {
-  content: string;
+  content?: string;
 };
 
 export default function StudyTop(props: TStudyTopProps) {
   const { content } = props;
+  const router = useRouter();
   return (
     <div className="flex justify-between py-[1.4rem] px-[1.6rem]">
-      <button>
+      <button onClick={() => router.back()}>
         <svg
           width="24"
           height="24"

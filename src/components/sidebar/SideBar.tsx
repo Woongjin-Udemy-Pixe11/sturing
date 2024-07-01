@@ -1,12 +1,12 @@
-import { IoClose } from 'react-icons/io5';
 import Link from 'next/link';
+import { IoClose } from 'react-icons/io5';
 import SideBarToggle from './SideBarToggle';
 import UserProfile from './UserProfile';
 
 export default function SideBar({ onClose }: { onClose: () => void }) {
   return (
     <>
-      <dialog className="block fixed top-0 left-0 w-[32.4rem] px-[2.4rem] h-screen z-10 ">
+      <div className="block bg-white fixed overflow-auto left-0 w-[32.4rem] px-[2.4rem] h-screen z-10 ">
         <button className="absolute top-[4rem] right-[2.4rem] w-[2.4rem] h-[2.4rem]">
           <IoClose />
         </button>
@@ -34,7 +34,7 @@ export default function SideBar({ onClose }: { onClose: () => void }) {
             고객센터
           </Link>
         </div>
-      </dialog>
+      </div>
     </>
   );
 }

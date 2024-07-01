@@ -1,9 +1,8 @@
 'use client';
-import { IoMenu } from 'react-icons/io5';
-import { IoPersonOutline } from 'react-icons/io5';
-import { GoBell } from 'react-icons/go';
 import Link from 'next/link';
 import { useState } from 'react';
+import { GoBell } from 'react-icons/go';
+import { IoMenu, IoPersonOutline } from 'react-icons/io5';
 import SideBar from '../sidebar/SideBar';
 
 export default function Header() {
@@ -48,9 +47,11 @@ export default function Header() {
           <button>
             <GoBell className="w-[2.4rem] h-[2.4rem]" />
           </button>
-          <button>
-            <IoPersonOutline className="w-[2.4rem] h-[2.4rem]" />
-          </button>
+          <Link href="/users/1">
+            <button>
+              <IoPersonOutline className="w-[2.4rem] h-[2.4rem]" />
+            </button>
+          </Link>
         </div>
       </header>
     </>
