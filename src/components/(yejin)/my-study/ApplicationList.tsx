@@ -1,5 +1,6 @@
 import { study } from '@/dummy/studyList';
 import * as Tabs from '@radix-ui/react-tabs';
+import Link from 'next/link';
 import StudyStatus from './StudyStatus';
 import { Study } from './UpcomingStudy';
 
@@ -54,9 +55,11 @@ export default function ApplicationList(props: StudyProps) {
                   <h3 className="font-semibold text-[1.6rem] border-b border-gray-300 pb-[1.2rem] text-gray-1000 truncate">
                     {study.studyName}
                   </h3>
-                  <button className="mt-[0.8rem] px-[2rem] py-[1rem] text-content-1 text-gray-1000 font-semibold border border-gray-400 rounded-[0.5rem]">
-                    지원서 보기
-                  </button>
+                  <Link href="/apply" className="w-full">
+                    <button className="w-full mt-[0.8rem] px-[2rem] py-[1rem] text-content-1 text-gray-1000 font-semibold border border-gray-400 rounded-[0.5rem]">
+                      지원서 보기
+                    </button>
+                  </Link>
                 </div>
               ))}
           </div>

@@ -21,7 +21,7 @@ export default function NoticeBoardDetail() {
   return (
     <>
       <SubHeader eddit />
-      <div className="p-[1.6rem] mt-[0.5rem] h-[85vh]">
+      <div className="bg-white p-[2rem] pt-[2.5rem] h-[85vh]">
         <div className="flex justify-between items-center pb-[1.8rem] mb-[1.8rem] border-b border-gray-300">
           <div className="flex flex-grow gap-[0.8rem]">
             <div className="w-[4rem] h-[4rem]">

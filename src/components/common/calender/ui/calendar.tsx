@@ -1,8 +1,8 @@
 'use client';
 
+import { ko } from 'date-fns/locale';
 import * as React from 'react';
 import { DayPicker } from 'react-day-picker';
-import { ko } from 'date-fns/locale';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
@@ -20,7 +20,7 @@ function Calendar({
         months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0',
         month: 'space-y-4',
         caption:
-          'flex justify-center relative items-center p-[1rem] border-gray-300 border-b-[0.2rem]',
+          'flex justify-center relative items-center pb-[1.5rem] border-gray-300 border-b',
         caption_label: 'text-[1.6rem] font-semibold',
         nav: 'space-x-1 flex items-center ',
         nav_button:
@@ -31,12 +31,12 @@ function Calendar({
         nav_button_next: 'absolute right-1',
         table:
           'flex flex-col justify-center items-center w-full border-collapse space-y-1',
-        head_row: 'flex gap-[0.4rem]',
+        head_row: 'flex gap-[1.6rem]',
         head_cell:
           'hidden text-muted-foreground rounded-full font-normal text-content-1 h-[3rem] w-[3rem]',
-        row: 'flex w-full justify-center gap-[.4rem]',
+        row: 'flex w-full justify-center gap-[1rem] py-[.8rem]',
         cell: 'flex w-full justify-centerp-3 text-center text-content-1 relative [&:has([aria-selected].day-range-end)]:rounded-r-full [&:has([aria-selected].day-range-start)]:rounded-l-full [&:has([aria-selected].day-outside)]:bg-accent/50 first:text-red last:text-main-700 first:[&:has([aria-selected])]:rounded-l-full last:[&:has([aria-selected])]:rounded-r-full focus-within:relative focus-within:z-20',
-        day: 'h-[3rem] w-[3rem] font-normal rounded-full',
+        day: 'h-[calc((100vw-15rem)/7)] w-[calc((100vw-15rem)/7)] font-normal rounded-full',
 
         day_range_end: 'day-range-end',
         day_range_start: 'day-range-start',

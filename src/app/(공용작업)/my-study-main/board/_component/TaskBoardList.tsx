@@ -18,7 +18,7 @@ export default function TaskBoardList(props: TTaskListProps) {
   const { task } = props;
   return (
     <>
-      <ul className="px-[1.6rem] py-[1.8rem] flex flex-col min-h-[80vh]">
+      <ul className="bg-white px-[1.6rem] py-[1.8rem] flex flex-col min-h-[80vh]">
         {task.map((task) => (
           <li
             key={task.blackboardId}
@@ -51,7 +51,7 @@ export default function TaskBoardList(props: TTaskListProps) {
                       {task.blackboardContent}
                     </p>
                   </div>
-                  <span className="w-[21%] h-[6.2rem] rounded-[0.5rem]">
+                  <span className="w-[21%] rounded-[0.5rem]">
                     <img
                       src={`${task.blackboardImage}`}
                       className="w-full object-cover rounded-[0.5rem]"

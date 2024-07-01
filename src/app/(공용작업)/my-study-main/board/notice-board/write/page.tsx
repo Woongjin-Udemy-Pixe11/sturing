@@ -6,7 +6,7 @@ export default function page() {
   return (
     <div>
       <BoardTop />
-      <div className="p-[1.6rem]">
+      <div className="bg-white p-[1.6rem]">
         <StudyForm
           heading="공지 작성"
           titleLabel="글 제목"
