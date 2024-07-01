@@ -4,10 +4,12 @@ export default function MatchingFooter({
   step,
   Forward,
   Backward,
+  active,
 }: {
   step: number;
   Forward: () => void;
   Backward: () => void;
+  active?: boolean;
 }) {
   return (
     <footer className="flex justify-between w-full  px-[1.6rem] absolute bottom-[-10rem]  ">

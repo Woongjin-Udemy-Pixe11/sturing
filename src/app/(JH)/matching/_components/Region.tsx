@@ -1,6 +1,6 @@
 import CommonTab from '@/components/common/Tab/CommonTab';
 
-export default function Region() {
+export default function Region({ regions, onClickRegion }: any) {
   return (
     <div className="w-full">
       <section className="pt-[2rem] px-[1.6rem]">
@@ -12,7 +12,7 @@ export default function Region() {
           최대 3개까지 선택 가능합니다.
         </p>
       </section>
-      <CommonTab />
+      <CommonTab regions={regions} onClickRegion={onClickRegion} />
     </div>
   );
 }
