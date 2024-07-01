@@ -13,11 +13,10 @@ export default function LectureDetailStudyPage() {
         />
       </div>
 
-      <div className="min-w-[34.4rem] grid grid-cols-2  gap-y-[2rem] mx-[1.6rem]">
+      <div className="min-w-[34.4rem] grid grid-cols-2 gap-[2rem] mx-[1.6rem]">
         {dummyCardList &&
           dummyCardList.map((card) => (
             <Card
-              width="167"
               studyImage={card.studyImage}
               studyMeetings={card.studyMettings}
               studyTypeisBlue={card.studyTypeisBlue}

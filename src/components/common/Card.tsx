@@ -7,7 +7,6 @@ import { FaBookmark } from 'react-icons/fa6';
 import { useState } from 'react';
 
 type TCardProps = {
-  width: string;
   studyImage: string;
   studyMeetings: string;
   studyTypeisBlue: boolean;
@@ -27,7 +26,6 @@ type TCardSizeList = {
 };
 export default function Card(props: TCardProps) {
   const {
-    width,
     studyImage,
     studyMeetings,
     studyTypeisBlue,
@@ -47,18 +45,17 @@ export default function Card(props: TCardProps) {
     setIsBookmarked(!isBookmarked);
   };
   const cardSizeList: TCardSizeList = {
-    '182': 'w-[18.2rem] h-[25rem] m-auto',
-    '167': 'w-[16.7rem] h-[25rem] m-auto',
+    '182': 'w-full  m-auto',
+    '167': 'w-full  m-auto',
   };
   return (
-    <div className={cardSizeList[width]}>
-      <div className="relative w-full h-[10rem] mb-[1.2rem]">
+    <div className="w-full m-auto">
+      <div className="relative w-full min-h-[15rem] mb-[1.2rem]">
         <Image
           src={studyImage}
-          width={182}
-          height={100}
+          fill
           alt="Card Image"
-          className="rounded-[0.8rem]"
+          className="rounded-[0.8rem] object-cover"
         />
         <div
           className="absolute top-0 right-0 m-[0.8rem] p-[0.15rem] text-white"
