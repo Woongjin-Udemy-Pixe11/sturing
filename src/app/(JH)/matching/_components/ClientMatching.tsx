@@ -29,12 +29,20 @@ export default function ClientMatching() {
   const [level, setLevel] = useState<{ [key: string]: string }>({});
   const [studyType, setStudyType] = useState<string>('');
   const [moods, setMood] = useState<string[]>([]);
+  const [regions, setRegion] = useState<string[]>([]);
+  let formData: Tmatching = {
+    userid: '1',
+    interests: interest,
+    level: level,
+    studyType: studyType,
+    preferRegion: regions,
+    preferMood: moods,
+  };
   const onClickInterest = (field: string) => {
     if (interest.length === 3) {
       interest.shift();
     }
     if (interest.includes(field)) {
-      console.log('true');
       setInterest((prev) => prev.filter((item) => item !== field));
     } else {
       setInterest((prev) => [...prev, field]);
@@ -56,6 +64,16 @@ export default function ClientMatching() {
       setMood((prev) => [...prev, mood]);
     }
   };
+  const onClickRegions = (region: string) => {
+    if (regions.length === 3) {
+      regions.shift();
+    }
+    if (regions.includes(region)) {
+      setRegion((prev) => prev.filter((item) => item !== region));
+    } else {
+      setRegion((prev) => [...prev, region]);
+    }
+  };
   const onClickForwardStep = () => {
     if (step === 6) {
       return;
@@ -72,12 +90,13 @@ export default function ClientMatching() {
     1: <Interest interest={interest} onClickInterest={onClickInterest} />,
     2: <Field interest={interest} onClickLevel={onClickLevel} Level={level} />,
     3: <Type studyType={studyType} onClickStudyType={onClickStudyType} />,
-    4: <Region />,
+    4: <Region regions={regions} onClickRegion={onClickRegions} />,
     5: <Mood moods={moods} onClickMood={onClickMood} />,
     6: <MatchingCompleted />,
   };
+  console.log(formData);
   return (
-    <main className="flex flex-col w-full  relative mt-[6rem] ">
+    <main className="flex flex-col w-full  relative  ">
       <header>
         <GoChevronLeft size={30} className="mb-4" />
 

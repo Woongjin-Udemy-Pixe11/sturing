@@ -2,7 +2,6 @@ import MatchingContainer from '@/components/(JH)/matching/MatchingContainer';
 import { FaCheck } from 'react-icons/fa6';
 
 export default function Type({ studyType, onClickStudyType }: any) {
-  console.log(studyType);
   return (
     <div className="w-full px-[1.4rem]">
       <section className="py-[2rem] ">

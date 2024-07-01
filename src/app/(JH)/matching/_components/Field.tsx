@@ -3,7 +3,6 @@ import * as Tabs from '@radix-ui/react-tabs';
 import { level } from '@/constant/region';
 
 export default function Field({ interest, onClickLevel, Level }: any) {
-  console.log(Level);
   return (
     <div className="w-full px-[1.4rem]">
       <section className="py-[2rem] ">

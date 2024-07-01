@@ -3,7 +3,6 @@ import SelectMatching from '@/components/(JH)/matching/SelectMatching';
 import { emojiLabelList } from '@/constant/emojiLabelList';
 
 export default function Mood({ moods, onClickMood }: any) {
-  console.log(moods);
   return (
     <div className="w-full px-[1.6rem] py-[2rem]">
       <section>
