@@ -1,8 +1,8 @@
-import connectDB from "@/lib/db";
-import { User } from "@/lib/schema";
+import connectDB from '@/lib/db';
+import { User } from '@/lib/schemas/schema';
 
 export async function GET(req: Request) {
-  return Response.json({ message: "GET / api/users" });
+  return Response.json({ message: 'GET / api/users' });
 }
 
 export async function POST(request: Request) {
