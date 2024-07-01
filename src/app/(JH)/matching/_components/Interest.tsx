@@ -1,10 +1,14 @@
+'use client';
 import SelectMatching from '@/components/(JH)/matching/SelectMatching';
 import { searchLabelList } from '@/constant/searchLabelList';
 import FlexContainer from '@/components/(JH)/matching/FlexContainer';
 
-export default function Interest() {
+export default function Interest({ interest, onClickInterest }: any) {
   return (
     <div className="w-full px-[1.6rem] py-[2rem]">
+      {interest.map((item: any) => (
+        <div>{item}</div>
+      ))}
       <section>
         <h1 className="font-black text-headline-3">웅진님 안녕하세요.</h1>{' '}
         <h1 className="font-black text-headline-3">
@@ -18,7 +22,13 @@ export default function Interest() {
         {searchLabelList
           .filter((label) => label.title !== '기타')
           .map((label) => (
-            <SelectMatching key={label.title} type="interest">
+            <SelectMatching
+              key={label.title}
+              type="interest"
+              onClick={() => {
+                onClickInterest(label.title);
+              }}
+            >
               <img src={label.imgSrc} alt={label.imgAlt} />
               <div>{label.title}</div>
             </SelectMatching>

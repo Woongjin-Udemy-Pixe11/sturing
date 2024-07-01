@@ -10,8 +10,34 @@ import Region from './Region';
 import Mood from './Mood';
 import MatchingCompleted from './MatchingCompleted';
 
+type Tmatching = {
+  userid: string;
+  interests: string[];
+  level: {
+    [key: string]: string;
+  };
+  studyType: string;
+  preferRegion: string[];
+  preferMood: string[];
+};
+
+//TODO:전역으로 Tmatching 을 제외하는 방향도 나쁘지않을것같다.
+
 export default function ClientMatching() {
   const [step, setStep] = useState<number>(1);
+  const [interest, setInterest] = useState<string[]>([]);
+  const onClickInterest = (field: string) => {
+    if (interest.length === 3) {
+      interest.shift();
+    }
+    if (interest.includes(field)) {
+      console.log('true');
+      setInterest((prev) => prev.filter((item) => item !== field));
+    } else {
+      setInterest((prev) => [...prev, field]);
+    }
+  };
+  console.log(interest);
   const onClickForwardStep = () => {
     if (step === 6) {
       return;
@@ -25,7 +51,7 @@ export default function ClientMatching() {
     setStep((prev) => prev - 1);
   };
   const stepComponet: any = {
-    1: <Interest />,
+    1: <Interest interest={interest} onClickInterest={onClickInterest} />,
     2: <Field />,
     3: <Type />,
     4: <Region />,
