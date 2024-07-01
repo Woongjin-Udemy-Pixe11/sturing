@@ -27,7 +27,7 @@ export default function Header() {
         ></div>
       )}
       {isOpenMenu && <SideBar onClose={onClickMenu} />}
-      <header className="w-full h-[5.4rem] flex justify-between items-center px-[0.8rem] text-gray-1000 m-0">
+      <header className="w-full h-[5.4rem] flex justify-between items-center px-[0.8rem] text-gray-1000 m-0 bg-white">
         <div className="w-[50%] flex justify-start items-center gap-[0.8rem]">
           <button onClick={onClickMenu}>
             <IoMenu className="w-[2.8rem] h-[2.8rem]" />
