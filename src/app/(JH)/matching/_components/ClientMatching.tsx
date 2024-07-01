@@ -27,6 +27,8 @@ export default function ClientMatching() {
   const [step, setStep] = useState<number>(1);
   const [interest, setInterest] = useState<string[]>([]);
   const [level, setLevel] = useState<{ [key: string]: string }>({});
+  const [studyType, setStudyType] = useState<string>('');
+  const [moods, setMood] = useState<string[]>([]);
   const onClickInterest = (field: string) => {
     if (interest.length === 3) {
       interest.shift();
@@ -41,7 +43,19 @@ export default function ClientMatching() {
   const onClickLevel = (field: string, level: string) => {
     setLevel((prev) => ({ ...prev, [field]: level }));
   };
-
+  const onClickStudyType = (field: string) => {
+    setStudyType((prev) => field);
+  };
+  const onClickMood = (mood: string) => {
+    if (moods.length === 3) {
+      moods.shift();
+    }
+    if (moods.includes(mood)) {
+      setMood((prev) => prev.filter((item) => item !== mood));
+    } else {
+      setMood((prev) => [...prev, mood]);
+    }
+  };
   const onClickForwardStep = () => {
     if (step === 6) {
       return;
@@ -57,9 +71,9 @@ export default function ClientMatching() {
   const stepComponet: any = {
     1: <Interest interest={interest} onClickInterest={onClickInterest} />,
     2: <Field interest={interest} onClickLevel={onClickLevel} Level={level} />,
-    3: <Type />,
+    3: <Type studyType={studyType} onClickStudyType={onClickStudyType} />,
     4: <Region />,
-    5: <Mood />,
+    5: <Mood moods={moods} onClickMood={onClickMood} />,
     6: <MatchingCompleted />,
   };
   return (

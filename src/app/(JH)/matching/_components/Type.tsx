@@ -1,7 +1,8 @@
 import MatchingContainer from '@/components/(JH)/matching/MatchingContainer';
 import { FaCheck } from 'react-icons/fa6';
 
-export default function Type() {
+export default function Type({ studyType, onClickStudyType }: any) {
+  console.log(studyType);
   return (
     <div className="w-full px-[1.4rem]">
       <section className="py-[2rem] ">
@@ -11,7 +12,11 @@ export default function Type() {
         </h1>
       </section>
       <section className="mt-[4rem] flex flex-col gap-[1.4rem]">
-        <MatchingContainer>
+        <MatchingContainer
+          onClick={() => {
+            onClickStudyType('온라인');
+          }}
+        >
           <div className="flex justify-between">
             <div>온라인 스터디</div>
             <div>
@@ -19,7 +24,11 @@ export default function Type() {
             </div>
           </div>
         </MatchingContainer>
-        <MatchingContainer>
+        <MatchingContainer
+          onClick={() => {
+            onClickStudyType('오프라인');
+          }}
+        >
           <div className="flex justify-between">
             <div>오프라인 스터디</div>
             <div>
@@ -27,7 +36,11 @@ export default function Type() {
             </div>
           </div>
         </MatchingContainer>
-        <MatchingContainer>
+        <MatchingContainer
+          onClick={() => {
+            onClickStudyType('상관없음');
+          }}
+        >
           <div className="flex justify-between">
             <div>온오프라인 스터디</div>
             <div>
