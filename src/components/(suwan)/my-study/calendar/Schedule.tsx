@@ -1,5 +1,5 @@
 'use client';
-import SelectInput from '@/app/(공용작업)/make-study-form/_component/SelectInput';
+import SelectInput from '@/app/(suwan)/make-study-form/_component/SelectInput';
 import { useState } from 'react';
 
 export default function Schedule() {
