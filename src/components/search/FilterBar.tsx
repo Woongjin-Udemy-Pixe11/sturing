@@ -1,5 +1,7 @@
 import FilterButton from './FilterButton';
 import { TbChartCandle } from 'react-icons/tb';
+import { useState } from 'react';
+import BottomSheetFilter from './BottomSheetFilter';
 
 const filterButtonList = [
   { title: '분야', isBlue: true },
@@ -10,10 +12,21 @@ const filterButtonList = [
 ];
 
 export default function FilterBar() {
+  const [openFilter, setOpenFilter] = useState(false);
+
+  const onClickFilter = () => {
+    setOpenFilter(!openFilter);
+    if (!openFilter) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  };
+
   return (
     <>
       <div className=" w-full px-[1.2rem] py-[.8rem] flex justify-between items-center">
-        <ul className="w-[90%] overflow-x-auto py-[.8rem]">
+        <ul className="flex w-[90%] overflow-x-auto py-[.8rem]">
           {filterButtonList &&
             filterButtonList.map((filterbutton) => (
               <li key={filterbutton.title} className="inline mr-[.8rem]">
@@ -25,9 +38,17 @@ export default function FilterBar() {
             ))}
         </ul>
         <button>
-          <TbChartCandle className="w-[2.4rem] h-[2.4rem] rotate-90" />
+          <TbChartCandle
+            className="w-[2.4rem] h-[2.4rem] rotate-90"
+            onClick={onClickFilter}
+          />
         </button>
       </div>
+      {openFilter && (
+        <div className="absolute bottom-0 z-10 w-full">
+          <BottomSheetFilter />
+        </div>
+      )}
     </>
   );
 }

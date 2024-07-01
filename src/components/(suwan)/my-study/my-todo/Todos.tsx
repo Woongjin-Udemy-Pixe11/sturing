@@ -5,11 +5,7 @@ export default function Todos(props: TTdo[]) {
   const { todos } = props;
   return (
     <>
-<<<<<<< HEAD
       <div className="flex flex-col justify-center items-center w-full mt-[2rem] rounded-[5px] bg-white border border-gray-300">
-=======
-      <div className="flex flex-col justify-center items-center w-[100%] mt-[2rem] rounded-[5px] bg-white border border-gray-300">
->>>>>>> dbf71037612b344a0f2aa16ebe3a938cf3f35ceb
         <div className=" bg-white p-6 rounded-lg w-full px-[2rem]">
           <div className="flex items-center border-b-[0.1rem] border-gray-300 pb-4">
             <h2 className="text-[1.6rem] font-semibold">체크리스트</h2>

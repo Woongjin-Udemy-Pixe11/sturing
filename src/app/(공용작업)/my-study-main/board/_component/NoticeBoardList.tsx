@@ -18,11 +18,7 @@ export default function NoticeBoardList(props: TNoticeListProps) {
   const { notices } = props;
   return (
     <>
-<<<<<<< HEAD
-      <ul className="px-[1.6rem] py-[2rem] flex flex-col gap-[1.5rem] min-h-[80vh] bg-white ">
-=======
       <ul className="bg-white px-[1.6rem] py-[2rem] flex flex-col gap-[1.5rem] min-h-[80vh]">
->>>>>>> dbf71037612b344a0f2aa16ebe3a938cf3f35ceb
         {notices.map((notice) => (
           <li
             key={notice.blackboardId}

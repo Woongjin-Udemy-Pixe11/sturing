@@ -12,7 +12,7 @@ export default function SearchLabelList() {
               href={`/search/result?keyword=${label.title}`}
               className="flex gap-[0.8rem] px-[0.8rem] py-[0.6rem] rounded-[2.5rem] border-2 cursor-pointer"
             >
-              <figure className="w-[2.4rem] h-[2.4rem] bg-gray-200 rounded-[50%] flex items-center  justify-center">
+              <figure className="relative w-[2.4rem] h-[2.4rem] bg-gray-200 rounded-[50%] flex items-center  justify-center">
                 <img
                   src={label.imgSrc}
                   alt={label.imgAlt}
