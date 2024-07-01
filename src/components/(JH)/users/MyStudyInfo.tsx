@@ -1,6 +1,7 @@
 import LongButton from '@/components/common/LongButton';
+import Link from 'next/link';
 
-export default function MyStudyInfo() {
+export default function MyStudyInfo({ userid }: { userid: string }) {
   return (
     <>
       <section className="flex w-full px-[2.4rem] py-[2rem]">
@@ -15,10 +16,14 @@ export default function MyStudyInfo() {
       </section>
       <section className="flex gap-2 mt-3">
         <LongButton color="white">
-          <p className="text-gray-900 text-content-1">내 관심목록</p>
+          <Link href={`${userid}/mybookmark`}>
+            <p className="text-gray-900 text-content-1">내 관심목록</p>
+          </Link>
         </LongButton>
         <LongButton color="white">
-          <p className="text-gray-900 text-content-1">매칭정보 수정</p>
+          <Link href={`${userid}/detail`}>
+            <p className="text-gray-900 text-content-1">매칭정보 수정</p>
+          </Link>
         </LongButton>
       </section>
     </>

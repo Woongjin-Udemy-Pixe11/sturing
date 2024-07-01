@@ -1,11 +1,15 @@
 //TODO: 글자 | 글자 | 글자 좀더깔끔하게 css design 할수있는 방법있으면 변경할것
 
+import Link from 'next/link';
+
 export default function UserMatchingInfo() {
   return (
     <main className="border-t-4 border-gray-400 mt-[4rem] py-[3.6rem] ">
       <header className="flex justify-between">
         <h1 className="font-bold text-headline-3">매칭정보</h1>
-        <button className="text-[1.6rem] text-main-600">수정</button>
+        <Link href="/matching">
+          <button className="text-[1.6rem] text-main-600">수정</button>
+        </Link>
       </header>
       <section className="text-[1.6rem] text-gray-600 flex flex-col gap-[4.6rem] mt-[2.2rem]">
         <div className=" border-b-2 border-gray-300 pb-[1.2rem]">
