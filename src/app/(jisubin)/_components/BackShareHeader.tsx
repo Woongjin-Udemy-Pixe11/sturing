@@ -1,7 +1,12 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
+
 export default function BackShareHeader() {
+  const router = useRouter();
   return (
     <div className="h-[5.4rem] flex flex-row items-center justify-center">
-      <div className="ml-[1.6rem] mr-auto">
+      <button onClick={() => router.back()} className="ml-[1.6rem] mr-auto">
         <svg
           width="24"
           height="24"
@@ -16,8 +21,8 @@ export default function BackShareHeader() {
             stroke-linecap="round"
           />
         </svg>
-      </div>
-      <div className="mr-[1.6rem]">
+      </button>
+      <button className="mr-[1.6rem]">
         <svg
           width="24"
           height="24"
@@ -222,7 +227,7 @@ export default function BackShareHeader() {
             </clipPath>
           </defs>
         </svg>
-      </div>
+      </button>
     </div>
   );
 }

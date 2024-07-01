@@ -37,7 +37,10 @@ export default function LectureDetailLayout({
         {children}
 
         <div className="flex justify-center">
-          <BookmarkBtnNavigationBar text="이 강의로 스터디 개설하기" />
+          <BookmarkBtnNavigationBar
+            text="이 강의로 스터디 개설하기"
+            link="/make-study-form"
+          />
         </div>
       </body>
     </html>

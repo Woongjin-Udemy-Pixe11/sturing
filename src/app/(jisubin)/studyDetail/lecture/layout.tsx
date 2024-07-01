@@ -1,21 +1,24 @@
+'use client';
 import BookmarkBtnNavigationBar from '@/components/(jisubin)/lectureStudyDetail/BookmarkBtnNavigationBar';
 import DetailTabBar from '@/components/(jisubin)/lectureStudyDetail/DetailTabBar';
 import CourseLink from '@/components/common/CourseLink';
 import Label from '@/components/common/label/Label';
-import { useState } from 'react';
-import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
-
+import { useRouter } from 'next/navigation';
 export default function StudyDetailLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   return (
     <html lang="ko">
       <body className="w-full m-auto">
         <div className="bg-[url('/images/study-preview-img.png')] text-white">
           <div className="h-[5.4rem] flex flex-row items-center justify-center">
-            <div className="ml-[1.6rem] mr-auto">
+            <button
+              onClick={() => router.back()}
+              className="ml-[1.6rem] mr-auto"
+            >
               <svg
                 width="24"
                 height="24"
@@ -30,8 +33,8 @@ export default function StudyDetailLayout({
                   stroke-linecap="round"
                 />
               </svg>
-            </div>
-            <div className="mr-[1.6rem]">
+            </button>
+            <button className="mr-[1.6rem]">
               <svg
                 width="24"
                 height="24"
@@ -236,7 +239,7 @@ export default function StudyDetailLayout({
                   </clipPath>
                 </defs>
               </svg>
-            </div>
+            </button>
           </div>
 
           <div className="mt-[3.8rem] pb-[4rem] flex flex-col items-center justify-center">
@@ -278,7 +281,7 @@ export default function StudyDetailLayout({
           {children}
         </div>
 
-        <BookmarkBtnNavigationBar text="스터디 지원하기" />
+        <BookmarkBtnNavigationBar text="스터디 지원하기" link="/apply" />
       </body>
     </html>
   );
