@@ -3,16 +3,17 @@
 import MatchingFooter from '@/components/(JH)/matching/MatchingFooter';
 import { GoChevronLeft } from 'react-icons/go';
 import Type from './Type';
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 import Interest from './Interest';
 import Field from './Field';
 import Region from './Region';
 import Mood from './Mood';
 import MatchingCompleted from './MatchingCompleted';
+import matchingreducer, { TActionType } from '@/utils/matchingreducer';
 
-type Tmatching = {
+export type Tmatching = {
   userid: string;
-  interests: string[];
+  interest: string[];
   level: {
     [key: string]: string;
   };
@@ -24,55 +25,37 @@ type Tmatching = {
 //TODO:전역으로 Tmatching 을 제외하는 방향도 나쁘지않을것같다.
 
 export default function ClientMatching() {
+  const [state, dispatch] = useReducer<React.Reducer<Tmatching, TActionType>>(
+    matchingreducer,
+    {
+      userid: '1',
+      interest: [],
+      level: {},
+      studyType: '',
+      preferRegion: [],
+      preferMood: [],
+    },
+  );
+  console.log(state);
   const [step, setStep] = useState<number>(1);
-  const [interest, setInterest] = useState<string[]>([]);
-  const [level, setLevel] = useState<{ [key: string]: string }>({});
-  const [studyType, setStudyType] = useState<string>('');
-  const [moods, setMood] = useState<string[]>([]);
-  const [regions, setRegion] = useState<string[]>([]);
-  let formData: Tmatching = {
-    userid: '1',
-    interests: interest,
-    level: level,
-    studyType: studyType,
-    preferRegion: regions,
-    preferMood: moods,
-  };
+
   const onClickInterest = (field: string) => {
-    if (interest.length === 3) {
-      interest.shift();
-    }
-    if (interest.includes(field)) {
-      setInterest((prev) => prev.filter((item) => item !== field));
-    } else {
-      setInterest((prev) => [...prev, field]);
-    }
+    dispatch({ type: 'setInterest', payload: field });
   };
+
   const onClickLevel = (field: string, level: string) => {
-    setLevel((prev) => ({ ...prev, [field]: level }));
+    dispatch({ type: 'setLevel', payload: { field, level } });
   };
   const onClickStudyType = (field: string) => {
-    setStudyType((prev) => field);
+    dispatch({ type: 'setStudyType', payload: field });
   };
+
   const onClickMood = (mood: string) => {
-    if (moods.length === 3) {
-      moods.shift();
-    }
-    if (moods.includes(mood)) {
-      setMood((prev) => prev.filter((item) => item !== mood));
-    } else {
-      setMood((prev) => [...prev, mood]);
-    }
+    dispatch({ type: 'setMood', payload: mood });
   };
+
   const onClickRegions = (region: string) => {
-    if (regions.length === 3) {
-      regions.shift();
-    }
-    if (regions.includes(region)) {
-      setRegion((prev) => prev.filter((item) => item !== region));
-    } else {
-      setRegion((prev) => [...prev, region]);
-    }
+    dispatch({ type: 'setRegion', payload: region });
   };
   const onClickForwardStep = () => {
     if (step === 6) {
@@ -87,14 +70,20 @@ export default function ClientMatching() {
     setStep((prev) => prev - 1);
   };
   const stepComponet: any = {
-    1: <Interest interest={interest} onClickInterest={onClickInterest} />,
-    2: <Field interest={interest} onClickLevel={onClickLevel} Level={level} />,
-    3: <Type studyType={studyType} onClickStudyType={onClickStudyType} />,
-    4: <Region regions={regions} onClickRegion={onClickRegions} />,
-    5: <Mood moods={moods} onClickMood={onClickMood} />,
+    1: <Interest interest={state.interest} onClickInterest={onClickInterest} />,
+    2: (
+      <Field
+        interest={state.interest}
+        onClickLevel={onClickLevel}
+        Level={state.level}
+      />
+    ),
+    3: <Type studyType={state.studyType} onClickStudyType={onClickStudyType} />,
+    4: <Region regions={state.preferRegion} onClickRegion={onClickRegions} />,
+    5: <Mood moods={state.preferMood} onClickMood={onClickMood} />,
     6: <MatchingCompleted />,
   };
-  console.log(formData);
+
   return (
     <main className="flex flex-col w-full  relative  ">
       <header>
