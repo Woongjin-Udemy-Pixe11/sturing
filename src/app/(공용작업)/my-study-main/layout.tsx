@@ -10,7 +10,7 @@ export default function Layout({ children }) {
       <StudyInfo />
       <TabBar />
       <img
-        className="absolute inset-0 w-full h-full object-cover -z-10"
+        className="absolute inset-0 w-full object-cover -z-10"
         src="/images/study-img1.png"
       />
       <main>{children}</main>

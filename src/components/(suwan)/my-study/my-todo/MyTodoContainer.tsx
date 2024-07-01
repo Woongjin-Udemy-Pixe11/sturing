@@ -5,7 +5,7 @@ import { studyMemberTodo } from '@/dummy/studyMemberTodo';
 
 export default function MyTodoContainer() {
   return (
-    <div className="bg-gray-100 w-full felx justify-center">
+    <div className="bg-gray-100 w-full felx justify-center p-[2rem]">
       <Calendar />
       <Todos todos={studyMemberTodo[0].todos} />
     </div>
