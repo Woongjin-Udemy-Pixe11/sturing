@@ -20,6 +20,7 @@ export default function NoticeBoardDetail() {
 
   return (
     <>
+<<<<<<< HEAD
       <div className="bg-white">
         <SubHeader eddit />
         <div className="p-[1.6rem] mt-[0.5rem] h-[85vh]">
@@ -41,6 +42,18 @@ export default function NoticeBoardDetail() {
                 </span>
                 <span>11시간 전 ∙ 조회 3</span>
               </div>
+=======
+      <SubHeader eddit />
+      <div className="bg-white p-[2rem] pt-[2.5rem] h-[85vh]">
+        <div className="flex justify-between items-center pb-[1.8rem] mb-[1.8rem] border-b border-gray-300">
+          <div className="flex flex-grow gap-[0.8rem]">
+            <div className="w-[4rem] h-[4rem]">
+              <img
+                src="/images/dummy-member-img1.png"
+                alt=""
+                className="w-full"
+              />
+>>>>>>> dbf71037612b344a0f2aa16ebe3a938cf3f35ceb
             </div>
             <div className="shrink-0">
               <Label children={'필독'} />

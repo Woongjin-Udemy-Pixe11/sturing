@@ -40,7 +40,7 @@ export default function UpcomingStudy(props: StudyProps) {
         {studies.map((study) => (
           <SwiperSlide key={study.studyId}>
             <Link
-              href="/test"
+              href="/my-study-main/team"
               className="bg-white w-full flex flex-col gap-[0.8rem] px-[2rem] py-[2.4rem] rounded-[0.8rem] border border-gray-300"
             >
               <div className="[&>span]:ml-0 [&>span]:mr-[0.4rem]">

@@ -7,7 +7,7 @@ export default function TabBar() {
   const tabs = [
     { name: '추천', href: '/' },
     { name: '검색', href: '/search' },
-    { name: '내 스터디', href: '/my-study' },
+    { name: '내 스터디', href: '/my-study-list' },
   ];
 
   return (
