@@ -18,7 +18,7 @@ export default function NoticeBoardList(props: TNoticeListProps) {
   const { notices } = props;
   return (
     <>
-      <ul className="px-[1.6rem] py-[2rem] flex flex-col gap-[1.5rem] min-h-[80vh]">
+      <ul className="bg-white px-[1.6rem] py-[2rem] flex flex-col gap-[1.5rem] min-h-[80vh]">
         {notices.map((notice) => (
           <li
             key={notice.blackboardId}
