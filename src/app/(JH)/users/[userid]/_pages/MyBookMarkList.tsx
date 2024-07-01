@@ -46,7 +46,6 @@ export default function MyBookMarkList() {
                 dummyCardList.map((card) => (
                   <div key={card.studyName}>
                     <Card
-                      width="167"
                       studyImage={card.studyImage}
                       studyMeetings={card.studyMettings}
                       studyTypeisBlue={card.studyTypeisBlue}
