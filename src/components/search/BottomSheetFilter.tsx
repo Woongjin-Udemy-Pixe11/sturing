@@ -16,7 +16,7 @@ const tabList = [
 
 export default function BottomSheetFilter() {
   return (
-    <div className="w-full rounded-t-[1rem] border border-gray-1000">
+    <div className="w-full rounded-t-[1rem] border border-gray-300 shadow-modal bg-white h-[75vh]">
       <span className="block mx-[1.6rem] my-[2.8rem] text-[1.8rem]">필터</span>
       <TabBarUnderBlue tabList={tabList} />
       <div className=" w-full flex justify-center gap-[.8rem] pb-[1.8rem]">

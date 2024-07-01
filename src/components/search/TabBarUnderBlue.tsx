@@ -30,7 +30,7 @@ export default function TabBarUnderBlue(props: TTabBarBlueProps) {
           </li>
         ))}
       </ul>
-      <div className="w-full p-[1.6rem]">
+      <div className="h-[54vh] w-full p-[1.6rem]">
         {tabList.find((tab) => tab.name === activeTab)?.component}
       </div>
     </>
