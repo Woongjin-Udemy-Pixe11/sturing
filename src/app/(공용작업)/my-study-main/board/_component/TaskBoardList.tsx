@@ -18,7 +18,11 @@ export default function TaskBoardList(props: TTaskListProps) {
   const { task } = props;
   return (
     <>
+<<<<<<< HEAD
+      <ul className="px-[1.6rem] py-[1.8rem] flex flex-col min-h-[80vh] bg-white">
+=======
       <ul className="bg-white px-[1.6rem] py-[1.8rem] flex flex-col min-h-[80vh]">
+>>>>>>> dbf71037612b344a0f2aa16ebe3a938cf3f35ceb
         {task.map((task) => (
           <li
             key={task.blackboardId}

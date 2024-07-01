@@ -8,7 +8,6 @@ import CurrentStudy from '@/components/search/CurrentStudy';
 export default function Search() {
   return (
     <>
-      <Header />
       <TabBar />
       <SearchInput placeholderText="관심 스터디 분야나 강의명을 검색해 보세요" />
       <CurrentSearch />
