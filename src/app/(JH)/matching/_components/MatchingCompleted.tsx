@@ -27,8 +27,8 @@ export default function MatchingCompleted() {
                 y2="82.2692"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stop-color="#3A6CFF" />
-                <stop offset="1" stop-color="#FFE4E0" />
+                <stop stopColor="#3A6CFF" />
+                <stop offset="1" stopColor="#FFE4E0" />
               </linearGradient>
             </defs>
           </svg>
@@ -47,10 +47,9 @@ export default function MatchingCompleted() {
           {dummyCardList &&
             dummyCardList
               .filter((card) => card.studyCatecory !== '마케팅')
-              .map((card) => (
-                <div key={card.studyName}>
+              .map((card, index) => (
+                <div key={index}>
                   <Card
-                    width="182"
                     studyImage={card.studyImage}
                     studyMeetings={card.studyMettings}
                     studyTypeisBlue={card.studyTypeisBlue}
