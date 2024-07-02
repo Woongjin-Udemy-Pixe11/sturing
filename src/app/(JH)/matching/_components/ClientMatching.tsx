@@ -135,6 +135,7 @@ export default function ClientMatching() {
             }}
             serverAction={async () => {
               InsertMatchingDB(state);
+              onClickForwardStep();
             }}
           />
         )}
