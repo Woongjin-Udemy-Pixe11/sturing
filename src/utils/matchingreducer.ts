@@ -10,11 +10,11 @@ export type TActionType =
 export default function matchingreducer(state: Tmatching, action: TActionType) {
   switch (action.type) {
     case 'setInterest': {
-      const newInterests = [...state.interest];
+      const newInterests = [...state.interests];
       if (newInterests.includes(action.payload)) {
         return {
           ...state,
-          interest: newInterests.filter((item) => item !== action.payload),
+          interests: newInterests.filter((item) => item !== action.payload),
         };
       } else {
         if (newInterests.length === 3) {
@@ -22,7 +22,7 @@ export default function matchingreducer(state: Tmatching, action: TActionType) {
         }
         return {
           ...state,
-          interest: [...newInterests, action.payload],
+          interests: [...newInterests, action.payload],
         };
       }
     }

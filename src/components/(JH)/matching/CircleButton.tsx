@@ -1,11 +1,16 @@
 export default function CircleButton({
   children,
+  onClick,
 }: {
   children?: React.ReactNode;
+  onClick?: any;
 }) {
   return (
-    <div className="flex items-center justify-center w-[5.6rem] h-[5.6rem] bg-gray-400 rounded-full ">
+    <button
+      className="flex items-center justify-center w-[5.6rem] h-[5.6rem] bg-gray-400 rounded-full "
+      onClick={onClick}
+    >
       {children}
-    </div>
+    </button>
   );
 }

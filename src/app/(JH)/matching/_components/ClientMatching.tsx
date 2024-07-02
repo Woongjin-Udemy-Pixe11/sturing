@@ -10,10 +10,11 @@ import Region from './Region';
 import Mood from './Mood';
 import MatchingCompleted from './MatchingCompleted';
 import matchingreducer, { TActionType } from '@/utils/matchingreducer';
+import { InsertMatchingDB } from '@/utils/DBmatching';
 
 export type Tmatching = {
   userid: string;
-  interest: string[];
+  interests: string[];
   level: {
     [key: string]: string;
   };
@@ -29,7 +30,7 @@ export default function ClientMatching() {
     matchingreducer,
     {
       userid: '1',
-      interest: [],
+      interests: [],
       level: {},
       studyType: '',
       preferRegion: [],
@@ -61,11 +62,11 @@ export default function ClientMatching() {
     if (step === 6) {
       return;
     }
-    if (state.interest.length === 0 && step === 1) {
+    if (state.interests.length === 0 && step === 1) {
       return;
     }
     if (
-      Object.keys(state.level).length !== state.interest.length &&
+      Object.keys(state.level).length !== state.interests.length &&
       step === 2
     ) {
       return;
@@ -86,14 +87,17 @@ export default function ClientMatching() {
     if (step === 1) {
       return;
     }
+
     setStep((prev) => prev - 1);
   };
   //TODO:dispatch 함수의 타입작성하기
   const stepComponet: any = {
-    1: <Interest interest={state.interest} onClickInterest={onClickInterest} />,
+    1: (
+      <Interest interest={state.interests} onClickInterest={onClickInterest} />
+    ),
     2: (
       <Field
-        interest={state.interest}
+        interest={state.interests}
         onClickLevel={onClickLevel}
         Level={state.level}
       />
@@ -128,6 +132,10 @@ export default function ClientMatching() {
             }}
             Backward={() => {
               onClickBackwardStep();
+            }}
+            serverAction={async () => {
+              InsertMatchingDB(state);
+              onClickForwardStep();
             }}
           />
         )}
