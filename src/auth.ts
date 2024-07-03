@@ -3,7 +3,6 @@ import { authConfig } from './auth.config';
 // import { sql } from '@vercel/postgres';
 // import type { User } from '@/app/lib/definitions';
 // import bcrypt from 'bcrypt';
-import * as jose from 'jose';
 import GithubProvider from 'next-auth/providers/github';
 import { User } from './lib/schemas/userSchema';
 import connectDB from './lib/db';

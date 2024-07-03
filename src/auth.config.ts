@@ -29,10 +29,14 @@ export const authConfig = {
         });
         if (!dbuser) {
           await new User({
-            name,
-            email,
+            name: user.name,
+            email: user.email,
+            nickname: '랜덤닉네임',
+            image: '/images/ungin_profile.png',
+            stringPercent: 0,
+            studyCount: 0,
             authProviderId: 'github',
-            role: 'user',
+            // role: 'user',
           }).save();
         }
         // const socialUser = await User.findOne({
