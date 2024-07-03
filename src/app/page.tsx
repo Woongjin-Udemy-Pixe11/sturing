@@ -13,12 +13,12 @@ import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 export default async function page() {
   const session = await auth();
+  console.log(session);
   if (!session?.user) {
     redirect('/login');
   }
   return (
     <>
-      <h1>{session?.user?.name}</h1>
       <TabBar />
       <Banner />
       <p className="w-full bg-gray-1000 text-gray-100 flex justify-start items-center gap-[0.8rem] px-[1.6rem] py-[1.2rem]">

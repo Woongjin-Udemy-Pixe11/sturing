@@ -127,4 +127,3 @@ export default function Card(props: TCardProps) {
     </div>
   );
 }
-/* Rectangle 831097 */

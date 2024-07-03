@@ -3,7 +3,7 @@ import { FaGithub } from 'react-icons/fa';
 
 export default function GitHubLoginBtn() {
   return (
-    <form action={function GithubLogin}>
+    <form action={GithubLogin}>
       <button
         type="submit"
         name="action"
