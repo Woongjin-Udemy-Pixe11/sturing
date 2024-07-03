@@ -18,5 +18,5 @@ const lectureSchema = new mongoose.Schema({
   lectureReviews: [reviewSchema],
 });
 
-export const lectureModel =
-  mongoose.models?.lecturetModel || mongoose.model('lecture', lectureSchema);
+export const Lecture =
+  mongoose.models?.Lecture || mongoose.model('lecture', lectureSchema);
