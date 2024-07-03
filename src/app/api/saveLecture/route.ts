@@ -15,6 +15,9 @@ const saveLectures = async () => {
 };
 
 export async function GET(req: Request) {
-  await saveLectures();
-  return Response.json({ message: 'GET / api/saveLecture' });
+  //   await saveLectures();
+
+  connectDB();
+  const lectureList = await lectureModel.find({});
+  return Response.json(lectureList);
 }
