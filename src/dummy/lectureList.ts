@@ -1,4 +1,4 @@
-type TLectureList = {
+type TLectures = {
   lectureName: string;
   lectureDescription: string;
   lectureURL: string;
@@ -15,7 +15,7 @@ type TLectureReviews = {
   reviewDate: string;
 };
 
-export const lectureList: TLectureList[] = [
+export const lectures: TLectures[] = [
   {
     lectureName: '【한글자막】 Next.js 14 & React - 완벽 가이드',
     lectureDescription:
