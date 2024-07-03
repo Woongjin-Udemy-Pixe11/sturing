@@ -19,7 +19,7 @@ export default function StudyForm(props: TStudyFormProps) {
   const {
     titlePlaceholder,
     contentPlaceholder,
-    titleMaxLength = 24,
+    titleMaxLength = 30,
     contentMaxLength = 500,
     heading,
     titleLabel,

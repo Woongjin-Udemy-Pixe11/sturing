@@ -1,5 +1,3 @@
-import LongButton from './LongButton';
-
 type TCompleteProps = {
   heading: string;
   subheading: string;
@@ -12,7 +10,7 @@ export default function Complete({
   onButtonClick,
 }: TCompleteProps) {
   return (
-    <div className="flex flex-col items-center w-full h-screen relative justify-center">
+    <div className="flex flex-col items-center w-full h-[calc(100vh-12.5rem)] relative justify-center">
       <div className="mb-[1.4rem]">
         <svg
           width="62"
@@ -46,11 +44,6 @@ export default function Complete({
       <p className="text-content-1 text-gray-700 text-center whitespace-pre-line">
         {subheading}
       </p>
-      <div className="w-full absolute bottom-0 px-[1.6rem] py-[1.2rem]">
-        <LongButton color="blue" onClick={onButtonClick}>
-          확인
-        </LongButton>
-      </div>
     </div>
   );
 }

@@ -10,8 +10,11 @@ export default function page() {
         <StudyForm
           heading="과제 게시판 작성"
           titleLabel="글 제목"
+          imageUpload
+          imageLabel="과제 인증 사진"
           contentLabel="제목을 입력해 주세요"
           titlePlaceholder="내용"
+          contentMaxLength={3000}
           contentPlaceholder="내용을 입력해 주세요"
         />
         <LongButton className={'mt-[4rem]'} color="blue">
