@@ -1,7 +1,9 @@
+import LoginModal from '@/components/(jisubin)/login/LoginModal';
+
 export default function Login() {
   return (
     <>
-      <h1>Login Page</h1>
+      <LoginModal />
     </>
   );
 }

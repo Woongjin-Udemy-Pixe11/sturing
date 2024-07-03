@@ -9,10 +9,16 @@ import SearchLabelList from '@/components/main/SearchLabelList';
 import StudyCardList from '@/components/common/StudyCardList';
 import UserCardList from '@/components/main/UserCardList';
 import Footer from '@/components/common/Footer';
-
-export default function page() {
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
+export default async function page() {
+  const session = await auth();
+  if (!session?.user) {
+    redirect('/login');
+  }
   return (
     <>
+      <h1>{session?.user?.name}</h1>
       <TabBar />
       <Banner />
       <p className="w-full bg-gray-1000 text-gray-100 flex justify-start items-center gap-[0.8rem] px-[1.6rem] py-[1.2rem]">
