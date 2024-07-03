@@ -13,7 +13,6 @@ export default function StudyTemmateForm() {
   const [isChecked, setChecked] = useState(false);
   const [studyMembers, setStudyMembers] = useState(1);
   const onClickStudyMembers = (type: string) => {
-    console.log(type);
     if (type == 'plus') {
       setStudyMembers((prev) => prev + 1);
     } else if (type == 'minus') {

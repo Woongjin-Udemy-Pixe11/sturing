@@ -2,7 +2,7 @@ import FlexContainer from '@/components/(JH)/matching/FlexContainer';
 import SelectMatching from '@/components/(JH)/matching/SelectMatching';
 import { emojiLabelList } from '@/constant/emojiLabelList';
 
-export default function Mood() {
+export default function Mood({ moods, onClickMood }: any) {
   return (
     <div className="w-full px-[1.6rem] py-[2rem]">
       <section>
@@ -16,7 +16,14 @@ export default function Mood() {
       </section>
       <FlexContainer>
         {emojiLabelList.map((label) => (
-          <SelectMatching key={label.title} type="mood">
+          <SelectMatching
+            key={label.title}
+            type="mood"
+            onClick={() => {
+              onClickMood(label.title);
+            }}
+            active={moods.includes(label.title) && true}
+          >
             <img src={label.imgSrc} alt={label.imgAlt} />
             <div className="ml-2">{label.title}</div>
           </SelectMatching>

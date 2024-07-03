@@ -2,25 +2,11 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { area } from '@/constant/region';
-import { useState } from 'react';
 import TabLabel from './TabLabel';
 import { CiSearch } from 'react-icons/ci';
 import { IoSearch } from 'react-icons/io5';
 
-export default function CommonTab() {
-  const [selected, setSelected] = useState<string[]>([]);
-  const onSelectContent = (item: string) => {
-    let uniqueid: string = item;
-    if (selected.length >= 3) {
-      selected.shift();
-    }
-    setSelected([...selected, uniqueid]);
-  };
-
-  const onUnSelectContent = (item: string) => {
-    let filter = selected.filter((element) => element !== item);
-    setSelected(filter);
-  };
+export default function CommonTab({ regions, onClickRegion }: any) {
   return (
     <div className="flex flex-col gap-3 w-full, overflow-y-hidden">
       <>
@@ -71,7 +57,7 @@ export default function CommonTab() {
                     {area[key].map((item: any, index) => {
                       let newid: string = item;
 
-                      const bg = selected.includes(newid)
+                      const bg = regions.includes(newid)
                         ? 'bg-[#ECF1FF] text-[#4171FF]'
                         : 'bg-white';
                       return (
@@ -80,7 +66,7 @@ export default function CommonTab() {
                           key={index}
                           className={`${bg}  w-full h-[4.9rem] py-[1.4rem] ps-[2rem] border-b-[0.1rem] border-[#E4E4E4]`}
                           onClick={() => {
-                            onSelectContent(item);
+                            onClickRegion(item);
                           }}
                         >
                           <p className="w-[90%]">{item}</p>
@@ -101,13 +87,13 @@ export default function CommonTab() {
           })}
         </Tabs.List>
       </Tabs.Root>
-      <div className="flex gap-4 p-4 flex-wrap m-auto">
-        {selected.map((item, index) => {
+      <div className="flex gap-4 p-4 flex-wrap lg:m-auto">
+        {regions.map((item: any, index: number) => {
           return (
             <TabLabel
               key={index}
               onUnSelectContent={() => {
-                onUnSelectContent(item);
+                onClickRegion(item);
               }}
             >
               {item}
