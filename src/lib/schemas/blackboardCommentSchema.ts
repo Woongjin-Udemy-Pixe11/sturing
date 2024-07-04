@@ -13,7 +13,6 @@ const blackboardCommentSchema = new mongoose.Schema(
       ref: 'user',
     },
     commentContent: { type: String, required: true },
-    commentGood: { type: String, required: true },
   },
   { timestamps: true },
 );
