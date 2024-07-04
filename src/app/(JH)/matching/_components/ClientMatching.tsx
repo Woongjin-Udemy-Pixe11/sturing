@@ -38,8 +38,8 @@ export default function ClientMatching({ data, session, exist }: any) {
     dispatch({ type: 'setInterest', payload: field });
   };
 
-  const onClickLevel = (field: string, level: string) => {
-    dispatch({ type: 'setLevel', payload: { field, level } });
+  const onClickLevel = (field: string, level: string, interest: string[]) => {
+    dispatch({ type: 'setLevel', payload: { field, level, interest } });
   };
   const onClickStudyType = (field: string) => {
     dispatch({ type: 'setStudyType', payload: field });
@@ -52,17 +52,23 @@ export default function ClientMatching({ data, session, exist }: any) {
   const onClickRegions = (region: string) => {
     dispatch({ type: 'setRegion', payload: region });
   };
+  const onClickClearLevel = (personlevel: object, interests: string[]) => {
+    dispatch({ type: 'clearlevel', payload: { personlevel, interests } });
+  };
   const onClickForwardStep = () => {
     if (step === 6) {
       return;
     }
     if (state.interests.length === 0 && step === 1) {
       return;
+    } else if (step === 1) {
+      onClickClearLevel(state.level, state.interests);
     }
     if (
       Object.keys(state.level).length !== state.interests.length &&
       step === 2
     ) {
+      console.log('안됨!');
       return;
     }
     if (state.studyType === '' && step === 3) {
