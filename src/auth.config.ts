@@ -30,7 +30,7 @@ export const authConfig = {
         if (!dbuser) {
           let randNickname =
             '스터링' + String(Math.floor(Math.random() * 100000));
-          await new User({
+          await User.create({
             name: user.name,
             email: user.email,
             nickname: randNickname,
@@ -39,7 +39,7 @@ export const authConfig = {
             studyCount: 0,
             authProviderId: 'github',
             // role: 'user',
-          }).save();
+          });
         }
         const socialUser = await User.findOne({
           email,
