@@ -10,6 +10,6 @@ export default async function page({ params }: { params: { userid: string } }) {
   } else {
     auth = false;
   }
-  console.log(params.userid, '🟢');
+
   return <MyPage userid={params.userid} auth={auth} />;
 }

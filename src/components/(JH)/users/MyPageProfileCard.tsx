@@ -1,4 +1,4 @@
-import { FaChevronRight } from 'react-icons/fa6';
+import Image from 'next/image';
 import MyPageLabel from './MyPageLabel';
 export default async function MyPageProfileCard({
   data,
@@ -10,7 +10,8 @@ export default async function MyPageProfileCard({
   return (
     <section className="flex border-[0.1rem] border-gray-200 py-[2.4rem] px-[2rem] mt-5 rounded-md  gap-3">
       <div className="w-[7rem] h-[7rem] border border-gray-500 rounded-full ">
-        <img src="/images/user-card-dummy.png" className="object-fit"></img>
+        {/* //TODO:이미지조절 */}
+        <img src={`${data.users.image}`} className="cover w-full h-full"></img>
       </div>
       <div>
         <div className="flex gap-4">

@@ -11,6 +11,7 @@ export default function MyStudyInfo({
   return (
     <>
       <section className="flex w-full px-[2.4rem] py-[2rem]">
+        {/* TODO:어떻게하기로했더라 활동중,종료중 */}
         <div className="flex-1 text-center border-r-[0.1rem] border-gray-400">
           <h1>2</h1>
           <h2>활동 중 스터디</h2>

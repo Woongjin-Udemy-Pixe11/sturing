@@ -15,6 +15,12 @@ export default async function MyPage({
   const data = await (
     await fetch(`http://localhost:3000/api/mypage?id=${userid}`)
   ).json();
+  console.log(data);
+  if (data === null) {
+    return '아직 유저가 없습니다.';
+  }
+
+  //TODO: 404 페이지 혹은 유저없음 페이지 만들기
 
   return (
     <main>
@@ -27,14 +33,15 @@ export default async function MyPage({
           </div>
         )}
       </section>
-      <SturingRate />
+      <SturingRate data={data} />
+      {/* //TODO:스터디 리뷰 스키마 */}
       <SectionNavigator
         title="받은 스터디 평가 20"
         moveLink={`/users/${userid}/mystudyreview`}
       />
       {!auth && (
         <SectionNavigator
-          title="스터디 이력 5"
+          title={`스터디 이력 ${data.users.studyCount}`}
           moveLink={`/users/${userid}/mystudylog`}
         />
       )}
