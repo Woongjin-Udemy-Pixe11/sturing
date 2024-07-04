@@ -9,7 +9,7 @@ export default function MyPage({
   userid,
 }: {
   auth?: boolean;
-  userid: string;
+  userid?: string;
 }) {
   const loginbg = auth && `bg-gradient-to-r from-main-200  to-pink`;
   return (

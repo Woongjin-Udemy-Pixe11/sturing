@@ -5,7 +5,7 @@ import { GoBell } from 'react-icons/go';
 import { IoMenu, IoPersonOutline } from 'react-icons/io5';
 import SideBar from '../sidebar/SideBar';
 
-export default function Header() {
+export default async function Header({ id }: { id?: string }) {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const onClickMenu = () => {
@@ -47,7 +47,7 @@ export default function Header() {
           <button>
             <GoBell className="w-[2.4rem] h-[2.4rem]" />
           </button>
-          <Link href="/users/1">
+          <Link href={`users/${id}`}>
             <button>
               <IoPersonOutline className="w-[2.4rem] h-[2.4rem]" />
             </button>

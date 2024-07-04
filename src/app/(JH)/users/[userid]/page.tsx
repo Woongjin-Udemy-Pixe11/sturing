@@ -1,10 +1,15 @@
-import MyBookMarkList from './_pages/MyBookMarkList';
+import { getSession } from '@/utils/getSessions';
 import MyPage from './_pages/MyPage';
-import MyPageDetail from './_pages/MyPageDetail';
-import MyStudyReviewList from './_pages/MyStudyReviewList';
-import StudyLog from './_pages/StudyLog';
 
-export default function page({ params }: { params: { userid: string } }) {
-  const { userid } = params;
-  return <MyPage userid={userid} auth={true} />;
+export default async function page({ params }: { params: { userid: string } }) {
+  const session = await getSession();
+  const userid = session?.user?.id;
+  let auth;
+  if (userid === params.userid) {
+    auth = true;
+  } else {
+    auth = false;
+  }
+  console.log(params.userid, '🟢');
+  return <MyPage userid={userid} auth={auth} />;
 }
