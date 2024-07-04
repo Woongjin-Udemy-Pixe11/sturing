@@ -110,4 +110,3 @@ export default function Card(props: TStudy) {
     </div>
   );
 }
-/* Rectangle 831097 */

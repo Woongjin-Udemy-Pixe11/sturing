@@ -9,8 +9,13 @@ import SearchLabelList from '@/components/main/SearchLabelList';
 import StudyCardList from '@/components/common/StudyCardList';
 import UserCardList from '@/components/main/UserCardList';
 import Footer from '@/components/common/Footer';
-
-export default function page() {
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
+export default async function page() {
+  const session = await auth();
+  if (!session?.user) {
+    redirect('/login');
+  }
   return (
     <>
       <TabBar />
