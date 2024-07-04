@@ -1,4 +1,5 @@
 'use client';
+//TODO:username 넣을것, Footer 분리해서 각 컴포넌트에 넣고, 스타일 및 함수재정리
 
 import MatchingFooter from '@/components/(JH)/matching/MatchingFooter';
 import { GoChevronLeft } from 'react-icons/go';
@@ -26,6 +27,7 @@ export type Tmatching = {
 //TODO:전역으로 Tmatching 을 제외하는 방향도 나쁘지않을것같다.
 
 export default function ClientMatching({ data, session, exist }: any) {
+  let username = session.user.name;
   const id = session.user.id;
   const [state, dispatch] = useReducer<React.Reducer<Tmatching, TActionType>>(
     matchingreducer,
@@ -105,7 +107,7 @@ export default function ClientMatching({ data, session, exist }: any) {
     3: <Type studyType={state.studyType} onClickStudyType={onClickStudyType} />,
     4: <Region regions={state.preferRegion} onClickRegion={onClickRegions} />,
     5: <Mood moods={state.preferMood} onClickMood={onClickMood} />,
-    6: <MatchingCompleted />,
+    6: <MatchingCompleted username={username} />,
   };
 
   return (
@@ -123,6 +125,7 @@ export default function ClientMatching({ data, session, exist }: any) {
         )}
       </header>
       <div className="w-full m-auto relative">
+        {/* //TODO:Footer 분리 및 active 시 색깔들어가게하기 */}
         {stepComponet[step]}
         {step <= 5 && (
           <MatchingFooter

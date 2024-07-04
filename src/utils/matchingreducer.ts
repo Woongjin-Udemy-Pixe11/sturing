@@ -93,7 +93,7 @@ export default function matchingreducer(state: Tmatching, action: TActionType) {
     case 'clearlevel': {
       const newinterest: string[] = action.payload.interests;
       const prevLevel = action.payload.personlevel;
-
+      //TODO:타입에러수정
       for (const key of Object.keys(prevLevel)) {
         if (!newinterest.includes(key)) {
           delete prevLevel[`${key}`];
