@@ -11,5 +11,5 @@ export default async function page({ params }: { params: { userid: string } }) {
     auth = false;
   }
   console.log(params.userid, '🟢');
-  return <MyPage userid={userid} auth={auth} />;
+  return <MyPage userid={params.userid} auth={auth} />;
 }

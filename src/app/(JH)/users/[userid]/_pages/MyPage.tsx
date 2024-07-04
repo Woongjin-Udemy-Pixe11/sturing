@@ -4,7 +4,7 @@ import MyPageProfileCard from '@/components/(JH)/users/MyPageProfileCard';
 import MyStudyInfo from '@/components/(JH)/users/MyStudyInfo';
 import SturingRate from '@/components/(JH)/users/SturingRate';
 
-export default function MyPage({
+export default async function MyPage({
   auth,
   userid,
 }: {
@@ -12,14 +12,18 @@ export default function MyPage({
   userid?: string;
 }) {
   const loginbg = auth && `bg-gradient-to-r from-main-200  to-pink`;
+  const data = await (
+    await fetch(`http://localhost:3000/api/mypage?id=${userid}`)
+  ).json();
+
   return (
     <main>
       <MyPageHeader>{auth && '마이페이지'}</MyPageHeader>
       <section className={`${loginbg}`}>
-        <MyPageProfileCard auth={auth} />
+        <MyPageProfileCard auth={auth} data={data} />
         {auth && (
           <div className="mt-[1.5rem]">
-            <MyStudyInfo userid={userid} />
+            <MyStudyInfo userid={userid} data={data} />
           </div>
         )}
       </section>

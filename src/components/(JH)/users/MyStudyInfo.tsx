@@ -1,7 +1,13 @@
 import LongButton from '@/components/common/LongButton';
 import Link from 'next/link';
 
-export default function MyStudyInfo({ userid }: { userid?: string }) {
+export default function MyStudyInfo({
+  data,
+  userid,
+}: {
+  data: any;
+  userid?: string;
+}) {
   return (
     <>
       <section className="flex w-full px-[2.4rem] py-[2rem]">
