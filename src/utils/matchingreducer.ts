@@ -2,10 +2,17 @@ import { Tmatching } from '@/app/(JH)/matching/_components/ClientMatching';
 
 export type TActionType =
   | { type: 'setInterest'; payload: string }
-  | { type: 'setLevel'; payload: { field: string; level: string } }
+  | {
+      type: 'setLevel';
+      payload: { field: string; level: string; interest: string[] };
+    }
   | { type: 'setStudyType'; payload: string }
   | { type: 'setMood'; payload: string }
-  | { type: 'setRegion'; payload: string };
+  | { type: 'setRegion'; payload: string }
+  | {
+      type: 'clearlevel';
+      payload: { personlevel: object; interests: string[] };
+    };
 
 export default function matchingreducer(state: Tmatching, action: TActionType) {
   switch (action.type) {
@@ -82,6 +89,22 @@ export default function matchingreducer(state: Tmatching, action: TActionType) {
           preferMood: [...newMood, action.payload],
         };
       }
+    }
+    case 'clearlevel': {
+      const newinterest: string[] = action.payload.interests;
+      const prevLevel = action.payload.personlevel;
+
+      for (const key of Object.keys(prevLevel)) {
+        if (!newinterest.includes(key)) {
+          delete prevLevel[`${key}`];
+        }
+      }
+      return {
+        ...state,
+        level: {
+          ...prevLevel,
+        },
+      };
     }
   }
 }

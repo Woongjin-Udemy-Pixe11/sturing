@@ -10,7 +10,7 @@ import Region from './Region';
 import Mood from './Mood';
 import MatchingCompleted from './MatchingCompleted';
 import matchingreducer, { TActionType } from '@/utils/matchingreducer';
-import { InsertMatchingDB } from '@/utils/DBmatching';
+import { postMatchingInfo, updateMatchingInfo } from '@/utils/matchingUtils';
 
 export type Tmatching = {
   userid: string;
@@ -25,17 +25,11 @@ export type Tmatching = {
 
 //TODO:전역으로 Tmatching 을 제외하는 방향도 나쁘지않을것같다.
 
-export default function ClientMatching() {
+export default function ClientMatching({ data, session, exist }: any) {
+  const id = session.user.id;
   const [state, dispatch] = useReducer<React.Reducer<Tmatching, TActionType>>(
     matchingreducer,
-    {
-      userid: '1',
-      interests: [],
-      level: {},
-      studyType: '',
-      preferRegion: [],
-      preferMood: [],
-    },
+    data,
   );
 
   const [step, setStep] = useState<number>(1);
@@ -44,8 +38,8 @@ export default function ClientMatching() {
     dispatch({ type: 'setInterest', payload: field });
   };
 
-  const onClickLevel = (field: string, level: string) => {
-    dispatch({ type: 'setLevel', payload: { field, level } });
+  const onClickLevel = (field: string, level: string, interest: string[]) => {
+    dispatch({ type: 'setLevel', payload: { field, level, interest } });
   };
   const onClickStudyType = (field: string) => {
     dispatch({ type: 'setStudyType', payload: field });
@@ -58,17 +52,23 @@ export default function ClientMatching() {
   const onClickRegions = (region: string) => {
     dispatch({ type: 'setRegion', payload: region });
   };
+  const onClickClearLevel = (personlevel: object, interests: string[]) => {
+    dispatch({ type: 'clearlevel', payload: { personlevel, interests } });
+  };
   const onClickForwardStep = () => {
     if (step === 6) {
       return;
     }
     if (state.interests.length === 0 && step === 1) {
       return;
+    } else if (step === 1) {
+      onClickClearLevel(state.level, state.interests);
     }
     if (
       Object.keys(state.level).length !== state.interests.length &&
       step === 2
     ) {
+      console.log('안됨!');
       return;
     }
     if (state.studyType === '' && step === 3) {
@@ -134,7 +134,7 @@ export default function ClientMatching() {
               onClickBackwardStep();
             }}
             serverAction={async () => {
-              InsertMatchingDB(state);
+              exist ? updateMatchingInfo(state) : postMatchingInfo(state);
               onClickForwardStep();
             }}
           />
