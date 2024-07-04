@@ -5,7 +5,6 @@ import { level } from '@/constant/region';
 //TODO:console.log(4번씩찍히는데 이거 최적화해서 memo, useCallback 해야될듯)
 
 export default function Field({ interest, onClickLevel, Level }: any) {
-  console.log(interest, Level);
   return (
     <div className="w-full px-[1.4rem]">
       <section className="py-[2rem] ">
