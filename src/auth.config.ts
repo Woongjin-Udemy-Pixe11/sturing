@@ -33,7 +33,7 @@ export const authConfig = {
             email: user.email,
             nickname: '랜덤닉네임',
             image: '/images/ungin_profile.png',
-            stringPercent: 0,
+            sturingPercent: 0,
             studyCount: 0,
             authProviderId: 'github',
             // role: 'user',
