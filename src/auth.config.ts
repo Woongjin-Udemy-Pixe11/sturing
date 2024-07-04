@@ -20,7 +20,7 @@ export const authConfig = {
       return true;
     },
     signIn: async ({ user, account }: { user: any; account: any }) => {
-      console.log('signIn', user, account);
+      // console.log('signIn', user, account);
       if (account?.provider === 'github') {
         const { name, email } = user;
         await connectDB();
@@ -70,7 +70,7 @@ export const authConfig = {
     },
 
     async jwt({ token, user }: { token: any; user: any }) {
-      console.log('jwt', token, user);
+      // console.log('jwt', token, user);
       if (user) {
         token.id = user.id;
       }

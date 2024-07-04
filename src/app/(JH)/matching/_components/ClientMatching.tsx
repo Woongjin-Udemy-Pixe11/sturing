@@ -10,7 +10,7 @@ import Region from './Region';
 import Mood from './Mood';
 import MatchingCompleted from './MatchingCompleted';
 import matchingreducer, { TActionType } from '@/utils/matchingreducer';
-import { InsertMatchingDB } from '@/utils/DBmatching';
+import { postMatchingInfo, updateMatchingInfo } from '@/utils/matchingUtils';
 
 export type Tmatching = {
   userid: string;
@@ -25,17 +25,10 @@ export type Tmatching = {
 
 //TODO:전역으로 Tmatching 을 제외하는 방향도 나쁘지않을것같다.
 
-export default function ClientMatching() {
+export default function ClientMatching({ data, session, exist }: any) {
   const [state, dispatch] = useReducer<React.Reducer<Tmatching, TActionType>>(
     matchingreducer,
-    {
-      userid: '1',
-      interests: [],
-      level: {},
-      studyType: '',
-      preferRegion: [],
-      preferMood: [],
-    },
+    data,
   );
 
   const [step, setStep] = useState<number>(1);
@@ -134,7 +127,7 @@ export default function ClientMatching() {
               onClickBackwardStep();
             }}
             serverAction={async () => {
-              InsertMatchingDB(state);
+              exist ? updateMatchingInfo(state) : postMatchingInfo(state);
               onClickForwardStep();
             }}
           />
