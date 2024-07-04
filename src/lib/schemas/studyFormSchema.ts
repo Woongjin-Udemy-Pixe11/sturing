@@ -38,4 +38,4 @@ const studyFormSchema = new mongoose.Schema(
 );
 
 export const StudyForm =
-  mongoose.models?.StudyForm || mongoose.model('study_form', studyFormSchema);
+  mongoose.models?.StudyForm || mongoose.model('StudyForm', studyFormSchema);

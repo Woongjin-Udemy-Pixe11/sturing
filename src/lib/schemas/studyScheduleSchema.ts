@@ -14,4 +14,4 @@ const studyScheduleSchema = new mongoose.Schema({
 
 export const StudySchedule =
   mongoose.models?.StudySchedule ||
-  mongoose.model('study_schedule', studyScheduleSchema);
+  mongoose.model('StudySchedule', studyScheduleSchema);

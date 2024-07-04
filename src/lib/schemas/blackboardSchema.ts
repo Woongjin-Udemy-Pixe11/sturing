@@ -16,4 +16,4 @@ const blackboardSchema = new mongoose.Schema(
 );
 
 export const Blackboard =
-  mongoose.models.Blackboard || mongoose.model('blackboard', blackboardSchema);
+  mongoose.models.Blackboard || mongoose.model('Blackboard', blackboardSchema);

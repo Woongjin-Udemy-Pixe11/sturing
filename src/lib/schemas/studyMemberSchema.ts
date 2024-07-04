@@ -19,4 +19,4 @@ const studyMemberSchema = new mongoose.Schema({
 });
 export const StudyMember =
   mongoose.models?.StudyMember ||
-  mongoose.model('study_member', studyMemberSchema);
+  mongoose.model('StudyMember', studyMemberSchema);

@@ -19,4 +19,4 @@ const blackboardCommentSchema = new mongoose.Schema(
 
 export const BlackboardComment =
   mongoose.models?.BlackboardComment ||
-  mongoose.model('blackboard_comment', blackboardCommentSchema);
+  mongoose.model('BlackboardComment', blackboardCommentSchema);

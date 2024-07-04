@@ -28,4 +28,4 @@ const studyReviewSchema = new mongoose.Schema(
 );
 export const StudyReview =
   mongoose.models?.StudyReview ||
-  mongoose.model('study_review', studyReviewSchema);
+  mongoose.model('StudyReview', studyReviewSchema);

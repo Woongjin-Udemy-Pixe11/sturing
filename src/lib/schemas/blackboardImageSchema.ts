@@ -11,4 +11,4 @@ const blackboardImageSchema = new mongoose.Schema({
 
 export const BlackboardImage =
   mongoose.models?.BlackboardImage ||
-  mongoose.model('blackboard_image', blackboardImageSchema);
+  mongoose.model('BlackboardImage', blackboardImageSchema);
