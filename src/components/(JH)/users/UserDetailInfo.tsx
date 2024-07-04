@@ -56,9 +56,12 @@ export default function UserDetailInfo({ data }: any) {
                     onChangenick(e);
                   }}
                 />
-              ) : (
+              ) : data.users.nickname === nickname ? (
                 `${data.users.nickname}`
+              ) : (
+                nickname
               )}
+              {/* TODO:이부분 캐시 처리 다시해야함 */}
             </div>
             {editMode ? (
               <div
