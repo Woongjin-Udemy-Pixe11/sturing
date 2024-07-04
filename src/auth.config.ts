@@ -28,10 +28,12 @@ export const authConfig = {
           email,
         });
         if (!dbuser) {
+          let randNickname =
+            '스터링' + String(Math.floor(Math.random() * 100000));
           await new User({
             name: user.name,
             email: user.email,
-            nickname: '랜덤닉네임',
+            nickname: randNickname,
             image: '/images/ungin_profile.png',
             sturingPercent: 0,
             studyCount: 0,
