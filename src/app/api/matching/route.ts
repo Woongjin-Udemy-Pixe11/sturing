@@ -11,9 +11,7 @@ export async function GET(req: Request) {
     userid: `${id}`,
   });
   if (existing !== null) {
-    matchingList = await Matching.findOne({
-      userid: `${id}`,
-    });
+    matchingList = existing;
   } else {
     matchingList = {
       userid: `${id}`,
