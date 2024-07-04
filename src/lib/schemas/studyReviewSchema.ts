@@ -23,6 +23,11 @@ const studyReviewSchema = new mongoose.Schema(
       maxlength: 500,
       immutable: true,
     },
+    evaluatedUser: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
+      required: true,
+    },
   },
   { timestamps: true },
 );
