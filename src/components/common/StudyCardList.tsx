@@ -1,6 +1,6 @@
-import ScrollableContainer from './ScrollableContainer';
 import { dummyCardList } from '@/dummy/mainPage';
 import Card from './Card';
+import ScrollableContainer from './ScrollableContainer';
 
 export default function StudyCardList() {
   return (
@@ -15,7 +15,7 @@ export default function StudyCardList() {
               studyTypeisBlue={card.studyTypeisBlue}
               studyType={card.studyType}
               studyCategoryisBlue={card.studyCategoryisBlue}
-              studyCatecory={card.studyCatecory}
+              studyCategory={card.studyCatecory}
               studyName={card.studyName}
               studyStart={card.studyStart}
               studyEnd={card.studyEnd}

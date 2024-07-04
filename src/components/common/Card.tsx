@@ -1,37 +1,20 @@
 'use client';
 
+import { TStudy } from '@/types/TStudy';
 import Image from 'next/image';
-import Label from './label/Label';
-import { FaRegBookmark } from 'react-icons/fa6';
-import { FaBookmark } from 'react-icons/fa6';
 import { useState } from 'react';
-
-type TCardProps = {
-  studyImage: string;
-  studyMeetings: string;
-  studyTypeisBlue: boolean;
-  studyType: string;
-  studyCategoryisBlue: boolean;
-  studyCatecory: string;
-  studyName: string;
-  studyStart: string;
-  studyEnd: string;
-  studyPlace: string;
-  studyJoinMember: number;
-  studyMember: number;
-};
+import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
+import Label from './label/Label';
 
 type TCardSizeList = {
   [key: string]: string;
 };
-export default function Card(props: TCardProps) {
+export default function Card(props: TStudy) {
   const {
     studyImage,
     studyMeetings,
-    studyTypeisBlue,
     studyType,
-    studyCategoryisBlue,
-    studyCatecory,
+    studyCategory,
     studyName,
     studyStart,
     studyEnd,
@@ -72,8 +55,8 @@ export default function Card(props: TCardProps) {
         </div>
       </div>
       <div className="mb-[0.4rem] [&>span]:ml-0 [&>span]:mr-2 select-none">
-        <Label isBlue={studyTypeisBlue} children={studyType} />
-        <Label isBlue={studyCategoryisBlue} children={studyCatecory} />
+        <Label isBlue children={studyType} />
+        <Label children={studyCategory} />
       </div>
       <div className="mb-[0.8rem]">
         <div className="font-bold mt-[0.1rem] mb-[1.2rem]">{studyName}</div>

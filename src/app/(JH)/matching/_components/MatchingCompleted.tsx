@@ -27,8 +27,8 @@ export default function MatchingCompleted() {
                 y2="82.2692"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stop-color="#3A6CFF" />
-                <stop offset="1" stop-color="#FFE4E0" />
+                <stop stopColor="#3A6CFF" />
+                <stop offset="1" stopColor="#FFE4E0" />
               </linearGradient>
             </defs>
           </svg>
@@ -43,14 +43,13 @@ export default function MatchingCompleted() {
       </section>
       <section className="flex flex-col gap-4">
         <h1>웅진님과 딱맞는 스터디 추천</h1>
-        <div className="flex flex-wrap gap-4">
+        <div className="xl:m-auto flex flex-wrap gap-[1.5rem] justify-center xl:p-10 xl:gap-3 xl:flex-wrap xl:justify-start">
           {dummyCardList &&
             dummyCardList
               .filter((card) => card.studyCatecory !== '마케팅')
-              .map((card) => (
-                <div key={card.studyName}>
+              .map((card, index) => (
+                <div key={index}>
                   <Card
-                    width="182"
                     studyImage={card.studyImage}
                     studyMeetings={card.studyMettings}
                     studyTypeisBlue={card.studyTypeisBlue}

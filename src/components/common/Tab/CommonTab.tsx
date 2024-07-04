@@ -87,7 +87,7 @@ export default function CommonTab({ regions, onClickRegion }: any) {
           })}
         </Tabs.List>
       </Tabs.Root>
-      <div className="flex gap-4 p-4 flex-wrap m-auto">
+      <div className="flex gap-4 p-4 flex-wrap lg:m-auto">
         {regions.map((item: any, index: number) => {
           return (
             <TabLabel

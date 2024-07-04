@@ -1,11 +1,13 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 const connectDB = async () => {
   try {
     if (mongoose.connection.readyState >= 1) {
-      console.log("Already connected to MongoDB");
+      console.log('Already connected to MongoDB');
       return;
     }
-    await mongoose.connect(process.env.MONGODB_URL as string);
+    // await mongoose.connect(process.env.MONGODB_URL as string);
+
+    await mongoose.connect(process.env.TEST_URL as string);
     console.log(`MongoDB Connected`);
   } catch (error) {
     console.error(`Error: ${error}`);
