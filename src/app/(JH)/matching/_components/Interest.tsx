@@ -10,6 +10,7 @@ type TInterestProps = {
 
 export default function Interest(props: TInterestProps) {
   const { interest, onClickInterest } = props;
+
   return (
     <div className="w-full px-[1.6rem] py-[2rem]">
       <section>

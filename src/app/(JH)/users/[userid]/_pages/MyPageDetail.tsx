@@ -3,7 +3,18 @@ import UserDetailInfo from '@/components/(JH)/users/UserDetailInfo';
 import { FaCamera } from 'react-icons/fa';
 import UserMatchingInfo from '@/components/(JH)/users/UserMatchingInfo';
 
-export default function MyPageDetail() {
+export default function MyPageDetail({
+  auth,
+  data,
+}: {
+  auth: boolean;
+  data: any;
+}) {
+  if (!auth) {
+    return;
+  }
+  // console.log(data, '🟢');
+
   return (
     <main>
       <MyPageHeader>내정보</MyPageHeader>
@@ -11,15 +22,18 @@ export default function MyPageDetail() {
         <div
           className={`w-[9rem] h-[9rem] border border-gray-500 rounded-full m-auto relative `}
         >
-          <img src="/images/user-card-dummy.png" className="object-fit"></img>
+          <img
+            src={`${data.users.image}`}
+            className="cover w-full h-full"
+          ></img>
           <FaCamera
             size={16}
             className="text-gray-600  border  border-gray-500 rounded-full bg-gray-300 p-1 absolute right-0 bottom-0"
           />
         </div>
       </div>
-      <UserDetailInfo />
-      <UserMatchingInfo />
+      <UserDetailInfo data={data} />
+      <UserMatchingInfo data={data} />
     </main>
   );
 }

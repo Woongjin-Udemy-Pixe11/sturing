@@ -8,4 +8,4 @@ const matchingSchema = new mongoose.Schema({
   preferMood: { type: Array },
 });
 export const Matching =
-  mongoose.models?.Matching || mongoose.model('Matching', matchingSchema);
+  mongoose.models?.matching || mongoose.model('matching', matchingSchema);

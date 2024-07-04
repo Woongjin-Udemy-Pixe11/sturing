@@ -1,15 +1,42 @@
 import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    password: { type: String, select: false },
-    role: {
+    name: {
       type: String,
-      enum: ['user', 'admin'],
-      default: 'user',
+      required: true,
+      unique: true,
     },
-    authProviderId: { type: String }, // 소셜 로그인 로그인
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    nickname: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    studyType: [
+      { type: mongoose.Schema.Types.ObjectId, require: false, ref: 'matching' },
+    ],
+    sturingPercent: {
+      type: Number,
+      required: true,
+    },
+    studyCount: {
+      type: Number,
+      required: true,
+    },
+    authProviderId: { type: String },
+    // role: {
+    //   type: String,
+    //   required: true,
+    //   enum: ["user", "admin"],
+    //   default: "user",
+    // },
   },
   { timestamps: true },
 );

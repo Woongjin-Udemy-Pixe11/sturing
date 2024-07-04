@@ -42,7 +42,7 @@ export default function Field({ interest, onClickLevel, Level }: any) {
                           <div
                             className="flex gap-5"
                             onClick={() => {
-                              onClickLevel(field, key);
+                              onClickLevel(field, key, interest);
                             }}
                           >
                             <p>{key}</p>

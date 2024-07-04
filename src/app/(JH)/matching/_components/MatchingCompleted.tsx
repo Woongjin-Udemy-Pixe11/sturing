@@ -1,8 +1,9 @@
 import Card from '@/components/common/Card';
 import LongButton from '@/components/common/LongButton';
 import { dummyCardList } from '@/dummy/mainPage';
+import Link from 'next/link';
 
-export default function MatchingCompleted() {
+export default function MatchingCompleted({username}:{username:string}) {
   return (
     <div className="flex flex-col gap-[7rem]">
       <section className="flex flex-col items-center w-full  relative pt-[5rem]">
@@ -42,7 +43,7 @@ export default function MatchingCompleted() {
         </p>
       </section>
       <section className="flex flex-col gap-4">
-        <h1>웅진님과 딱맞는 스터디 추천</h1>
+        <h1>{username}님과 딱맞는 스터디 추천</h1>
         <div className="xl:m-auto flex flex-wrap gap-[1.5rem] justify-center xl:p-10 xl:gap-3 xl:flex-wrap xl:justify-start">
           {dummyCardList &&
             dummyCardList
@@ -55,7 +56,7 @@ export default function MatchingCompleted() {
                     studyTypeisBlue={card.studyTypeisBlue}
                     studyType={card.studyType}
                     studyCategoryisBlue={card.studyCategoryisBlue}
-                    studyCatecory={card.studyCatecory}
+                    studyCategory={card.studyCatecory}
                     studyName={card.studyName}
                     studyStart={card.studyStart}
                     studyEnd={card.studyEnd}
@@ -70,7 +71,9 @@ export default function MatchingCompleted() {
       <footer>
         <div className="w-full absolute bottom-[-10%] px-[1.6rem] py-[1.2rem] flex flex-col gap-[1.2rem]">
           <LongButton color="blue">내 프로필 보러가기</LongButton>
-          <LongButton color="gray">홈으로 가기</LongButton>
+          <Link href="/">
+            <LongButton color="gray">홈으로 가기</LongButton>
+          </Link>
         </div>
       </footer>
     </div>
