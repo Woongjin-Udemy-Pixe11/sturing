@@ -39,12 +39,10 @@ export const authConfig = {
             // role: 'user',
           }).save();
         }
-        // const socialUser = await User.findOne({
-        //   email,
-        //   authProviderId: 'github',
-        // });
-        // user.role = socialUser?.role || 'user';
-        // user.id = socialUser?._id || null;
+        const socialUser = await User.findOne({
+          email,
+        });
+        user.id = socialUser?._id || null;
       }
       // JWT Token Make
       if (user.id) {
@@ -72,14 +70,12 @@ export const authConfig = {
     async jwt({ token, user }: { token: any; user: any }) {
       console.log('jwt', token, user);
       if (user) {
-        token.role = user.role;
         token.id = user.id;
       }
       return token;
     },
     async session({ session, token }: { session: any; token: any }) {
-      if (token?.role) {
-        session.user.role = token.role;
+      if (token?.id) {
         session.user.id = token.id;
       }
       return session;
