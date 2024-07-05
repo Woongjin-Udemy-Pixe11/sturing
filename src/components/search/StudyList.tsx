@@ -34,7 +34,7 @@ export default function StudyList(props: TStudyListProps) {
                   studyTypeisBlue={card.studyTypeisBlue}
                   studyType={card.studyType}
                   studyCategoryisBlue={card.studyCategoryisBlue}
-                  studyCatecory={card.studyCatecory}
+                  studyCategory={card.studyCategory}
                   studyName={card.studyName}
                   studyStart={card.studyStart}
                   studyEnd={card.studyEnd}
