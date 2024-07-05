@@ -7,11 +7,7 @@ import SideBar from '../sidebar/SideBar';
 import LoginModal from '../(jisubin)/login/LoginModal';
 import { redirect } from 'next/dist/server/api-utils';
 
-type THeaderProps = {
-  userid?: string;
-};
-export default function Header(props: THeaderProps) {
-  const { userid } = props;
+export default async function Header({ id }: { id?: string }) {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -25,7 +21,7 @@ export default function Header(props: THeaderProps) {
   };
 
   const onClickLogin = () => {
-    if (!userid) {
+    if (!id) {
       setIsOpenModal(!isOpenModal);
       if (!isOpenModal) {
         document.body.style.overflow = 'hidden';
@@ -72,7 +68,7 @@ export default function Header(props: THeaderProps) {
           <button>
             <GoBell className="w-[2.4rem] h-[2.4rem]" />
           </button>
-          <Link href={`/users/${userid}`}>
+          <Link href={`/users/${id}`}>
             <button onClick={onClickLogin}>
               <IoPersonOutline className="w-[2.4rem] h-[2.4rem]" />
             </button>

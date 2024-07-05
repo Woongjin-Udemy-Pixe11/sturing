@@ -13,11 +13,11 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getSession();
-  const id = session?.user?.id;
+  let id = session?.user?.id;
   return (
     <html lang="ko">
       <body>
-        <Header userid={id} />
+        <Header id={id} />
         {children}
       </body>
     </html>
