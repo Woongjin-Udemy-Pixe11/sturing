@@ -278,7 +278,7 @@ export default function StudyDetailLayout({
           {children}
         </div>
 
-        <BookmarkBtnNavigationBar text="스터디 지원하기" />
+        <BookmarkBtnNavigationBar text="스터디 지원하기" link="" />
       </body>
     </html>
   );

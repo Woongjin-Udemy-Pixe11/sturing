@@ -1,4 +1,3 @@
-'use client';
 import Label from '@/components/common/label/Label';
 import { searchLabelList } from '@/constant/searchLabelList';
 
