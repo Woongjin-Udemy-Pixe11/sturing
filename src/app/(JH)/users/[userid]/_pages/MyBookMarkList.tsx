@@ -28,7 +28,7 @@ export default function MyBookMarkList() {
                       studyTypeisBlue={card.studyTypeisBlue}
                       studyType={card.studyType}
                       studyCategoryisBlue={card.studyCategoryisBlue}
-                      studyCatecory={card.studyCatecory}
+                      studyCategory={card.studyCategory}
                       studyName={card.studyName}
                       studyStart={card.studyStart}
                       studyEnd={card.studyEnd}
@@ -51,7 +51,7 @@ export default function MyBookMarkList() {
                       studyTypeisBlue={card.studyTypeisBlue}
                       studyType={card.studyType}
                       studyCategoryisBlue={card.studyCategoryisBlue}
-                      studyCatecory={card.studyCatecory}
+                      studyCategory={card.studyCategory}
                       studyName={card.studyName}
                       studyStart={card.studyStart}
                       studyEnd={card.studyEnd}
