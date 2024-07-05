@@ -7,7 +7,7 @@ import SideBar from '../sidebar/SideBar';
 import LoginModal from '../(jisubin)/login/LoginModal';
 import { redirect } from 'next/dist/server/api-utils';
 
-export default async function Header({ id }: { id?: string }) {
+export default function Header({ id }: { id?: string }) {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
