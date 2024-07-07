@@ -1,9 +1,9 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
-import { dummyCardList } from '@/dummy/mainPage';
 import Card from '@/components/common/Card';
 
-export default function MyBookMarkList() {
+export default async function MyBookMarkList({ data }: any) {
+  console.log(data);
   return (
     <main>
       <MyPageHeader>내 관심 목록</MyPageHeader>
@@ -19,8 +19,8 @@ export default function MyBookMarkList() {
         <div className="py-5">
           <Tabs.Content value="스터디" className="flex flex-col gap-[1rem]">
             <div className="grid grid-cols-2 gap-3 m-auto">
-              {dummyCardList &&
-                dummyCardList.map((card, index) => (
+              {data &&
+                data.map((card, index) => (
                   <div key={card.studyName} id={String(index)}>
                     <Card
                       studyImage={card.studyImage}
@@ -42,8 +42,8 @@ export default function MyBookMarkList() {
           </Tabs.Content>
           <Tabs.Content value="강의" className="flex flex-col gap-[1.4rem]">
             <div className="flex flex-wrap gap-3">
-              {dummyCardList &&
-                dummyCardList.map((card) => (
+              {data &&
+                data.map((card) => (
                   <div key={card.studyName}>
                     <Card
                       studyImage={card.studyImage}

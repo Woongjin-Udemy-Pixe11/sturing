@@ -32,5 +32,5 @@ const studyReviewSchema = new mongoose.Schema(
   { timestamps: true },
 );
 export const StudyReview =
-  mongoose.models?.StudyReview ||
-  mongoose.model('study_review', studyReviewSchema);
+  mongoose.models?.studyreview ||
+  mongoose.model('studyreview', studyReviewSchema);
