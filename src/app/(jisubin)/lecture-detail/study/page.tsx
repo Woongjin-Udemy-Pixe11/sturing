@@ -22,7 +22,7 @@ export default function LectureDetailStudyPage() {
               studyTypeisBlue={card.studyTypeisBlue}
               studyType={card.studyType}
               studyCategoryisBlue={card.studyCategoryisBlue}
-              studyCatecory={card.studyCatecory}
+              studyCategory={card.studyCatecory}
               studyName={card.studyName}
               studyStart={card.studyStart}
               studyEnd={card.studyEnd}
