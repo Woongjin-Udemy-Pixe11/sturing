@@ -10,30 +10,29 @@ import { postStudy } from '@/utils/study/studyUtils';
 import { TFetchStudy } from '@/types/TStudy';
 import { studyReducer } from '@/utils/study/studyReducer';
 
-const mockdata: TFetchStudy = {
-  leaderId: '',
-  studyImage: '',
-  studyName: '',
-  studyContent: '',
-  studyType: '',
-  studyLevel: '',
-  studyMember: 0,
-  studySubject: '',
-  studyCategory: '',
-  studyDeadline: '',
-  studyStart: '',
-  studyEnd: '',
-  studyPlace: '',
-  studyMeetings: '',
-};
-
 export default function CollectStudyClient(props: { id: string }) {
   const { id } = props;
   console.log(id);
+  const mockdata: TFetchStudy = {
+    leaderId: id,
+    studyImage: '',
+    studyName: '',
+    studyContent: '',
+    studyType: '',
+    studyLevel: '',
+    studyMember: 0,
+    studySubject: '',
+    studyCategory: '',
+    studyDeadline: '',
+    studyStart: '',
+    studyEnd: '',
+    studyPlace: '',
+    studyMeetings: '',
+  };
+
   const [step, setStep] = useState<number>(1);
 
-  const [study, setStudy] = useState<TFetchStudy>();
-  const [state, dispatch] = useReducer<React.Reducer<TFetchStudy, any>>(
+  const [study, dispatch] = useReducer<React.Reducer<TFetchStudy, any>>(
     studyReducer,
     mockdata,
   );
