@@ -1,16 +1,12 @@
 import mongoose from 'mongoose';
 const studyReviewSchema = new mongoose.Schema(
   {
-    studyId: {
+    studyid: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'study',
       required: true,
     },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'user',
-      required: true,
-    },
+
     studyReviewScore: {
       type: Number,
       required: true,
@@ -23,7 +19,7 @@ const studyReviewSchema = new mongoose.Schema(
       maxlength: 500,
       immutable: true,
     },
-    evaluatedUser: {
+    evaluateduser: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'user',
       required: true,
