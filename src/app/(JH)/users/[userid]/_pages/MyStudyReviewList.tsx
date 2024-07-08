@@ -8,9 +8,10 @@ export default async function MyStudyReviewList({ data }: { data: any }) {
       <MyPageHeader>받은 스터디 평가</MyPageHeader>
       <div className="mt-[2rem]">후기 {data.length}개</div>
       <div className="flex flex-col gap-[2rem] mt-[2rem] ">
-        {data.map((review: any) => {
-          return <StudyReviewCard key={review._id} review={review} />;
-        })}
+        {data &&
+          data.map((review: any) => {
+            return <StudyReviewCard key={review._id} review={review} />;
+          })}
       </div>
     </main>
   );
