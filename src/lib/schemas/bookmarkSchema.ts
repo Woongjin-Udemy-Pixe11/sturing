@@ -1,20 +1,19 @@
 import mongoose from 'mongoose';
 const bookmarkSchema = new mongoose.Schema({
-  targetId: {
+  targetid: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     refPath: 'targetModel',
   },
-  targetModel: {
-    type: String,
+  checked: {
+    type: Boolean,
     required: true,
-    enum: ['Study', 'Lecture'],
   },
-  userId: {
+  userid: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'user',
   },
 });
 export const Bookmark =
-  mongoose.models?.Bookmark || mongoose.model('bookmark', bookmarkSchema);
+  mongoose.models?.bookmark || mongoose.model('bookmark', bookmarkSchema);
