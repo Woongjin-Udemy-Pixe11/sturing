@@ -13,7 +13,8 @@ type TActionType =
   | { type: 'setStart'; payload: string }
   | { type: 'setEnd'; payload: string }
   | { type: 'setPlace'; payload: string }
-  | { type: 'setMeetings'; payload: string };
+  | { type: 'setMeetings'; payload: string }
+  | { type: 'setMood'; payload: string };
 
 export const studyReducer = (
   state: TFetchStudy,
@@ -22,25 +23,33 @@ export const studyReducer = (
   //스터디 키워드 추가
   switch (action.type) {
     case 'setCategory':
-      console.log('action:', action);
-      return state;
+      let prev = state.studyCategory;
+      if (action.payload === prev) {
+        return {
+          ...state,
+          studyCategory: '',
+        };
+      }
+      return { ...state, studyCategory: action.payload };
     case 'setImage':
-      console.log('action:', action);
-      return state;
+      return { ...state, studyImage: action.payload };
     case 'setName':
-      return state;
+      console.log('name:', action);
+      return { ...state, studyName: action.payload };
     case 'setContent':
-      return state;
+      console.log('content:', action);
+      return { ...state, studyContent: action.payload };
     case 'setPlace':
-      return state;
+      console.log('place:', action);
+      return { ...state, studyPlace: action.payload };
     case 'setStart':
-      return state;
+      return { ...state, studyStart: action.payload };
     case 'setEnd':
-      return state;
+      return { ...state, studyEnd: action.payload };
     case 'setMeetings':
-      return state;
-    case 'setCategory':
-      return state;
+      return { ...state, studyMeetings: action.payload };
+    case 'setMood':
+      return { ...state, studyMood: action.payload };
   }
   return state;
 };

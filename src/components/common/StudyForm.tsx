@@ -170,7 +170,7 @@ export default function StudyForm(props: TStudyFormProps) {
             id="content"
             maxLength={contentMaxLength}
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={handleContentChange}
             placeholder={contentPlaceholder}
             className="w-full h-[23rem] px-[1.6rem] py-[1.2rem] p-3 border border-gray-300 rounded-[0.5rem] text-gray-900 placeholder:text-gray-600 placeholder:text-content-1"
             rows={6}

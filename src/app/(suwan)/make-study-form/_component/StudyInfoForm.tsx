@@ -1,23 +1,13 @@
 import StudyForm from '@/components/common/StudyForm';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { FiCheck } from 'react-icons/fi';
 
-type TStudyLocationType = 'online' | 'offline' | null;
+import { TStudyInfoFormProps, TStudyLocationType } from '@/types/TStudyMake';
+import LongButton from '@/components/common/LongButton';
 
-type TStudyInfoFormProps = {
-  onStudyInfoSubmit: (data: {
-    image: File | null;
-    title: string;
-    content: string;
-    locationType: TStudyLocationType;
-    location: string;
-    isPostponed: boolean;
-  }) => void;
-};
+export default function StudyInfoForm(props: any) {
+  const { step, setStep, study, onClickStepTwo } = props;
 
-export default function StudyInfoForm({
-  onStudyInfoSubmit,
-}: TStudyInfoFormProps) {
   const [checked, setChecked] = useState(false);
   const [locationType, setLocationType] = useState<TStudyLocationType>(null);
   const [image, setImage] = useState<File | null>(null);
@@ -39,15 +29,28 @@ export default function StudyInfoForm({
     }
   };
 
-  const handleSubmit = () => {
-    onStudyInfoSubmit({
-      image,
-      title,
-      content,
-      locationType,
-      location,
-      isPostponed: checked,
-    });
+  type TData = {
+    image: File | null;
+    title: string;
+    content: string;
+    locationType: string | null;
+    location: string;
+  };
+
+  let data: TData = {
+    image: image,
+    title: title,
+    content: content,
+    locationType: locationType,
+    location: location,
+  };
+
+  const isNull = useMemo(() => {
+    return image == null || title == null || content == null;
+  }, [image, title, content]);
+
+  const onClickNext = () => {
+    onClickStepTwo(data);
   };
 
   return (
@@ -128,6 +131,32 @@ export default function StudyInfoForm({
 
         <span className="text-gray-600 text-content-1 text-ge">추후협의</span>
       </label>
+
+      <footer className="flex m-auto gap-2 w-full p-4 py-[2rem]">
+        <LongButton
+          color="white"
+          className="w-[40%]"
+          onClick={() => {
+            setStep((prev: number) => prev - 1);
+          }}
+        >
+          이전
+        </LongButton>
+
+        {isNull ? (
+          <LongButton color="gray">등록하기</LongButton>
+        ) : (
+          <LongButton
+            color="blue"
+            onClick={() => {
+              onClickNext();
+              setStep((prev: number) => prev + 1);
+            }}
+          >
+            등록하기
+          </LongButton>
+        )}
+      </footer>
     </div>
   );
 }
