@@ -30,7 +30,7 @@ export const authConfig = {
         if (!dbuser) {
           let randNickname =
             '스터링' + String(Math.floor(Math.random() * 100000));
-          await User.create({
+          const newUser = await User.create({
             name: user.name,
             email: user.email,
             nickname: randNickname,
@@ -45,6 +45,7 @@ export const authConfig = {
           email,
         });
         user.id = socialUser?._id || null;
+        user.nickname = socialUser?.nickname || null;
       }
       // JWT Token Make
       if (user.id) {
@@ -70,15 +71,21 @@ export const authConfig = {
     },
 
     async jwt({ token, user }: { token: any; user: any }) {
-      // console.log('jwt', token, user);
+      //console.log('jwt', token, user);
       if (user) {
         token.id = user.id;
+        token.nickname = user.nickname;
+        token.accessToken = user.accessToken;
+        token.refreshToken = user.refreshToken;
       }
       return token;
     },
     async session({ session, token }: { session: any; token: any }) {
       if (token?.id) {
         session.user.id = token.id;
+        session.user.nickname = token.nickname;
+        session.user.accessToken = token.accessToken;
+        session.user.refreshToken = token.refreshToken;
       }
       return session;
     },
