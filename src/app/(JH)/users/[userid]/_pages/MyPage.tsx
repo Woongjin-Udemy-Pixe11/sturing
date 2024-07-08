@@ -38,7 +38,7 @@ export default async function MyPage({
       <SturingRate data={data} />
       {/* //TODO:스터디 리뷰 스키마 */}
       <SectionNavigator
-        title="받은 스터디 평가 20"
+        title={`받은 스터디 평가 ${data.numberReview ? data.numberReview : 0}`}
         moveLink={`/users/${userid}/mystudyreview`}
       />
       {!auth && (

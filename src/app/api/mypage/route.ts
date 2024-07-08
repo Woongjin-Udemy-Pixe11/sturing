@@ -1,5 +1,6 @@
 import connectDB from '@/lib/db';
 import { Matching } from '@/lib/schemas/matchingSchema';
+import { StudyReview } from '@/lib/schemas/studyReviewSchema';
 import { User } from '@/lib/schemas/userSchema';
 import { revalidatePath } from 'next/cache';
 
@@ -13,13 +14,17 @@ export async function GET(req: Request) {
 
     let users = await User.findOne({ _id: `${id}` });
     let matchinginfo = await Matching.findOne({ userid: `${id}` });
+    let reviewList = await StudyReview.find({
+      evaluateduser: `${id}`,
+    });
+    let numberReview = reviewList.length;
 
     if (users === null || matchinginfo === null) {
       return null;
     }
     revalidatePath(`/users/${id}/detail`);
 
-    return new Response(JSON.stringify({ users, matchinginfo }), {
+    return new Response(JSON.stringify({ users, matchinginfo, numberReview }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
