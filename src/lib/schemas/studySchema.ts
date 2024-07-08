@@ -89,4 +89,4 @@ const studySchema = new mongoose.Schema(
 );
 
 export const Study =
-  mongoose.models?.Study || mongoose.model('study', studySchema);
+  mongoose.models?.Study || mongoose.model('Study', studySchema);
