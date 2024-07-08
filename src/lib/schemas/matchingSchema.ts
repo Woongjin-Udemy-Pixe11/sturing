@@ -6,6 +6,7 @@ const matchingSchema = new mongoose.Schema({
   studyType: { type: String },
   preferRegion: { type: Array },
   preferMood: { type: Array },
+  matchingInfo: { type: mongoose.Schema.Types.ObjectId, require: false },
 });
 export const Matching =
   mongoose.models?.matching || mongoose.model('matching', matchingSchema);
