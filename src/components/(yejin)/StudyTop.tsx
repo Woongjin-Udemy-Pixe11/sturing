@@ -11,7 +11,7 @@ export default function StudyTop(props: TStudyTopProps) {
   const router = useRouter();
   return (
     <div className="flex justify-between py-[1.4rem] px-[1.6rem]">
-      <button onClick={() => router.back()}>
+      <button onClick={() => router.back()} type="button">
         <svg
           width="24"
           height="24"
@@ -22,8 +22,8 @@ export default function StudyTop(props: TStudyTopProps) {
           <path
             d="M15 19L8 11.5L15 4"
             stroke="#4D4D4D"
-            stroke-width="1.7"
-            stroke-linecap="round"
+            strokeWidth="1.7"
+            strokeLinecap="round"
           />
         </svg>
       </button>

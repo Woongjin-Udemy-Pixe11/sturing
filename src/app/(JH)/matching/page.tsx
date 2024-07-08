@@ -5,7 +5,7 @@ import { getSession } from '@/utils/getSessions';
 export default async function page() {
   const session = await getSession();
   const id = session?.user?.id;
-  console.log(id);
+  console.log(session);
 
   const data = await (
     await fetch(`http://localhost:3000/api/matching?id=${id}`)

@@ -1,18 +1,18 @@
-import Header from '@/components/common/Header';
-import TabBar from '@/components/main/TabBar';
-import Banner from '@/components/main/Banner';
-import Link from 'next/link';
-import { IoIosArrowForward } from 'react-icons/io';
+import Footer from '@/components/common/Footer';
 import SearchInput from '@/components/common/SearchInput';
 import SectionNavigator from '@/components/common/SectionNavigator';
-import SearchLabelList from '@/components/main/SearchLabelList';
 import StudyCardList from '@/components/common/StudyCardList';
+import Banner from '@/components/main/Banner';
+import SearchLabelList from '@/components/main/SearchLabelList';
+import TabBar from '@/components/main/TabBar';
 import UserCardList from '@/components/main/UserCardList';
-import Footer from '@/components/common/Footer';
-import { auth } from '@/auth';
-import { SessionProvider } from 'next-auth/react';
-
+import { getSession } from '@/utils/getSessions';
+import Link from 'next/link';
+import { IoIosArrowForward } from 'react-icons/io';
 export default async function page() {
+  const session = await getSession();
+  let user = session?.user;
+
   return (
     <>
       <TabBar />
@@ -29,13 +29,29 @@ export default async function page() {
       <SearchInput placeholderText="관심 스터디 분야나 강의명을 검색해 보세요" />
       <SectionNavigator title="분야별 스터디 탐색하기" moveLink="/search" />
       <SearchLabelList />
+      {/* TODO: 스터디 카드 클릭 시 페이지 이동, Tab으로 접근, cursor-pointer */}
       <hr className="w-full block h-[0.8rem] bg-gray-100 border-0 my-[4rem]" />
-      <SectionNavigator title="이번주 인기 스터디" moveLink="/search" />
-      {/* TODO: 스터디 카드 클릭 시 페이지 이동, Tab으로 접근, cursor-pointer */}
-      <StudyCardList />
-      <SectionNavigator title="새로 개설된 스터디" moveLink="/search" />
-      {/* TODO: 스터디 카드 클릭 시 페이지 이동, Tab으로 접근, cursor-pointer */}
-      <StudyCardList />
+      {!session ? (
+        <>
+          <SectionNavigator title="이번주 인기 스터디" moveLink="/search" />
+          <StudyCardList sort={'popular'} />
+          <SectionNavigator title="새로 개설된 스터디" moveLink="/search" />
+          <StudyCardList sort={'recent'} />
+        </>
+      ) : (
+        <>
+          <SectionNavigator
+            title={`${user?.name}님을 위한 스터디`}
+            moveLink="/search"
+          />
+          <StudyCardList userId={user?.id} sort={'category'} />
+          <SectionNavigator
+            title={`${user?.name}님을 위한 새로 개설된 스터디`}
+            moveLink="/search"
+          />
+          <StudyCardList userId={user?.id} sort={'type'} />
+        </>
+      )}
       <span className="w-full px-[1.6rem] flex justify-between items-center text-headline-3 font-semibold mb-[2rem] mt-[4rem]">
         스터링 활동 우수 팀원
       </span>

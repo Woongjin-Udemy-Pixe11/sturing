@@ -1,15 +1,15 @@
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import StudyReviewCard from '@/components/(JH)/users/StudyReviewCard';
 
-export default function MyStudyReviewList() {
-  const number = [1, 2, 3, 4];
+export default async function MyStudyReviewList({ data }: { data: any }) {
+  console.log(data);
   return (
     <main>
       <MyPageHeader>받은 스터디 평가</MyPageHeader>
-      <div className="mt-[2rem]">후기 {number.length}개</div>
+      <div className="mt-[2rem]">후기 {data.length}개</div>
       <div className="flex flex-col gap-[2rem] mt-[2rem] ">
-        {number.map((num) => {
-          return <StudyReviewCard key={num} />;
+        {data.map((review: any) => {
+          return <StudyReviewCard key={review._id} review={review} />;
         })}
       </div>
     </main>
