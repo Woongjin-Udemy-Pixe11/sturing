@@ -16,8 +16,9 @@ export async function GET(req: Request) {
     //TODO: Promise All 체크하는거 꼭 알고넘어가기
     let studyList: any[] = await Promise.all(
       bookmarks.map(async (bookmark: any) => {
+        let bookmarkid = bookmark._doc.targetId;
         let data = await Study.findOne({
-          _id: `${bookmark.targetId.toString()}`,
+          _id: bookmarkid,
         });
         return data;
       }),
