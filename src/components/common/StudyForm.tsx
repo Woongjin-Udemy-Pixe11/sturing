@@ -13,6 +13,8 @@ type TStudyFormProps = {
   imageUpload?: boolean;
   imageLabel?: string;
   onImageChange?: (file: File | null) => void;
+  onTitleChange?: (title: string) => void;
+  onContentChange?: (content: string) => void;
 };
 
 export default function StudyForm(props: TStudyFormProps) {
@@ -27,6 +29,8 @@ export default function StudyForm(props: TStudyFormProps) {
     imageUpload = false,
     imageLabel = '이미지 업로드',
     onImageChange,
+    onTitleChange,
+    onContentChange,
   } = props;
 
   const [title, setTitle] = useState('');
@@ -58,6 +62,22 @@ export default function StudyForm(props: TStudyFormProps) {
     setPreviewUrl(null);
     if (onImageChange) {
       onImageChange(null);
+    }
+  };
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTitle = e.target.value;
+    setTitle(newTitle);
+    if (onTitleChange) {
+      onTitleChange(newTitle);
+    }
+  };
+
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newContent = e.target.value;
+    setContent(newContent);
+    if (onContentChange) {
+      onContentChange(newContent);
     }
   };
 
@@ -129,7 +149,7 @@ export default function StudyForm(props: TStudyFormProps) {
             id="title"
             maxLength={titleMaxLength}
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={handleTitleChange}
             placeholder={titlePlaceholder}
             className="w-full px-[1.6rem] py-[1.2rem] border border-gray-300 rounded-[0.5rem] placeholder:text-gray-600 placeholder:text-content-1"
           />

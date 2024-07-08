@@ -4,9 +4,26 @@ import { FiCheck } from 'react-icons/fi';
 
 type TStudyLocationType = 'online' | 'offline' | null;
 
-export default function StudyInfoForm() {
+type TStudyInfoFormProps = {
+  onStudyInfoSubmit: (data: {
+    image: File | null;
+    title: string;
+    content: string;
+    locationType: TStudyLocationType;
+    location: string;
+    isPostponed: boolean;
+  }) => void;
+};
+
+export default function StudyInfoForm({
+  onStudyInfoSubmit,
+}: TStudyInfoFormProps) {
   const [checked, setChecked] = useState(false);
   const [locationType, setLocationType] = useState<TStudyLocationType>(null);
+  const [image, setImage] = useState<File | null>(null);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [location, setLocation] = useState('');
 
   const onChangeCheckBox = () => {
     setChecked(!checked);
@@ -14,6 +31,23 @@ export default function StudyInfoForm() {
 
   const handleLocationChange = (type: TStudyLocationType) => {
     setLocationType(type);
+  };
+
+  const handleImageChange = (file: File | null) => {
+    if (file != null) {
+      setImage(file);
+    }
+  };
+
+  const handleSubmit = () => {
+    onStudyInfoSubmit({
+      image,
+      title,
+      content,
+      locationType,
+      location,
+      isPostponed: checked,
+    });
   };
 
   return (
@@ -27,6 +61,9 @@ export default function StudyInfoForm() {
         titlePlaceholder="내 스터디를 돋보이게 하는 한마디 (최소 5자 이상)"
         contentPlaceholder="소개글을 입력해 주세요 (최소 20자 필수)"
         contentMaxLength={250}
+        onImageChange={handleImageChange}
+        onTitleChange={(value) => setTitle(value)}
+        onContentChange={(value) => setContent(value)}
       />
       <div className="mt-[2rem]">
         <div className="flex gap-[0.8rem] text-content-1">

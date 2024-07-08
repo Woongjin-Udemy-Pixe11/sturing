@@ -12,7 +12,7 @@ import { studyReducer } from '@/utils/study/studyReducer';
 
 export default function CollectStudyClient(props: { id: string }) {
   const { id } = props;
-  console.log(id);
+  // console.log(id);
   const mockdata: TFetchStudy = {
     leaderId: id,
     studyImage: '',
@@ -31,16 +31,80 @@ export default function CollectStudyClient(props: { id: string }) {
   };
 
   const [step, setStep] = useState<number>(1);
-
   const [study, dispatch] = useReducer<React.Reducer<TFetchStudy, any>>(
     studyReducer,
     mockdata,
   );
 
+  const onClickCategory = (category: string) => {
+    dispatch({ type: 'setCategory', payload: category });
+  };
+
+  const onStudyInfoSubmit = (data: {
+    image: File;
+    title: string;
+    content: string;
+    locationType: 'online' | 'offline' | null;
+    location: string;
+    isPostponed: boolean;
+  }) => {
+    dispatch({ type: 'setImage', payload: data.image });
+    dispatch({ type: 'setName', payload: data.title });
+    dispatch({ type: 'setContent', payload: data.content });
+    dispatch({ type: 'setType', payload: data.locationType });
+    dispatch({ type: 'setPlace', payload: data.location });
+
+    setStep((prev) => prev + 1);
+  };
+
+  const onClickType = (type: string) => {
+    dispatch({ type: 'setType', payload: type });
+  };
+
+  const onClickLevel = (level: string) => {
+    dispatch({ type: 'setLevel', payload: level });
+  };
+
+  const onClickMember = (member: number) => {
+    dispatch({ type: 'setMember', payload: member });
+  };
+
+  const onClickDeadline = (deadline: string) => {
+    dispatch({ type: 'setDeadline', payload: deadline });
+  };
+
+  const onClickStart = (start: string) => {
+    dispatch({ type: 'setStart', payload: start });
+  };
+
+  const onClickEnd = (end: string) => {
+    dispatch({ type: 'setEnd', payload: end });
+  };
+
+  const onClickMeetings = (meetings: string) => {
+    dispatch({ type: 'setMeetings', payload: meetings });
+  };
+
+  const onClickBtn = () => {
+    switch (step) {
+      case 1:
+        setStep((prev) => prev + 1);
+        return;
+      case 2:
+        setStep((prev) => prev + 1);
+
+        return;
+      case 3:
+        setStep((prev) => prev + 1);
+        return;
+      case 4:
+        return;
+    }
+  };
   //TODO:any 수정
   const collectstep: any = {
-    1: <SelectCateGory />,
-    2: <StudyInfoForm />,
+    1: <SelectCateGory onClickCategory={onClickCategory} />,
+    2: <StudyInfoForm onStudyInfoSubmit={onStudyInfoSubmit} />,
     3: <StudyDetailInfoForm />,
     4: <StudyTeammateForm />,
   };
