@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import GitHubLoginBtn from '../common/GitHubLoginBtn';
+import { logout } from '@/lib/actions/userAction';
 
 const dummyUser = {
   name: '웅진',
@@ -7,8 +8,12 @@ const dummyUser = {
   imgSrc: '/images/user-card-dummy.png',
 };
 
-export default function UserProfile() {
-  const isLogined = true;
+type TUserProfileProps = {
+  id?: string;
+};
+export default function UserProfile(props: TUserProfileProps) {
+  const { id } = props;
+  const isLogined = id ? true : false;
   return (
     <>
       <div className="mt-[10rem]">
@@ -34,7 +39,9 @@ export default function UserProfile() {
               <Link href="my-page" className="text-headline-3">
                 마이 프로필
               </Link>
-              <button className="text-gray-600">로그아웃</button>
+              <form action={logout}>
+                <button className="text-gray-600">로그아웃</button>
+              </form>
             </p>
           </>
         )}
