@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import GitHubLoginBtn from '../common/GitHubLoginBtn';
+import { logout } from '@/lib/actions/userAction';
 
 const dummyUser = {
   name: '웅진',
@@ -34,7 +35,9 @@ export default function UserProfile() {
               <Link href="my-page" className="text-headline-3">
                 마이 프로필
               </Link>
-              <button className="text-gray-600">로그아웃</button>
+              <form action={logout}>
+                <button className="text-gray-600">로그아웃</button>
+              </form>
             </p>
           </>
         )}
