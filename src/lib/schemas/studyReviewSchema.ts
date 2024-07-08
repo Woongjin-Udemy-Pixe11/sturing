@@ -3,10 +3,14 @@ const studyReviewSchema = new mongoose.Schema(
   {
     studyid: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'study',
+      ref: 'Study',
+      required: false,
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
     },
-
     studyReviewScore: {
       type: Number,
       required: true,
@@ -28,5 +32,5 @@ const studyReviewSchema = new mongoose.Schema(
   { timestamps: true },
 );
 export const StudyReview =
-  mongoose.models?.studyreview ||
-  mongoose.model('studyreview', studyReviewSchema);
+  mongoose.models?.StudyReview ||
+  mongoose.model('StudyReview', studyReviewSchema);

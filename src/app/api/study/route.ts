@@ -1,23 +1,38 @@
 import connectDB from '@/lib/db';
+import { Matching } from '@/lib/schemas/matchingSchema';
 import { Study } from '@/lib/schemas/studySchema';
 
 connectDB();
 
-async function getStudies(sort?: string | null) {
-  let studies = Study.find();
-  if (sort === 'popular') {
-    studies = studies.sort({ studyViews: -1 }).limit(3);
-  } else if (sort === 'recent') {
-    studies = studies.sort({ createdAt: -1 }).limit(3);
+async function getStudies(sort?: string | null, userId?: string) {
+  let query = Study.find();
+
+  if (userId) {
+    const matching = await Matching.findOne({ userid: userId });
+
+    if (sort === 'type') {
+      query = query.find({ studyType: matching.studyType }).limit(3);
+    } else if (sort === 'category') {
+      query = query.find({ studyCategory: matching.interests[0] }).limit(3);
+    }
+  } else {
+    if (sort === 'popular') {
+      query = query.sort({ studyViews: -1 }).limit(3);
+    } else if (sort === 'recent') {
+      query = query.sort({ createdAt: -1 }).limit(3);
+    }
   }
-  return await studies.exec();
+
+  return await query.exec();
 }
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const sort = searchParams.get('sort');
+  const sort = searchParams.get('sort') || undefined;
+  const userId = searchParams.get('userId') || undefined;
+
   try {
-    const studies = await getStudies(sort);
+    const studies = await getStudies(sort, userId);
     return Response.json(studies);
   } catch (error) {
     console.log(error);
