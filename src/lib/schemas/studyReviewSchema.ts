@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 const studyReviewSchema = new mongoose.Schema(
   {
-    studyId: {
+    studyid: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'study',
-      required: true,
+      ref: 'Study',
+      required: false,
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'user',
+      ref: 'User',
       required: true,
     },
     studyReviewScore: {
@@ -22,6 +22,11 @@ const studyReviewSchema = new mongoose.Schema(
       required: true,
       maxlength: 500,
       immutable: true,
+    },
+    evaluateduser: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
+      required: true,
     },
   },
   { timestamps: true },

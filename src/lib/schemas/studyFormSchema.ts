@@ -3,13 +3,13 @@ const studyFormSchema = new mongoose.Schema(
   {
     studyId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'study',
-      required: true,
+      ref: 'Study',
+      required: false,
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'user',
-      required: true,
+      ref: 'User',
+      required: false,
     },
     studyFormTitle: {
       type: String,

@@ -1,29 +1,41 @@
 import LongButton from '@/components/common/LongButton';
 import StudyTop from '../StudyTop';
 
-export default function MyApply() {
+async function fetchStudyForm(id: string) {
+  if (!id) throw new Error('Invalid ID');
+  const res = await fetch(`${process.env.LOCAL_URL}/api/study-form/${id}`, {
+    cache: 'no-store',
+  });
+  if (!res.ok) throw new Error('Failed to fetch study form');
+  return res.json();
+}
+
+export default async function MyApply({ id }: { id: string }) {
+  const studyForm = await fetchStudyForm(id);
   return (
     <div className="w-full h-screen flex flex-col justify-between ">
       <div>
         <StudyTop content="내가 작성한 지원서" />
         <div className="flex justify-center bg-gray-100 p-[1.8rem] mb-[2.3rem]">
           <h2 className="text-content-1 text-gray-1000 font-semibold">
-            쏘카 5개 프로젝트 디자인 실무 마스터 스터디
+            {studyForm.studyId.studyName}
           </h2>
         </div>
         <div className="flex flex-col px-[1.6rem]">
           <div className="flex justify-between items-center mb-[2rem]">
             <div className="flex items-center gap-[0.8rem]">
               <img
-                src=""
+                src={studyForm.userId.image}
                 alt=""
                 className="bg-gray-500 w-[4rem] h-[4rem] mr-[0.4rem] border border-gray-300 rounded-full"
               />
               <span className="text-content-1 text-gray-900 font-bold">
-                웅진
+                {studyForm.userId.nickname}
               </span>
               <span className="text-content-1 text-gray-400">|</span>
-              <span className="text-content-1 text-gray-600">비기너</span>
+              <span className="text-content-1 text-gray-600">
+                {studyForm.userId.studyType?.level || '레벨 없음'}
+              </span>
             </div>
             <div className="flex justify-center items-center gap-[0.4rem] bg-main-200 px-[0.6rem] py-[0.3rem] rounded-[0.3rem]">
               <svg
@@ -38,19 +50,21 @@ export default function MyApply() {
                   fill="#6284E8"
                 />
               </svg>
-              <span className="text-main-600 text-content-1">지수 80%</span>
+              <span className="text-main-600 text-content-1">
+                지수 {studyForm.userId.sturingPercent}%
+              </span>
             </div>
           </div>
           <div className="px-[2rem] py-[2.4rem] border border-gray-300 rounded-[0.8rem] min-h-[30rem]">
             <span className="text-content-2 text-main-500">
-              2024.06.15 14:30 지원
+              {new Date(studyForm.createdAt).toLocaleString()} 지원
             </span>
             <p className="text-body-1 text-gray-900 mt-[0.8rem] mb-[2rem] pb-[2rem] border-b border-gray-300">
-              안녕하세요. 열정넘치는 지원자 000입니다.
+              {studyForm.studyFormTitle}
             </p>
             <span className="text-gray-700 text-content-1">나의 각오</span>
             <p className="text-body-2 text-gray-900 mt-[0.4rem]">
-              피그마에 관심이 생겨 참여해보고 싶어 지원하게되었습니다.
+              {studyForm.studyFormContent}
             </p>
           </div>
           <p className="flex py-[0.8rem] gap-[0.4rem] justify-end items-center font-medium text-content-2 text-gray-500">

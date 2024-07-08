@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 const studyMemberSchema = new mongoose.Schema({
   studyId: {
-    type: Number,
-    required: true,
-    ref: 'study',
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Study',
+    required: false,
   },
   userId: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
-    ref: 'user',
   },
   studyProgress: {
     type: Number,

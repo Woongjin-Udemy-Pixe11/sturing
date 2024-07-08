@@ -1,10 +1,21 @@
 // Study 타입 정의
 export type TStudy = {
+  _id?: string;
+  userId?: {
+    _id: string;
+    nickname: string;
+    image: string;
+    studyType: {
+      level?: {
+        [key: string]: string;
+      };
+    };
+  };
   studyId?: string;
   studyImage: string;
   studyMeetings: string;
   studyTypeisBlue?: boolean;
-  studyType: string;
+  studyType?: string;
   studyCategoryisBlue?: boolean;
   studyCategory: string;
   studyName: string;
@@ -13,6 +24,13 @@ export type TStudy = {
   studyPlace: string;
   studyJoinMember: number;
   studyMember: number;
+  studyFormDate?: string;
+
+  studyFormTitle?: string;
+  studyFormContent?: string;
+  studyFormRead?: boolean;
+  studyFormSure?: boolean;
+  createdAt?: string;
 };
 
 export type TFetchStudy = {

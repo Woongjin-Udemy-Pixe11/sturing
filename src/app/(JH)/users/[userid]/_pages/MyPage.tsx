@@ -13,7 +13,9 @@ export default async function MyPage({
 }) {
   const loginbg = auth && `bg-gradient-to-r from-main-200  to-pink`;
   const data = await (
-    await fetch(`http://localhost:3000/api/mypage?id=${userid}`)
+    await fetch(`http://localhost:3000/api/mypage?id=${userid}`, {
+      cache: 'no-store',
+    })
   ).json();
   console.log(data);
   if (data === null) {
