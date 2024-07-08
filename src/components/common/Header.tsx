@@ -45,8 +45,8 @@ export default function Header({ id }: { id?: string }) {
           onClick={onClickLogin}
         ></div>
       )}
-      {isOpenMenu && <SideBar onClose={onClickMenu} />}
-      {isOpenModal && <LoginModal />}
+      {isOpenMenu && <SideBar onClose={onClickMenu} id={id} />}
+      {isOpenModal && <LoginModal onClose={onClickLogin} />}
       <header className="w-full h-[5.4rem] flex justify-between items-center px-[0.8rem] text-gray-1000 m-0 bg-white">
         <div className="w-[50%] flex justify-start items-center gap-[0.8rem]">
           <button onClick={onClickMenu}>
