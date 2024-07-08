@@ -5,7 +5,7 @@ import DefaultModal from '@/components/common/modal/DefaultModal';
 import { useState } from 'react';
 import StudyTop from '../StudyTop';
 
-export default function OtherApply() {
+export default async function OtherApply() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCancelClick = () => {

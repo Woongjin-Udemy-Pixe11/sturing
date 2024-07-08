@@ -1,27 +1,50 @@
-import { dummyCardList } from '@/dummy/mainPage';
+import { TStudy } from '@/types/TStudy';
 import Card from './Card';
 import ScrollableContainer from './ScrollableContainer';
 
-export default function StudyCardList() {
+// 날짜 형식을 바꾸는 함수
+export const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${month}.${day}`;
+};
+
+export default async function StudyCardList({
+  sort,
+  userId,
+}: {
+  sort?: string;
+  userId?: string;
+}) {
+  let url = `${process.env.LOCAL_URL}/api/study?sort=${sort}`;
+  if (userId) {
+    url += `&userId=${userId}`;
+  }
+
+  const studies: TStudy[] = await (
+    await fetch(url, {
+      cache: 'no-store',
+    })
+  ).json();
+
   return (
     <ScrollableContainer>
-      {dummyCardList &&
-        dummyCardList.map((card, index) => (
-          <li key={index}>
+      {studies &&
+        studies.map((study) => (
+          <li key={study.studyId}>
             <Card
-              width="182"
-              studyImage={card.studyImage}
-              studyMeetings={card.studyMettings}
-              studyTypeisBlue={card.studyTypeisBlue}
-              studyType={card.studyType}
-              studyCategoryisBlue={card.studyCategoryisBlue}
-              studyCategory={card.studyCatecory}
-              studyName={card.studyName}
-              studyStart={card.studyStart}
-              studyEnd={card.studyEnd}
-              studyPlace={card.studyPlace}
-              studyJoinMember={card.studyJoinMember}
-              studyMember={card.studyMember}
+              studyId={study.studyId}
+              studyImage={study.studyImage}
+              studyMeetings={study.studyMeetings}
+              studyType={study.studyType}
+              studyCategory={study.studyCategory}
+              studyName={study.studyName}
+              studyStart={formatDate(study.studyStart)}
+              studyEnd={formatDate(study.studyEnd)}
+              studyPlace={study.studyPlace}
+              studyJoinMember={study.studyJoinMember}
+              studyMember={study.studyMember}
             />
           </li>
         ))}
