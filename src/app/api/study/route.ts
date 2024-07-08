@@ -41,7 +41,12 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  connectDB();
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get('id');
+
   const res = await request.json();
   const studies = await Study.create(res);
+  console.log(res);
   return Response.json(studies);
 }

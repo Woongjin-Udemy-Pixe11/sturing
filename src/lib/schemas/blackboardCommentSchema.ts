@@ -13,11 +13,10 @@ const blackboardCommentSchema = new mongoose.Schema(
       ref: 'user',
     },
     commentContent: { type: String, required: true },
-    commentGood: { type: String, required: true },
   },
   { timestamps: true },
 );
 
 export const BlackboardComment =
   mongoose.models?.BlackboardComment ||
-  mongoose.model('blackboard_comment', blackboardCommentSchema);
+  mongoose.model('BlackboardComment', blackboardCommentSchema);

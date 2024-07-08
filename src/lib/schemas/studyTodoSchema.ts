@@ -22,7 +22,7 @@ const studyTodoSchema = new mongoose.Schema(
 
 export const StudyTodoList =
   mongoose.models?.StudyTodoList ||
-  mongoose.model('study_todo_list', studyTodoListSchema);
+  mongoose.model('StudyTodoList', studyTodoListSchema);
 
 export const StudyTodo =
-  mongoose.models?.StudyTodo || mongoose.model('study_todo', studyTodoSchema);
+  mongoose.models?.StudyTodo || mongoose.model('StudyTodo', studyTodoSchema);

@@ -12,4 +12,4 @@ const blackboeadIconSchema = new mongoose.Schema({
 
 export const BlackboardIcon =
   mongoose.models?.BlackboardIcon ||
-  mongoose.model('blackboard_icon', blackboeadIconSchema);
+  mongoose.model('BlackboardIcon', blackboeadIconSchema);

@@ -15,4 +15,4 @@ const blackboardLikeSchema = new mongoose.Schema({
 
 export const BlackboardLike =
   mongoose.models?.BlackboardLike ||
-  mongoose.model('blackboard_like', blackboardLikeSchema);
+  mongoose.model('BlackboardLike', blackboardLikeSchema);

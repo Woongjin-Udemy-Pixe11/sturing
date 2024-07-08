@@ -9,5 +9,4 @@ const studyKeyword = new mongoose.Schema({
 });
 
 export const StudyKeyword =
-  mongoose.models?.StudyKeyword ||
-  mongoose.model('study_keyword', studyKeyword);
+  mongoose.models?.StudyKeyword || mongoose.model('StudyKeyword', studyKeyword);
