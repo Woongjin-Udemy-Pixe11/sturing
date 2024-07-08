@@ -20,7 +20,7 @@ export default async function MyBookMarkList({ data }: any) {
           <Tabs.Content value="스터디" className="flex flex-col gap-[1rem]">
             <div className="grid grid-cols-2 gap-3 m-auto">
               {data &&
-                data.map((card, index) => (
+                data.map((card: any, index: any) => (
                   <div key={card.studyName} id={String(index)}>
                     <Card
                       studyImage={card.studyImage}
@@ -43,7 +43,7 @@ export default async function MyBookMarkList({ data }: any) {
           <Tabs.Content value="강의" className="flex flex-col gap-[1.4rem]">
             <div className="grid grid-cols-2 gap-3 m-auto">
               {data &&
-                data.map((card, index) => (
+                data.map((card: any, index: any) => (
                   <div key={card.studyName} id={String(index)}>
                     <Card
                       studyImage={card.studyImage}
