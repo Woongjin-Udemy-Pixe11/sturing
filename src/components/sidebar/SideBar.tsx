@@ -3,14 +3,22 @@ import { IoClose } from 'react-icons/io5';
 import SideBarToggle from './SideBarToggle';
 import UserProfile from './UserProfile';
 
-export default function SideBar({ onClose }: { onClose: () => void }) {
+type TSideBarProps = {
+  onClose: () => void;
+  id?: string;
+};
+export default function SideBar(props: TSideBarProps) {
+  const { onClose, id } = props;
   return (
     <>
       <div className="block bg-white fixed overflow-auto left-0 w-[32.4rem] px-[2.4rem] h-screen z-10 ">
-        <button className="absolute top-[4rem] right-[2.4rem] w-[2.4rem] h-[2.4rem]">
+        <button
+          className="absolute top-[4rem] right-[2.4rem] w-[2.4rem] h-[2.4rem]"
+          onClick={onClose}
+        >
           <IoClose />
         </button>
-        <UserProfile />
+        <UserProfile id={id} />
         <div className="py-[4rem] border-y-2 my-[4rem] w-full flex justify-center flex-col gap-[2.4rem]">
           <Link className="block w-full text-headline-3" href="/">
             추천

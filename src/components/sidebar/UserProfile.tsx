@@ -8,8 +8,12 @@ const dummyUser = {
   imgSrc: '/images/user-card-dummy.png',
 };
 
-export default function UserProfile() {
-  const isLogined = true;
+type TUserProfileProps = {
+  id?: string;
+};
+export default function UserProfile(props: TUserProfileProps) {
+  const { id } = props;
+  const isLogined = id ? true : false;
   return (
     <>
       <div className="mt-[10rem]">
