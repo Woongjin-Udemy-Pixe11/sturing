@@ -1,7 +1,14 @@
 import { currentSearchList } from '@/dummy/searchPage';
 import CurrentWord from './CurrentWord';
 
-export default function CurrentSearch() {
+export default function CurrentSearch({
+  data,
+  remove,
+}: {
+  data: any;
+  remove: any;
+}) {
+  console.log(data);
   return (
     <div className="w-[calc(100% - 3.2rem)] px-[1.6rem] my-[4rem]">
       <p className="flex justify-between mb-[2rem]">
@@ -9,12 +16,13 @@ export default function CurrentSearch() {
         <button className="text-content-1 text-gray-600">전체삭제</button>
       </p>
       <ul className="w-full flex items-center justify-start flex-wrap gap-[1.2rem]">
-        {currentSearchList &&
-          currentSearchList.map((currentSearch) => (
+        {data &&
+          data.map((currentSearch: any) => (
             <CurrentWord
-              key={currentSearch.content}
-              content={currentSearch.content}
-              moveLink={currentSearch.moveLink}
+              key={currentSearch}
+              content={currentSearch}
+              moveLink={currentSearch}
+              remove={()=>{remove(currentSearch)}}
             />
           ))}
       </ul>
