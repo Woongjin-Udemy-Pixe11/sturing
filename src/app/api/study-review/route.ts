@@ -1,5 +1,6 @@
 import connectDB from '@/lib/db';
 import { StudyReview } from '@/lib/schemas/studyReviewSchema';
+import { User } from '@/lib/schemas/userSchema';
 import mongoose from 'mongoose';
 
 export async function GET(request: Request) {
@@ -12,7 +13,8 @@ export async function GET(request: Request) {
 
     let reviewList = await StudyReview.find({
       evaluateduser: `${id}`,
-    });
+    }).populate({ path: 'userId', select: 'nickname image' });
+    console.log(reviewList);
     if (reviewList === null) {
       return null;
     }
