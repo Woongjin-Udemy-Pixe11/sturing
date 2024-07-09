@@ -28,8 +28,8 @@ export default function LectureDetailRatingPage(
       <div className="mx-[1.6rem] mb-[10rem] flex flex-col justify-center">
         {lectureReviews &&
           lectureReviews.map((review) => (
-            <div className="mt-[1.6rem] pt-[1.6rem] rounded-[0.8rem] border border-gray-300 flex items-center text-content-1 mb=-[1.6rem] pl-[1.6rem]">
-              <div className="h-[9.5rem] flex flex-col gap-y-[0.6rem]">
+            <div className="mt-[1.6rem] py-[1.6rem] rounded-[0.8rem] border border-gray-300 flex items-center text-content-1 mb=-[1.6rem] pl-[1.6rem]">
+              <div className="flex flex-col gap-y-[0.6rem]">
                 <div>
                   <span>{review.reviewName}</span>
                   <span className="text-main-600"> {review.reviewRating}</span>
