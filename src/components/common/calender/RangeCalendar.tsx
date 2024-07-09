@@ -6,11 +6,22 @@ import { DateRange } from 'react-day-picker';
 import { addDays, format } from 'date-fns';
 import { Calendar } from './ui/calendar';
 
-export default function RangeCalendar() {
+type TRangeCalendarProps = {
+  onChangeDate?: (dateRange: DateRange | undefined) => void;
+};
+
+export default function RangeCalendar(props: TRangeCalendarProps) {
+  const { onChangeDate } = props;
   const [date, setDate] = React.useState<DateRange | undefined>({
     from: new Date(),
     to: addDays(new Date(), 3),
   });
+
+  React.useEffect(() => {
+    if (onChangeDate) {
+      onChangeDate(date);
+    }
+  }, [date]);
 
   return (
     <>

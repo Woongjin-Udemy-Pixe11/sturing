@@ -41,8 +41,6 @@ export default function StudyInfoForm(props: any) {
     setLocation(e.target.value);
   };
 
-  console.log(location);
-
   let data: TData = {
     image: image,
     title: title,
@@ -53,13 +51,14 @@ export default function StudyInfoForm(props: any) {
 
   const isNull = useMemo(() => {
     return (
-      image == null ||
-      title == '' ||
-      title.length < 5 ||
-      content == '' ||
-      content.length < 20 ||
-      locationType == null ||
-      location == ''
+      // image == null ||
+      title == ''
+      // ||
+      // title.length < 5 ||
+      // content == '' ||
+      // content.length < 20 ||
+      // locationType == null ||
+      // location == ''
     );
   }, [image, title, content, locationType, location]);
 
@@ -180,7 +179,7 @@ export default function StudyInfoForm(props: any) {
         </LongButton>
 
         {isNull ? (
-          <LongButton color="gray">등록하기</LongButton>
+          <LongButton color="gray">다음</LongButton>
         ) : (
           <LongButton
             color="blue"
@@ -189,7 +188,7 @@ export default function StudyInfoForm(props: any) {
               setStep((prev: number) => prev + 1);
             }}
           >
-            등록하기
+            다음
           </LongButton>
         )}
       </footer>
