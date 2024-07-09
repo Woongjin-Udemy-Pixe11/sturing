@@ -1,4 +1,4 @@
-export default function LectureStutyInfo() {
+export default function LectureStudyInfo() {
   return (
     <div className="flex flex-col gap-y-[1.2rem] mx-[1.6rem] justify-between">
       <div className="flex flex-row text-content-1">

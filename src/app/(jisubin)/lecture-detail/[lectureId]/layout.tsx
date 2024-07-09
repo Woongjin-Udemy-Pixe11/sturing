@@ -1,14 +1,18 @@
 import BookmarkBtnNavigationBar from '@/components/(jisubin)/lectureStudyDetail/BookmarkBtnNavigationBar';
 import DetailTabBar from '@/components/(jisubin)/lectureStudyDetail/DetailTabBar';
 import CourseLink from '@/components/common/CourseLink';
-import BackShareHeader from '../_components/BackShareHeader';
-import LectureStudyTitle from '../_components/LectureStudyTitle';
+import BackShareHeader from '../../_components/BackShareHeader';
+import LectureStudyTitle from '../../_components/LectureStudyTitle';
+import LectureDetailTitle from '../../_components/LectureDetailTitle';
 
-export default function LectureDetailLayout({
-  children,
-}: {
+type TLectureDetailLayoutProps = {
   children: React.ReactNode;
-}) {
+  params: { id: string };
+};
+export default async function LectureDetailLayout(
+  props: TLectureDetailLayoutProps,
+) {
+  const { children, params } = props;
   return (
     <html lang="ko">
       <body className="w-full m-auto">
@@ -17,12 +21,8 @@ export default function LectureDetailLayout({
           <LectureStudyTitle />
         </div>
 
-        <div className="mx-[1.6rem] my-[2rem]">
-          <CourseLink
-            courseTitle="UXUI 디자이너가 피그마를 활용해 포트폴리오를 쌓는 법 A to Z"
-            courseLink="/"
-          />
-        </div>
+        <LectureDetailTitle id={params.id} />
+
         <div className="mx-[1.6rem]">
           <DetailTabBar
             text1="강의소개"
