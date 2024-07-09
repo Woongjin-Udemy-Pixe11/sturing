@@ -8,7 +8,6 @@ export default function CurrentSearch({
   data: any;
   remove: any;
 }) {
-  console.log(data);
   return (
     <div className="w-[calc(100% - 3.2rem)] px-[1.6rem] my-[4rem]">
       <p className="flex justify-between mb-[2rem]">
@@ -22,7 +21,9 @@ export default function CurrentSearch({
               key={currentSearch}
               content={currentSearch}
               moveLink={currentSearch}
-              remove={()=>{remove(currentSearch)}}
+              remove={() => {
+                remove(currentSearch);
+              }}
             />
           ))}
       </ul>

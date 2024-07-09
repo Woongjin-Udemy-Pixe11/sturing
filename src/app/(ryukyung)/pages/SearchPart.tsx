@@ -6,10 +6,8 @@ import { useState } from 'react';
 
 export default function SearchPart() {
   const [inputValue, setInputValue] = useState('');
-  const [recentSearches, addSearchToLocalStorage,removeFromLocal] = useLocalStorage(
-    'recent',
-    [],
-  );
+  const [recentSearches, addSearchToLocalStorage, removeFromLocal] =
+    useLocalStorage('recent', []);
 
   const onSearch = () => {
     if (recentSearches.includes(inputValue)) {
@@ -23,8 +21,8 @@ export default function SearchPart() {
   };
 
   const onRemove = (search: string) => {
-    removeFromLocal(search)
-  }
+    removeFromLocal(search);
+  };
   return (
     <section>
       <SearchInput

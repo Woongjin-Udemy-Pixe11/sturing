@@ -20,6 +20,7 @@ const useLocalStorage = (key: string, initialValue: string[]) => {
       console.error(error);
     }
   };
+
   const removeValue = (value: string) => {
     try {
       const newValue = storedValue.filter((item) => item !== value);
