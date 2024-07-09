@@ -2,6 +2,7 @@ import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import UserDetailInfo from '@/components/(JH)/users/UserDetailInfo';
 import { FaCamera } from 'react-icons/fa';
 import UserMatchingInfo from '@/components/(JH)/users/UserMatchingInfo';
+import { logout } from '@/lib/actions/userAction';
 
 export default function MyPageDetail({
   auth,
@@ -41,6 +42,12 @@ export default function MyPageDetail({
           <h1>함께 매칭을 하러가요!</h1>
         </section>
       )}
+      <section className="flex justify-center gap-5">
+        <form>
+          <button formAction={logout}>로그아웃</button>
+        </form>
+        <div>회원탈퇴</div>
+      </section>
     </main>
   );
 }
