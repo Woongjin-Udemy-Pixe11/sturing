@@ -12,7 +12,7 @@ import Mood from './Mood';
 import MatchingCompleted from './MatchingCompleted';
 import matchingreducer, { TActionType } from '@/utils/matchingreducer';
 import { postMatchingInfo, updateMatchingInfo } from '@/utils/matchingUtils';
-
+import mongoose from 'mongoose';
 
 export type Tmatching = {
   userid: string;
@@ -28,7 +28,6 @@ export type Tmatching = {
 //TODO:전역으로 Tmatching 을 제외하는 방향도 나쁘지않을것같다.
 
 export default function ClientMatching({ data, session, exist }: any) {
- 
   let username = session.user.name;
   const id = session.user.id;
   const [state, dispatch] = useReducer<React.Reducer<Tmatching, TActionType>>(

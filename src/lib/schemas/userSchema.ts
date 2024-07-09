@@ -19,9 +19,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    matchingInfo: [
-      { type: mongoose.Schema.Types.ObjectId, require: false, ref: 'matching' },
-    ],
+    matchingInfo: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: false,
+      ref: 'matching',
+    },
     sturingPercent: {
       type: Number,
       required: true,

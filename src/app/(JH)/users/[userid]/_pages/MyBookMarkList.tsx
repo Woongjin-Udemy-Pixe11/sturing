@@ -1,6 +1,8 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import Card from '@/components/common/Card';
+import { formatDate } from '@/components/common/StudyCardList';
+import ScrollableContainer from '@/components/common/ScrollableContainer';
 
 export default async function MyBookMarkList({ data }: any) {
   console.log(data);
@@ -18,46 +20,44 @@ export default async function MyBookMarkList({ data }: any) {
         </Tabs.List>
         <div className="py-5">
           <Tabs.Content value="스터디" className="flex flex-col gap-[1rem]">
-            <div className="grid grid-cols-2 gap-3 m-auto">
+            <div className="grid grid-cols-2 gap-3 m-auto w-full">
               {data &&
-                data.map((card, index) => (
-                  <div key={card.studyName} id={String(index)}>
+                data.map((study: any, index: any) => (
+                  <div key={study.studyName} id={String(index)}>
                     <Card
-                      studyImage={card.studyImage}
-                      studyMeetings={card.studyMettings}
-                      studyTypeisBlue={card.studyTypeisBlue}
-                      studyType={card.studyType}
-                      studyCategoryisBlue={card.studyCategoryisBlue}
-                      studyCategory={card.studyCategory}
-                      studyName={card.studyName}
-                      studyStart={card.studyStart}
-                      studyEnd={card.studyEnd}
-                      studyPlace={card.studyPlace}
-                      studyJoinMember={card.studyJoinMember}
-                      studyMember={card.studyMember}
+                      studyId={study.studyId}
+                      studyImage={study.studyImage}
+                      studyMeetings={study.studyMeetings}
+                      studyType={study.studyType}
+                      studyCategory={study.studyCategory}
+                      studyName={study.studyName}
+                      studyStart={formatDate(study.studyStart)}
+                      studyEnd={formatDate(study.studyEnd)}
+                      studyPlace={study.studyPlace}
+                      studyJoinMember={study.studyJoinMember}
+                      studyMember={study.studyMember}
                     />
                   </div>
                 ))}
             </div>
           </Tabs.Content>
           <Tabs.Content value="강의" className="flex flex-col gap-[1.4rem]">
-            <div className="grid grid-cols-2 gap-3 m-auto">
+            <div className="grid grid-cols-2 gap-3 m-auto w-full">
               {data &&
-                data.map((card, index) => (
-                  <div key={card.studyName} id={String(index)}>
+                data.map((study: any, index: any) => (
+                  <div key={study.studyName} id={String(index)}>
                     <Card
-                      studyImage={card.studyImage}
-                      studyMeetings={card.studyMettings}
-                      studyTypeisBlue={card.studyTypeisBlue}
-                      studyType={card.studyType}
-                      studyCategoryisBlue={card.studyCategoryisBlue}
-                      studyCategory={card.studyCategory}
-                      studyName={card.studyName}
-                      studyStart={card.studyStart}
-                      studyEnd={card.studyEnd}
-                      studyPlace={card.studyPlace}
-                      studyJoinMember={card.studyJoinMember}
-                      studyMember={card.studyMember}
+                      studyId={study.studyId}
+                      studyImage={study.studyImage}
+                      studyMeetings={study.studyMeetings}
+                      studyType={study.studyType}
+                      studyCategory={study.studyCategory}
+                      studyName={study.studyName}
+                      studyStart={formatDate(study.studyStart)}
+                      studyEnd={formatDate(study.studyEnd)}
+                      studyPlace={study.studyPlace}
+                      studyJoinMember={study.studyJoinMember}
+                      studyMember={study.studyMember}
                     />
                   </div>
                 ))}

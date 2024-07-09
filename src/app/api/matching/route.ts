@@ -1,6 +1,8 @@
 'use server';
 import connectDB from '@/lib/db';
 import { Matching } from '@/lib/schemas/matchingSchema';
+import { User } from '@/lib/schemas/userSchema';
+import mongoose from 'mongoose';
 
 export async function GET(req: Request) {
   await connectDB(); // 비동기 함수는 await로 처리해야 합니다.
@@ -31,9 +33,29 @@ export async function GET(req: Request) {
 
 export async function POST(request: Request) {
   await connectDB();
+  const matchingInfo = new mongoose.Types.ObjectId();
   const res = await request.json();
-  await Matching.create(res).then(() => console.log('connected'));
-  return Response.json({ message: 'Matching Info saved' });
+  const updatedres = {
+    ...res,
+    matchingInfo: matchingInfo,
+  };
+  const id = updatedres.userid;
+  const updatematching = await User.updateOne(
+    { _id: `${id}` },
+    {
+      matchingInfo: matchingInfo,
+    },
+  );
+
+  try {
+    const newMatching = new Matching(updatedres);
+    console.log(newMatching); // Create a new Matching instance
+    await newMatching.save(); // Save the new matching instance to the database
+    return Response.json({ message: 'Matching Info saved' }); // Log the newly created matching
+  } catch (error) {
+    console.error('Error creating new matching:', error);
+    return Response.json({ message: 'Matching Info not saved' });
+  }
 }
 
 export async function PATCH(request: Request) {

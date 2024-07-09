@@ -4,10 +4,10 @@ export default function StudyReviewCard({ review }: any) {
   return (
     <section className="flex gap-[0.8rem]  border-b-2 border-gray-400 pb-[2rem] w-[90%]">
       <div className="w-[3.5rem] h-[3.5rem] border border-gray-500 rounded-full">
-        <img src="/images/user-card-dummy.png" className="object-fill"></img>
+        <img src={`${review.userId.image}`} className="object-fill"></img>
       </div>
       <div className="w-[29.7rem] flex flex-col gap-4">
-        <h1 className="font-bold">취뽀기원</h1>
+        <h1 className="font-bold">{review.userId.nickname}</h1>
         <p>{review.studyReviewContent}</p>
       </div>
     </section>
