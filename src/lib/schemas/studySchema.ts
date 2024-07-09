@@ -26,7 +26,7 @@ const studySchema = new mongoose.Schema(
     studyType: {
       type: String,
       required: true,
-      enum: ['온라인', '오프라인', '추후협의'],
+      enum: ['온라인', '오프라인'],
     },
     studyLevel: {
       type: String,
