@@ -1,32 +1,22 @@
 'use client';
+import DelteUserModal from '@/components/(JH)/users/DeleteModal';
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import LongButton from '@/components/common/LongButton';
-import { signOut } from 'next-auth/react';
+import { useState } from 'react';
 
-export default async function page({ params }: { params: any }) {
+export default function page({ params }: { params: any }) {
+  const [isOpen, setIsOpen] = useState(false);
   const id = params.userid;
-  const deleteUser = async (id: string) => {
-    try {
-      const response = await fetch('/api/mypage', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(id),
-      });
-      if (!response.ok) {
-        throw new Error('HTTP error!');
-      }
-      const result = await response.json();
-      await signOut();
-      console.log('Server Response', result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <main>
+      <DelteUserModal
+        id={id}
+        show={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+      />
       <MyPageHeader>회원 탈퇴</MyPageHeader>
       <section className="text-headline-2 font-bold px-[1.6rem] py-[3.1rem]">
         <h1>정말 탈퇴하시겠어요?</h1>
@@ -41,10 +31,11 @@ export default async function page({ params }: { params: any }) {
           <li>계정이 삭제되면 복원이 불가능 합니다.</li>
         </ul>
       </section>
+
       <LongButton
         color="gray"
         onClick={() => {
-          deleteUser(id);
+          setIsOpen(true);
         }}
       >
         회원 탈퇴하기
