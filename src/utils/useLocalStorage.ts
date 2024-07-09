@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 
 const useLocalStorage = (key: string, initialValue: string[]) => {
   const [storedValue, setStoredValue] = useState<string[]>(() => {
+    if (typeof window === 'undefined') {
+      return initialValue;
+    }
     try {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
@@ -13,7 +16,7 @@ const useLocalStorage = (key: string, initialValue: string[]) => {
 
   const setValue = (value: string) => {
     try {
-      const newValue = [value, ...storedValue].slice(0, 5); // 최근 검색어 5개만 저장
+      const newValue = [value, ...storedValue].slice(0, 5);
       setStoredValue(newValue);
       localStorage.setItem(key, JSON.stringify(newValue));
     } catch (error) {

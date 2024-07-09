@@ -2,12 +2,17 @@
 import SearchInput from '@/components/common/SearchInput';
 import CurrentSearch from '@/components/search/CurrentSearch';
 import useLocalStorage from '@/utils/useLocalStorage';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function SearchPart() {
   const [inputValue, setInputValue] = useState('');
   const [recentSearches, addSearchToLocalStorage, removeFromLocal] =
     useLocalStorage('recent', []);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const onSearch = () => {
     if (recentSearches.includes(inputValue)) {
@@ -23,6 +28,11 @@ export default function SearchPart() {
   const onRemove = (search: string) => {
     removeFromLocal(search);
   };
+
+  if (!isClient) {
+    return null; // 또는 로딩 상태를 반환
+  }
+
   return (
     <section>
       <SearchInput
