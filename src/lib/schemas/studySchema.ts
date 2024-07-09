@@ -84,6 +84,9 @@ const studySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    studyMood: {
+      type: Array,
+    },
   },
   { timestamps: true },
 );
