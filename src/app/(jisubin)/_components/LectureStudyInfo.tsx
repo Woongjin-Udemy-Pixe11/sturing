@@ -1,4 +1,10 @@
-export default function LectureStudyInfo() {
+type TLecutreStudyInfoProps = {
+  lectureInstructor: string;
+  lectureDescription: string;
+};
+
+export default function LectureStudyInfo(props: TLecutreStudyInfoProps) {
+  const { lectureInstructor, lectureDescription } = props;
   return (
     <div className="flex flex-col gap-y-[1.2rem] mx-[1.6rem] justify-between">
       <div className="flex flex-row text-content-1">
@@ -26,7 +32,7 @@ export default function LectureStudyInfo() {
           </svg>
         </div>
         <span className="min-w-[7rem]">강사 </span>{' '}
-        <span>Leap Year Learning</span>
+        <span>{lectureInstructor}</span>
       </div>
       <div className="flex flex-row text-content-1">
         <div className="mr-[0.7rem]">
@@ -53,10 +59,7 @@ export default function LectureStudyInfo() {
           </svg>
         </div>
         <span className="min-w-[7rem]">강의 설명</span>
-        <span className="">
-          Javascript부터 웹 어플리케이션 배포까지, React와 프론트엔드 최신
-          기술을 가장 쉽고 확실하게 배우는 법
-        </span>
+        <span className="">{lectureDescription}</span>
       </div>
     </div>
   );
