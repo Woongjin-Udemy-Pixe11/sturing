@@ -55,7 +55,9 @@ export default function StudyInfoForm(props: any) {
     return (
       image == null ||
       title == '' ||
+      title.length < 5 ||
       content == '' ||
+      content.length < 20 ||
       locationType == null ||
       location == ''
     );
@@ -75,7 +77,9 @@ export default function StudyInfoForm(props: any) {
         contentLabel="스터디 소개"
         titlePlaceholder="내 스터디를 돋보이게 하는 한마디 (최소 5자 이상)"
         contentPlaceholder="소개글을 입력해 주세요 (최소 20자 필수)"
+        titleMinLength={5}
         contentMaxLength={250}
+        contentMinLength={20}
         onImageChange={(value) => setImage(value)}
         onTitleChange={(value) => setTitle(value)}
         onContentChange={(value) => setContent(value)}
