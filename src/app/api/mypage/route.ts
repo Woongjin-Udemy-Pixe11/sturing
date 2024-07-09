@@ -19,11 +19,6 @@ export async function GET(req: Request) {
     });
     let numberReview = reviewList.length;
 
-    if (users === null || matchinginfo === null) {
-      return null;
-    }
-    revalidatePath(`/users/${id}/detail`);
-
     return new Response(JSON.stringify({ users, matchinginfo, numberReview }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },

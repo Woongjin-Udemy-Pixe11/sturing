@@ -17,10 +17,10 @@ export default async function MyPage({
       cache: 'no-store',
     })
   ).json();
-  console.log(data);
   if (data === null) {
     return '아직 유저가 없습니다.';
   }
+  console.log(data);
 
   //TODO: 404 페이지 혹은 유저없음 페이지 만들기
 
@@ -36,7 +36,6 @@ export default async function MyPage({
         )}
       </section>
       <SturingRate data={data} />
-      {/* //TODO:스터디 리뷰 스키마 */}
       <SectionNavigator
         title={`받은 스터디 평가 ${data.numberReview ? data.numberReview : 0}`}
         moveLink={`/users/${userid}/mystudyreview`}
@@ -47,7 +46,6 @@ export default async function MyPage({
           moveLink={`/users/${userid}/mystudylog`}
         />
       )}
-      {/* //Section Navigator 에 옆에 숫자 추가가능하도록하면 좋을거같음. */}
     </main>
   );
 }

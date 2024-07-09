@@ -1,4 +1,3 @@
-import { getSession } from '@/utils/getSessions';
 import MyStudyReviewList from '../_pages/MyStudyReviewList';
 
 export default async function Page({ params }: { params: any }) {
