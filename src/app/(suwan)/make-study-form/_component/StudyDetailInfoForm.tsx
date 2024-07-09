@@ -2,31 +2,26 @@
 //TODO: 체크박스 공통스타일로 뺄것인가?
 //TODO: Select 공통스타일로 뺄것인가?
 import Label from '@/components/common/label/Label';
+import SizeUpLabel from '@/components/common/label/SizeUpLabel';
 import RangeCalendar from '@/components/common/calender/RangeCalendar';
 import { emojiLabelList } from '@/constant/emojiLabelList';
 import SelectInput from './SelectInput';
-import { useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import LongButton from '@/components/common/LongButton';
 import { DateRange } from 'react-day-picker';
 import { differenceInDays, format, addDays } from 'date-fns';
+import { FiCheck } from 'react-icons/fi';
 
 export default function StudyDetailInfoForm(props: any) {
   const { step, setStep, study, onClickStepThree } = props;
 
   const [date, setDate] = useState<DateRange>();
-  // const [start, setStart] = useState();
+  const [meetingDay, setMeetingDay] = useState('');
+  const [meetingTime, setMeetingTime] = useState('');
   const [meetings, setMeetings] = useState('');
-  const [mood, setMood] = useState('');
+
+  const [mood, setMood] = useState<string[]>([]);
   const [checked, setChecked] = useState(false);
-
-  //TODO: any 수정
-  const onChangeDate = (calendarDate: DateRange | undefined) => {
-    setDate(calendarDate);
-  };
-
-  const onChangeCheckBox = () => {
-    setChecked(!checked);
-  };
 
   let data = {
     start: date?.from && format(date?.from, 'y-MM-dd'),
@@ -35,10 +30,46 @@ export default function StudyDetailInfoForm(props: any) {
     meetings: meetings,
     mood: mood,
   };
+  console.log(date);
+  const validate = useMemo(() => {
+    return date == undefined || meetings == '' || mood.length == 0;
+  }, [date, meetings, mood]);
 
-  console.log(data);
-  const onClickMood = () => {
-    console.log('');
+  useEffect(() => {
+    if (checked) {
+      setMeetings('추후협의');
+    } else if (meetingDay && meetingTime) {
+      setMeetings(`${meetingDay} ${meetingTime}`);
+    } else {
+      setMeetings('');
+    }
+  }, [meetingDay, meetingTime, checked]);
+
+  const onChangeDate = (calendarDate: DateRange | undefined) => {
+    setDate(calendarDate);
+  };
+
+  const onChangeCheckBox = () => {
+    const newCheckedState = !checked;
+    setChecked(newCheckedState);
+
+    if (newCheckedState) {
+      setMeetingDay('추후협의');
+    } else {
+      setMeetingDay('');
+    }
+  };
+
+  const onClickMood = (title: string) => {
+    if (mood.includes(title)) {
+      setMood(mood.filter((item) => item !== title));
+    } else if (mood.length < 3) {
+      setMood([...mood, title]);
+    }
+  };
+
+  const onClickNext = () => {
+    onClickStepThree(data);
   };
   return (
     <>
@@ -58,24 +89,38 @@ export default function StudyDetailInfoForm(props: any) {
         </article>
         <article className="py-[3rem] border-b border-gray-300">
           <h2 className="font-bold text-content-1">스터디 진행 요일 및 시간</h2>
-          <div className="flex gap-3">
-            <SelectInput type="date" />
-            <SelectInput type="time" />
+          <div className="flex gap-3 mt-[1rem]">
+            <SelectInput
+              type="date"
+              onChange={setMeetingDay}
+              value={meetingDay}
+              checked={checked}
+            />
+            <SelectInput
+              type="time"
+              onChange={setMeetingTime}
+              value={meetingTime}
+              checked={checked}
+            />
           </div>
-          <label className="inline-flex items-center space-x-2 py-[1.1rem] relative">
+          <label className="inline-flex items-center space-x-2 py-[1.2rem] relative">
             <input
               id="checkbox"
               type="checkbox"
               checked={checked}
               onChange={onChangeCheckBox}
-              className="form-checkbox h-[2rem] w-[2rem]  border-gray-300 border rounded-full  appearance-none checked:bg-blue-500 peer "
+              className="form-checkbox h-[1.8rem] w-[1.8rem] bg-gray-400 rounded-full  appearance-none checked:bg-main-600 peer "
             />
             <label
               htmlFor="checkbox"
-              className='peer-checked:after:content-["✔"]  peer-checked:after:text-white peer-checked:after:text-content-1 absolute top-[1rem] left-0'
-            ></label>
+              className="absolute text-white text-content-2 top-1/2 left-[-2%] transform -translate-y-1/2"
+            >
+              <FiCheck />
+            </label>
 
-            <span className="text-gray-700">추후협의</span>
+            <span className="text-gray-600 text-content-1 text-ge">
+              추후협의
+            </span>
           </label>
         </article>
         <article className="py-[3rem]">
@@ -87,14 +132,18 @@ export default function StudyDetailInfoForm(props: any) {
           </h3>
           <div className="flex flex-wrap gap-2 py-[1.2rem]">
             {emojiLabelList.map((label) => (
-              <Label key={label.title} isBlue={false} onClick={onClickMood}>
+              <SizeUpLabel
+                key={label.title}
+                isClicked={mood.includes(label.title) ? true : false}
+                onClick={() => onClickMood(label.title)}
+              >
                 <img
                   src={label.imgSrc}
                   alt={label.imgAlt}
-                  className="h-[3.3rem]"
+                  className="h-[1.6rem] mr-[.5rem]"
                 />
                 <div>{label.title}</div>
-              </Label>
+              </SizeUpLabel>
             ))}
           </div>
         </article>
@@ -109,14 +158,20 @@ export default function StudyDetailInfoForm(props: any) {
         >
           이전
         </LongButton>
-        <LongButton
-          color="blue"
-          onClick={() => {
-            setStep((prev: number) => prev + 1);
-          }}
-        >
-          다음
-        </LongButton>
+
+        {validate ? (
+          <LongButton color="gray">다음</LongButton>
+        ) : (
+          <LongButton
+            color="blue"
+            onClick={() => {
+              onClickNext();
+              setStep((prev: number) => prev + 1);
+            }}
+          >
+            다음
+          </LongButton>
+        )}
       </footer>
     </>
   );

@@ -44,13 +44,26 @@ export const studyReducer = (
       console.log('place:', action);
       return { ...state, studyPlace: action.payload };
     case 'setStart':
+      console.log('start:', action);
       return { ...state, studyStart: action.payload };
     case 'setEnd':
+      console.log('end:', action);
       return { ...state, studyEnd: action.payload };
+    case 'setDeadline':
+      console.log('deadline:', action);
+      return { ...state, studyDeadline: action.payload };
     case 'setMeetings':
+      console.log('meetings:', action);
       return { ...state, studyMeetings: action.payload };
     case 'setMood':
+      console.log('mood:', action);
       return { ...state, studyMood: action.payload };
+    case 'setLevel':
+      console.log('level:', action);
+      return { ...state, studyLevel: action.payload };
+    case 'setMember':
+      console.log('member:', action);
+      return { ...state, studyMember: action.payload };
   }
   return state;
 };

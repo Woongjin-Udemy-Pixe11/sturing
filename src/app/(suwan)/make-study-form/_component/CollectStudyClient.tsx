@@ -59,7 +59,6 @@ export default function CollectStudyClient(props: { id: string }) {
     dispatch({ type: 'setDeadline', payload: data.deadline });
     dispatch({ type: 'setEnd', payload: data.end });
     dispatch({ type: 'setMeetings', payload: data.meetings });
-
     dispatch({ type: 'setMood', payload: data.mood });
   };
 
