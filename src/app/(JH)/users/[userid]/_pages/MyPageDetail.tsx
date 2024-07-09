@@ -33,10 +33,10 @@ export default function MyPageDetail({
         </div>
       </div>
       <UserDetailInfo data={data} />
-      {data.matchingInfo ? (
+      {data.matchinginfo ? (
         <UserMatchingInfo data={data} />
       ) : (
-        <section className='mt-10'>
+        <section className="mt-10">
           <div>아직 매칭정보가 없습니다.</div>
           <h1>함께 매칭을 하러가요!</h1>
         </section>

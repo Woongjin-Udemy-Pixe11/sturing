@@ -18,7 +18,7 @@ export default async function MyPageProfileCard({
           <h1 className="font-bold text-headline-3">{data.users.nickname}</h1>
           {auth && <h2>{'>'}</h2>}
         </div>
-        {data.matchingInfo && (
+        {data.matchinginfo && (
           <>
             <h3 className="text-content-2">
               {data.matchinginfo.level[`${data.matchinginfo.interests[0]}`]}
