@@ -32,6 +32,7 @@ export const studyReducer = (
       }
       return { ...state, studyCategory: action.payload };
     case 'setImage':
+      console.log('image:', action);
       return { ...state, studyImage: action.payload };
     case 'setName':
       console.log('name:', action);

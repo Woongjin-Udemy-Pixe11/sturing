@@ -30,6 +30,7 @@ export default function CollectStudyClient(props: { id: string }) {
     studyEnd: '',
     studyPlace: '',
     studyMeetings: '',
+    studyMood: '',
   };
 
   const [step, setStep] = useState<number>(1);

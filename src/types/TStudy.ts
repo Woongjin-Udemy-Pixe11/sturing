@@ -48,4 +48,5 @@ export type TFetchStudy = {
   studyEnd: string;
   studyPlace: string;
   studyMeetings: string;
+  studyMood: string;
 };
