@@ -56,20 +56,28 @@ async function fetchLectureDetail(id: string) {
   if (!res.ok) throw new Error('Failed to fetch lecture');
   return res.json();
 }
+async function fetchLectureStudy(id: string) {
+  if (!id) throw new Error('Invalid ID');
+  const res = await fetch(`${process.env.LOCAL_URL}/api/lecture/study/${id}`, {
+    cache: 'no-store',
+  });
+  if (!res.ok) throw new Error('Failed to fetch lecture study');
+  return res.json();
+}
 
 export default async function LectureDetail(props: TLectureDetailProps) {
   const { params } = props;
   const id = params.id;
 
   const lecture = await fetchLectureDetail(id);
-
+  const lectureStudy = await fetchLectureStudy(id);
   return (
     <div className="flex flex-col mt-[2.8rem]">
       <LectureStudyInfo
         lectureInstructor={lecture.lectureInstructor}
         lectureDescription={lecture.lectureDescription}
       />
-      <LectureDetailStudyPage />
+      <LectureDetailStudyPage lectureStudy={lectureStudy} />
       <LectureDetailRatingPage
         lectureRating={lecture.lectureRating}
         lectureReviews={lecture.lectureReviews}
