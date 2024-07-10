@@ -2,9 +2,12 @@ import { IoSearch } from 'react-icons/io5';
 
 type TSearchInputProps = {
   placeholderText: string;
+  value: string;
+  changeHandler: any;
+  localsave: any;
 };
 export default function SearchInput(props: TSearchInputProps) {
-  const { placeholderText } = props;
+  const { placeholderText, value, changeHandler, localsave } = props;
   return (
     <>
       <label
@@ -16,9 +19,11 @@ export default function SearchInput(props: TSearchInputProps) {
           name="search-input"
           id="search-input"
           placeholder={placeholderText}
+          value={value}
+          onChange={changeHandler}
           className="w-[27rem] inline-block bg-inherit py-[1.3rem] pr-[2rem] text-content-1 placeholder-gray-700"
         />
-        <button>
+        <button onClick={localsave}>
           <IoSearch className="w-[2.4rem] h-[2.4rem] text-main-600" />
         </button>
       </label>
