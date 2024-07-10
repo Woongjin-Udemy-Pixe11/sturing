@@ -3,7 +3,7 @@ const studyMemberSchema = new mongoose.Schema({
   studyId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Study',
-    required: false,
+    required: true,
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
