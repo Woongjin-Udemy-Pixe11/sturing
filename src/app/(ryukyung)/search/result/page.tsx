@@ -12,7 +12,14 @@ const tabList = [
   { name: '강의', component: <TabLecture />, isLecture: true },
 ];
 
-export default function page() {
+export default async function page({ searchParams }: { searchParams: any }) {
+  const keyword = searchParams.keyword;
+  const data = await (
+    await fetch(`http://localhost:3000/api/search?keyword=${keyword}`, {
+      cache: 'no-store',
+    })
+  ).json();
+  console.log(data.searchstudies);
   return (
     <>
       <header className="w-full px-[1.6rem] flex justify-between items-center gap-[.8rem] py-[1.2rem]">

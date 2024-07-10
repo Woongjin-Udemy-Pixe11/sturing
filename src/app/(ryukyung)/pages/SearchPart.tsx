@@ -3,8 +3,10 @@ import SearchInput from '@/components/common/SearchInput';
 import CurrentSearch from '@/components/search/CurrentSearch';
 import useLocalStorage from '@/utils/useLocalStorage';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function SearchPart() {
+  const router = useRouter();
   const [inputValue, setInputValue] = useState('');
   const [recentSearches, addSearchToLocalStorage, removeFromLocal] =
     useLocalStorage('recent', []);
@@ -17,11 +19,13 @@ export default function SearchPart() {
   const onSearch = () => {
     if (recentSearches.includes(inputValue)) {
       setInputValue('');
+      router.push(`/search/result?keyword=${inputValue}`);
       return;
     }
     if (inputValue.trim() != '') {
       addSearchToLocalStorage(inputValue);
       setInputValue('');
+      router.push(`/search/result?keyword=${inputValue}`);
     }
   };
 
