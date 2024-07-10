@@ -22,9 +22,10 @@ export async function GET(
       })
       .populate({
         path: 'userId',
-        select: 'nickname image studyType sturingPercent',
+        select: 'nickname image sturingPercent matchingInfo',
         populate: {
-          path: 'studyType',
+          path: 'matchingInfo',
+          model: 'matching',
           select: 'level',
         },
       });
