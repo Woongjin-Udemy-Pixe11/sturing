@@ -12,7 +12,8 @@ type TActionType =
   | { type: 'setDeadline'; payload: string }
   | { type: 'setStart'; payload: string }
   | { type: 'setEnd'; payload: string }
-  | { type: 'setPlace'; payload: string }
+  | { type: 'setStudyType'; payload: string }
+  | { type: 'setLocation'; payload: string }
   | { type: 'setMeetings'; payload: string }
   | { type: 'setMood'; payload: string };
 
@@ -32,37 +33,40 @@ export const studyReducer = (
       }
       return { ...state, studyCategory: action.payload };
     case 'setImage':
-      console.log('image:', action);
+      // console.log('image:', action);
       return { ...state, studyImage: action.payload };
     case 'setName':
-      console.log('name:', action);
+      // console.log('name:', action);
       return { ...state, studyName: action.payload };
     case 'setContent':
-      console.log('content:', action);
+      // console.log('content:', action);
       return { ...state, studyContent: action.payload };
-    case 'setPlace':
-      console.log('place:', action);
+    case 'setStudyType':
+      // console.log('place:', action);
+      return { ...state, studyType: action.payload };
+    case 'setLocation':
+      // console.log('place:', action);
       return { ...state, studyPlace: action.payload };
     case 'setStart':
-      console.log('start:', action);
+      // console.log('start:', action);
       return { ...state, studyStart: action.payload };
     case 'setEnd':
-      console.log('end:', action);
+      // console.log('end:', action);
       return { ...state, studyEnd: action.payload };
     case 'setDeadline':
-      console.log('deadline:', action);
+      // console.log('deadline:', action);
       return { ...state, studyDeadline: action.payload };
     case 'setMeetings':
-      console.log('meetings:', action);
+      // console.log('meetings:', action);
       return { ...state, studyMeetings: action.payload };
     case 'setMood':
-      console.log('mood:', action);
+      // console.log('mood:', action);
       return { ...state, studyMood: action.payload };
     case 'setLevel':
-      console.log('level:', action);
+      // console.log('level:', action);
       return { ...state, studyLevel: action.payload };
     case 'setMember':
-      console.log('member:', action);
+      // console.log('member:', action);
       return { ...state, studyMember: action.payload };
   }
   return state;

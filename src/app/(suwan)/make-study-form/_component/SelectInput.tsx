@@ -13,7 +13,7 @@ export default function SelectInput(props: TSelectInputProps) {
         <select
           name="time-zones"
           id="time-zones"
-          defaultValue=""
+          // defaultValue=""
           value={checked ? '' : value}
           onChange={(e) => onChange(e.target.value)}
           disabled={checked}
@@ -53,7 +53,7 @@ export default function SelectInput(props: TSelectInputProps) {
         <select
           name="days-of-the-week"
           id="days-of-the-week"
-          defaultValue=""
+          // defaultValue=""
           value={checked ? '' : value}
           onChange={(e) => onChange(e.target.value)}
           disabled={checked}

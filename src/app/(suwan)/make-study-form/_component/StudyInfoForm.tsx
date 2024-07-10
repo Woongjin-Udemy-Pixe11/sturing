@@ -1,27 +1,27 @@
 import StudyForm from '@/components/common/StudyForm';
 import { useMemo, useState } from 'react';
 import { FiCheck } from 'react-icons/fi';
-import { TStudyInfoFormProps, TStudyLocationType } from '@/types/TStudyMake';
+import { TStudyInfoFormProps, TStudyType } from '@/types/TStudyMake';
 import LongButton from '@/components/common/LongButton';
-
-type TData = {
-  image: File | null;
-  title: string;
-  content: string;
-  locationType: string | null;
-  location: string;
-};
 
 export default function StudyInfoForm(props: any) {
   const { step, setStep, study, onClickStepTwo } = props;
 
   const [checked, setChecked] = useState(false);
-  const [locationType, setLocationType] = useState<TStudyLocationType>(null);
-  const [image, setImage] = useState<File | null>(null);
+  const [studyType, setStudyType] = useState<TStudyType>(null);
+  const [image, setImage] = useState<File | string | null>('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [location, setLocation] = useState('');
 
+  const onChangeImage = (img: File | null) => {
+    if (img !== null) {
+      setImage(img);
+    } else {
+      setImage('/images/study-img1.png');
+    }
+  };
+  console.log(image);
   const onChangeCheckBox = () => {
     const newCheckedState = !checked;
     setChecked(newCheckedState);
@@ -33,34 +33,32 @@ export default function StudyInfoForm(props: any) {
     }
   };
 
-  const handleLocationChange = (type: TStudyLocationType) => {
-    setLocationType(type);
+  const handleLocationChange = (type: TStudyType) => {
+    setStudyType(type);
   };
 
   const onChangeLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(e.target.value);
   };
 
-  let data: TData = {
+  let data = {
     image: image,
     title: title,
     content: content,
-    locationType: locationType,
+    studyType: studyType,
     location: location,
   };
 
-  const isNull = useMemo(() => {
+  const validate = useMemo(() => {
     return (
-      // image == null ||
-      title == ''
-      // ||
-      // title.length < 5 ||
-      // content == '' ||
-      // content.length < 20 ||
-      // locationType == null ||
-      // location == ''
+      title == '' ||
+      title.length < 5 ||
+      content == '' ||
+      content.length < 20 ||
+      studyType == null ||
+      location == ''
     );
-  }, [image, title, content, locationType, location]);
+  }, [title, content, studyType, location]);
 
   const onClickNext = () => {
     onClickStepTwo(data);
@@ -79,16 +77,16 @@ export default function StudyInfoForm(props: any) {
         titleMinLength={5}
         contentMaxLength={250}
         contentMinLength={20}
-        onImageChange={(value) => setImage(value)}
+        onImageChange={onChangeImage}
         onTitleChange={(value) => setTitle(value)}
         onContentChange={(value) => setContent(value)}
       />
       <div className="mt-[2rem]">
         <div className="flex gap-[0.8rem] text-content-1">
           <button
-            onClick={() => handleLocationChange('online')}
+            onClick={() => handleLocationChange('온라인')}
             className={`px-[1.2rem] py-[0.4rem] rounded-[0.3rem] border border-gray-300 ${
-              locationType === 'online'
+              studyType === '온라인'
                 ? 'bg-main-100 text-main-600 border-main-600'
                 : 'bg-white text-gray-600'
             }`}
@@ -96,9 +94,9 @@ export default function StudyInfoForm(props: any) {
             온라인
           </button>
           <button
-            onClick={() => handleLocationChange('offline')}
+            onClick={() => handleLocationChange('오프라인')}
             className={`px-[1.2rem] py-[0.4rem] rounded-[0.3rem] text-gray-600 border border-gray-300 ${
-              locationType === 'offline'
+              studyType === '오프라인'
                 ? 'bg-main-100 text-main-600 border-main-600'
                 : 'bg-white text-gray-600'
             }`}
@@ -108,7 +106,7 @@ export default function StudyInfoForm(props: any) {
         </div>
 
         <div className="mt-[1.2rem]">
-          {locationType === 'online' && (
+          {studyType === '온라인' && (
             <div className="flex-inline relative">
               <input
                 type="text"
@@ -127,7 +125,7 @@ export default function StudyInfoForm(props: any) {
             </div>
           )}
 
-          {locationType === 'offline' && (
+          {studyType === '오프라인' && (
             <div className="flex-inline relative">
               <input
                 type="text"
@@ -147,7 +145,7 @@ export default function StudyInfoForm(props: any) {
           )}
         </div>
       </div>
-      {locationType != null && (
+      {studyType != null && (
         <label className="inline-flex items-center space-x-2 py-[1.2rem] relative">
           <input
             id="checkbox"
@@ -178,7 +176,7 @@ export default function StudyInfoForm(props: any) {
           이전
         </LongButton>
 
-        {isNull ? (
+        {validate ? (
           <LongButton color="gray">다음</LongButton>
         ) : (
           <LongButton

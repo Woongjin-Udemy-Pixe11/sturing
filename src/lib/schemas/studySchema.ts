@@ -8,8 +8,6 @@ const studySchema = new mongoose.Schema(
     },
     studyImage: {
       type: String,
-      required: true,
-      default: '',
     },
     studyName: {
       type: String,
@@ -31,7 +29,6 @@ const studySchema = new mongoose.Schema(
     studyLevel: {
       type: String,
       required: true,
-      enum: ['비기너', '신입', '주니어', '시니어', '상관없음'],
     },
     studyMember: {
       type: Number,
@@ -39,7 +36,6 @@ const studySchema = new mongoose.Schema(
     },
     studyJoinMember: {
       type: Number,
-      required: true,
       default: 0,
     },
     studySubject: {
@@ -47,17 +43,6 @@ const studySchema = new mongoose.Schema(
     },
     studyCategory: {
       type: String,
-      enum: [
-        '디자인',
-        '개발테크',
-        '비즈니스',
-        '마케팅',
-        '경제',
-        '외국어',
-        '자격증',
-        '자기계발',
-        '기타',
-      ],
     },
     studyViews: {
       type: Number,
