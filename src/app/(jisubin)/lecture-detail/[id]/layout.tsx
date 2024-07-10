@@ -1,8 +1,8 @@
 import BookmarkBtnNavigationBar from '@/components/(jisubin)/lectureStudyDetail/BookmarkBtnNavigationBar';
 import DetailTabBar from '@/components/(jisubin)/lectureStudyDetail/DetailTabBar';
 import BackShareHeader from '../../_components/BackShareHeader';
-import LectureStudyTitle from '../../_components/LectureStudyTitle';
-import LectureDetailTitle from '../../_components/LectureDetailTitle';
+import LectureStudyTitle from '../_components/LectureStudyTitle';
+import LectureDetailTitle from '../_components/LectureDetailTitle';
 
 type TLectureDetailLayoutProps = {
   children: React.ReactNode;
