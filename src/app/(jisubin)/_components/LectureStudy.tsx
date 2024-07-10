@@ -49,7 +49,7 @@ export default async function LectureStudy(props: TLectureStudyProps) {
           studies.map((study) => (
             <Card
               studyImage={study.studyImage}
-              studyMeetings={study.studyMettings}
+              studyMeetings={study.studyMeetings}
               studyTypeisBlue={true}
               studyType={study.studyType}
               studyCategoryisBlue={false}
