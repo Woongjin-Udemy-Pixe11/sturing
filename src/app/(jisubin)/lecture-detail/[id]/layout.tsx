@@ -47,9 +47,9 @@ export default async function LectureDetailLayout(
             text1="강의소개"
             text1Link={`/lecture-detail/${id}`}
             text2="스터디"
-            text2Link={`/lecture-detail/study/${id}`}
+            text2Link={`/lecture-detail/${id}/study`}
             text3="평점"
-            text3Link={`/lecture-detail/rating/${id}`}
+            text3Link={`/lecture-detail/${id}/rating`}
           />
         </div>
 

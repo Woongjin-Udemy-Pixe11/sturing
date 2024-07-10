@@ -10,6 +10,7 @@ export async function GET(
 ) {
   connectDB();
   const id = params.id;
+  console.log('study..', JSON.stringify(id));
   if (!id) {
     return Response.json({ error: 'Lecture ID is required' }, { status: 400 });
   }
