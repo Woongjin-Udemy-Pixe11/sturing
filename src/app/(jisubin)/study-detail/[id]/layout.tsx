@@ -34,8 +34,9 @@ export default async function StudyDetailLayout(
   const id = params.id;
 
   const study = await fetchStudyDetail(id);
+  let lecture = '';
   if (study.studyLecture) {
-    const lecture = await fetchLectureDetail(study.studyLecture);
+    lecture = await fetchLectureDetail(study.studyLecture);
   }
   return (
     <html lang="ko">
@@ -54,7 +55,7 @@ export default async function StudyDetailLayout(
         </div>
 
         <div className="bg-gray-100">
-          {study.studyLecture && (
+          {lecture && (
             <div className="mx-[1.6rem] py-[2rem]">
               <CourseLink
                 courseTitle={lecture.lectureName}
