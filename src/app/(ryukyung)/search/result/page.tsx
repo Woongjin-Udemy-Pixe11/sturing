@@ -6,13 +6,23 @@ import { IoSearch } from 'react-icons/io5';
 import TabBarBlue from '@/components/search/TabBarBlue';
 import Footer from '@/components/common/Footer';
 
-const tabList = [
-  { name: '전체', component: <TabAll />, isLecture: false },
-  { name: '스터디', component: <TabStudy />, isLecture: false },
-  { name: '강의', component: <TabLecture />, isLecture: true },
-];
-
-export default function page() {
+export default async function page({ searchParams }: { searchParams: any }) {
+  const keyword = searchParams.keyword;
+  const data = await (
+    await fetch(`http://localhost:3000/api/search?keyword=${keyword}`, {
+      cache: 'no-store',
+    })
+  ).json();
+  let searchstudy = data.searchstudies;
+  const tabList = [
+    { name: '전체', component: <TabAll data={searchstudy} />, isLecture: false },
+    {
+      name: '스터디',
+      component: <TabStudy data={searchstudy} />,
+      isLecture: false,
+    },
+    { name: '강의', component: <TabLecture />, isLecture: true },
+  ];
   return (
     <>
       <header className="w-full px-[1.6rem] flex justify-between items-center gap-[.8rem] py-[1.2rem]">

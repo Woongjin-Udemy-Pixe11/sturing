@@ -2,10 +2,8 @@ import * as Tabs from '@radix-ui/react-tabs';
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import Card from '@/components/common/Card';
 import { formatDate } from '@/components/common/StudyCardList';
-import ScrollableContainer from '@/components/common/ScrollableContainer';
 
 export default async function MyBookMarkList({ data }: any) {
-  console.log(data);
   return (
     <main>
       <MyPageHeader>내 관심 목록</MyPageHeader>

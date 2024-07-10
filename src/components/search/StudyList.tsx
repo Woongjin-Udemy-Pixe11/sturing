@@ -4,10 +4,11 @@ import GrayFullLink from './GrayFullLink';
 
 type TStudyListProps = {
   isDetail?: boolean;
+  data?: any;
 };
 
-export default function StudyList(props: TStudyListProps) {
-  const { isDetail } = props;
+export default async function StudyList(props: TStudyListProps) {
+  const { isDetail,data } = props;
   let isFull = false;
   let cardList = dummyCardList;
 
@@ -25,8 +26,8 @@ export default function StudyList(props: TStudyListProps) {
           </span>
         )}
         <ul className="w-full grid grid-cols-2 justify-stretch items-center flex-wrap gap-x-[1.6rem] gap-y-[.8rem] py-[2rem]">
-          {cardList &&
-            cardList.map((card) => (
+          {data &&
+            data.map((card:any) => (
               <li key={card.id}>
                 <Card
                   studyImage={card.studyImage}
