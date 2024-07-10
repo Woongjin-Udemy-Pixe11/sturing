@@ -29,6 +29,7 @@ export type Tmatching = {
 
 export default function ClientMatching({ data, session, exist }: any) {
   let username = session.user.name;
+  let nickname = session.user.nickname;
   const id = session.user.id;
   const [state, dispatch] = useReducer<React.Reducer<Tmatching, TActionType>>(
     matchingreducer,
@@ -96,7 +97,11 @@ export default function ClientMatching({ data, session, exist }: any) {
   //TODO:dispatch 함수의 타입작성하기
   const stepComponet: any = {
     1: (
-      <Interest interest={state.interests} onClickInterest={onClickInterest} />
+      <Interest
+        interest={state.interests}
+        onClickInterest={onClickInterest}
+        nickname={nickname}
+      />
     ),
     2: (
       <Field
@@ -105,10 +110,28 @@ export default function ClientMatching({ data, session, exist }: any) {
         Level={state.level}
       />
     ),
-    3: <Type studyType={state.studyType} onClickStudyType={onClickStudyType} />,
-    4: <Region regions={state.preferRegion} onClickRegion={onClickRegions} />,
-    5: <Mood moods={state.preferMood} onClickMood={onClickMood} />,
-    6: <MatchingCompleted username={username} />,
+    3: (
+      <Type
+        studyType={state.studyType}
+        onClickStudyType={onClickStudyType}
+        nickname={nickname}
+      />
+    ),
+    4: (
+      <Region
+        regions={state.preferRegion}
+        onClickRegion={onClickRegions}
+        nickname={nickname}
+      />
+    ),
+    5: (
+      <Mood
+        moods={state.preferMood}
+        onClickMood={onClickMood}
+        nickname={nickname}
+      />
+    ),
+    6: <MatchingCompleted username={nickname} />,
   };
 
   return (

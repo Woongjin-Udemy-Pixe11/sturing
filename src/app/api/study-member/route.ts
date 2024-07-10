@@ -20,7 +20,7 @@ export async function GET(request: Request) {
       .populate('userId', 'nickname')
       .lean();
 
-    console.log('Found study members:', studyMembers);
+    // console.log('Found study members:', studyMembers);
 
     return Response.json(studyMembers);
   } catch (error) {

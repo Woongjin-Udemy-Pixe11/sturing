@@ -14,7 +14,7 @@ export default async function RootLayout({
 }) {
   const session = await getSession();
   let id = session?.user?.id;
-  console.log('세션', session);
+
   return (
     <html lang="ko">
       <body>
