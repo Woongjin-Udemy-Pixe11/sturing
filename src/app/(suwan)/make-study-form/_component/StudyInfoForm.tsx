@@ -1,27 +1,37 @@
 import StudyForm from '@/components/common/StudyForm';
 import { useMemo, useState } from 'react';
 import { FiCheck } from 'react-icons/fi';
-import { TStudyInfoFormProps, TStudyType } from '@/types/TStudyMake';
 import LongButton from '@/components/common/LongButton';
 
 export default function StudyInfoForm(props: any) {
-  const { step, setStep, study, onClickStepTwo } = props;
+  const { setStep, study, onClickStepTwo } = props;
 
   const [checked, setChecked] = useState(false);
-  const [studyType, setStudyType] = useState<TStudyType>(null);
-  const [image, setImage] = useState<File | string | null>('');
+  const [studyType, setStudyType] = useState<'온라인' | '오프라인' | null>(
+    null,
+  );
+  const [image, setImage] = useState<string | null>('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [location, setLocation] = useState('');
 
+  const convertBase64 = (img: File) => {
+    console.log(img);
+    const reader = new FileReader();
+    reader.readAsDataURL(img);
+    reader.onload = () => {
+      setImage(reader.result as string);
+    };
+  };
+
   const onChangeImage = (img: File | null) => {
     if (img !== null) {
-      setImage(img);
+      convertBase64(img);
     } else {
       setImage('/images/study-img1.png');
     }
   };
-  console.log(image);
+  // console.log(image);
   const onChangeCheckBox = () => {
     const newCheckedState = !checked;
     setChecked(newCheckedState);
@@ -33,7 +43,7 @@ export default function StudyInfoForm(props: any) {
     }
   };
 
-  const handleLocationChange = (type: TStudyType) => {
+  const handleLocationChange = (type: '온라인' | '오프라인' | null) => {
     setStudyType(type);
   };
 

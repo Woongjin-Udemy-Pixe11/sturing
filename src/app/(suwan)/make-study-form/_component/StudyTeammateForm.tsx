@@ -1,10 +1,9 @@
 'use client';
 import LongButton from '@/components/common/LongButton';
-import Label from '@/components/common/label/Label';
+
 import SizeUpLabel from '@/components/common/label/SizeUpLabel';
 import { useRouter } from 'next/navigation';
 import { useState, useMemo } from 'react';
-import { FiCheck } from 'react-icons/fi';
 import { postStudy } from '@/utils/study/studyUtils';
 
 const levelOptions: string[] = [
@@ -26,7 +25,7 @@ export default function StudyTemmateForm(props: any) {
     member: studyMembers,
   };
   const validate = useMemo(() => {
-    return study.level == '' || studyMembers < 1;
+    return study.studyLevel == '' || studyMembers < 1;
   }, [level, studyMembers]);
   console.log(data);
 
@@ -36,8 +35,10 @@ export default function StudyTemmateForm(props: any) {
       setStudyMembers((prev) => prev + 1);
       onClickMember(studyMembers + 1);
     } else if (type == 'minus') {
-      setStudyMembers((prev) => prev - 1);
-      onClickMember(studyMembers + 1);
+      if (studyMembers > 1) {
+        setStudyMembers((prev) => prev - 1);
+        onClickMember(studyMembers + 1);
+      }
     }
   };
 
@@ -56,7 +57,7 @@ export default function StudyTemmateForm(props: any) {
             {levelOptions.map((item, index) => (
               <SizeUpLabel
                 key={index}
-                isClicked={level === item}
+                isClicked={study.studyLevel === item}
                 onClick={() => {
                   onClickLevel(item);
                 }}

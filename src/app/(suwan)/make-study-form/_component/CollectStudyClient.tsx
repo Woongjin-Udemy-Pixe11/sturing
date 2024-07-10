@@ -12,9 +12,14 @@ import { postStudy } from '@/utils/study/studyUtils';
 import { TFetchStudy } from '@/types/TStudy';
 
 import { studyReducer } from '@/utils/study/studyReducer';
+import { useRouter } from 'next/navigation';
 
 export default function CollectStudyClient(props: { id: string }) {
   const { id } = props;
+  const router = useRouter();
+
+  const lectureID = '';
+
   const mockdata: TFetchStudy = {
     leaderId: id,
     studyImage: '/images/study-img1.png',
@@ -23,7 +28,7 @@ export default function CollectStudyClient(props: { id: string }) {
     studyType: '',
     studyLevel: '',
     studyMember: 0,
-    studySubject: '',
+    studyLecture: lectureID,
     studyCategory: '',
     studyDeadline: '',
     studyStart: '',
@@ -108,7 +113,12 @@ export default function CollectStudyClient(props: { id: string }) {
   return (
     <main>
       <header>
-        <h2 className="text-content-1 text-gray-700 p-[1.5rem]">취소</h2>
+        <h2
+          onClick={() => router.back()}
+          className="text-content-1 text-gray-700 p-[1.5rem]"
+        >
+          취소
+        </h2>
         <div className="w-full bg-gray-400 rounded-full h-[0.4rem]  ">
           <div
             className="bg-main-500 h-[0.4rem] rounded-full"

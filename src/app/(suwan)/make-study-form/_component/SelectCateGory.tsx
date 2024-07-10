@@ -1,18 +1,22 @@
 import LongButton from '@/components/common/LongButton';
 import SizeUpLabel from '@/components/common/label/SizeUpLabel';
 import { searchLabelList } from '@/constant/searchLabelList';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 //TODO any 수정
 export default function SelectCateGory(props: any) {
-  const { step, setStep, onClickStepOne } = props;
+  const { setStep, onClickStepOne } = props;
 
-  const [clickedIndex, setClickedIndex] = useState(0);
+  const [clickedIndex, setClickedIndex] = useState<number | null>(null);
 
   const handleClick = (index: number) => {
     setClickedIndex(index);
     onClickStepOne(searchLabelList[index].value);
   };
+
+  const validate = useMemo(() => {
+    return clickedIndex == null;
+  }, [clickedIndex]);
 
   return (
     <>
@@ -52,14 +56,18 @@ export default function SelectCateGory(props: any) {
         >
           이전
         </LongButton>
-        <LongButton
-          color="blue"
-          onClick={() => {
-            setStep((prev: number) => prev + 1);
-          }}
-        >
-          다음
-        </LongButton>
+        {validate ? (
+          <LongButton color="gray">다음 </LongButton>
+        ) : (
+          <LongButton
+            color="blue"
+            onClick={() => {
+              setStep((prev: number) => prev + 1);
+            }}
+          >
+            다음
+          </LongButton>
+        )}
       </footer>
     </>
   );

@@ -31,6 +31,7 @@ export default function StudyDetailInfoForm(props: any) {
     mood: mood,
   };
   console.log(date);
+
   const validate = useMemo(() => {
     return date == undefined || meetings == '' || mood.length == 0;
   }, [date, meetings, mood]);
