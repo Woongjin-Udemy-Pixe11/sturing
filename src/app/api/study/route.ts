@@ -46,7 +46,8 @@ export async function POST(request: Request) {
   const id = searchParams.get('id');
 
   const res = await request.json();
-  const studies = await Study.create(res);
-  console.log(res);
-  return Response.json(studies);
+  const newStudy = new Study(res);
+  await newStudy.save();
+
+  return Response.json({ message: 'success' });
 }

@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 //TODO any 수정
 export default function SelectCateGory(props: any) {
-  const { step, setStep, study, onClickStepOne } = props;
+  const { step, setStep, onClickStepOne } = props;
 
   const [clickedIndex, setClickedIndex] = useState(0);
 
@@ -58,7 +58,7 @@ export default function SelectCateGory(props: any) {
             setStep((prev: number) => prev + 1);
           }}
         >
-          {step === 4 ? '등록하기' : '다음'}
+          다음
         </LongButton>
       </footer>
     </>

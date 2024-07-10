@@ -1,4 +1,6 @@
 'use client';
+//TODO: 이미지 기본값 넣기
+//TODO: reducer만 써보기
 
 import LongButton from '@/components/common/LongButton';
 import { useState, useReducer } from 'react';
@@ -8,16 +10,14 @@ import StudyInfoForm from './StudyInfoForm';
 import StudyTeammateForm from './StudyTeammateForm';
 import { postStudy } from '@/utils/study/studyUtils';
 import { TFetchStudy } from '@/types/TStudy';
-import { TStudyInfoFormProps, TStudyLocationType } from '@/types/TStudyMake';
 
 import { studyReducer } from '@/utils/study/studyReducer';
 
 export default function CollectStudyClient(props: { id: string }) {
   const { id } = props;
-  // console.log(id);
   const mockdata: TFetchStudy = {
     leaderId: id,
-    studyImage: '',
+    studyImage: '/images/study-img1.png',
     studyName: '',
     studyContent: '',
     studyType: '',
@@ -30,6 +30,7 @@ export default function CollectStudyClient(props: { id: string }) {
     studyEnd: '',
     studyPlace: '',
     studyMeetings: '',
+    studyMood: '',
   };
 
   const [step, setStep] = useState<number>(1);
@@ -38,7 +39,7 @@ export default function CollectStudyClient(props: { id: string }) {
     studyReducer,
     mockdata,
   );
-  // console.log(study);
+  console.log('리듀서 state', study);
 
   const onClickStepOne = (category: string) => {
     dispatch({ type: 'setCategory', payload: category });
@@ -49,8 +50,8 @@ export default function CollectStudyClient(props: { id: string }) {
     dispatch({ type: 'setImage', payload: data.image });
     dispatch({ type: 'setName', payload: data.title });
     dispatch({ type: 'setContent', payload: data.content });
-    dispatch({ type: 'setType', payload: data.locationType });
-    dispatch({ type: 'setPlace', payload: data.location });
+    dispatch({ type: 'setStudyType', payload: data.studyType });
+    dispatch({ type: 'setLocation', payload: data.location });
   };
 
   const onClickStepThree = (data: any) => {
@@ -58,15 +59,16 @@ export default function CollectStudyClient(props: { id: string }) {
     dispatch({ type: 'setDeadline', payload: data.deadline });
     dispatch({ type: 'setEnd', payload: data.end });
     dispatch({ type: 'setMeetings', payload: data.meetings });
-
     dispatch({ type: 'setMood', payload: data.mood });
   };
 
-  const onClickStepFour = (data: any) => {
-    dispatch({ type: 'setLevel', payload: data.level });
-    dispatch({ type: 'setMember', payload: data.member });
+  const onClickLevel = (level: any) => {
+    dispatch({ type: 'setLevel', payload: level });
   };
 
+  const onClickMember = (member: any) => {
+    dispatch({ type: 'setMember', payload: member });
+  };
   //TODO:any 수정
   const collectstep: any = {
     1: (
@@ -97,7 +99,9 @@ export default function CollectStudyClient(props: { id: string }) {
         step={step}
         setStep={setStep}
         study={study}
-        onClickStepFour={onClickStepFour}
+        onClickLevel={onClickLevel}
+        onClickMember={onClickMember}
+        dispatch={dispatch}
       />
     ),
   };
