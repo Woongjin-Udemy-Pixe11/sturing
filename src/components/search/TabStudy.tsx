@@ -1,9 +1,9 @@
 import StudyList from './StudyList';
 
-export default function TabStudy() {
+export default async function TabStudy({ data }: { data: any }) {
   return (
     <>
-      <StudyList isDetail={true} />
+      <StudyList isDetail={true} data={data} />
     </>
   );
 }
