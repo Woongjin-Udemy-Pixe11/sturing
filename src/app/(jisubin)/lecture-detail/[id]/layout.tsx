@@ -3,6 +3,7 @@ import DetailTabBar from '@/components/(jisubin)/lectureStudyDetail/DetailTabBar
 import BackShareHeader from '../../_components/BackShareHeader';
 import LectureStudyTitle from '../../_components/LectureStudyTitle';
 import LectureDetailTitle from '../../_components/LectureDetailTitle';
+import Link from 'next/link';
 
 type TLectureDetailLayoutProps = {
   children: React.ReactNode;
@@ -54,7 +55,6 @@ export default async function LectureDetailLayout(
         </div>
 
         {children}
-
         <div className="flex justify-center">
           <BookmarkBtnNavigationBar
             text="이 강의로 스터디 개설하기"
