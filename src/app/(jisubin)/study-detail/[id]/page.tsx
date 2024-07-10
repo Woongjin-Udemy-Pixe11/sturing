@@ -34,7 +34,7 @@ export default async function StudyDetailPage(props: TStudyDetailPageProps) {
 
   const study = await fetchStudyDetail(id);
   let lecture = '';
-  if (study.lecture) {
+  if (study.studyLecture) {
     lecture = await fetchLectureDetail(study.studyLecture);
   }
 
