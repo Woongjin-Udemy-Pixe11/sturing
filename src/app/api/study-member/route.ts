@@ -1,5 +1,6 @@
 import connectDB from '@/lib/db';
 import { StudyMember } from '@/lib/schemas/studyMemberSchema';
+import { StudyReview } from '@/lib/schemas/studyReviewSchema';
 import mongoose from 'mongoose';
 
 export async function GET(request: Request) {
@@ -7,6 +8,8 @@ export async function GET(request: Request) {
 
   const { searchParams } = new URL(request.url);
   const studyId = searchParams.get('studyId');
+  const reviewStatus = searchParams.get('reviewStatus') === 'true';
+
   console.log('Received studyId:', studyId);
 
   if (!studyId) {
@@ -23,9 +26,24 @@ export async function GET(request: Request) {
       })
       .lean();
 
-    // console.log('Found study members:', studyMembers);
+    if (reviewStatus) {
+      const memberReviewStatus = await Promise.all(
+        studyMembers.map(async (member) => {
+          const review = await StudyReview.findOne({
+            studyId: studyId,
+            evaluateduser: member.userId._id,
+          }).lean();
 
-    return Response.json(studyMembers);
+          return {
+            ...member,
+            hasReview: !!review,
+          };
+        }),
+      );
+      return Response.json(memberReviewStatus);
+    } else {
+      return Response.json(studyMembers);
+    }
   } catch (error) {
     console.error('Error fetching study members:', error);
     return Response.json(
