@@ -1,3 +1,4 @@
+'use client';
 import { GoChevronLeft } from 'react-icons/go';
 import { IoShareOutline } from 'react-icons/io5';
 import { BsThreeDots } from 'react-icons/bs';

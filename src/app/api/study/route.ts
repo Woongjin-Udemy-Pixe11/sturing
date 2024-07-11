@@ -31,12 +31,27 @@ export async function GET(request: Request) {
   const sort = searchParams.get('sort') || undefined;
   const userId = searchParams.get('userId') || undefined;
 
-  try {
-    const studies = await getStudies(sort, userId);
-    return Response.json(studies);
-  } catch (error) {
-    console.log(error);
-    return Response.json({ status: 500 });
+  const id = searchParams.get('id');
+  if (id) {
+    try {
+      const study = await Study.findOne({
+        _id: `${id}`,
+      });
+      console.log('아이디 받음');
+      return Response.json(study);
+    } catch (error) {
+      console.log(error);
+      return Response.json({ status: 500 });
+    }
+  }
+  if (sort && userId) {
+    try {
+      const studies = await getStudies(sort, userId);
+      return Response.json(studies);
+    } catch (error) {
+      console.log(error);
+      return Response.json({ status: 500 });
+    }
   }
 }
 
