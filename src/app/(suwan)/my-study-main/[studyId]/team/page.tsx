@@ -1,7 +1,7 @@
 import TeamContainer from '@/components/(suwan)/my-study/team/TeamContainer';
 import { getSession } from '@/utils/getSessions';
 import Header from '../_components/Header';
-import fetchStudy from '@/utils/my-study-main/fetchStudy';
+import { fetchStudy } from '@/utils/my-study-main/fetch';
 
 export default async function Page({
   params,

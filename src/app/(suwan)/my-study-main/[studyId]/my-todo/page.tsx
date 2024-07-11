@@ -1,6 +1,6 @@
 import MyTodoContainer from '@/components/(suwan)/my-study/my-todo/MyTodoContainer';
 import Header from '../_components/Header';
-import fetchStudy from '@/utils/my-study-main/fetchStudy';
+import { fetchStudy } from '@/utils/my-study-main/fetch';
 
 export default async function MyTodo({
   params,

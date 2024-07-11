@@ -1,7 +1,7 @@
 import SectionNavigator from '@/components/common/SectionNavigator';
 import TaskInfo from './_jisubin_comp/TaskInfo';
 import Header from '../_components/Header';
-import fetchStudy from '@/utils/my-study-main/fetchStudy';
+import { fetchStudy } from '@/utils/my-study-main/fetch';
 
 export default async function page({
   params,
