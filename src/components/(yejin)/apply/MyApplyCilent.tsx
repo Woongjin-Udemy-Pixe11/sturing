@@ -1,10 +1,12 @@
 'use client';
 import LongButton from '@/components/common/LongButton';
 import DefaultModal from '@/components/common/modal/DefaultModal';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import StudyTop from '../StudyTop';
 
 export default function MyApplyCilent({ studyForm }: { studyForm: any }) {
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCancelClick = () => {
@@ -13,6 +15,30 @@ export default function MyApplyCilent({ studyForm }: { studyForm: any }) {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleConfirm = async () => {
+    try {
+      const response = await fetch(
+        `/api/study-form/my?studyFormId=${studyForm._id}`,
+        {
+          method: 'DELETE',
+        },
+      );
+
+      if (response.ok) {
+        alert('지원이 취소되었습니다.');
+        router.push('/my-study-list');
+      } else {
+        const data = await response.json();
+        alert(`취소 실패: ${data.error}`);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('취소 중 오류가 발생했습니다.');
+    } finally {
+      setIsModalOpen(false);
+    }
   };
 
   return (
@@ -35,11 +61,15 @@ export default function MyApplyCilent({ studyForm }: { studyForm: any }) {
               <span className="text-content-1 text-gray-900 font-bold">
                 {studyForm.userId.nickname}
               </span>
-              {studyForm.userId.studyType?.level && (
+              {studyForm.userId?.matchingInfo?.level && (
                 <>
                   <span className="text-content-1 text-gray-400">|</span>
                   <span className="text-content-1 text-gray-600">
-                    {studyForm.userId.studyType.level}
+                    {
+                      studyForm.userId?.matchingInfo?.level[
+                        `${studyForm.userId.matchingInfo.interests[0]}`
+                      ]
+                    }
                   </span>
                 </>
               )}
@@ -83,8 +113,8 @@ export default function MyApplyCilent({ studyForm }: { studyForm: any }) {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M7.5 14.25C10.9518 14.25 13.75 11.4518 13.75 8C13.75 4.54822 10.9518 1.75 7.5 1.75C4.04822 1.75 1.25 4.54822 1.25 8C1.25 11.4518 4.04822 14.25 7.5 14.25ZM7.5 15.5C11.6421 15.5 15 12.1421 15 8C15 3.85786 11.6421 0.5 7.5 0.5C3.35786 0.5 0 3.85786 0 8C0 12.1421 3.35786 15.5 7.5 15.5Z"
                 fill="#CACACA"
               />
@@ -104,7 +134,11 @@ export default function MyApplyCilent({ studyForm }: { studyForm: any }) {
       </div>
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <DefaultModal message="정말로 지원을 취소하시겠습니까?" />
+          <DefaultModal
+            onConfirm={handleConfirm}
+            onCancel={handleCloseModal}
+            message="정말로 지원을 취소하시겠습니까?"
+          />
         </div>
       )}
     </div>
