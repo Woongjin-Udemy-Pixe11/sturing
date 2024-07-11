@@ -17,7 +17,10 @@ export async function GET(request: Request) {
     const studyMembers = await StudyMember.find({
       studyId: new mongoose.Types.ObjectId(studyId),
     })
-      .populate('userId', 'nickname')
+      .populate({
+        path: 'userId',
+        select: 'nickname image',
+      })
       .lean();
 
     // console.log('Found study members:', studyMembers);

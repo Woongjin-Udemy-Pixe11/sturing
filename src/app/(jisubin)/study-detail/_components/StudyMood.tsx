@@ -10,7 +10,6 @@ export default function StudyMood(props: TStudyMoodProps) {
   const moodArray = mood.map((v) =>
     emojiLabelList.filter((emoji) => emoji.title == v),
   );
-  console.log(moodArray);
   return (
     <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[2.4rem]">
       <div className="flex flex-col justify-center">
