@@ -11,7 +11,7 @@ let studyData = {
   STUDY_MEETINGS: '토요일 오후 8시 온라인 진행',
   STUDY_PLACE: '추후협의',
 };
-export default function StudyInfo() {
+export default function StudyInfo({ data }: any) {
   let {
     STUDY_NAME,
     STUDY_TYPE,

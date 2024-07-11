@@ -14,21 +14,23 @@ import { TFetchStudy } from '@/types/TStudy';
 import { studyReducer } from '@/utils/study/studyReducer';
 import { useRouter } from 'next/navigation';
 
-export default function CollectStudyClient(props: { id: string }) {
-  const { id } = props;
+type TProps = {
+  leaderId: string;
+  lectureId: string;
+};
+export default function CollectStudyClient(props: TProps) {
+  const { leaderId, lectureId } = props;
   const router = useRouter();
 
-  const lectureID = '';
-
   const mockdata: TFetchStudy = {
-    leaderId: id,
+    leaderId: leaderId,
     studyImage: '/images/study-img1.png',
     studyName: '',
     studyContent: '',
     studyType: '',
     studyLevel: '',
     studyMember: 0,
-    studyLecture: lectureID,
+    studyLecture: lectureId,
     studyCategory: '',
     studyDeadline: '',
     studyStart: '',
@@ -44,7 +46,6 @@ export default function CollectStudyClient(props: { id: string }) {
     studyReducer,
     mockdata,
   );
-  console.log('리듀서 state', study);
 
   const onClickStepOne = (category: string) => {
     dispatch({ type: 'setCategory', payload: category });
