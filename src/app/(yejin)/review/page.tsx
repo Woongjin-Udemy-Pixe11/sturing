@@ -1,9 +1,13 @@
 import ReviewForm from '@/components/(yejin)/review/ReviewForm';
 
-export default function page() {
+export default function page({
+  searchParams,
+}: {
+  searchParams: { evaluatedUserId?: string; studyId?: string };
+}) {
   return (
     <>
-      <ReviewForm />
+      <ReviewForm searchParams={searchParams} />
     </>
   );
 }

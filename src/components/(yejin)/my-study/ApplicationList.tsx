@@ -7,9 +7,21 @@ type ApplicationListProps = {
   userId: string;
 };
 
+async function studyStatus(studyId: string) {
+  const res = await fetch(`/api/study-form/status/${studyId}`, {
+    method: 'PATCH',
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to status');
+  }
+
+  return res.json();
+}
+
 async function getReceivedApplication(userId: string) {
   const res = await fetch(
-    `${process.env.LOCAL_URL}/api/study-form/receive?userId=${userId}`,
+    `${process.env.LOCAL_URL}/api/study-form/other?userId=${userId}`,
     { cache: 'no-store' },
   );
 
@@ -29,7 +41,6 @@ async function getMyApplication(userId: string) {
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
-
   return res.json();
 }
 
@@ -78,11 +89,11 @@ export default async function ApplicationList({
                             수락
                           </StudyStatus>
                         ) : study.studyFormRead ? (
-                          <StudyStatus color="red" subColor="red">
+                          <StudyStatus color="gray" subColor="gray">
                             열람
                           </StudyStatus>
                         ) : (
-                          <StudyStatus color="gray" subColor="gray">
+                          <StudyStatus color="red" subColor="red">
                             미열람
                           </StudyStatus>
                         )}
@@ -128,9 +139,9 @@ export default async function ApplicationList({
           ) : (
             <div className="bg-gray-100 px-[1.6rem] flex flex-col gap-[1.6rem] py-[2rem]">
               {receive &&
-                receive.map((study: any) => (
+                receive.map((study: any, index: any) => (
                   <div
-                    key={study.studyId}
+                    key={index}
                     className="bg-white w-full flex flex-col gap-[1.6rem] px-[2rem] py-[2.4rem] rounded-[0.8rem] border border-gray-300"
                   >
                     <div className="flex justify-between">
@@ -139,11 +150,11 @@ export default async function ApplicationList({
                           수락
                         </StudyStatus>
                       ) : study.studyFormRead ? (
-                        <StudyStatus color="red" subColor="red">
+                        <StudyStatus color="gray" subColor="gray">
                           열람
                         </StudyStatus>
                       ) : (
-                        <StudyStatus color="gray" subColor="gray">
+                        <StudyStatus color="red" subColor="red">
                           미열람
                         </StudyStatus>
                       )}
@@ -163,14 +174,16 @@ export default async function ApplicationList({
                           <span className="text-gray-700">
                             {study.userId?.nickname}
                           </span>
-                          <span className="text-gray-400">|</span>
-                          <span className="text-gray-600">
-                            {String(
-                              Object.values(
-                                study?.userId?.studyType?.level || {},
-                              )[0] || '레벨 없음',
-                            )}
-                          </span>
+                          {study.userId?.matchingInfo?.level && (
+                            <>
+                              <span className="text-content-1 text-gray-400">
+                                |
+                              </span>
+                              <span className="text-content-1 text-gray-600">
+                                {study.userId?.matchingInfo?.level[0]}
+                              </span>
+                            </>
+                          )}
                         </div>
                         <p className="text-content-2 text-gray-900 font-semibold">
                           {study.studyFormTitle}

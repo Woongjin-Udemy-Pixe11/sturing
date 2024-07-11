@@ -2,24 +2,31 @@ import LongButton from '@/components/common/LongButton';
 import Link from 'next/link';
 
 export default function MyStudyInfo({
-  data,
+  activestudy,
+  completedstudy,
   userid,
 }: {
-  data: any;
+  activestudy: any;
+  completedstudy: any;
   userid?: string;
 }) {
   return (
     <>
       <section className="flex w-full px-[2.4rem] py-[2rem]">
         {/* TODO:어떻게하기로했더라 활동중,종료중 */}
-        <div className="flex-1 text-center border-r-[0.1rem] border-gray-400">
-          <h1>2</h1>
+
+        <Link
+          className="flex-1 text-center border-r-[0.1rem] border-gray-400"
+          href="/my-study-list"
+        >
+          <h1>{activestudy}</h1>
           <h2>활동 중 스터디</h2>
-        </div>
-        <div className="flex-1 text-center">
-          <h1>4</h1>
+        </Link>
+
+        <Link className="flex-1 text-center" href="/my-study-list">
+          <h1>{completedstudy}</h1>
           <h2>종료 중 스터디</h2>
-        </div>
+        </Link>
       </section>
       <section className="flex gap-2 mt-3">
         <LongButton color="white">

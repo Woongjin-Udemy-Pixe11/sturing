@@ -1,7 +1,7 @@
 import LectureDetailRatingPage from './rating/page';
-import LectureStudyInfo from '../../_components/LectureStudyInfo';
-import LectureStudy from '../../_components/LectureStudy';
-import LectureRating from '../../_components/LectureRating';
+import LectureStudyInfo from '../_components/LectureStudyInfo';
+import LectureStudy from '../_components/LectureStudy';
+import LectureRating from '../_components/LectureRating';
 
 type TLectureDetailProps = {
   params: { id: string };

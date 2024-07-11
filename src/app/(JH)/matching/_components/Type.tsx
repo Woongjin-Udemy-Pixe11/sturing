@@ -1,11 +1,11 @@
 import MatchingContainer from '@/components/(JH)/matching/MatchingContainer';
 import { FaCheck } from 'react-icons/fa6';
 
-export default function Type({ studyType, onClickStudyType }: any) {
+export default function Type({ studyType, onClickStudyType, nickname }: any) {
   return (
     <div className="w-full px-[1.4rem]">
       <section className="py-[2rem] ">
-        <h1 className="font-black text-headline-3">웅진님이 선호하는</h1>
+        <h1 className="font-black text-headline-3">{nickname}님이 선호하는</h1>
         <h1 className="font-black text-headline-3">
           스터디 유형을 선택해 주세요
         </h1>

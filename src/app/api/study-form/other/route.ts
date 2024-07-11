@@ -28,9 +28,10 @@ export async function GET(request: Request) {
       })
       .populate({
         path: 'userId',
-        select: 'nickname image studyType',
+        select: 'nickname image matchingInfo',
         populate: {
-          path: 'studyType',
+          path: 'matchingInfo',
+          model: 'matching',
           select: 'level',
         },
       })

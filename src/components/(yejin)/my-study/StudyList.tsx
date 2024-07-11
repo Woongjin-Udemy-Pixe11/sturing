@@ -1,15 +1,24 @@
 import { formatDate } from '@/components/common/StudyCardList';
 import { TStudy } from '@/types/TStudy';
 import * as Tabs from '@radix-ui/react-tabs';
-import Link from 'next/link';
+import StudyMember from './StudyMember';
 
 type StudyProps = {
   activeStudies: TStudy[];
   completedStudies: TStudy[];
+  params?: { studyId: string };
+};
+type Member = {
+  _id: string;
+  userId: {
+    _id: string;
+    nickname: string;
+  };
+  hasReview: boolean;
 };
 
-export default function StudyList(props: StudyProps) {
-  const { activeStudies, completedStudies } = props;
+export default async function StudyList(props: StudyProps) {
+  const { activeStudies, completedStudies, params } = props;
 
   return (
     <>
@@ -104,37 +113,7 @@ export default function StudyList(props: StudyProps) {
                       강의 후기 작성하기
                     </button>
                     <span className="border-b border-gray-300 pt-[1.2rem] mb-[1.2rem]"></span>
-                    <div className="flex flex-col gap-[2rem]">
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-900 font-semibold text-content-1">
-                          페퍼솔트님
-                        </span>
-                        <Link
-                          href="../review"
-                          className="px-[1.2rem] border border-main-600 rounded-[0.5rem]"
-                        >
-                          <button
-                            type="submit"
-                            className="py-[0.6rem] font-medium text-content-2 text-main-600"
-                          >
-                            작성 완료
-                          </button>
-                        </Link>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-900 font-semibold text-content-1">
-                          참치마요님
-                        </span>
-                        <Link
-                          href="/review"
-                          className="px-[1.2rem] py-[0.4rem] border border-gray-400 rounded-[0.5rem]"
-                        >
-                          <button className="font-medium text-content-2 text-gray-700">
-                            후기 작성
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
+                    {study._id && <StudyMember studyId={study._id} />}
                   </div>
                 ))}
             </div>

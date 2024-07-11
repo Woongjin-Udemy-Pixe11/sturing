@@ -2,11 +2,11 @@ import FlexContainer from '@/components/(JH)/matching/FlexContainer';
 import SelectMatching from '@/components/(JH)/matching/SelectMatching';
 import { emojiLabelList } from '@/constant/emojiLabelList';
 
-export default function Mood({ moods, onClickMood }: any) {
+export default function Mood({ moods, onClickMood, nickname }: any) {
   return (
     <div className="w-full px-[1.6rem] py-[2rem]">
       <section>
-        <h1 className="font-black text-headline-3">웅진님이 선호하는</h1>
+        <h1 className="font-black text-headline-3">{nickname}님이 선호하는</h1>
         <h1 className="font-black text-headline-3">
           스터디 분위기를 선택해 주세요.
         </h1>
