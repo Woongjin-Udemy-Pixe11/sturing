@@ -2,10 +2,21 @@ import connectDB from '@/lib/db';
 import { User } from '@/lib/schemas/userSchema';
 
 export async function GET(req: Request) {
-  const users = await User.find({});
-  return Response.json(users);
-}
+  connectDB();
+  try {
+    const url = new URL(req.url);
+    const id = url.searchParams.get('id');
 
+    const user = await User.findById({ _id: `${id}` });
+    if (!user) {
+      return Response.json({ error: 'User not found' }, { status: 404 });
+    }
+    return Response.json(user);
+  } catch (error) {
+    console.log(error);
+    return Response.json({ error }, { status: 500 });
+  }
+}
 export async function POST(request: Request) {
   connectDB();
   const res = await request.json();
