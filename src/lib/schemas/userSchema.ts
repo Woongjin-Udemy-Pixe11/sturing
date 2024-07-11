@@ -24,7 +24,6 @@ const userSchema = new mongoose.Schema(
       require: false,
       ref: 'matching',
     },
-
     sturingPercent: {
       type: Number,
       required: true,

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { HiEllipsisVertical } from 'react-icons/hi2';
 
-export default function CommentPage() {
+export default function StudyComment() {
   return (
     <>
       <div className=" bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[2.4rem]">

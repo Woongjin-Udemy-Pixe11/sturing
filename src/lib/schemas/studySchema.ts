@@ -42,9 +42,7 @@ const studySchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-    studySubject: {
-      type: String,
-    },
+    studyLecture: { type: mongoose.Schema.Types.ObjectId, ref: 'Lecture' },
     studyCategory: {
       type: String,
       enum: [

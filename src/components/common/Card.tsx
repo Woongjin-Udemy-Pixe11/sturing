@@ -31,6 +31,10 @@ export default function Card(props: TStudy) {
     '182': 'w-full  m-auto',
     '167': 'w-full  m-auto',
   };
+
+  const start = studyStart.split('T')[0].split('-').slice(1).join('.');
+  const end = studyEnd.split('T')[0].split('-').slice(1).join('.');
+
   return (
     <div className="w-full m-auto">
       <div className="relative w-full min-h-[15rem] mb-[1.2rem]">
@@ -83,7 +87,7 @@ export default function Card(props: TStudy) {
               />
             </svg>
             <span>
-              {studyStart}~{studyEnd}
+              {start}~{end}
             </span>
           </div>
           <div className="h-[1.2rem] leading-[1.2rem] border-l border-gray-400"></div>
