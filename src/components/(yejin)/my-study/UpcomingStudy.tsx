@@ -1,6 +1,5 @@
 'use client';
 
-import { formatDate } from '@/components/common/StudyCardList';
 import { TStudy } from '@/types/TStudy';
 import Link from 'next/link';
 import 'swiper/css';
@@ -69,10 +68,7 @@ export default function UpcomingStudy(props: StudyProps) {
                   <div className="flex bg-gray-100 p-[0.8rem] gap-[0.8rem] [&>span]:text-content-2 rounded-[0.3rem]">
                     <span className="text-gray-700">{study.studyPlace}</span>
                     <span className="text-gray-400">|</span>
-                    <span className="text-gray-700">
-                      {formatDate(study.studyStart)}{' '}
-                      {formatDate(study.studyMeetings)}
-                    </span>
+                    <span className="text-gray-700">{study.studyMeetings}</span>
                   </div>
                 </Link>
               </SwiperSlide>

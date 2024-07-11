@@ -14,10 +14,10 @@ export default async function Page({
   const studyId = params.studyId;
 
   const data = await fetchStudy(studyId);
-  console.log('스터디 데이터', data);
+
   return (
     <>
-      <Header data={data} />
+      <Header studyId={studyId} data={data} />
       <TeamContainer />
     </>
   );

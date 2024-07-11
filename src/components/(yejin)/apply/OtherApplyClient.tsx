@@ -35,11 +35,14 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
               <span className="text-content-1 text-gray-900 font-bold">
                 {studyForm.userId.nickname}
               </span>
-              {studyForm.userId.matchingInfo?.matching.level && (
+
+              {studyForm.userId?.matchingInfo?.level && (
                 <>
                   <span className="text-content-1 text-gray-400">|</span>
                   <span className="text-content-1 text-gray-600">
-                    {studyForm.userId.matchingInfo.matching.level}
+                    {studyForm.userId?.matchingInfo?.level?.[
+                      studyForm.userId.matchingInfo?.interests?.[0] ?? 'default'
+                    ] ?? ''}
                   </span>
                 </>
               )}

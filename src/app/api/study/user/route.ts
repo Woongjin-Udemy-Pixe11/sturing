@@ -18,10 +18,10 @@ export async function getUserStudies(userId: string) {
   const studyMembers = await StudyMember.find({ userId: objectId }).populate(
     'studyId',
   );
-  const myStudies = studyMembers.map((member) => member.studyId);
+  let myStudies: any = studyMembers.map((member) => member.studyId);
 
-  // 두 결과를 합치고 중복 제거
-  const allStudies = [...leaderStudies, ...myStudies];
+  const allStudies = [...myStudies, ...leaderStudies].filter((s) => s !== null);
+
   const uniqueStudies = Array.from(
     new Set(allStudies.map((s) => s._id.toString())),
   ).map((id) => allStudies.find((s) => s._id.toString() === id));

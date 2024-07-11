@@ -1,5 +1,6 @@
 import { formatDate } from '@/components/common/StudyCardList';
 import { TStudy } from '@/types/TStudy';
+import { getSession } from '@/utils/getSessions';
 import * as Tabs from '@radix-ui/react-tabs';
 import StudyMember from './StudyMember';
 
@@ -18,6 +19,9 @@ type Member = {
 };
 
 export default async function StudyList(props: StudyProps) {
+  const session = await getSession();
+  const userId = session?.user?.id;
+
   const { activeStudies, completedStudies, params } = props;
 
   return (
@@ -113,7 +117,9 @@ export default async function StudyList(props: StudyProps) {
                       강의 후기 작성하기
                     </button>
                     <span className="border-b border-gray-300 pt-[1.2rem] mb-[1.2rem]"></span>
-                    {study._id && <StudyMember studyId={study._id} />}
+                    {study._id && userId && (
+                      <StudyMember studyId={study._id} userId={userId} />
+                    )}
                   </div>
                 ))}
             </div>

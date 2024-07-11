@@ -180,7 +180,11 @@ export default async function ApplicationList({
                                 |
                               </span>
                               <span className="text-content-1 text-gray-600">
-                                {study.userId?.matchingInfo?.level[0]}
+                                {
+                                  study.userId?.matchingInfo?.level[
+                                    `${study.userId.matchingInfo.interests[0]}`
+                                  ]
+                                }
                               </span>
                             </>
                           )}

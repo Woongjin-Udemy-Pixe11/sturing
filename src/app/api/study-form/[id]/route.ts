@@ -25,8 +25,7 @@ export async function GET(
         select: 'nickname image sturingPercent matchingInfo',
         populate: {
           path: 'matchingInfo',
-          model: 'matching',
-          select: 'level',
+          select: 'level interests',
         },
       });
 

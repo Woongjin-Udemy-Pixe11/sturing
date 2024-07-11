@@ -17,9 +17,10 @@ import { useRouter } from 'next/navigation';
 type TProps = {
   leaderId: string;
   lectureId: string;
+  lectureName: string;
 };
 export default function CollectStudyClient(props: TProps) {
-  const { leaderId, lectureId } = props;
+  const { leaderId, lectureId, lectureName } = props;
   const router = useRouter();
 
   const mockdata: TFetchStudy = {
@@ -79,6 +80,7 @@ export default function CollectStudyClient(props: TProps) {
   const collectstep: any = {
     1: (
       <SelectCateGory
+        lectureName={lectureName}
         step={step}
         setStep={setStep}
         study={study}

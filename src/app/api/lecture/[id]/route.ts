@@ -9,6 +9,10 @@ export async function GET(
   connectDB();
   const id = params.id;
 
+  const { searchParams } = new URL(req.url);
+  const needData = searchParams.get('data');
+  console.log('needData', needData);
+
   if (!id) {
     return Response.json({ error: 'Lecture ID is required' }, { status: 400 });
   }
@@ -18,7 +22,11 @@ export async function GET(
     if (!lecture) {
       return Response.json({ error: 'Lecture not found' }, { status: 404 });
     }
-    return Response.json(lecture);
+    if (needData) {
+      return Response.json(lecture[needData]);
+    } else {
+      return Response.json(lecture);
+    }
   } catch (error) {
     console.log(error);
     return Response.json({ error }, { status: 500 });

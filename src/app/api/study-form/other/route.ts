@@ -32,7 +32,7 @@ export async function GET(request: Request) {
         populate: {
           path: 'matchingInfo',
           model: 'matching',
-          select: 'level',
+          select: 'level interests',
         },
       })
       .sort({ createdAt: -1 });
