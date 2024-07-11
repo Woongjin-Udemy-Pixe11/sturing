@@ -2,13 +2,13 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export default function TabBar() {
+export default function TabBar({ studyId }: any) {
   const pathname = usePathname();
   const tabs = [
-    { name: '팀', href: '/my-study-main/team' },
-    { name: '개인', href: '/my-study-main/my-todo' },
-    { name: '일정', href: '/my-study-main/calendar' },
-    { name: '게시판', href: '/my-study-main/board' },
+    { name: '팀', href: `/my-study-main/${studyId}/team` },
+    { name: '개인', href: `/my-study-main/${studyId}/my-todo` },
+    { name: '일정', href: `/my-study-main/${studyId}/calendar` },
+    { name: '게시판', href: `/my-study-main/${studyId}/board` },
   ];
 
   return (
