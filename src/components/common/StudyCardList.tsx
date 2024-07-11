@@ -17,7 +17,7 @@ export default async function StudyCardList({
   sort?: string;
   userId?: string;
 }) {
-  let url = `${process.env.LOCAL_URL}/api/study?sort=${sort}`;
+  let url = `${process.env.LOCAL_URL}/api/study/main?sort=${sort}`;
   if (userId) {
     url += `&userId=${userId}`;
   }
