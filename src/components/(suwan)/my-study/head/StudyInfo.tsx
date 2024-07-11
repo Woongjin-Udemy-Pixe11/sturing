@@ -7,13 +7,19 @@ import {
   daysToWeeks,
 } from 'date-fns';
 import { ko } from 'date-fns/locale';
+import { fetchLecture } from '@/utils/my-study-main/fetch';
 
-export default function StudyInfo({ data }: any) {
+export default async function StudyInfo({ data }: any) {
   // console.log('data', data);
+
+  const lectureId = data.studyLecture;
+  const lectureData = await fetchLecture(lectureId);
+  // console.log('🔍', lectureData);
 
   const NAME = data.studyName;
   const TYPE = data.studyType;
-  const LECTURE = data.studyLecture;
+  const LECTURE = lectureData.lectureName;
+  const LECTURE_URL = lectureData.lectureURL;
   const START = format(data.studyStart, 'y.MM.dd(EEE)', { locale: ko });
 
   const END = format(data.studyEnd, 'y.MM.dd(EEE)', { locale: ko });
@@ -21,7 +27,7 @@ export default function StudyInfo({ data }: any) {
   const PERIOD = Math.ceil(
     Math.abs(differenceInDays(data.studyStart, data.studyEnd)) / 7,
   );
-  // console.log('⏰', PERIOD);
+
   const MEETINGS = data.studyMeetings;
   const PLACE = data.studyPlace;
 
@@ -44,7 +50,9 @@ export default function StudyInfo({ data }: any) {
             </span>
           </div>
           <h1 className="text-[2rem] font-semibold">{NAME}</h1>
-          {LECTURE && <CourseLink courseTitle={LECTURE} courseLink="" />}
+          {LECTURE && (
+            <CourseLink courseTitle={LECTURE} courseLink={LECTURE_URL} />
+          )}
 
           <div className="flex flex-col space-y-[0.8rem] text-content-1 font-medium">
             <div className="flex">

@@ -1,6 +1,6 @@
 import CalendarContainer from '@/components/(suwan)/my-study/calendar/CalendarContainer';
 import Header from '../_components/Header';
-import fetchStudy from '@/utils/my-study-main/fetchStudy';
+import { fetchStudy } from '@/utils/my-study-main/fetch';
 
 export default async function Calender({
   params,

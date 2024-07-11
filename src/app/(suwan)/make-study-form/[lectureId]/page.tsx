@@ -10,7 +10,7 @@ export default async function page(props: any) {
 
   const lectureName = await (
     await fetch(
-      `http://localhost:3000/api/lecture/${lectureId}?data=lectureName`,
+      `${process.env.LOCAL_URL}/api/lecture/${lectureId}?data=lectureName`,
     )
   ).json();
 
