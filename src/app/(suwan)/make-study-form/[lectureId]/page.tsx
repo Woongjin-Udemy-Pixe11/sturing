@@ -14,8 +14,6 @@ export default async function page(props: any) {
     )
   ).json();
 
-  console.log(lectureName);
-
   return (
     <>
       {id && (

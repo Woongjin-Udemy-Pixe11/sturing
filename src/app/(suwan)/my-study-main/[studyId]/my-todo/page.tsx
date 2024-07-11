@@ -11,7 +11,7 @@ export default async function MyTodo({
   const data = await fetchStudy(studyId);
   return (
     <>
-      <Header data={data} />
+      <Header studyId={studyId} data={data} />
       <MyTodoContainer />
     </>
   );

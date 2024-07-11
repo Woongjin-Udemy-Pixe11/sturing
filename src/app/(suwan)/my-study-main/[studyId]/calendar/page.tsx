@@ -12,7 +12,7 @@ export default async function Calender({
 
   return (
     <>
-      <Header data={data} />
+      <Header studyId={studyId} data={data} />
       <CalendarContainer />
     </>
   );

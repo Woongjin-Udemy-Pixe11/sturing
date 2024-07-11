@@ -13,7 +13,7 @@ export default async function page({
 
   return (
     <>
-      <Header data={data} />
+      <Header studyId={studyId} data={data} />
       <div className="bg-gray-100 py-[2.4rem]">
         <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] my-[2.4rem] pb-[2.4rem]">
           <div className="mx-[1.6rem]">
