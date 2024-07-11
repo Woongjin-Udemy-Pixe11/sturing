@@ -40,8 +40,8 @@ export default async function StudyCardList({
               studyType={study.studyType}
               studyCategory={study.studyCategory}
               studyName={study.studyName}
-              studyStart={formatDate(study.studyStart)}
-              studyEnd={formatDate(study.studyEnd)}
+              studyStart={study.studyStart}
+              studyEnd={study.studyEnd}
               studyPlace={study.studyPlace}
               studyJoinMember={study.studyJoinMember}
               studyMember={study.studyMember}
