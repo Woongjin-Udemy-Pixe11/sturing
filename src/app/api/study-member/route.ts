@@ -8,6 +8,7 @@ export async function GET(request: Request) {
 
   const { searchParams } = new URL(request.url);
   const studyId = searchParams.get('studyId');
+  const userId = searchParams.get('userId');
   const reviewStatus = searchParams.get('reviewStatus') === 'true';
 
   console.log('Received studyId:', studyId);
@@ -32,6 +33,7 @@ export async function GET(request: Request) {
           const review = await StudyReview.findOne({
             studyId: studyId,
             evaluateduser: member.userId._id,
+            userId: userId,
           }).lean();
 
           return {
