@@ -54,7 +54,7 @@ export default async function StudyDetailPage(props: TStudyDetailPageProps) {
         />
       )}
 
-      <StudyMood />
+      <StudyMood mood={study.studyMood} />
 
       <StudyTeamMembers id={id} />
       <StudyComment />

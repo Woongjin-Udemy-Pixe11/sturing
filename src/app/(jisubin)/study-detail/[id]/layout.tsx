@@ -41,7 +41,10 @@ export default async function StudyDetailLayout(
   return (
     <html lang="ko">
       <body className="w-full m-auto">
-        <div className="bg-[url('/images/study-preview-img.png')] text-white">
+        <div
+          style={{ backgroundImage: `url(${study.studyImage})` }}
+          className={`text-white`}
+        >
           {/*뒤로가기, 공유버튼 색상 흰색으로 변경 필요*/}
           <BackShareHeader />
           <StudyDetailTitle
