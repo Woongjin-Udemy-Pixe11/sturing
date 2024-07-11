@@ -4,6 +4,10 @@ const commentSchema = new mongoose.Schema({
   commentWriteId: String,
   commnetContent: String,
   commentDate: String,
+  studyId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Study',
+  },
 });
 export const Comment =
   mongoose.models?.Comment || mongoose.model('comment', commentSchema);
