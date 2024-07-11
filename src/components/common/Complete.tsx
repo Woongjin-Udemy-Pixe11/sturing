@@ -32,8 +32,8 @@ export default function Complete({
               y2="82.2692"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#3A6CFF" />
-              <stop offset="1" stop-color="#FFE4E0" />
+              <stop stopColor="#3A6CFF" />
+              <stop offset="1" stopColor="#FFE4E0" />
             </linearGradient>
           </defs>
         </svg>

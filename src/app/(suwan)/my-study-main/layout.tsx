@@ -4,9 +4,19 @@ import TabBar from '@/components/(suwan)/my-study/head/Tabar';
 import StudyInfo from '@/components/(suwan)/my-study/head/StudyInfo';
 import { study } from '@/dummy/studyList';
 import { useSelectedLayoutSegments } from 'next/navigation';
-export default function Layout({ children }: { children: React.ReactNode }) {
+import { getSession } from '@/utils/getSessions';
+
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const segement = useSelectedLayoutSegments();
   let isHeader = segement.length === 1 ? true : false;
+
+  const session = await getSession();
+  const userid = session?.user?.id;
+
   return (
     <>
       {isHeader && (

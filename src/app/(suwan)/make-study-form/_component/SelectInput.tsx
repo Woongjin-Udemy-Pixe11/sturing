@@ -1,12 +1,29 @@
-export default function SelectInput({ type }: { type: string }) {
+type TSelectInputProps = {
+  type: 'time' | 'date';
+  onChange: (value: string) => void;
+  value: string;
+  checked?: boolean;
+};
+
+export default function SelectInput(props: TSelectInputProps) {
+  const { type, onChange, value, checked } = props;
   return (
     <>
       {type === 'time' ? (
         <select
           name="time-zones"
           id="time-zones"
-          className="border-gray-300 border py-[1.3rem] px-[1.6rem] flex-1 rounded-md "
+          // defaultValue=""
+          value={checked ? '' : value}
+          onChange={(e) => onChange(e.target.value)}
+          disabled={checked}
+          className={`border-gray-300 border py-[1.3rem] px-[1.6rem] flex-1 rounded-md ${
+            checked && 'bg-gray-200 text-gray-600'
+          }`}
         >
+          <option selected disabled value="">
+            시간을 선택해주세요.
+          </option>
           <option value="00:00">오전 12:00</option>
           <option value="01:00">오전 1:00</option>
           <option value="02:00">오전 2:00</option>
@@ -35,16 +52,25 @@ export default function SelectInput({ type }: { type: string }) {
       ) : (
         <select
           name="days-of-the-week"
-          id="days-of-the-week "
-          className="border-gray-300 border py-[1.3rem] px-[1.6rem] flex-1 rounded-md"
+          id="days-of-the-week"
+          // defaultValue=""
+          value={checked ? '' : value}
+          onChange={(e) => onChange(e.target.value)}
+          disabled={checked}
+          className={`border-gray-300 border py-[1.3rem] px-[1.6rem] flex-1 rounded-md ${
+            checked && 'bg-gray-200 text-gray-600'
+          }`}
         >
-          <option value="monday">월요일</option>
-          <option value="tuesday">화요일</option>
-          <option value="wednesday">수요일</option>
-          <option value="thursday">목요일</option>
-          <option value="friday">금요일</option>
-          <option value="saturday">토요일</option>
-          <option value="sunday">일요일</option>
+          <option selected disabled value="">
+            요일을 선택해주세요.
+          </option>
+          <option value="월요일">월요일</option>
+          <option value="화요일">화요일</option>
+          <option value="수요일">수요일</option>
+          <option value="목요일">목요일</option>
+          <option value="금요일">금요일</option>
+          <option value="토요일">토요일</option>
+          <option value="일요일">일요일</option>
         </select>
       )}
     </>

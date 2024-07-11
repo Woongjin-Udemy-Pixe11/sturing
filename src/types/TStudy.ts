@@ -41,11 +41,12 @@ export type TFetchStudy = {
   studyType: string;
   studyLevel: string;
   studyMember: number;
-  studySubject: string;
+  studyLecture: string | null;
   studyCategory: string;
   studyDeadline: string;
   studyStart: string;
   studyEnd: string;
   studyPlace: string;
   studyMeetings: string;
+  studyMood: string;
 };

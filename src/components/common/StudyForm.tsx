@@ -6,7 +6,9 @@ type TStudyFormProps = {
   titlePlaceholder: string;
   contentPlaceholder: string;
   titleMaxLength?: number;
+  titleMinLength?: number;
   contentMaxLength?: number;
+  contentMinLength?: number;
   heading: string;
   titleLabel: string;
   contentLabel: string;
@@ -22,7 +24,9 @@ export default function StudyForm(props: TStudyFormProps) {
     titlePlaceholder,
     contentPlaceholder,
     titleMaxLength = 30,
+    titleMinLength,
     contentMaxLength = 500,
+    contentMinLength,
     heading,
     titleLabel,
     contentLabel,
@@ -154,7 +158,12 @@ export default function StudyForm(props: TStudyFormProps) {
             className="w-full px-[1.6rem] py-[1.2rem] border border-gray-300 rounded-[0.5rem] placeholder:text-gray-600 placeholder:text-content-1"
           />
           <div className="flex justify-end w-full text-content-2 mt-[0.8rem] mb-[0.4rem]">
-            <span className="text-gray-900">{title.length}</span>
+            {titleMinLength && title.length < titleMinLength ? (
+              <span className="text-red">{title.length}</span>
+            ) : (
+              <span className="text-gray-900">{title.length}</span>
+            )}
+
             <span className="text-gray-400">/{titleMaxLength}</span>
           </div>
         </div>
@@ -170,13 +179,18 @@ export default function StudyForm(props: TStudyFormProps) {
             id="content"
             maxLength={contentMaxLength}
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={handleContentChange}
             placeholder={contentPlaceholder}
             className="w-full h-[23rem] px-[1.6rem] py-[1.2rem] p-3 border border-gray-300 rounded-[0.5rem] text-gray-900 placeholder:text-gray-600 placeholder:text-content-1"
             rows={6}
           />
           <div className="flex justify-end w-full text-content-2 mt-[0.8rem] mb-[0.4rem]">
-            <span className="text-gray-900">{content.length}</span>
+            {contentMinLength && content.length < contentMinLength ? (
+              <span className="text-red">{content.length}</span>
+            ) : (
+              <span className="text-gray-900">{content.length}</span>
+            )}
+
             <span className="text-gray-400">/{contentMaxLength}</span>
           </div>
         </div>
