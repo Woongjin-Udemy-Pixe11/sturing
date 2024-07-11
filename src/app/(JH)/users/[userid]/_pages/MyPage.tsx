@@ -7,9 +7,13 @@ import SturingRate from '@/components/(JH)/users/SturingRate';
 export default async function MyPage({
   auth,
   userid,
+  activestudy,
+  completedstudy,
 }: {
   auth?: boolean;
   userid?: string;
+  completedstudy: number;
+  activestudy: number;
 }) {
   const loginbg = auth && `bg-gradient-to-r from-main-200  to-pink`;
   const data = await (
@@ -31,7 +35,11 @@ export default async function MyPage({
         <MyPageProfileCard auth={auth} data={data} />
         {auth && (
           <div className="mt-[1.5rem]">
-            <MyStudyInfo userid={userid} data={data} />
+            <MyStudyInfo
+              userid={userid}
+              activestudy={activestudy}
+              completedstudy={completedstudy}
+            />
           </div>
         )}
       </section>
@@ -42,7 +50,7 @@ export default async function MyPage({
       />
       {!auth && (
         <SectionNavigator
-          title={`스터디 이력 ${data.users.studyCount}`}
+          title={`스터디 이력 ${completedstudy}`}
           moveLink={`/users/${userid}/mystudylog`}
         />
       )}

@@ -3,7 +3,7 @@ import LongButton from '@/components/common/LongButton';
 import { dummyCardList } from '@/dummy/mainPage';
 import Link from 'next/link';
 
-export default function MatchingCompleted({username}:{username:string}) {
+export default function MatchingCompleted({ username }: { username: string }) {
   return (
     <div className="flex flex-col gap-[7rem]">
       <section className="flex flex-col items-center w-full  relative pt-[5rem]">
@@ -38,13 +38,14 @@ export default function MatchingCompleted({username}:{username:string}) {
           매칭 선택을 완료했습니다.
         </h1>
         <p className="text-content-1 text-gray-700 text-center whitespace-pre-line">
-          선택하신 매칭 요소는 내 프로필에서 확인할 수 있으며 웅진님을 위한
-          스터디 추천에 반영됩니다.
+          선택하신 매칭 요소는 내 프로필에서 확인할 수 있으며 {username}님을
+          위한 스터디 추천에 반영됩니다.
         </p>
       </section>
       <section className="flex flex-col gap-4">
         <h1>{username}님과 딱맞는 스터디 추천</h1>
         <div className="xl:m-auto flex flex-wrap gap-[1.5rem] justify-center xl:p-10 xl:gap-3 xl:flex-wrap xl:justify-start">
+          {/* //TODO:스터디추천 */}
           {dummyCardList &&
             dummyCardList
               .filter((card) => card.studyCatecory !== '마케팅')

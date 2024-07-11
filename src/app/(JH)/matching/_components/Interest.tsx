@@ -6,15 +6,16 @@ import FlexContainer from '@/components/(JH)/matching/FlexContainer';
 type TInterestProps = {
   interest: string[];
   onClickInterest: any;
+  nickname: any;
 };
 
 export default function Interest(props: TInterestProps) {
-  const { interest, onClickInterest } = props;
+  const { interest, onClickInterest, nickname } = props;
 
   return (
     <div className="w-full px-[1.6rem] py-[2rem]">
       <section>
-        <h1 className="font-black text-headline-3">웅진님 안녕하세요.</h1>{' '}
+        <h1 className="font-black text-headline-3">{nickname}님 안녕하세요.</h1>{' '}
         <h1 className="font-black text-headline-3">
           현재 관심있는 분야는 무엇인가요?
         </h1>

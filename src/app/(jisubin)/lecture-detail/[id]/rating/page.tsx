@@ -1,4 +1,4 @@
-import LectureRating from '@/app/(jisubin)/_components/LectureRating';
+import LectureRating from '@/app/(jisubin)/lecture-detail/_components/LectureRating';
 
 type TLectureDetailRatingPageProps = {
   params: { id: string };
