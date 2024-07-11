@@ -41,12 +41,12 @@ export default async function page() {
       ) : (
         <>
           <SectionNavigator
-            title={`${user?.name}님을 위한 스터디`}
+            title={`${user?.nickname}님을 위한 스터디`}
             moveLink="/search"
           />
           <StudyCardList userId={user?.id} sort={'category'} />
           <SectionNavigator
-            title={`${user?.name}님을 위한 새로 개설된 스터디`}
+            title={`${user?.nickname}님을 위한 새로 개설된 스터디`}
             moveLink="/search"
           />
           <StudyCardList userId={user?.id} sort={'type'} />
