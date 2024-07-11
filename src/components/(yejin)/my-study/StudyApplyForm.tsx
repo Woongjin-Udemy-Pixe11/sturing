@@ -2,6 +2,7 @@
 import LongButton from '@/components/common/LongButton';
 import { insertStudyForm } from '@/lib/actions/studyForm';
 import { getSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { CgClose } from 'react-icons/cg';
 
@@ -39,6 +40,7 @@ export default function StudyApplyForm(props: TStudyFormProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const ref = useRef<HTMLFormElement>(null);
+  const router = useRouter();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
@@ -88,6 +90,7 @@ export default function StudyApplyForm(props: TStudyFormProps) {
       setContent('');
       setSelectedFile(null);
       setPreviewUrl(null);
+      router.push('/my-study-list');
     } else {
       // 에러 처리
       console.error(result.message);
