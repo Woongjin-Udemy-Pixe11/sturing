@@ -16,7 +16,7 @@ async function getStudyMembers(
 ): Promise<Member[]> {
   console.log('Fetching members for studyId:', studyId);
   const response = await fetch(
-    `${process.env.LOCAL_URL}/api/study-member?studyId=${studyId}&reviewStatus=true`,
+    `${process.env.LOCAL_URL}/api/study-member?studyId=${studyId}&userId=${userId}&reviewStatus=true`,
     {
       cache: 'no-store',
     },
@@ -41,7 +41,6 @@ export default async function StudyMember({
   if (members.length === 0) {
     return <p className="text-content-2">스터디 멤버가 없습니다.</p>;
   }
-  console.log(members);
 
   return (
     <div className="flex flex-col gap-[2rem]">
