@@ -10,10 +10,13 @@ type Member = {
   hasReview: boolean;
 };
 
-async function getStudyMembers(studyId: string): Promise<Member[]> {
+async function getStudyMembers(
+  studyId: string,
+  userId: string,
+): Promise<Member[]> {
   console.log('Fetching members for studyId:', studyId);
   const response = await fetch(
-    `${process.env.LOCAL_URL}/api/study-member?studyId=${studyId}`,
+    `${process.env.LOCAL_URL}/api/study-member?studyId=${studyId}&userId=${userId}`,
     {
       cache: 'no-store',
     },
@@ -26,8 +29,14 @@ async function getStudyMembers(studyId: string): Promise<Member[]> {
   return response.json();
 }
 
-export default async function StudyMember({ studyId }: { studyId: string }) {
-  const members = await getStudyMembers(studyId);
+export default async function StudyMember({
+  studyId,
+  userId,
+}: {
+  studyId: string;
+  userId: string;
+}) {
+  const members = await getStudyMembers(studyId, userId);
 
   if (members.length === 0) {
     return <p className="text-content-2">스터디 멤버가 없습니다.</p>;
