@@ -1,9 +1,15 @@
 import StudyComment from '../../_components/StudyComment';
 
-export default function CommentPage() {
+type TCommentPageProps = {
+  params: { id: string };
+};
+
+export default function CommentPage(props: TCommentPageProps) {
+  const { params } = props;
+  const id = params.id;
   return (
     <>
-      <StudyComment />
+      <StudyComment id={id} />
     </>
   );
 }

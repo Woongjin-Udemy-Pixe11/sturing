@@ -1,4 +1,5 @@
 'use client';
+import { postComment } from '@/lib/actions/commentAction';
 import { getSession } from 'next-auth/react';
 import { useState } from 'react';
 
@@ -12,11 +13,18 @@ export default function CommentForm(props: TCommentFormProps) {
 
   const handleSubmit = async (formData: FormData) => {
     formData.append('studyId', studyId);
-    formData.append('commentContent', comment);
+    formData.append('comment', comment);
 
     const session = await getSession();
     if (session?.user?.id) {
-      formData.append('commentWriteId', session.user.id);
+      formData.append('userId', session.user.id);
+    }
+
+    const result = await postComment(formData);
+    if (result.success) {
+      setComment('');
+    } else {
+      console.log(result.message);
     }
   };
 

@@ -1,8 +1,13 @@
 import Image from 'next/image';
 import { HiEllipsisVertical } from 'react-icons/hi2';
 import CommentForm from './CommentForm';
+import { TStudy } from '@/types/TStudy';
 
-export default function StudyComment() {
+type TStudyCommentProps = {
+  id: string;
+};
+export default function StudyComment(props: TStudyCommentProps) {
+  const { id } = props;
   return (
     <>
       <div className=" bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[2.4rem]">
@@ -36,7 +41,7 @@ export default function StudyComment() {
             </p>
           </div>
 
-          <CommentForm />
+          <CommentForm studyId={id} />
         </div>
       </div>
     </>
