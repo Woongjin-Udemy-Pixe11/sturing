@@ -1,9 +1,19 @@
 import SectionNavigator from '@/components/common/SectionNavigator';
 import TaskInfo from './_jisubin_comp/TaskInfo';
+import Header from '../_components/Header';
+import fetchStudy from '@/utils/my-study-main/fetchStudy';
 
-export default function page() {
+export default async function page({
+  params,
+}: {
+  params: { studyId: string };
+}) {
+  const studyId = params.studyId;
+  const data = await fetchStudy(studyId);
+
   return (
     <>
+      <Header data={data} />
       <div className="bg-gray-100 py-[2.4rem]">
         <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] my-[2.4rem] pb-[2.4rem]">
           <div className="mx-[1.6rem]">

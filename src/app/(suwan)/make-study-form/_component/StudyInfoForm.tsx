@@ -16,7 +16,6 @@ export default function StudyInfoForm(props: any) {
   const [location, setLocation] = useState('');
 
   const convertBase64 = (img: File) => {
-    console.log(img);
     const reader = new FileReader();
     reader.readAsDataURL(img);
     reader.onload = () => {
@@ -31,7 +30,7 @@ export default function StudyInfoForm(props: any) {
       setImage('/images/study-img1.png');
     }
   };
-  // console.log(image);
+
   const onChangeCheckBox = () => {
     const newCheckedState = !checked;
     setChecked(newCheckedState);
