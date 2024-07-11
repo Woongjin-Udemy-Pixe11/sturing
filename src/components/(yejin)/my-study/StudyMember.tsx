@@ -41,6 +41,7 @@ export default async function StudyMember({
   if (members.length === 0) {
     return <p className="text-content-2">스터디 멤버가 없습니다.</p>;
   }
+  console.log(members);
 
   return (
     <div className="flex flex-col gap-[2rem]">
