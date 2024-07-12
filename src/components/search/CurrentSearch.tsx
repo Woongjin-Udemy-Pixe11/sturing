@@ -20,7 +20,7 @@ export default function CurrentSearch({
             <CurrentWord
               key={currentSearch}
               content={currentSearch}
-              moveLink={currentSearch}
+              moveLink={`search/result?keyword=${currentSearch}`}
               remove={() => {
                 remove(currentSearch);
               }}

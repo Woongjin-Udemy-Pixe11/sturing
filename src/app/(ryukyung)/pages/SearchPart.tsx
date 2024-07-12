@@ -5,7 +5,7 @@ import useLocalStorage from '@/utils/useLocalStorage';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function SearchPart() {
+export default function SearchPart({ isList }: { isList: any }) {
   const router = useRouter();
   const [inputValue, setInputValue] = useState('');
   const [recentSearches, addSearchToLocalStorage, removeFromLocal] =
@@ -50,7 +50,7 @@ export default function SearchPart() {
         localsave={onSearch}
       />
 
-      <CurrentSearch data={recentSearches} remove={onRemove} />
+      {isList && <CurrentSearch data={recentSearches} remove={onRemove} />}
     </section>
   );
 }

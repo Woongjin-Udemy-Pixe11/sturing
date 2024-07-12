@@ -4,6 +4,7 @@ import DefaultModal from '@/components/common/modal/DefaultModal';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import StudyTop from '../StudyTop';
+import { AgreeStudyApply } from '@/lib/actions/studyApplyAction';
 
 export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
   const router = useRouter();
@@ -87,6 +88,17 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
     }
     handleCloseModal();
   };
+  console.log(studyForm);
+
+  const studyFormId = studyForm._id;
+  const userId = studyForm.userId._id;
+  const studyId = studyForm.studyId._id;
+  const data = {
+    formId: studyFormId,
+    userId: userId,
+    studyId: studyId,
+  };
+  console.log(studyFormId, userId, studyId);
 
   return (
     <div className="w-full h-screen flex flex-col justify-between ">

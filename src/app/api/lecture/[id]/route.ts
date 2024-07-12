@@ -10,6 +10,8 @@ const dataFields = (lecture: any, fields: string[]) => {
   );
 };
 
+//TODO: 한번 질문할것 수완님
+
 export async function GET(
   req: Request,
   { params }: { params: { id: string } },

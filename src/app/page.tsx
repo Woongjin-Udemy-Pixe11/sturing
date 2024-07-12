@@ -9,6 +9,7 @@ import UserCardList from '@/components/main/UserCardList';
 import { getSession } from '@/utils/getSessions';
 import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
+import SearchPart from './(ryukyung)/pages/SearchPart';
 export default async function page() {
   const session = await getSession();
   let user = session?.user;
@@ -26,7 +27,7 @@ export default async function page() {
           <IoIosArrowForward />
         </Link>
       </p>
-      <SearchInput placeholderText="관심 스터디 분야나 강의명을 검색해 보세요" />
+      <SearchPart isList={false} />
       <SectionNavigator title="분야별 스터디 탐색하기" moveLink="/search" />
       <SearchLabelList />
       {/* TODO: 스터디 카드 클릭 시 페이지 이동, Tab으로 접근, cursor-pointer */}

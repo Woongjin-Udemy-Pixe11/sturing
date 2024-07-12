@@ -9,7 +9,7 @@ export default function Search() {
   return (
     <>
       <TabBar />
-      <SearchPart />
+      <SearchPart isList={true} />
       <RecommendSearch />
       <CurrentStudy />
     </>
