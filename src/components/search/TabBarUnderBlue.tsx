@@ -14,8 +14,8 @@ export default function TabBarUnderBlue(props: TTabBarBlueProps) {
   const [activeTab, setActiveTab] = useState(tabList[0].name);
 
   return (
-    <>
-      <ul className="w-full px-[1.6rem] flex justify-center items-center text-center border-b-[.1rem] border-gray-200">
+    <div className="flex flex-col h-full">
+      <ul className="w-full px-[1.6rem] flex justify-center items-center text-center border-b-[.1rem] text-gray-700 border-gray-200">
         {tabList.map((tab) => (
           <li
             key={tab.name}
@@ -30,9 +30,9 @@ export default function TabBarUnderBlue(props: TTabBarBlueProps) {
           </li>
         ))}
       </ul>
-      <div className="h-[54vh] w-full p-[1.6rem]">
+      <div className="w-full flex-1 overflow-auto px-[1.8rem] py-[2.4rem]">
         {tabList.find((tab) => tab.name === activeTab)?.component}
       </div>
-    </>
+    </div>
   );
 }

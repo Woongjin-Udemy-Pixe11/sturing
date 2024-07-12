@@ -1,10 +1,9 @@
 'use client';
-import * as Tabs from '@radix-ui/react-tabs';
-import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { area } from '@/constant/region';
-import TabLabel from './TabLabel';
-import { CiSearch } from 'react-icons/ci';
+import * as ScrollArea from '@radix-ui/react-scroll-area';
+import * as Tabs from '@radix-ui/react-tabs';
 import { IoSearch } from 'react-icons/io5';
+import TabLabel from './TabLabel';
 
 export default function CommonTab({ regions, onClickRegion }: any) {
   return (
