@@ -1,3 +1,4 @@
+'use client';
 import TabBarUnderBlue from './TabBarUnderBlue';
 import Field from './filter/Field';
 import Level from './filter/Level';

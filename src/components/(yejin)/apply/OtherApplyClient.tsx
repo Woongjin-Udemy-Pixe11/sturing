@@ -3,6 +3,7 @@ import LongButton from '@/components/common/LongButton';
 import DefaultModal from '@/components/common/modal/DefaultModal';
 import { useState } from 'react';
 import StudyTop from '../StudyTop';
+import { AgreeStudyApply } from '@/lib/actions/studyApplyAction';
 
 export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,6 +15,17 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+  console.log(studyForm);
+
+  const studyFormId = studyForm._id;
+  const userId = studyForm.userId._id;
+  const studyId = studyForm.studyId._id;
+  const data = {
+    formId: studyFormId,
+    userId: userId,
+    studyId: studyId,
+  };
+  console.log(studyFormId, userId, studyId);
 
   return (
     <div className="w-full h-screen flex flex-col justify-between ">
@@ -103,6 +115,14 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
       <div className="flex p-[1.6rem] items-end gap-[1rem]">
         <LongButton color="white">거절하기</LongButton>
         <LongButton color="blue">수락하기</LongButton>
+        <button
+          type="submit"
+          onClick={() => {
+            AgreeStudyApply(data);
+          }}
+        >
+          찐수락
+        </button>
       </div>
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
