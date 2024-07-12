@@ -2,13 +2,20 @@ type TCheckBoxProps = {
   name: string;
   count: number;
   isChecked: boolean;
+  onClick: any;
 };
 
 export default function CheckBox(props: TCheckBoxProps) {
-  const { name, count, isChecked } = props;
+  const { name, count, isChecked, onClick } = props;
   return (
     <>
-      <label htmlFor="temp" className=" flex w-full gap-[.4rem] ">
+      <label
+        htmlFor="temp"
+        className=" flex w-full gap-[.4rem] "
+        onClick={() => {
+          onClick(name);
+        }}
+      >
         <input type="checkbox" name="temp" checked={isChecked} />
         <span
           className={`${
