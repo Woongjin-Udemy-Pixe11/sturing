@@ -1,7 +1,7 @@
-import FilterButton from './FilterButton';
-import { TbChartCandle } from 'react-icons/tb';
 import { useState } from 'react';
+import { TbChartCandle } from 'react-icons/tb';
 import BottomSheetFilter from './BottomSheetFilter';
+import FilterButton from './FilterButton';
 
 const filterButtonList = [
   { title: '분야', isBlue: true },
@@ -45,9 +45,15 @@ export default function FilterBar() {
         </button>
       </div>
       {openFilter && (
-        <div className="absolute bottom-0 z-10 w-full">
-          <BottomSheetFilter />
-        </div>
+        <>
+          <div
+            className="fixed inset-0 bg-black bg-opacity-35 z-10"
+            onClick={onClickFilter}
+          ></div>
+          <div className="absolute bottom-0 z-10 w-full ">
+            <BottomSheetFilter onClose={() => setOpenFilter(false)} />
+          </div>
+        </>
       )}
     </>
   );
