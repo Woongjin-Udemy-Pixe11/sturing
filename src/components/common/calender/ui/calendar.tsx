@@ -20,7 +20,7 @@ function Calendar({
         months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0',
         month: 'space-y-4',
         caption:
-          'flex justify-center relative items-center pb-[1.5rem] border-gray-300 border-b',
+          'flex justify-center relative items-center py-[1.5rem] border-gray-300 border-b',
         caption_label: 'text-[1.6rem] font-semibold',
         nav: 'space-x-1 flex items-center ',
         nav_button:
@@ -34,9 +34,9 @@ function Calendar({
         head_row: 'flex gap-[1.6rem]',
         head_cell:
           'hidden text-muted-foreground rounded-full font-normal text-content-1 h-[3rem] w-[3rem]',
-        row: 'flex w-full justify-center gap-[1rem] py-[.8rem]',
+        row: 'flex w-full justify-center gap-[1.2rem] py-[.8rem]',
         cell: 'flex w-full justify-centerp-3 text-center text-content-1 relative [&:has([aria-selected].day-range-end)]:rounded-r-full [&:has([aria-selected].day-range-start)]:rounded-l-full [&:has([aria-selected].day-outside)]:bg-accent/50 first:text-red last:text-main-700 first:[&:has([aria-selected])]:rounded-l-full last:[&:has([aria-selected])]:rounded-r-full focus-within:relative focus-within:z-20',
-        day: 'h-[calc((100vw-15rem)/7)] w-[calc((100vw-15rem)/7)] font-normal rounded-full',
+        day: 'h-[calc((100vw-16rem)/7)] w-[calc((100vw-16rem)/7)] max-w-[5rem] max-h-[5rem] aspect-ratio font-normal rounded-full',
 
         day_range_end: 'day-range-end',
         day_range_start: 'day-range-start',

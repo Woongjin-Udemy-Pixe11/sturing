@@ -1,42 +1,54 @@
 import connectDB from '@/lib/db';
 import { StudyForm } from '@/lib/schemas/studyFormSchema';
+import { StudyMember } from '@/lib/schemas/studyMemberSchema';
+import { Types } from 'mongoose';
 
-export async function POST(request: Request) {
-  try {
-    await connectDB();
+connectDB();
 
-    const { studyFormId, action } = await request.json();
+export async function PUT(
+  request: Request,
+  { params }: { params: { id: string } },
+) {
+  const { id } = params;
+  const { action } = await request.json();
 
-    let updateData: {
-      studyFormRead: boolean;
-      studyFormSure: boolean;
-    } = {
-      studyFormRead: true,
-      studyFormSure: false,
-    };
-
-    if (action === 'accept') {
-      updateData.studyFormSure = true;
-    }
-
-    const updateStatus = await StudyForm.findByIdAndUpdate(
-      studyFormId,
-      updateData,
-      { new: true },
+  if (!id) {
+    return Response.json(
+      { error: 'Study Form ID is required' },
+      { status: 400 },
     );
+  }
 
-    if (!updateStatus) {
+  try {
+    const studyForm = await StudyForm.findById(new Types.ObjectId(id));
+
+    if (!studyForm) {
       return Response.json(
-        { success: false, error: 'Study form not found' },
+        { error: '지원서를 찾을 수 없습니다.' },
         { status: 404 },
       );
     }
 
-    return Response.json({ success: true, data: updateStatus });
+    if (action === 'accept') {
+      studyForm.studyFormSure = true;
+      await studyForm.save();
+
+      await StudyMember.create({
+        studyId: studyForm.studyId,
+        userId: studyForm.userId,
+      });
+
+      return Response.json({ message: '지원이 수락되었습니다.' });
+    } else if (action === 'reject') {
+      await StudyForm.findByIdAndDelete(id);
+      return Response.json({ message: '지원이 거절되었습니다.' });
+    }
+
+    return Response.json({ error: '잘못된 액션입니다.' }, { status: 400 });
   } catch (error) {
-    console.error('Error study form:', error);
+    console.error(error);
     return Response.json(
-      { success: false, error: 'Failed to update study form' },
+      { error: '서버 오류가 발생했습니다.' },
       { status: 500 },
     );
   }

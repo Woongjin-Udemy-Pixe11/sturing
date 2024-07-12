@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 
-import { DateRange } from 'react-day-picker';
 import { addDays, format } from 'date-fns';
+import { DateRange } from 'react-day-picker';
 import { Calendar } from './ui/calendar';
 
 type TRangeCalendarProps = {
@@ -24,8 +24,8 @@ export default function RangeCalendar(props: TRangeCalendarProps) {
   }, [date]);
 
   return (
-    <>
-      <span className="text-body-1 text-main-600">
+    <div className="flex flex-col">
+      <span className="text-body-2 items-start text-main-600">
         {date?.from ? (
           date.to ? (
             <>
@@ -38,14 +38,16 @@ export default function RangeCalendar(props: TRangeCalendarProps) {
           <span>Pick a date</span>
         )}
       </span>
-      <Calendar
-        initialFocus
-        mode="range"
-        defaultMonth={date?.from}
-        selected={date}
-        onSelect={setDate}
-        numberOfMonths={1}
-      />
-    </>
+      <div className="flex justify-center w-full">
+        <Calendar
+          initialFocus
+          mode="range"
+          defaultMonth={date?.from}
+          selected={date}
+          onSelect={setDate}
+          numberOfMonths={1}
+        />
+      </div>
+    </div>
   );
 }
