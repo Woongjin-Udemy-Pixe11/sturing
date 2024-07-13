@@ -10,6 +10,10 @@ const studyMemberSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  attendance: {
+    type: Array,
+    default: [],
+  },
   studyProgress: {
     type: Number,
     min: 0,

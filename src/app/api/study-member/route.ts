@@ -61,3 +61,41 @@ export async function POST(request: Request) {
   const studyMember = await StudyMember.create(res);
   return Response.json(studyMember);
 }
+
+export async function PATCH(request: Request) {
+  await connectDB();
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get('id');
+  const { today, attended } = await request.json();
+
+  if (!id) {
+    return Response.json({ error: 'id is required' }, { status: 400 });
+  }
+
+  try {
+    const member = await StudyMember.findById(id);
+
+    if (!member) {
+      return Response.json({ error: 'Member not found' }, { status: 404 });
+    }
+
+    if (attended === true) {
+      if (!member.attendance.includes(today)) {
+        member.attendance.push(today);
+      }
+    } else if (attended === false) {
+      member.attendance = member.attendance.filter(
+        (date: string) => date !== today,
+      );
+    }
+
+    await member.save();
+    return Response.json({
+      message: 'Attendance updated successfully',
+      member,
+    });
+  } catch (error) {
+    console.error('Error', error);
+    return Response.json({ error: 'Failed' }, { status: 500 });
+  }
+}
