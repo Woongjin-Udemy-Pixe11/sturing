@@ -1,7 +1,10 @@
-import TeamContainer from '@/components/(suwan)/my-study/team/TeamContainer';
+import Percent from '@/components/(suwan)/my-study/team/Percent';
+import TeamTodo from '@/components/(suwan)/my-study/team/TeamTodo';
+import Attend from '@/components/(suwan)/my-study/team/Attend';
+import Gallery from '@/components/(suwan)/my-study/team/Gallery';
 import { getSession } from '@/utils/getSessions';
 import Header from '../_components/Header';
-import fetchStudy from '@/utils/my-study-main/fetchStudy';
+import { fetchStudy, fetchMember } from '@/utils/my-study-main/fetch';
 
 export default async function Page({
   params,
@@ -12,13 +15,20 @@ export default async function Page({
   const userid = session?.user?.id;
 
   const studyId = params.studyId;
+  const studyData = await fetchStudy(studyId);
 
-  const data = await fetchStudy(studyId);
+  const memberData = await fetchMember(studyId);
 
   return (
     <>
-      <Header studyId={studyId} data={data} />
-      <TeamContainer />
+      <Header studyId={studyId} data={studyData} />
+      <div className="flex flex-col justify-center items-center bg-gray-100 w-full ">
+        <Percent />
+        <TeamTodo />
+        <Attend memberData={memberData} />
+        <Gallery />
+      </div>
+      {/* <TeamContainer /> */}
     </>
   );
 }

@@ -8,9 +8,9 @@ export default async function page(props: any) {
   const session = await getSession();
   const id = session?.user?.id;
 
-  const lectureName = await (
+  const lectureData = await (
     await fetch(
-      `http://localhost:3000/api/lecture/${lectureId}?data=lectureName`,
+      `${process.env.LOCAL_URL}/api/lecture/${lectureId}?data=lectureName`,
     )
   ).json();
 
@@ -20,7 +20,7 @@ export default async function page(props: any) {
         <CollectStudyClient
           leaderId={id}
           lectureId={lectureId}
-          lectureName={lectureName}
+          lectureName={lectureData.lectureName}
         />
       )}
     </>

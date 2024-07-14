@@ -16,7 +16,7 @@ async function getStudyMembers(
 ): Promise<Member[]> {
   console.log('Fetching members for studyId:', studyId);
   const response = await fetch(
-    `${process.env.LOCAL_URL}/api/study-member?studyId=${studyId}&userId=${userId}`,
+    `${process.env.LOCAL_URL}/api/study-member?studyId=${studyId}&userId=${userId}&reviewStatus=true`,
     {
       cache: 'no-store',
     },

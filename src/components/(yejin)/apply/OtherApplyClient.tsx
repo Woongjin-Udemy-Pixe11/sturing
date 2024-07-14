@@ -1,19 +1,104 @@
 'use client';
 import LongButton from '@/components/common/LongButton';
 import DefaultModal from '@/components/common/modal/DefaultModal';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import StudyTop from '../StudyTop';
+import { AgreeStudyApply } from '@/lib/actions/studyApplyAction';
 
 export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+  const [isAcceptModal, setIsAcceptModal] = useState(false);
+  const [isRejectModal, setIsRejectModal] = useState(false);
 
-  const handleCancelClick = () => {
-    setIsModalOpen(true);
+  const handleAcceptClick = () => {
+    setIsAcceptModal(true);
+  };
+
+  const handleRejectClick = () => {
+    setIsRejectModal(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    setIsAcceptModal(false);
+    setIsRejectModal(false);
   };
+
+  useEffect(() => {
+    const updateStudyFormRead = async () => {
+      if (!studyForm.studyFormRead) {
+        try {
+          const response = await fetch(`/api/study-form/${studyForm._id}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ action: 'view' }),
+          });
+        } catch (error) {
+          console.error('Error updating study form read status:', error);
+        }
+      }
+    };
+
+    updateStudyFormRead();
+  }, [studyForm._id, studyForm.studyFormRead]);
+
+  const handleAccept = async () => {
+    try {
+      const response = await fetch(`/api/study-form/${studyForm._id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ action: 'accept' }),
+      });
+
+      if (response.ok) {
+        alert('지원이 수락되었습니다.');
+        router.push('/my-study-list');
+      } else {
+        alert('오류가 발생했습니다.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('오류가 발생했습니다.');
+    }
+    handleCloseModal();
+  };
+
+  const handleReject = async () => {
+    try {
+      const response = await fetch(`/api/study-form/${studyForm._id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        alert('지원이 거절되었습니다.');
+        router.push('/my-study-list');
+      } else {
+        alert('오류가 발생했습니다.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('오류가 발생했습니다.');
+    }
+    handleCloseModal();
+  };
+  console.log(studyForm);
+
+  const studyFormId = studyForm._id;
+  const userId = studyForm.userId._id;
+  const studyId = studyForm.studyId._id;
+  const data = {
+    formId: studyFormId,
+    userId: userId,
+    studyId: studyId,
+  };
+  console.log(studyFormId, userId, studyId);
 
   return (
     <div className="w-full h-screen flex flex-col justify-between ">
@@ -86,8 +171,8 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M7.5 14.25C10.9518 14.25 13.75 11.4518 13.75 8C13.75 4.54822 10.9518 1.75 7.5 1.75C4.04822 1.75 1.25 4.54822 1.25 8C1.25 11.4518 4.04822 14.25 7.5 14.25ZM7.5 15.5C11.6421 15.5 15 12.1421 15 8C15 3.85786 11.6421 0.5 7.5 0.5C3.35786 0.5 0 3.85786 0 8C0 12.1421 3.35786 15.5 7.5 15.5Z"
                 fill="#CACACA"
               />
@@ -101,12 +186,29 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
         </div>
       </div>
       <div className="flex p-[1.6rem] items-end gap-[1rem]">
-        <LongButton color="white">거절하기</LongButton>
-        <LongButton color="blue">수락하기</LongButton>
+        <LongButton onClick={handleRejectClick} color="white">
+          거절하기
+        </LongButton>
+        <LongButton onClick={handleAcceptClick} color="blue">
+          수락하기
+        </LongButton>
       </div>
-      {isModalOpen && (
+      {isAcceptModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <DefaultModal message="정말로 지원을 취소하시겠습니까?" />
+          <DefaultModal
+            message={`정말로 수락하시겠습니까?`}
+            onConfirm={handleAccept}
+            onCancel={handleCloseModal}
+          />
+        </div>
+      )}
+      {isRejectModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <DefaultModal
+            message="정말로 거절하시겠습니까?"
+            onConfirm={handleReject}
+            onCancel={handleCloseModal}
+          />
         </div>
       )}
     </div>

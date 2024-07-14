@@ -36,7 +36,7 @@ const studySchema = new mongoose.Schema(
     },
     studyJoinMember: {
       type: Number,
-      default: 0,
+      default: 1,
     },
     studyLecture: {
       type: mongoose.Schema.Types.ObjectId,

@@ -13,7 +13,8 @@ const checkList = [
   { name: '기타', count: 12, isChecked: false },
 ];
 
-export default function Field() {
+export default function Field({ state, onClickField }: any) {
+  const field = state.field;
   return (
     <>
       <ul className="w-full flex gap-[.8rem] flex-col">
@@ -23,7 +24,8 @@ export default function Field() {
               <CheckBox
                 name={checkbox.name}
                 count={checkbox.count}
-                isChecked={checkbox.isChecked}
+                isChecked={field.includes(checkbox.name)}
+                onClick={onClickField}
               />
             </li>
           ))}

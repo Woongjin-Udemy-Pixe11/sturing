@@ -7,18 +7,6 @@ type ApplicationListProps = {
   userId: string;
 };
 
-async function studyStatus(studyId: string) {
-  const res = await fetch(`/api/study-form/status/${studyId}`, {
-    method: 'PATCH',
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to status');
-  }
-
-  return res.json();
-}
-
 async function getReceivedApplication(userId: string) {
   const res = await fetch(
     `${process.env.LOCAL_URL}/api/study-form/other?userId=${userId}`,
