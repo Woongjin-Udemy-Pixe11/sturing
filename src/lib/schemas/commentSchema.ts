@@ -3,7 +3,7 @@ const commentSchema = new mongoose.Schema(
   {
     commentId: String,
     commentWriteId: String,
-    commnetContent: String,
+    commentContent: String,
     // commentDate: String,
     studyId: {
       type: mongoose.Schema.Types.ObjectId,
