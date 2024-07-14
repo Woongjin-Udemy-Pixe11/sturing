@@ -1,7 +1,8 @@
 'use client';
 import { postComment } from '@/lib/actions/commentAction';
 import { getSession } from 'next-auth/react';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState, useRef } from 'react';
 
 type TCommentFormProps = {
   studyId: string;
@@ -9,20 +10,22 @@ type TCommentFormProps = {
 export default function CommentForm(props: TCommentFormProps) {
   const { studyId } = props;
   const [comment, setComment] = useState('');
-  console.log(comment);
+  const ref = useRef<HTMLFormElement>(null);
+  const router = useRouter();
 
   const handleSubmit = async (formData: FormData) => {
     formData.append('studyId', studyId);
     formData.append('comment', comment);
-
     const session = await getSession();
     if (session?.user?.id) {
       formData.append('userId', session.user.id);
     }
 
     const result = await postComment(formData);
+
     if (result.success) {
       setComment('');
+      //router.push(`/study-detail/${studyId}`);
     } else {
       console.log(result.message);
     }
@@ -34,9 +37,11 @@ export default function CommentForm(props: TCommentFormProps) {
         <input
           placeholder="댓글을 입력하세요."
           className="text-content-2 text-gray-600 pl-[1.5rem] placeholder:bg-transparent focus:outline-none"
+          value={comment}
           onChange={(e) => setComment(e.target.value)}
+          name="content"
         ></input>
-        <button className="absolute right-0 pr-[1rem]">
+        <button type="submit" className="absolute right-0 pr-[1rem]">
           <svg
             width="18"
             height="18"
