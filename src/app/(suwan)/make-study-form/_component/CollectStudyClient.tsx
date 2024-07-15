@@ -104,6 +104,7 @@ export default function CollectStudyClient(props: TProps) {
     ),
     4: (
       <StudyTeammateForm
+        leaderId={leaderId}
         step={step}
         setStep={setStep}
         study={study}

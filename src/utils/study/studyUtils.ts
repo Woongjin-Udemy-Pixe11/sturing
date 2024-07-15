@@ -1,13 +1,13 @@
 import { TFetchStudy } from '@/types/TStudy';
 
-export async function postStudy(data: TFetchStudy) {
+export async function postStudy(data: TFetchStudy, leaderId: string) {
   try {
-    const response = await fetch('/api/study', {
+    const response = await fetch(`/api/study`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ data, leaderId }),
     });
 
     if (!response.ok) {
