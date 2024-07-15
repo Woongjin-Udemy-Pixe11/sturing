@@ -8,6 +8,7 @@ import Footer from '@/components/common/Footer';
 import SearchPart from '../../pages/SearchPart';
 
 export default async function page({ searchParams }: { searchParams: any }) {
+  console.log('검색결과 페이지가 렌더링됩니다.');
   const keyword = searchParams.keyword;
   const data = await (
     await fetch(`http://localhost:3000/api/search?keyword=${keyword}`, {

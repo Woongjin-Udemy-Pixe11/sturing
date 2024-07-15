@@ -7,7 +7,9 @@ export default async function page() {
   const id = session?.user?.id;
 
   const data = await (
-    await fetch(`http://localhost:3000/api/matching?id=${id}`)
+    await fetch(`http://localhost:3000/api/matching?id=${id}`, {
+      cache: 'no-store',
+    })
   ).json();
 
   let exist = true;
