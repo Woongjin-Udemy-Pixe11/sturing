@@ -1,21 +1,26 @@
 import mongoose from 'mongoose';
 const studyTodoListSchema = new mongoose.Schema({
-  studyTodoId: {
+  studyId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Study',
+    required: true,
+  },
+  userID: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'study_todo',
+    ref: 'User',
   },
 });
 
 const studyTodoSchema = new mongoose.Schema(
   {
-    studyTodoContent: { type: String, required: true },
-    studyTodoCompleted: { type: Boolean, required: true, default: false },
-    studyTodoWriteID: {
+    todoListId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'user',
+      ref: 'StudyTodoList',
     },
+    todoContent: { type: String, required: true },
+    todoCompleted: { type: Boolean, required: true, default: false },
   },
   { timestamps: true },
 );
