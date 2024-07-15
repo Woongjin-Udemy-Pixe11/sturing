@@ -7,9 +7,12 @@ type TStudyTeamMembersProps = {
 
 async function fetchStudyDetail(id: string) {
   if (!id) throw new Error('Invalid ID');
-  const res = await fetch(`${process.env.LOCAL_URL}/api/study-detail/${id}`, {
-    cache: 'no-store',
-  });
+  const res = await fetch(
+    `${process.env.LOCAL_URL}/api/study-detail/?id=${id}`,
+    {
+      cache: 'no-store',
+    },
+  );
   if (!res.ok) throw new Error('Failed to fetch study detail');
   return res.json();
 }

@@ -4,7 +4,7 @@ import StudyInfo from '@/app/(jisubin)/study-detail/_components/StudyInfo';
 import LectureInfo from '../_components/LectureInfo';
 import StudyMood from '../_components/StudyMood';
 import StudyTeamMembers from '../_components/StudyTeamMembers';
-import StudyComment from '../_components/StudyComment';
+import StudyComments from '../_components/StudyComments';
 
 type TStudyDetailPageProps = {
   params: { id: string };
@@ -12,9 +12,12 @@ type TStudyDetailPageProps = {
 
 async function fetchStudyDetail(id: string) {
   if (!id) throw new Error('Invalid ID');
-  const res = await fetch(`${process.env.LOCAL_URL}/api/study-detail/${id}`, {
-    cache: 'no-store',
-  });
+  const res = await fetch(
+    `${process.env.LOCAL_URL}/api/study-detail/?id=${id}`,
+    {
+      cache: 'no-store',
+    },
+  );
   if (!res.ok) throw new Error('Failed to fetch study detail');
   return res.json();
 }
@@ -57,7 +60,7 @@ export default async function StudyDetailPage(props: TStudyDetailPageProps) {
       <StudyMood mood={study.studyMood} />
 
       <StudyTeamMembers id={id} />
-      <StudyComment />
+      <StudyComments id={id} />
     </div>
   );
 }
