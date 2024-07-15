@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import Todo from '../common/Todo';
 import { studyMemberTodo } from '@/dummy/studyMemberTodo';
 
-export default function TeamTodo() {
+export default function TeamTodo(props: any) {
+  const { memberData } = props;
+
+  const [clicked, setClicked] = useState(false);
+
   return (
     <>
       <div className="flex flex-col justify-center items-center w-[90%] mt-[2rem] rounded-[5px] bg-white border border-gray-300">
@@ -13,13 +18,13 @@ export default function TeamTodo() {
 
           <div className="text-[1.4rem] py-[2rem]">
             <div className="flex justify-around items-center mb-4 text-[1.4rem]">
-              {studyMemberTodo.map((member) => (
-                <div key={member.name} className="flex flex-col items-center">
+              {memberData.map((member: any) => (
+                <div key={member._id} className="flex flex-col items-center">
                   <img
-                    src={member.profileImage}
+                    src={member.userId.image}
                     className="w-[4rem] rounded-full"
                   />
-                  <span className="mt-2">{member.name}</span>
+                  <span className="mt-2">{member.userId.nickname}</span>
                 </div>
               ))}
             </div>
