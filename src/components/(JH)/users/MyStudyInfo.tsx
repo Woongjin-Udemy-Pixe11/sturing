@@ -35,7 +35,7 @@ export default function MyStudyInfo({
           </Link>
         </LongButton>
         <LongButton color="white">
-          <Link href={`${userid}/detail`}>
+          <Link href={`/matching`}>
             <p className="text-gray-900 text-content-1">매칭정보 수정</p>
           </Link>
         </LongButton>
