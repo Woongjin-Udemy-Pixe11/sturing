@@ -53,6 +53,6 @@ export async function DELETE(request: Request) {
   const res = await request.json();
   let test = await User.deleteOne({ _id: res });
   await Matching.deleteOne({ userid: res });
-  await Study.deleteMany({ leaderId: res });
+  await Study.updateOne({ leaderId: res }, { isDeleted: true });
   return new Response(JSON.stringify({ test }));
 }
