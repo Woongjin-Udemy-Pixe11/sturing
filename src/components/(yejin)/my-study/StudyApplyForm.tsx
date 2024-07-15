@@ -90,7 +90,7 @@ export default function StudyApplyForm(props: TStudyFormProps) {
       setContent('');
       setSelectedFile(null);
       setPreviewUrl(null);
-      router.push('/my-study-list');
+      router.push('/study-apply/complete/');
     } else {
       // 에러 처리
       console.error(result.message);
