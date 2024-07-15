@@ -1,6 +1,8 @@
 import StudyApplyForm from '@/components/(yejin)/my-study/StudyApplyForm';
 
-export default function page() {
+export default function page({ params }: { params: { id: string } }) {
+  const _id = params.id;
+
   return (
     <>
       <button className="w-full px-[1.6rem] text-left border-b-[0.4rem] border-main-600 mb-[2.4rem] py-[1.2rem] text-gray-600 text-content-1">
@@ -14,6 +16,7 @@ export default function page() {
             contentLabel="지원 동기"
             titlePlaceholder="스터디 모집자에게 나를 어필할 수 있는 한마디"
             contentPlaceholder="지원글을 입력해 주세요 (ex-나의 성격, 장점, 지원동기)"
+            studyId={_id}
           />
         </div>
       </div>
