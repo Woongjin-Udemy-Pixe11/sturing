@@ -15,7 +15,8 @@ const levelOptions: string[] = [
 ];
 
 export default function StudyTemmateForm(props: any) {
-  const { setStep, onClickLevel, onClickMember, study, dispatch } = props;
+  const { leaderId, setStep, onClickLevel, onClickMember, study, dispatch } =
+    props;
   const router = useRouter();
   const [level, setLevel] = useState('');
   const [studyMembers, setStudyMembers] = useState(1);
@@ -137,7 +138,7 @@ export default function StudyTemmateForm(props: any) {
           <LongButton
             color="blue"
             onClick={async () => {
-              postStudy(study);
+              postStudy(study, leaderId);
               router.push('/make-study-form/complete');
             }}
           >
