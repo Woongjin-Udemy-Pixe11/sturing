@@ -2,6 +2,7 @@ import connectDB from '@/lib/db';
 import { StudyMember } from '@/lib/schemas/studyMemberSchema';
 import { StudyReview } from '@/lib/schemas/studyReviewSchema';
 import mongoose from 'mongoose';
+import { differenceInDays } from 'date-fns';
 
 export async function GET(request: Request) {
   await connectDB();
@@ -88,7 +89,7 @@ export async function PATCH(request: Request) {
         (date: string) => date !== today,
       );
     }
-
+    member.studyProgress = member.attendance.length;
     await member.save();
     return Response.json({
       message: 'Attendance updated successfully',

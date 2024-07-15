@@ -13,18 +13,17 @@ export default async function Page({
 }) {
   const session = await getSession();
   const userid = session?.user?.id;
-
   const studyId = params.studyId;
-  const studyData = await fetchStudy(studyId);
 
+  const studyData = await fetchStudy(studyId);
   const memberData = await fetchMember(studyId);
 
   return (
     <>
       <Header studyId={studyId} data={studyData} />
       <div className="flex flex-col justify-center items-center bg-gray-100 w-full ">
-        <Percent />
-        <TeamTodo />
+        <Percent memberData={memberData} />
+        <TeamTodo memberData={memberData} />
         <Attend memberData={memberData} />
         <Gallery />
       </div>
