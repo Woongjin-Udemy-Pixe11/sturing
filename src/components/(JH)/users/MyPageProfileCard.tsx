@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import MyPageLabel from './MyPageLabel';
+import UserDetailButton from './UserDetailButton';
 export default async function MyPageProfileCard({
   data,
   auth,
@@ -16,7 +17,7 @@ export default async function MyPageProfileCard({
       <div>
         <div className="flex gap-4">
           <h1 className="font-bold text-headline-3">{data.users.nickname}</h1>
-          {auth && <h2>{'>'}</h2>}
+          {auth && <UserDetailButton id={data.users._id} />}
         </div>
         {data.matchinginfo && (
           <>
