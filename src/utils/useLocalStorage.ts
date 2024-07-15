@@ -34,7 +34,16 @@ const useLocalStorage = (key: string, initialValue: string[]) => {
     }
   };
 
-  return [storedValue, setValue, removeValue] as const;
+  const clearStorage = () => {
+    try {
+      setStoredValue(initialValue);
+      localStorage.removeItem(key);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return [storedValue, setValue, removeValue, clearStorage] as const;
 };
 
 export default useLocalStorage;
