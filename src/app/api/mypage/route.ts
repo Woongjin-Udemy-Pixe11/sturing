@@ -1,3 +1,4 @@
+'use server';
 import connectDB from '@/lib/db';
 import { Matching } from '@/lib/schemas/matchingSchema';
 import { StudyReview } from '@/lib/schemas/studyReviewSchema';
@@ -42,7 +43,6 @@ export async function PATCH(request: Request) {
       nickname: `${res.nickname}`,
     },
   );
-  revalidatePath(`/users/${id}/detail`);
 
   return new Response(JSON.stringify({ updatematching }));
 }
