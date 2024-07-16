@@ -3,7 +3,6 @@ const bookmarkSchema = new mongoose.Schema({
   targetid: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    refPath: 'targetModel',
   },
   checked: {
     type: Boolean,

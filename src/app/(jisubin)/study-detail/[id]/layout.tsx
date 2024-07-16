@@ -87,6 +87,7 @@ export default async function StudyDetailLayout(
         <BookmarkBtnNavigationBar
           text="스터디 지원하기"
           link={`/study-apply/${id}`}
+          studyId={id}
         />
       </body>
     </html>
