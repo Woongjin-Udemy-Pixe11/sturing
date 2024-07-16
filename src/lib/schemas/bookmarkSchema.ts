@@ -1,15 +1,14 @@
 import mongoose from 'mongoose';
 const bookmarkSchema = new mongoose.Schema({
-  targetid: {
+  targetId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    refPath: 'targetModel',
   },
   checked: {
     type: Boolean,
     required: true,
   },
-  userid: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'user',
