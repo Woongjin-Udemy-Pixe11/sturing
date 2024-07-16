@@ -7,12 +7,12 @@ export async function GET(req: Request) {
 
   const url = new URL(req.url);
   const [userId] = url.searchParams.getAll('userId');
-  const [studyId] = url.searchParams.getAll('studyId');
+  const [targetId] = url.searchParams.getAll('targetId');
 
   try {
     let bookmark = await Bookmark.findOne({
       userId: new Types.ObjectId(userId),
-      targetId: new Types.ObjectId(studyId),
+      targetId: new Types.ObjectId(targetId),
     });
     return Response.json(bookmark);
   } catch (error) {
@@ -33,12 +33,12 @@ export async function PATCH(req: Request) {
 
   const url = new URL(req.url);
   const [userId] = url.searchParams.getAll('userId');
-  const [studyId] = url.searchParams.getAll('studyId');
+  const [targetId] = url.searchParams.getAll('targetId');
 
   try {
     let bookmark = await Bookmark.findOne({
       userId: new Types.ObjectId(userId),
-      targetId: new Types.ObjectId(studyId),
+      targetId: new Types.ObjectId(targetId),
     });
 
     bookmark.checked = !bookmark.checked;

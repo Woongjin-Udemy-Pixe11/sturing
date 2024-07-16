@@ -1,23 +1,22 @@
-export async function fetchBookmark(userId: string, studyId: string) {
-  if (!userId || !studyId) throw new Error('Invalid ID');
+export async function fetchBookmark(userId: string, targetId: string) {
   const res = await fetch(
-    `/api/study-detail/bookmark/?userId=${userId}&studyId=${studyId}`,
+    `/api/study-detail/bookmark/?userId=${userId}&targetId=${targetId}`,
   );
   if (!res.ok) throw new Error('Failed to fetch bookmark');
   return await res.json();
 }
 
-export async function postBookmark(userId: string, studyId: string) {
+export async function postBookmark(userId: string, targetId: string) {
   try {
     const res = await fetch(
-      `/api/study-detail/bookmark/?userId=${userId}&studyId=${studyId}`,
+      `/api/study-detail/bookmark/?userId=${userId}&targetId=${targetId}`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          targetId: `${studyId}`,
+          targetId: `${targetId}`,
           checked: true,
           userId: `${userId}`,
         }),
@@ -33,15 +32,15 @@ export async function postBookmark(userId: string, studyId: string) {
   }
 }
 
-export async function updateBookmark(userId: string, studyId: string) {
+export async function updateBookmark(userId: string, targetId: string) {
   let isChecked = false;
   try {
-    fetchBookmark(userId, studyId).then((bookmark) => {
+    fetchBookmark(userId, targetId).then((bookmark) => {
       const { checked } = bookmark;
       isChecked = checked;
     });
     const res = await fetch(
-      `/api/study-detail/bookmark/?userId=${userId}&studyId=${studyId}`,
+      `/api/study-detail/bookmark/?userId=${userId}&targetId=${targetId}`,
       {
         method: 'PATCH',
         headers: {
