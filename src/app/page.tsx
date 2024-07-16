@@ -10,8 +10,10 @@ import { getSession } from '@/utils/getSessions';
 import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
 import SearchPart from './(ryukyung)/pages/SearchPart';
+
 export default async function page() {
   const session = await getSession();
+
   let user = session?.user;
 
   return (
