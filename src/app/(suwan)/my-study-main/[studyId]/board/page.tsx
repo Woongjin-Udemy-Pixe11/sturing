@@ -19,7 +19,7 @@ export default async function page({
           <div className="mx-[1.6rem]">
             <SectionNavigator
               title="공지사항"
-              moveLink="/my-study-main/board/notice-board"
+              moveLink={`./board/notice-board`}
             />
             <hr className="mx-[0.4rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
             <div className="flex flex-row items-center gap-x-[0.8rem] mb-[2.4rem] mx-[0.4rem]">
@@ -38,7 +38,7 @@ export default async function page({
           <div className="mx-[1.6rem]">
             <SectionNavigator
               title="과제 게시판"
-              moveLink="/my-study-main/board/task-board"
+              moveLink={`/my-study-main/${studyId}/board/task-board`}
             />
             <hr className="mx-[0.4rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
           </div>
