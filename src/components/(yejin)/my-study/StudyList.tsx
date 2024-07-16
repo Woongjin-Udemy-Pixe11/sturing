@@ -28,7 +28,7 @@ export default async function StudyList(props: StudyProps) {
     if (meetingString.includes('추후협의')) {
       return '추후협의';
     }
-    // 요일만 추출 (첫 번째 단어)
+
     return '매주 ' + meetingString.split(' ')[0];
   };
 
