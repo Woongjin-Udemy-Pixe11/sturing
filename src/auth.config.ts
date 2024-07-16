@@ -2,6 +2,7 @@ import type { NextAuthConfig } from 'next-auth';
 import connectDB from './lib/db';
 import { User } from './lib/schemas/userSchema';
 import * as jose from 'jose';
+import { getSession } from 'next-auth/react';
 
 export const authConfig = {
   pages: {
@@ -88,6 +89,9 @@ export const authConfig = {
         session.user.refreshToken = token.refreshToken;
       }
       return session;
+    },
+    async redirect({ url, baseUrl }: { url: any; baseUrl: any }) {
+      return '/';
     },
   },
   providers: [], // Add providers with an empty array for now
