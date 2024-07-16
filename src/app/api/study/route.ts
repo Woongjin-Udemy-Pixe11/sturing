@@ -1,6 +1,7 @@
 import connectDB from '@/lib/db';
 import { Matching } from '@/lib/schemas/matchingSchema';
 import { Study } from '@/lib/schemas/studySchema';
+import { StudyMember } from '@/lib/schemas/studyMemberSchema';
 
 connectDB();
 
@@ -57,12 +58,16 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   connectDB();
-  const { searchParams } = new URL(request.url);
-  const id = searchParams.get('id');
+  const { data, leaderId } = await request.json();
 
-  const res = await request.json();
-  const newStudy = new Study(res);
+  const newStudy = new Study(data);
   await newStudy.save();
+  const studyId = newStudy._id;
+
+  await StudyMember.create({
+    studyId: studyId,
+    userId: leaderId,
+  });
 
   return Response.json({ message: 'success' });
 }

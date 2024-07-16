@@ -10,7 +10,7 @@ export default function StudyInfoForm(props: any) {
   const [studyType, setStudyType] = useState<'온라인' | '오프라인' | null>(
     null,
   );
-  const [image, setImage] = useState<string | null>('');
+  const [image, setImage] = useState<string | null>('/images/study-img1.png');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [location, setLocation] = useState('');
