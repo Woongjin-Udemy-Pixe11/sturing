@@ -4,6 +4,7 @@ import { FaCamera } from 'react-icons/fa';
 import UserMatchingInfo from '@/components/(JH)/users/UserMatchingInfo';
 import { logout } from '@/lib/actions/userAction';
 import Link from 'next/link';
+import LongButton from '@/components/common/LongButton';
 
 export default function MyPageDetail({
   auth,
@@ -38,9 +39,11 @@ export default function MyPageDetail({
       {data.matchinginfo ? (
         <UserMatchingInfo data={data} />
       ) : (
-        <section className="mt-10">
+        <section className="mt-10 flex flex-col gap-3 ">
           <div>아직 매칭정보가 없습니다.</div>
-          <h1>함께 매칭을 하러가요!</h1>
+          <Link className="w-[30%]" href="/matching">
+            <LongButton color="gray">함께 매칭을 하러가요!</LongButton>{' '}
+          </Link>
         </section>
       )}
       <section className="flex justify-center gap-5">

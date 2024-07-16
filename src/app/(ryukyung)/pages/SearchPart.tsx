@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 export default function SearchPart({ isList }: { isList: any }) {
   const router = useRouter();
   const [inputValue, setInputValue] = useState('');
-  const [recentSearches, addSearchToLocalStorage, removeFromLocal] =
+  const [recentSearches, addSearchToLocalStorage, removeFromLocal, clearLocal] =
     useLocalStorage('recent', []);
   const [isClient, setIsClient] = useState(false);
 
@@ -33,6 +33,10 @@ export default function SearchPart({ isList }: { isList: any }) {
     removeFromLocal(search);
   };
 
+  const onClear = () => {
+    clearLocal();
+  };
+
   if (!isClient) {
     return null; // 또는 로딩 상태를 반환
   }
@@ -50,7 +54,13 @@ export default function SearchPart({ isList }: { isList: any }) {
         localsave={onSearch}
       />
 
-      {isList && <CurrentSearch data={recentSearches} remove={onRemove} />}
+      {isList && (
+        <CurrentSearch
+          data={recentSearches}
+          remove={onRemove}
+          clear={onClear}
+        />
+      )}
     </section>
   );
 }

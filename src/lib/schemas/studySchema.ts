@@ -73,6 +73,9 @@ const studySchema = new mongoose.Schema(
     studyMood: {
       type: Array,
     },
+    isDeleted: {
+      type: Boolean,
+    },
   },
   { timestamps: true },
 );
