@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 const bookmarkSchema = new mongoose.Schema({
-  targetid: {
+  targetId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
@@ -8,7 +8,7 @@ const bookmarkSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
-  userid: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'user',
