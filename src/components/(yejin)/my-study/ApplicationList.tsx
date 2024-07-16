@@ -1,5 +1,6 @@
 import { formatDate } from '@/components/common/StudyCardList';
 import * as Tabs from '@radix-ui/react-tabs';
+import { revalidatePath } from 'next/cache';
 import Link from 'next/link';
 import StudyStatus from './StudyStatus';
 
@@ -16,7 +17,7 @@ async function getReceivedApplication(userId: string) {
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
-
+  revalidatePath('/my-study-list');
   return res.json();
 }
 

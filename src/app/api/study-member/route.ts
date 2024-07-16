@@ -2,7 +2,6 @@ import connectDB from '@/lib/db';
 import { StudyMember } from '@/lib/schemas/studyMemberSchema';
 import { StudyReview } from '@/lib/schemas/studyReviewSchema';
 import mongoose from 'mongoose';
-import { differenceInDays } from 'date-fns';
 
 export async function GET(request: Request) {
   await connectDB();
@@ -28,9 +27,14 @@ export async function GET(request: Request) {
       })
       .lean();
 
+    // 로그인한 사용자를 제외한 멤버 필터링
+    const filteredMembers = studyMembers.filter(
+      (member) => member.userId._id.toString() !== userId,
+    );
+
     if (reviewStatus) {
       const memberReviewStatus = await Promise.all(
-        studyMembers.map(async (member) => {
+        filteredMembers.map(async (member) => {
           const review = await StudyReview.findOne({
             studyId: studyId,
             evaluateduser: member.userId._id,
@@ -45,7 +49,7 @@ export async function GET(request: Request) {
       );
       return Response.json(memberReviewStatus);
     } else {
-      return Response.json(studyMembers);
+      return Response.json(filteredMembers);
     }
   } catch (error) {
     console.error('Error fetching study members:', error);

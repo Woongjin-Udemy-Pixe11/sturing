@@ -12,22 +12,28 @@ async function getStudies(sort?: string | null, userId?: string) {
 
     if (matching) {
       if (sort === 'type') {
-        query = query.find({ studyType: matching.studyType }).limit(3);
+        if (matching.studyType === '상관없음') {
+          query = query
+            .find({ studyType: { $in: ['온라인', '오프라인'] } })
+            .limit(3);
+        } else {
+          query = query.find({ studyType: matching.studyType }).limit(6);
+        }
       } else if (sort === 'category') {
-        query = query.find({ studyCategory: matching.interests[0] }).limit(3);
+        query = query.find({ studyCategory: matching.interests }).limit(12);
       }
     } else {
       if (sort === 'type') {
-        query = query.sort({ createdAt: -1 }).limit(3);
+        query = query.sort({ createdAt: -1 }).limit(6);
       } else if (sort === 'category') {
-        query = query.sort({ studyViews: -1 }).limit(3);
+        query = query.sort({ studyViews: -1 }).limit(12);
       }
     }
   } else {
     if (sort === 'popular') {
-      query = query.sort({ studyViews: -1 }).limit(3);
+      query = query.sort({ studyViews: -1 }).limit(6);
     } else if (sort === 'recent') {
-      query = query.sort({ createdAt: -1 }).limit(3);
+      query = query.sort({ createdAt: -1 }).limit(12);
     }
   }
 
