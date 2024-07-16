@@ -1,7 +1,7 @@
 import SectionNavigator from '@/components/common/SectionNavigator';
 import TaskInfo from './_jisubin_comp/TaskInfo';
 import Header from '../_components/Header';
-import { fetchStudy } from '@/utils/my-study-main/fetch';
+import { fetchNoticeList, fetchStudy } from '@/utils/my-study-main/fetch';
 
 export default async function page({
   params,
@@ -10,10 +10,12 @@ export default async function page({
 }) {
   const studyId = params.studyId;
   const data = await fetchStudy(studyId);
+  const noticeList = await fetchNoticeList(studyId);
 
   return (
     <>
       <Header studyId={studyId} data={data} />
+
       <div className="bg-gray-100 py-[2.4rem]">
         <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] my-[2.4rem] pb-[2.4rem]">
           <div className="mx-[1.6rem]">
@@ -27,8 +29,7 @@ export default async function page({
                 필독
               </div>
               <span className="text-content-2 truncate">
-                이번주 스터디 시간 및 장소 확인 하시고 문의 사항 있으시면
-                말씀해주세요.
+                {noticeList.pop().title}
               </span>
             </div>
           </div>

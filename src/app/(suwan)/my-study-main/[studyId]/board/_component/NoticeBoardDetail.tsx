@@ -5,7 +5,10 @@ import Label from '@/components/common/label/Label';
 import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
-export default function NoticeBoardDetail() {
+export default function NoticeBoardDetail({ notice }: any) {
+  const title = notice.title;
+  const content = notice.content;
+
   const [isChecked, setIsChecked] = useState(false);
   const [count, setCount] = useState(0);
 
@@ -46,13 +49,9 @@ export default function NoticeBoardDetail() {
           </div>
         </div>
         <div>
-          <h2 className="font-bold text-headline-3 text-gray-900">
-            이번주 스터디 시간 및 장소 확인 하시고 문의 사항 말씀해주세요
-          </h2>
+          <h2 className="font-bold text-headline-3 text-gray-900">{title}</h2>
           <p className="text-content-1  text-gray-600 border-b border-gray-300 py-[1.6rem] pb-[2.5rem]">
-            이번주 스터디 시간 및 장소 확인 하시고 문의 사항 있으시면
-            말씀해주세요. 스터디 시간 및 장소 확인 하시고 문의 사항 있으시면
-            말씀해주세요.
+            {content}
           </p>
         </div>
         <button
