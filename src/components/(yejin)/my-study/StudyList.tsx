@@ -24,6 +24,14 @@ export default async function StudyList(props: StudyProps) {
 
   const { activeStudies, completedStudies, params } = props;
 
+  const formatMeeting = (meetingString: string) => {
+    if (meetingString.includes('추후협의')) {
+      return '추후협의';
+    }
+
+    return '매주 ' + meetingString.split(' ')[0];
+  };
+
   return (
     <>
       <Tabs.Root defaultValue="진행" className="w-full py-[1.6rem]">
@@ -77,7 +85,7 @@ export default async function StudyList(props: StudyProps) {
                       <span className="text-gray-400">|</span>
                       <span className="text-gray-1000 flex items-center gap-[0.4rem]">
                         <img src="/images/myStudyList/studyDate.svg" alt="" />
-                        매주 일요일
+                        {formatMeeting(study.studyMeetings)}
                       </span>
                     </div>
                   </div>

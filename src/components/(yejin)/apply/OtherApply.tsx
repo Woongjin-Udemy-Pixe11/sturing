@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache';
 import OtherApplyClient from './OtherApplyClient';
 
 async function fetchStudyForm(id: string) {
@@ -5,6 +6,7 @@ async function fetchStudyForm(id: string) {
   const res = await fetch(`${process.env.LOCAL_URL}/api/study-form/${id}`, {
     cache: 'no-store',
   });
+  revalidatePath('/my-study-list');
   if (!res.ok) throw new Error('Failed to fetch study form');
   return res.json();
 }

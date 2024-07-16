@@ -3,6 +3,7 @@ import { StudyForm } from '@/lib/schemas/studyFormSchema';
 import { StudyMember } from '@/lib/schemas/studyMemberSchema';
 import { Study } from '@/lib/schemas/studySchema';
 import { Types } from 'mongoose';
+import { revalidatePath } from 'next/cache';
 
 connectDB();
 
@@ -64,12 +65,29 @@ export async function PATCH(
         { studyFormRead: true },
         { new: true },
       );
+      revalidatePath(`/my-study-list`);
       return Response.json({
         updatedStudyForm,
       });
     }
 
     if (action === 'accept') {
+      const study = await Study.findById(studyForm.studyId);
+
+      if (!study) {
+        return Response.json(
+          { error: '스터디를 찾을 수 없습니다.' },
+          { status: 404 },
+        );
+      }
+
+      if (study.studyJoinMember >= study.studyMember) {
+        return Response.json(
+          { error: '스터디 정원이 이미 꽉 찼습니다.' },
+          { status: 400 },
+        );
+      }
+
       studyForm.studyFormSure = true;
       await studyForm.save();
 
@@ -77,13 +95,25 @@ export async function PATCH(
         studyId: studyForm.studyId,
         userId: studyForm.userId,
       });
-      await Study.findByIdAndUpdate(
+
+      const updatedStudy = await Study.findByIdAndUpdate(
         studyForm.studyId,
         { $inc: { studyJoinMember: 1 } },
         { new: true },
       );
 
+      if (updatedStudy.studyJoinMember > updatedStudy.studyMember) {
+        await Study.findByIdAndUpdate(studyForm.studyId, {
+          $inc: { studyJoinMember: -1 },
+        });
+        return Response.json(
+          { error: '스터디 정원이 초과되었습니다.' },
+          { status: 400 },
+        );
+      }
+
       await StudyForm.findByIdAndDelete(id);
+      revalidatePath('/my-study-list');
       return Response.json({ message: '지원이 수락되었습니다.' });
     }
 
@@ -93,22 +123,6 @@ export async function PATCH(
         { status: 404 },
       );
     }
-
-    if (action === 'accept') {
-      studyForm.studyFormSure = true;
-      await studyForm.save();
-
-      await StudyMember.create({
-        studyId: studyForm.studyId,
-        userId: studyForm.userId,
-      });
-
-      await StudyForm.findByIdAndDelete(id);
-
-      return Response.json({ message: '지원이 수락되었습니다.' });
-    }
-
-    return Response.json({ error: '잘못된 액션입니다.' }, { status: 400 });
   } catch (error) {
     console.error(error);
     return Response.json(
@@ -134,6 +148,7 @@ export async function DELETE(
   try {
     await StudyForm.deleteOne({ _id: new Types.ObjectId(id) });
 
+    revalidatePath('/my-study-list');
     return Response.json({ message: '지원이 거절되었습니다.' });
   } catch (error) {
     console.error(error);
