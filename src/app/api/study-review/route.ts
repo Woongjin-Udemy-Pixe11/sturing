@@ -2,6 +2,7 @@ import connectDB from '@/lib/db';
 import { StudyReview } from '@/lib/schemas/studyReviewSchema';
 import { Study } from '@/lib/schemas/studySchema';
 import { User } from '@/lib/schemas/userSchema';
+import { revalidatePath } from 'next/cache';
 
 export async function GET(request: Request) {
   connectDB();
@@ -64,7 +65,6 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  console.log('여기까지 왔는가????');
   await connectDB();
 
   try {
@@ -80,6 +80,7 @@ export async function POST(request: Request) {
     });
     console.log('데이터 테스트:', newReview);
     await newReview.save();
+    revalidatePath('/my-study-list');
 
     return Response.json({ message: 'Review success' }, { status: 201 });
   } catch (error) {
