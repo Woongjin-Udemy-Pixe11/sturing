@@ -10,31 +10,32 @@ import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
 type TBookmarkBtnNavigationBarProps = {
   text: string;
   link: string;
-  studyId: string;
+  targetId: string;
   userId: string;
 };
 
 export default async function BookmarkBtnNavigationBar(
   props: TBookmarkBtnNavigationBarProps,
 ) {
-  const { text, link, studyId, userId } = props;
+  const { text, link, targetId, userId } = props;
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const onClickBookmark = () => {
-    fetchBookmark(userId, studyId).then((bookmark) => {
+    fetchBookmark(userId, targetId).then((bookmark) => {
       if (!bookmark) {
-        postBookmark(userId, studyId).then((data) => {
+        postBookmark(userId, targetId).then((data) => {
           setIsBookmarked(!isBookmarked);
         });
       } else {
-        updateBookmark(userId, studyId).then((data) => {
+        updateBookmark(userId, targetId).then((data) => {
           setIsBookmarked(!isBookmarked);
         });
       }
     });
   };
   useEffect(() => {
-    fetchBookmark(userId, studyId).then((bookmark) => {
+    fetchBookmark(userId, targetId).then((bookmark) => {
+      console.log('bookmark', bookmark);
       if (!bookmark) {
         setIsBookmarked(false);
       } else {
