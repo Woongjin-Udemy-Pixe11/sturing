@@ -4,6 +4,7 @@ import BackShareHeader from '../../_components/BackShareHeader';
 
 import LectureStudyTitle from '../_components/LectureStudyTitle';
 import LectureDetailTitle from '../_components/LectureDetailTitle';
+import { getSession } from '@/utils/getSessions';
 
 type TLectureDetailLayoutProps = {
   children: React.ReactNode;
@@ -27,41 +28,43 @@ export default async function LectureDetailLayout(
 
   const lecture = await fetchLectureDetail(id);
 
+  const session = await getSession(); // 예시: next-auth 사용 시
+  const userId = session?.user?.id;
   return (
-    <html lang="ko">
-      <body className="w-full m-auto">
-        <div className="bg-gradient-to-tr from-[#D9E3FF] to-[#FFE4E0] ">
-          <BackShareHeader />
-          <LectureStudyTitle
-            rating={lecture.lectureRating}
-            title={lecture.lectureName}
-          />
-        </div>
-
-        <LectureDetailTitle
+    <>
+      <div className="bg-gradient-to-tr from-[#D9E3FF] to-[#FFE4E0] ">
+        <BackShareHeader />
+        <LectureStudyTitle
+          rating={lecture.lectureRating}
           title={lecture.lectureName}
-          link={lecture.lectureURL}
         />
+      </div>
 
-        <div className="mx-[1.6rem]">
-          <DetailTabBar
-            text1="강의소개"
-            text1Link={`/lecture-detail/${id}`}
-            text2="스터디"
-            text2Link={`/lecture-detail/${id}/study`}
-            text3="평점"
-            text3Link={`/lecture-detail/${id}/rating`}
-          />
-        </div>
+      <LectureDetailTitle
+        title={lecture.lectureName}
+        link={lecture.lectureURL}
+      />
 
-        {children}
-        <div className="flex justify-center">
-          <BookmarkBtnNavigationBar
-            text="이 강의로 스터디 개설하기"
-            link={`/make-study-form/${id}`}
-          />
-        </div>
-      </body>
-    </html>
+      <div className="mx-[1.6rem]">
+        <DetailTabBar
+          text1="강의소개"
+          text1Link={`/lecture-detail/${id}`}
+          text2="스터디"
+          text2Link={`/lecture-detail/${id}/study`}
+          text3="평점"
+          text3Link={`/lecture-detail/${id}/rating`}
+        />
+      </div>
+
+      {children}
+      <div className="flex justify-center">
+        <BookmarkBtnNavigationBar
+          text="이 강의로 스터디 개설하기"
+          link={`/make-study-form/${id}`}
+          userId={userId}
+          targetId={id}
+        />
+      </div>
+    </>
   );
 }

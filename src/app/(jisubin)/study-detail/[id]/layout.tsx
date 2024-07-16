@@ -44,7 +44,7 @@ export default async function StudyDetailLayout(
     lecture = await fetchLectureDetail(study.studyLecture);
   }
 
-  const session = await getSession(); // 예시: next-auth 사용 시
+  const session = await getSession();
   const userId = session?.user?.id;
 
   return (
@@ -93,7 +93,7 @@ export default async function StudyDetailLayout(
       <BookmarkBtnNavigationBar
         text="스터디 지원하기"
         link={`/study-apply/${id}`}
-        studyId={id}
+        targetId={id}
         userId={userId}
       />
       {/* </Suspense> */}
