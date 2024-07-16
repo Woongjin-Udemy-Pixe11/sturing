@@ -3,6 +3,7 @@ import MyPageDetail from '../_pages/MyPageDetail';
 export default async function page({ params }: any) {
   const session = await getSession();
   const userid = session?.user?.id;
+
   let auth;
   if (userid === params.userid) {
     auth = true;
