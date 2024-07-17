@@ -4,6 +4,7 @@ import SubHeader from '@/components/common/SubHeader';
 import Label from '@/components/common/label/Label';
 import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
+import KebabModal from '@/components/common/modal/KebabModal';
 
 export default function NoticeBoardDetail({ notice }: any) {
   const title = notice.title;
@@ -21,9 +22,25 @@ export default function NoticeBoardDetail({ notice }: any) {
     ? 'text-blue-700 bg-main-100 border-main-600'
     : 'text-gray-700 bg-gray-100 border-gray-300';
 
+  const [modal, setModal] = useState(false);
+
+  const onClickMenu = () => {
+    setModal(!modal);
+    if (!modal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  };
+
   return (
     <>
-      <SubHeader eddit />
+      <SubHeader eddit onClickMenu={onClickMenu} />
+      {modal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-10">
+          <KebabModal />
+        </div>
+      )}
       <div className="bg-white p-[2rem] pt-[2.5rem] h-[85vh]">
         <div className="flex justify-between items-center pb-[1.8rem] mb-[1.8rem] border-b border-gray-300">
           <div className="flex flex-grow gap-[0.8rem]">

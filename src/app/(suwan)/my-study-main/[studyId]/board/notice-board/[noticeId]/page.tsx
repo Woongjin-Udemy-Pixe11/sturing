@@ -1,4 +1,5 @@
 import NoticeBoardDetail from '@/app/(suwan)/my-study-main/[studyId]/board/_component/NoticeBoardDetail';
+import SubHeader from '@/components/common/SubHeader';
 import { fetchNotice } from '@/utils/my-study-main/fetch';
 
 export default async function page({

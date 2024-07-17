@@ -5,6 +5,7 @@ import BoardTop from '../../_component/BoardTop';
 import { getSession } from '@/utils/getSessions';
 import { redirect } from 'next/navigation';
 import NoticeForm from '../../_component/NoticeForm';
+import SubHeader from '@/components/common/SubHeader';
 
 export default async function page({
   params,
@@ -41,7 +42,8 @@ export default async function page({
 
   return (
     <div>
-      <BoardTop />
+      {/* <BoardTop /> */}
+      <SubHeader bgGray={true} />
       <div className="bg-white p-[1.6rem]">
         <NoticeForm studyId={studyId} handleSubmit={handleSubmit} />
       </div>

@@ -2,6 +2,7 @@ import SectionNavigator from '@/components/common/SectionNavigator';
 import TaskInfo from './_jisubin_comp/TaskInfo';
 import Header from '../_components/Header';
 import { fetchNoticeList, fetchStudy } from '@/utils/my-study-main/fetch';
+import { getSession } from '@/utils/getSessions';
 
 export default async function page({
   params,
@@ -11,6 +12,11 @@ export default async function page({
   const studyId = params.studyId;
   const data = await fetchStudy(studyId);
   const noticeList = await fetchNoticeList(studyId);
+
+  const session = await getSession();
+  const userid = session?.user?.id;
+
+  const isLeader = data.leaderId === userid;
 
   return (
     <>

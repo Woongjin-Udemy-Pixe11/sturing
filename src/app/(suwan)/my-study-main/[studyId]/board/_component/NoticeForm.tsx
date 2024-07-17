@@ -1,6 +1,7 @@
 'use client';
 import LongButton from '@/components/common/LongButton';
 import { useRouter } from 'next/navigation';
+import { useMemo, useState } from 'react';
 
 type NoticeFormProps = {
   studyId: string;
@@ -12,6 +13,13 @@ type NoticeFormProps = {
 export default function NoticeForm(props: NoticeFormProps) {
   const { studyId, handleSubmit } = props;
   const router = useRouter();
+
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+
+  const validate = useMemo(() => {
+    return title == '' || content == '';
+  }, [title, content]);
 
   const onSubmit = async (formData: FormData) => {
     const result = await handleSubmit(formData);
@@ -42,12 +50,14 @@ export default function NoticeForm(props: NoticeFormProps) {
               type="text"
               name="title"
               id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               maxLength={50}
               placeholder="제목을 입력해 주세요"
               className="w-full px-[1.6rem] py-[1.2rem] border border-gray-300 rounded-[0.5rem] placeholder:text-gray-600 placeholder:text-content-1"
             />
             <div className="flex justify-end w-full text-content-2 mt-[0.8rem] mb-[0.4rem]">
-              <span className="text-gray-900">0</span>
+              <span className="text-gray-900">{title.length}</span>
               <span className="text-gray-400">/50</span>
             </div>
           </div>
@@ -62,6 +72,8 @@ export default function NoticeForm(props: NoticeFormProps) {
             <textarea
               id="content"
               name="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
               maxLength={500}
               placeholder="내용을 입력해 주세요"
               className="w-full h-[23rem] px-[1.6rem] py-[1.2rem] p-3 border border-gray-300 rounded-[0.5rem] text-gray-900 placeholder:text-gray-600 placeholder:text-content-1"
@@ -75,9 +87,15 @@ export default function NoticeForm(props: NoticeFormProps) {
           </div>
         </div>
 
-        <LongButton className={'mt-[4rem]'} color="blue">
-          등록하기
-        </LongButton>
+        {validate ? (
+          <LongButton color="gray" className="pointer-events-none">
+            등록하기
+          </LongButton>
+        ) : (
+          <LongButton className={'mt-[4rem]'} color="blue">
+            등록하기
+          </LongButton>
+        )}
       </form>
     </>
   );
