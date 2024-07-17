@@ -5,7 +5,7 @@ import { IoIosArrowUp } from 'react-icons/io';
 import { searchLabelList } from '@/constant/searchLabelList';
 
 export default function SideBarToggle() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const clickToggleButton = () => {
     setIsOpen(!isOpen);
   };
