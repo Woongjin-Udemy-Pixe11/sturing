@@ -5,9 +5,8 @@ import { GoBell } from 'react-icons/go';
 import { IoMenu, IoPersonOutline } from 'react-icons/io5';
 import SideBar from '../sidebar/SideBar';
 import LoginModal from '../(jisubin)/login/LoginModal';
-import { redirect } from 'next/dist/server/api-utils';
 
-export default function Header({ id }: { id?: string }) {
+export default function Header({ user }: { user?: any }) {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -21,7 +20,7 @@ export default function Header({ id }: { id?: string }) {
   };
 
   const onClickLogin = () => {
-    if (!id) {
+    if (!user.id) {
       setIsOpenModal(!isOpenModal);
       if (!isOpenModal) {
         document.body.style.overflow = 'hidden';
@@ -45,7 +44,7 @@ export default function Header({ id }: { id?: string }) {
           onClick={onClickLogin}
         ></div>
       )}
-      {isOpenMenu && <SideBar onClose={onClickMenu} id={id} />}
+      {isOpenMenu && <SideBar onClose={onClickMenu} user={user} />}
       {isOpenModal && <LoginModal onClose={onClickLogin} />}
       <header className="w-full h-[5.4rem] flex justify-between items-center px-[0.8rem] text-gray-1000 m-0 bg-white">
         <div className="w-[50%] flex justify-start items-center gap-[0.8rem]">
@@ -68,7 +67,7 @@ export default function Header({ id }: { id?: string }) {
           <button>
             <GoBell className="w-[2.4rem] h-[2.4rem]" />
           </button>
-          <Link href={`/users/${id}`}>
+          <Link href={`/users/${user._id}`}>
             <button onClick={onClickLogin}>
               <IoPersonOutline className="w-[2.4rem] h-[2.4rem]" />
             </button>

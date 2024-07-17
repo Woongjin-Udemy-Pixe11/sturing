@@ -30,9 +30,8 @@ export default function ReviewFormClient({
       score: selectedNumber === 1 ? 1 : selectedNumber === 2 ? 3 : 5,
       content: content,
       studyId: studyId,
-      userId: userId, //로그인 한사람?예진
+      userId: userId,
       evaluateduser: evaluatedUser?.id,
-      //evaluateduser: evaluatedUser?.evaluateduser, //리뷰를 당하는 사람의 닉네임
     };
     console.log('클라이언트에서 데이터값 존재확인:', reviewData);
 
@@ -46,6 +45,8 @@ export default function ReviewFormClient({
       });
 
       if (response.ok) {
+        alert('리뷰 제출을 완료했습니다!');
+        router.refresh();
         router.push('/my-study-list');
       } else {
         const errorData = await response.json();

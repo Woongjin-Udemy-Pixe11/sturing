@@ -1,38 +1,37 @@
 'use client';
 
+import { updatenickname } from '@/utils/updateNicname';
 import { useState } from 'react';
 
-//TODO: UserLabel 컴포넌트 공통화 할것인지? 안할것인지 정하기
 export default function UserDetailInfo({ data }: any) {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [nickname, setNickname] = useState<string>(data.users.nickname);
+
   const onClickEditMode = () => {
     setEditMode(!editMode);
   };
+
   const onChangenick = (e: any) => {
     setNickname(e.target.value);
   };
 
-  const updatenickname = async (data: { id: string; nickname: string }) => {
-    try {
-      const response = await fetch('/api/mypage', {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+  const handleUpdateNickname = async () => {
+    // Optimistically update the nickname
+    setNickname(nickname);
+    onClickEditMode();
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const result = await response.json();
-      return result;
-      // console.log('Server Response:', result);
+    try {
+      await updatenickname({
+        id: `${data.users._id}`,
+        nickname: nickname,
+      });
     } catch (error) {
-      console.error('Error UserEdit:', error);
+      // Revert to the previous nickname if the update fails
+      setNickname(data.users.nickname);
+      console.error('Failed to update nickname:', error);
     }
   };
+
   return (
     <main>
       <h2 className="text-headline-3 font-bold mb-[2.4rem]">기본정보</h2>
@@ -50,30 +49,13 @@ export default function UserDetailInfo({ data }: any) {
           <div className="flex justify-between">
             <div className="text-gray-950">
               {editMode ? (
-                <input
-                  value={nickname}
-                  onChange={(e) => {
-                    onChangenick(e);
-                  }}
-                />
-              ) : data.users.nickname === nickname ? (
-                `${data.users.nickname}`
+                <input value={nickname} onChange={(e) => onChangenick(e)} />
               ) : (
-                nickname
+                <div>{nickname}</div>
               )}
-              {/* TODO:이부분 캐시 처리 다시해야함 */}
             </div>
             {editMode ? (
-              <div
-                className="text-main-600"
-                onClick={() => {
-                  updatenickname({
-                    id: `${data.users._id}`,
-                    nickname: nickname,
-                  });
-                  onClickEditMode();
-                }}
-              >
+              <div className="text-main-600" onClick={handleUpdateNickname}>
                 <button>완료</button>
               </div>
             ) : (

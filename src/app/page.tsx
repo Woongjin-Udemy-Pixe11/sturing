@@ -10,12 +10,22 @@ import { getSession } from '@/utils/getSessions';
 import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
 import SearchPart from './(ryukyung)/pages/SearchPart';
+import Ismatching from '@/components/(JH)/Ismatching';
+
 export default async function page() {
   const session = await getSession();
+
   let user = session?.user;
+  let id = user?.id;
+  const data = await (
+    await fetch(`http://localhost:3000/api/mypage?id=${id}`, {
+      cache: 'no-store',
+    })
+  ).json();
 
   return (
     <>
+      <Ismatching session={session} data={data} />
       <TabBar />
       <Banner />
       <p className="w-full bg-gray-1000 text-gray-100 flex justify-start items-center gap-[0.8rem] px-[1.6rem] py-[1.2rem]">

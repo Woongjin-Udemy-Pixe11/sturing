@@ -4,7 +4,6 @@ import DefaultModal from '@/components/common/modal/DefaultModal';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import StudyTop from '../StudyTop';
-import { AgreeStudyApply } from '@/lib/actions/studyApplyAction';
 
 export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
   const router = useRouter();
@@ -35,6 +34,9 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
             },
             body: JSON.stringify({ action: 'view' }),
           });
+          if (response.ok) {
+            router.refresh();
+          }
         } catch (error) {
           console.error('Error updating study form read status:', error);
         }
@@ -42,7 +44,7 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
     };
 
     updateStudyFormRead();
-  }, [studyForm._id, studyForm.studyFormRead]);
+  }, [studyForm._id, studyForm.studyFormRead, router]);
 
   const handleAccept = async () => {
     try {
@@ -54,11 +56,15 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
         body: JSON.stringify({ action: 'accept' }),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
         alert('지원이 수락되었습니다.');
+        router.refresh();
         router.push('/my-study-list');
       } else {
-        alert('오류가 발생했습니다.');
+        alert(data.error || '오류가 발생했습니다.');
+        router.push('/my-study-list');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -78,6 +84,7 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
 
       if (response.ok) {
         alert('지원이 거절되었습니다.');
+        router.refresh();
         router.push('/my-study-list');
       } else {
         alert('오류가 발생했습니다.');
