@@ -2,6 +2,7 @@ import connectDB from '@/lib/db';
 import { StudyMember } from '@/lib/schemas/studyMemberSchema';
 import { StudyReview } from '@/lib/schemas/studyReviewSchema';
 import { Study } from '@/lib/schemas/studySchema';
+import { differenceInDays } from 'date-fns';
 import mongoose from 'mongoose';
 
 export async function GET(request: Request) {

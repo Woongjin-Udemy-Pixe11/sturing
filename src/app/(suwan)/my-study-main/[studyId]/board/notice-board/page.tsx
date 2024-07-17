@@ -17,6 +17,7 @@ export default async function page({
   const userid = session?.user?.id;
   const data = await fetchStudy(studyId);
   const isLeader = data.leaderId === userid;
+
   return (
     <>
       {isLeader ? (

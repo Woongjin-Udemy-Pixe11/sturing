@@ -8,7 +8,7 @@ export default function KebabModal(props: TKebabModal) {
   return (
     <>
       <div
-        className="fixed right-5
+        className="absolute right-5
       flex flex-col justify-center bg-white items-center rounded-[0.5rem] shadow-modal w-[8.8rem] h-[8rem]"
       >
         <button

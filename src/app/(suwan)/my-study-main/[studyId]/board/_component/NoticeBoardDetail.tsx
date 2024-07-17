@@ -5,10 +5,22 @@ import Label from '@/components/common/label/Label';
 import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import KebabModal from '@/components/common/modal/KebabModal';
+import { differenceInDays, differenceInHours } from 'date-fns';
 
-export default function NoticeBoardDetail({ notice }: any) {
+export default function NoticeBoardDetail(props: any) {
+  const { notice, writer } = props;
   const title = notice.title;
   const content = notice.content;
+
+  const nickname = writer.nickname;
+  const profileImage = writer.image;
+
+  const now = new Date();
+  const createdTime = new Date(notice.createdAt);
+  const diffInHours = differenceInHours(now, createdTime);
+  const diffInDays = differenceInDays(now, createdTime);
+
+  const views = notice.views;
 
   const [isChecked, setIsChecked] = useState(false);
   const [count, setCount] = useState(0);
@@ -26,18 +38,13 @@ export default function NoticeBoardDetail({ notice }: any) {
 
   const onClickMenu = () => {
     setModal(!modal);
-    if (!modal) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
   };
 
   return (
     <>
       <SubHeader eddit onClickMenu={onClickMenu} />
       {modal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-10">
+        <div className="relative inset-0 bg-black bg-opacity-50 z-10">
           <KebabModal />
         </div>
       )}
@@ -45,20 +52,21 @@ export default function NoticeBoardDetail({ notice }: any) {
         <div className="flex justify-between items-center pb-[1.8rem] mb-[1.8rem] border-b border-gray-300">
           <div className="flex flex-grow gap-[0.8rem]">
             <div className="w-[4rem] h-[4rem]">
-              <img
-                src="/images/dummy-member-img1.png"
-                alt=""
-                className="w-full"
-              />
+              <img src={profileImage} alt="" className="w-full" />
             </div>
             <div className="text-content-2 text-gray-700">
               <span className="flex gap-[0.4rem] items-center">
                 <h3 className="text-content-1 font-semibold text-gray-900">
-                  웅진
+                  {nickname}
                 </h3>
                 <p>팀장</p>
               </span>
-              <span>11시간 전 ∙ 조회 3</span>
+              <span>
+                {diffInDays > 0
+                  ? diffInDays + '일 전'
+                  : diffInHours + '시간 전'}
+              </span>
+              <span> ∙ 조회 {views}</span>
             </div>
           </div>
           <div className="shrink-0">

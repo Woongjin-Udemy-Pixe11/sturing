@@ -30,14 +30,16 @@ export default async function page({
               moveLink={`./board/notice-board`}
             />
             <hr className="mx-[0.4rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
-            <div className="flex flex-row items-center gap-x-[0.8rem] mb-[2.4rem] mx-[0.4rem]">
-              <div className="min-w-[3.3rem] min-h-[2.2rem] px-[0.6rem] py-[0.2rem] bg-main-100 rounded-[0.3rem] text-main-700 text-content-2 break-all">
-                필독
+            {noticeList.length > 0 && (
+              <div className="flex flex-row items-center gap-x-[0.8rem] mb-[2.4rem] mx-[0.4rem]">
+                <div className="min-w-[3.3rem] min-h-[2.2rem] px-[0.6rem] py-[0.2rem] bg-main-100 rounded-[0.3rem] text-main-700 text-content-2 break-all">
+                  필독
+                </div>
+                <span className="text-content-2 truncate">
+                  {noticeList.pop().title}
+                </span>
               </div>
-              <span className="text-content-2 truncate">
-                {noticeList.pop().title}
-              </span>
-            </div>
+            )}
           </div>
         </div>
 
