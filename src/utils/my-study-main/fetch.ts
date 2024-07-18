@@ -44,7 +44,9 @@ export async function fetchNotice(noticeId: string) {
 }
 
 export async function fetchUser(id: string) {
-  const res = await fetch(`${process.env.LOCAL_URL}/api/users?id=${id}`);
+  const res = await fetch(`${process.env.LOCAL_URL}/api/users?id=${id}`, {
+    cache: 'no-store',
+  });
   return res.json();
 }
 

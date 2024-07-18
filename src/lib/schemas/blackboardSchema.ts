@@ -17,6 +17,13 @@ const blackboardSchema = new mongoose.Schema(
     content: { type: String, required: true },
     image: { type: String },
     views: { type: Number, required: true, default: 0 },
+    icons: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        require: true,
+        ref: 'BlackboardIcon',
+      },
+    ],
   },
   { timestamps: true },
 );

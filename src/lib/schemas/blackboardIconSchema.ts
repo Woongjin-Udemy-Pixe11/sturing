@@ -3,7 +3,7 @@ const blackboeadIconSchema = new mongoose.Schema({
   iconName: {
     type: String,
     required: true,
-    enum: ['check', 'heart', 'thumb', 'smile', 'clap', 'sad'],
+    enum: ['check', 'heart', 'good', 'smile', 'clap', 'sad'],
   },
   blackboardId: {
     type: mongoose.Schema.Types.ObjectId,

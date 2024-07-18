@@ -1,5 +1,7 @@
 import connectDB from '@/lib/db';
 import { Blackboard } from '@/lib/schemas/blackboardSchema';
+import { BlackboardIcon } from '@/lib/schemas/blackboardIconSchema';
+import mongoose from 'mongoose';
 
 export async function GET(request: Request) {
   connectDB();
@@ -12,7 +14,7 @@ export async function GET(request: Request) {
       const noticeList = await Blackboard.find({ studyId: studyId });
       return Response.json(noticeList);
     } else if (noticeId) {
-      const notice = await Blackboard.findById(noticeId);
+      const notice = await Blackboard.findById(noticeId).populate('icons');
 
       return Response.json(notice);
     } else {

@@ -1,7 +1,12 @@
 import NoticeBoardDetail from '@/app/(suwan)/my-study-main/[studyId]/board/_component/NoticeBoardDetail';
 import SubHeader from '@/components/common/SubHeader';
 import { getSession } from '@/utils/getSessions';
-import { fetchNotice, fetchUser, patchView } from '@/utils/my-study-main/fetch';
+import {
+  fetchNotice,
+  fetchUser,
+  patchView,
+  fetchIcon,
+} from '@/utils/my-study-main/fetch';
 
 export default async function page({
   params,
@@ -15,10 +20,12 @@ export default async function page({
   // console.log('🎉', noticeId);
 
   const notice = await fetchNotice(noticeId);
-  console.log(notice);
+  console.log('📍', notice);
 
   const writer = await fetchUser(notice.writerId);
   // console.log('🎉', writer);
+
+  // const icons = await fetchIcon(noticeId);
 
   await patchView(noticeId);
   return (
