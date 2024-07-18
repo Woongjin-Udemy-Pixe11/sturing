@@ -56,7 +56,9 @@ export default function Todos({
         <div className=" bg-white p-6 rounded-lg w-full px-[2rem]">
           <div className="flex items-center border-b-[0.1rem] border-gray-300 pb-4">
             <h2 className="text-[1.6rem] font-semibold">체크리스트</h2>
-            <span className="text-[1.4rem] font-semibold text-main-600 px-[1rem]"></span>
+            <span className="text-[1.4rem] font-semibold text-main-600 px-[1rem]">
+              {dateData ? dateData.length : '0'}
+            </span>
             <img src="/images/studyLabel/add-square.svg" className="ml-auto" />
           </div>
 
@@ -69,6 +71,7 @@ export default function Todos({
                       <Todo
                         todo={todo.todoContent}
                         checked={todo.todoCompleted}
+                        id={todo._id}
                       />
                     </div>
                   ))}

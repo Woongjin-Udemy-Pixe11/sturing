@@ -1,31 +1,35 @@
 'use client';
 
+import {
+  DeleteTodoInfo,
+  fetchTodoInfo,
+} from '@/utils/study-checklist/studycheckUtils';
 import { useState } from 'react';
 import { FaCircleCheck } from 'react-icons/fa6';
 type TTdo = {
   todo: string;
   checked: boolean;
+  id: any;
 };
 
 export default function Todo(props: TTdo) {
-  const { todo, checked } = props;
-
+  const { todo, checked, id } = props;
   const [check, setCheck] = useState(checked);
+  const fetchChecked = (id: any) => {
+    fetchTodoInfo(id);
+    setCheck(!check);
+  };
   return (
     <>
       <div className="flex justify-between items-center">
         <label className="inline-flex items-center space-x-2 relative py-[1rem] my-[.3rem]">
-          <input
-            id="checkbox"
-            type="checkbox"
-            checked={check}
-            onChange={() => {
-              setCheck(!check);
+          <label
+            htmlFor="checkbox"
+            className=""
+            onClick={() => {
+              fetchChecked(id);
             }}
-            className="form-checkbox hidden"
-          />
-
-          <label htmlFor="checkbox" className="">
+          >
             {check ? (
               <FaCircleCheck size={20} color="rgba(65, 113, 255, 1)" />
             ) : (
@@ -37,7 +41,13 @@ export default function Todo(props: TTdo) {
         </label>
         <div className="flex gap-[1rem]">
           <img className="h-[2rem]" src="/images/studyLabel/pencil.svg" />
-          <img className="h-[2rem]" src="/images/studyLabel/trashcan.svg" />
+          <img
+            className="h-[2rem]"
+            src="/images/studyLabel/trashcan.svg"
+            onClick={() => {
+              DeleteTodoInfo(id);
+            }}
+          />
         </div>
       </div>
     </>
