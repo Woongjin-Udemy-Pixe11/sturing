@@ -94,6 +94,7 @@ export async function DELETE(request: Request) {
   const noticeId = searchParams.get('noticeId');
   try {
     await Blackboard.deleteOne({ _id: noticeId });
+    await BlackboardIcon.deleteMany({ blackboardId: noticeId });
 
     return Response.json({ message: 'DELETE' });
   } catch (error) {
