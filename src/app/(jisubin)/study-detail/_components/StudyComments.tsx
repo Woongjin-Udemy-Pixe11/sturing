@@ -1,7 +1,8 @@
 import { HiEllipsisVertical } from 'react-icons/hi2';
 import CommentForm from './CommentForm';
 import StudyComment from './StudyComment';
-import { getComment } from '@/lib/actions/commentAction';
+import { getComments } from '@/lib/actions/commentAction';
+import { getSession } from '@/utils/getSessions';
 
 type TStudyCommentsProps = {
   id: string;
@@ -10,16 +11,11 @@ type TStudyCommentsProps = {
 export default async function StudyComments(props: TStudyCommentsProps) {
   const { id } = props;
 
-  let comments = await getComment(id);
-
-  // const result = await postComment(formData);
-  //   if (result.success) {
-  //     setComment('');
-  //   } else {
-  //     console.log(result.message);
-  //   }
+  let comments = await getComments(id);
   comments = comments.data;
-  // console.log('❤️', comments);
+
+  const session = await getSession();
+  const userId = session?.user?.id;
 
   return (
     <>
@@ -38,6 +34,9 @@ export default async function StudyComments(props: TStudyCommentsProps) {
             {comments &&
               comments.map((comment) => (
                 <StudyComment
+                  commentId={comment._id}
+                  userId={userId}
+                  studyId={id}
                   commentWriteId={comment.commentWriteId}
                   content={comment.commentContent}
                   date={comment.updatedAt}
