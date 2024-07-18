@@ -17,7 +17,6 @@ export default async function page({
   const userId = session?.user?.id;
 
   const noticeId = params.noticeId;
-  // console.log('🎉', noticeId);
 
   const notice = await fetchNotice(noticeId);
   console.log('📍', notice);

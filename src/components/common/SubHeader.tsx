@@ -17,6 +17,11 @@ export default function SubHeader(props: TSubHeader) {
   const { isWhite, title, eddit, share, bgGray, onClickMenu } = props;
   const router = useRouter();
 
+  const onClickBack = () => {
+    router.push('./');
+    router.refresh();
+  };
+
   return (
     <>
       <div
@@ -24,11 +29,7 @@ export default function SubHeader(props: TSubHeader) {
           isWhite ? `text-white` : ''
         } ${bgGray ? 'bg-gray-100' : ''}`}
       >
-        <GoChevronLeft
-          size={28}
-          className=""
-          onClick={() => router.push('./')}
-        />
+        <GoChevronLeft size={28} className="" onClick={onClickBack} />
         <div className="text-headline-1 font-medium justify-self-center">
           {title}
         </div>

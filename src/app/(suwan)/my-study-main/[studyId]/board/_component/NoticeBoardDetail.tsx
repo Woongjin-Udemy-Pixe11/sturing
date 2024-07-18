@@ -76,7 +76,12 @@ export default function NoticeBoardDetail(props: any) {
   };
   return (
     <>
-      <SubHeader eddit onClickMenu={() => setModal(!modal)} />
+      {userId === writer._id ? (
+        <SubHeader eddit onClickMenu={() => setModal(!modal)} />
+      ) : (
+        <SubHeader />
+      )}
+
       {modal && (
         <div
           ref={modalRef}
