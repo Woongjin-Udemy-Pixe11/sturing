@@ -7,18 +7,14 @@ const studyTodoSchema = new mongoose.Schema(
       ref: 'Study',
       required: true,
     },
-    userID: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'User',
     },
-    todoListId: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'StudyTodoList',
-    },
     todoContent: { type: String, required: true },
     todoCompleted: { type: Boolean, required: true, default: false },
+    date: { type: String, required: true },
   },
   { timestamps: true },
 );
