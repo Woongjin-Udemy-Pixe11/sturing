@@ -20,7 +20,7 @@ export default function Header({ user }: { user?: any }) {
   };
 
   const onClickLogin = () => {
-    if (!user.id) {
+    if (!user._id) {
       setIsOpenModal(!isOpenModal);
       if (!isOpenModal) {
         document.body.style.overflow = 'hidden';
