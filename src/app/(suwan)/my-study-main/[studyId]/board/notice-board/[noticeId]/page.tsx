@@ -1,5 +1,6 @@
 import NoticeBoardDetail from '@/app/(suwan)/my-study-main/[studyId]/board/_component/NoticeBoardDetail';
 import SubHeader from '@/components/common/SubHeader';
+import { getSession } from '@/utils/getSessions';
 import { fetchNotice, fetchUser, patchView } from '@/utils/my-study-main/fetch';
 
 export default async function page({
@@ -7,6 +8,9 @@ export default async function page({
 }: {
   params: { noticeId: string };
 }) {
+  const session = await getSession();
+  const userId = session?.user?.id;
+
   const noticeId = params.noticeId;
   // console.log('🎉', noticeId);
 
@@ -14,12 +18,12 @@ export default async function page({
   console.log(notice);
 
   const writer = await fetchUser(notice.writerId);
-  console.log('🎉', writer);
+  // console.log('🎉', writer);
 
   await patchView(noticeId);
   return (
     <>
-      <NoticeBoardDetail notice={notice} writer={writer} />
+      <NoticeBoardDetail notice={notice} writer={writer} userId={userId} />
     </>
   );
 }

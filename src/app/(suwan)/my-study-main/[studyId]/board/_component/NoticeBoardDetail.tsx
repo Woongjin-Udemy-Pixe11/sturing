@@ -6,9 +6,11 @@ import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import KebabModal from '@/components/common/modal/KebabModal';
 import { differenceInDays, differenceInHours } from 'date-fns';
+import { postIcon } from '@/utils/my-study-main/fetch';
+import EmojiSelectBtn from './EmojiSelectBtn';
 
 export default function NoticeBoardDetail(props: any) {
-  const { notice, writer } = props;
+  const { notice, writer, userId } = props;
   const title = notice.title;
   const content = notice.content;
 
@@ -21,6 +23,7 @@ export default function NoticeBoardDetail(props: any) {
   const diffInDays = differenceInDays(now, createdTime);
 
   const views = notice.views;
+  const boardType = 'notice';
 
   const [isChecked, setIsChecked] = useState(false);
   const [count, setCount] = useState(0);
@@ -28,6 +31,7 @@ export default function NoticeBoardDetail(props: any) {
   const handleClick = () => {
     setIsChecked((prevChecked) => !prevChecked);
     setCount((prevCount) => (isChecked ? prevCount - 1 : prevCount + 1));
+    postIcon(notice._id);
   };
 
   const checkedColor = isChecked
@@ -75,16 +79,22 @@ export default function NoticeBoardDetail(props: any) {
         </div>
         <div>
           <h2 className="font-bold text-headline-3 text-gray-900">{title}</h2>
-          <p className="text-content-1  text-gray-600 border-b border-gray-300 py-[1.6rem] pb-[2.5rem]">
+          <p className="text-content-1  text-gray-600 border-gray-300 py-[1.6rem] pb-[2.5rem]">
             {content}
           </p>
+          <EmojiSelectBtn
+            boardType={boardType}
+            blackboardId={notice._id}
+            userId={userId}
+          />
         </div>
-        <button
+
+        {/* <button
           onClick={handleClick}
           className={`${checkedColor} mt-[1.6rem] min-w-[4rem] flex justify-center flex-grow-0 items-center gap-[0.6rem] font-black px-[1.2rem] py-[0.4rem] text-content-2 border rounded-[8rem]`}
         >
-          <FaCheck /> {count}
-        </button>
+          
+        </button> */}
       </div>
     </>
   );

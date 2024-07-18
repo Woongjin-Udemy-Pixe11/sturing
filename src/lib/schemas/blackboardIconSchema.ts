@@ -1,13 +1,22 @@
 import mongoose from 'mongoose';
 const blackboeadIconSchema = new mongoose.Schema({
-  iconName: { type: String, required: true },
-  iconCount: { type: Number, required: true },
-  blackboardId: { type: String },
-  userId: {
+  iconName: {
+    type: String,
+    required: true,
+    enum: ['check', 'heart', 'thumb', 'smile', 'clap', 'sad'],
+  },
+  blackboardId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'blackboard',
+    ref: 'Blackboard',
   },
+  users: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
+  ],
 });
 
 export const BlackboardIcon =

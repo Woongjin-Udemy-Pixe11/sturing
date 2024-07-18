@@ -65,9 +65,46 @@ export async function patchView(noticeId: string) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const result = await response.json();
-
     return result;
-    // console.log('Server Response:', result);
+  } catch (error) {
+    console.error('Error UserEdit:', error);
+  }
+}
+
+export async function fetchIcon(blackboardId: string) {
+  const res = await fetch(
+    `/api/study-board/notice/icon?blackboardId=${blackboardId}`,
+  );
+  return res.json();
+}
+
+type TPostIconProps = {
+  blackboardId: string;
+  iconName: string;
+  userId: string;
+};
+
+export async function postIcon(props: TPostIconProps) {
+  const { blackboardId, iconName, userId } = props;
+
+  try {
+    const response = await fetch(`/api/study-board/notice/icon`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        blackboardId,
+        iconName,
+        userId,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const result = await response.json();
+    console.log(result);
   } catch (error) {
     console.error('Error UserEdit:', error);
   }

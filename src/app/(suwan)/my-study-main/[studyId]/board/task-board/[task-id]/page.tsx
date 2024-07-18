@@ -1,8 +1,10 @@
 import { GoChevronLeft } from 'react-icons/go';
 import { MdMoreHoriz, MdMoreVert } from 'react-icons/md';
 import Image from 'next/image';
-import EmojiSelectBtn from '../../_jisubin_comp/EmojiSelectBtn';
+import EmojiSelectBtn from '../../_component/EmojiSelectBtn';
 export default function page() {
+  const boardType = 'task';
+
   return (
     <div className="w-full h-[5.4rem] bg-gray-100">
       <div className="flex items-center justify-between px-[1.5rem] py-[1.6rem]">
@@ -51,7 +53,7 @@ export default function page() {
             className="rounded-[0.8rem] aspect-square object-cover"
           />
         </div>
-        <EmojiSelectBtn />
+        <EmojiSelectBtn boardType={boardType} />
         <div>
           <div className="flex flex-row items-center justify-start gap-x-[0.4rem] text-content-2 mb-[1.2rem]">
             <div>댓글</div>
