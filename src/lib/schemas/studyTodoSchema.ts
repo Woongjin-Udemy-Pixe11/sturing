@@ -26,6 +26,7 @@ const studyTodoSchema = new mongoose.Schema(
     },
     todoContent: { type: String, required: true },
     todoCompleted: { type: Boolean, required: true, default: false },
+    date: { type: String, required: true },
   },
   { timestamps: true },
 );

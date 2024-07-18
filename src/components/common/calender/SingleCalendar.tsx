@@ -5,6 +5,7 @@ import { Calendar } from './ui/calendar';
 
 export default function SingleCalendar() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
+  console.log(date);
 
   return (
     <Calendar

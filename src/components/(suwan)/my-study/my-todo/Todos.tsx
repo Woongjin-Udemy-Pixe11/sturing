@@ -4,18 +4,32 @@ import Todo from '../common/Todo';
 import { useState } from 'react';
 import { postTodoInfo } from '@/utils/study-checklist/studycheckUtils';
 
+export function formatingDate(dateString: string) {
+  const date = new Date(dateString);
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더합니다.
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
 export default function Todos({
   studyId,
   userId,
+  dateData,
 }: {
   studyId: any;
   userId: any;
+  dateData: any;
 }) {
+  const date = formatingDate(new Date().toISOString());
   const [todoInfo, setTodoInfo] = useState({
     studyId: studyId,
     userId: userId,
     todoContent: '',
     todoCompleted: false,
+    date: date,
   });
 
   const onChangeTodo = (e: any) => {
@@ -32,9 +46,9 @@ export default function Todos({
       userId: userId,
       todoContent: '',
       todoCompleted: false,
+      date: date,
     });
   };
-  console.log(todoInfo.todoContent);
 
   return (
     <>
@@ -49,12 +63,15 @@ export default function Todos({
           <div className=" bg-white p-6 rounded-lg w-full px-[1rem]">
             <div className="text-[1.4rem]">
               <div className="flex flex-col text-[1.4rem] gap-[.4rem]">
-                {/* {todos &&
-                  todos.map((todo) => (
-                    <>
-                      <Todo todo={todo.todo} checked={todo.checked} />
-                    </>
-                  ))} */}
+                {dateData &&
+                  dateData.map((todo: any) => (
+                    <div key={todo._id}>
+                      <Todo
+                        todo={todo.todoContent}
+                        checked={todo.todoCompleted}
+                      />
+                    </div>
+                  ))}
                 <div className="flex-inline relative">
                   <input
                     type="text"
