@@ -11,21 +11,21 @@ import EmojiSelectBtn from './EmojiSelectBtn';
 import { useRouter } from 'next/navigation';
 
 export default function NoticeBoardDetail(props: any) {
-  const { notice, writer, userId } = props;
+  const { blackboard, writer, userId } = props;
   const router = useRouter();
 
-  const title = notice.title;
-  const content = notice.content;
+  const title = blackboard.title;
+  const content = blackboard.content;
 
   const nickname = writer.nickname;
   const profileImage = writer.image;
 
   const now = new Date();
-  const createdTime = new Date(notice.createdAt);
+  const createdTime = new Date(blackboard.createdAt);
   const diffInHours = differenceInHours(now, createdTime);
   const diffInDays = differenceInDays(now, createdTime);
 
-  const views = notice.views;
+  const views = blackboard.views;
   const boardType = 'notice';
 
   const [isChecked, setIsChecked] = useState(false);
@@ -34,7 +34,7 @@ export default function NoticeBoardDetail(props: any) {
   const handleClick = () => {
     setIsChecked((prevChecked) => !prevChecked);
     setCount((prevCount) => (isChecked ? prevCount - 1 : prevCount + 1));
-    postIcon(notice._id);
+    postIcon(blackboard._id);
   };
 
   const checkedColor = isChecked
@@ -66,11 +66,11 @@ export default function NoticeBoardDetail(props: any) {
 
   const onClickEddit = () => {
     console.log('수정');
-    router.push(`./${notice._id}/eddit`);
+    router.push(`./${blackboard._id}/eddit`);
   };
   const onClickDelete = () => {
     console.log('삭제');
-    deleteNotice(notice._id);
+    deleteNotice(blackboard._id);
     router.push(`./`);
     router.refresh();
   };
@@ -125,18 +125,11 @@ export default function NoticeBoardDetail(props: any) {
           </p>
           <EmojiSelectBtn
             boardType={boardType}
-            blackboardId={notice._id}
+            blackboardId={blackboard._id}
             userId={userId}
-            icons={notice.icons}
+            icons={blackboard.icons}
           />
         </div>
-
-        {/* <button
-          onClick={handleClick}
-          className={`${checkedColor} mt-[1.6rem] min-w-[4rem] flex justify-center flex-grow-0 items-center gap-[0.6rem] font-black px-[1.2rem] py-[0.4rem] text-content-2 border rounded-[8rem]`}
-        >
-          
-        </button> */}
       </div>
     </>
   );

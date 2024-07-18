@@ -1,7 +1,7 @@
 import Label from '@/components/common/label/Label';
 import Link from 'next/link';
 
-export type TNotice = {
+export type TBlackboard = {
   _id: string;
   studyId: string;
   writerId?: string;
@@ -13,7 +13,7 @@ export type TNotice = {
 };
 
 export type TNoticeListProps = {
-  noticeList: TNotice[];
+  noticeList: TBlackboard[];
 };
 
 export default function NoticeBoardList(props: TNoticeListProps) {

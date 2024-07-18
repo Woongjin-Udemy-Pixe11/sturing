@@ -3,9 +3,13 @@
 import StudyForm from '@/components/common/StudyForm';
 import BoardTop from '../../_component/BoardTop';
 import { getSession } from '@/utils/getSessions';
-import { redirect } from 'next/navigation';
 import NoticeForm from '../../_component/NoticeForm';
 import SubHeader from '@/components/common/SubHeader';
+type TFormData = {
+  title: string;
+  content: string;
+  img?: string;
+};
 
 export default async function page({
   params,
@@ -16,14 +20,15 @@ export default async function page({
 
   const session = await getSession();
   let userId = session?.user?.id;
+  const boardType = 'notice';
 
-  const handleSubmit = async (formData: any) => {
+  const handleSubmit = async (data: TFormData) => {
     'use server';
-    const title = formData.get('title');
-    const content = formData.get('content');
+    const { title, content } = data;
+
     try {
       const response = await fetch(
-        `${process.env.LOCAL_URL}/api/study-board/notice?studyId=${studyId}`,
+        `${process.env.LOCAL_URL}/api/study-board?boardType=${boardType}&studyId=${studyId}`,
         {
           method: 'POST',
           headers: {

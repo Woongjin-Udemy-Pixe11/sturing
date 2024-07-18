@@ -1,5 +1,5 @@
 import NoticeBoardDetail from '@/app/(suwan)/my-study-main/[studyId]/board/_component/NoticeBoardDetail';
-import SubHeader from '@/components/common/SubHeader';
+
 import { getSession } from '@/utils/getSessions';
 import {
   fetchNotice,
@@ -29,7 +29,7 @@ export default async function page({
   await patchView(noticeId);
   return (
     <>
-      <NoticeBoardDetail notice={notice} writer={writer} userId={userId} />
+      <NoticeBoardDetail blackboard={notice} writer={writer} userId={userId} />
     </>
   );
 }

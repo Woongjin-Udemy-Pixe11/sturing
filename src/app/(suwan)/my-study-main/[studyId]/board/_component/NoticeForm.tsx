@@ -1,36 +1,87 @@
 'use client';
 import LongButton from '@/components/common/LongButton';
+import { convertBase64 } from '@/utils/convertBase64';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
+import { CgClose } from 'react-icons/cg';
+
+type TFormData = {
+  title: string;
+  content: string;
+  img?: string;
+};
 
 type NoticeFormProps = {
   studyId: string;
   handleSubmit: (
-    formData: FormData,
+    data: TFormData,
   ) => Promise<{ noticeId?: string; error?: string }>;
+  imageUpload?: boolean;
   defaultTitle?: string;
   defaultContent?: string;
+  onImageChange?: (file: File | null) => void;
 };
 
 export default function NoticeForm(props: NoticeFormProps) {
-  const { studyId, handleSubmit, defaultTitle, defaultContent } = props;
+  const {
+    studyId,
+    handleSubmit,
+    imageUpload,
+    defaultTitle,
+    defaultContent,
+    onImageChange,
+  } = props;
   const router = useRouter();
 
   const [title, setTitle] = useState(defaultTitle ? defaultTitle : '');
   const [content, setContent] = useState(defaultContent ? defaultContent : '');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setSelectedFile(file);
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setPreviewUrl(null);
+    }
+
+    if (onImageChange) {
+      onImageChange(file);
+    }
+  };
+
+  const handleImageRemove = () => {
+    setSelectedFile(null);
+    setPreviewUrl(null);
+    if (onImageChange) {
+      onImageChange(null);
+    }
+  };
 
   const validate = useMemo(() => {
     return title == '' || content == '';
   }, [title, content]);
 
   const onSubmit = async (formData: FormData) => {
-    const result = await handleSubmit(formData);
+    const title = formData.get('title') as string;
+    const content = formData.get('content') as string;
+    const file = formData.get('file') as File | null;
+    let img;
+    if (file) {
+      img = await convertBase64(file);
+    }
+
+    const result = await handleSubmit({ title, content, img });
     if (result.noticeId) {
-      router.push(
-        `/my-study-main/${studyId}/board/notice-board/${result.noticeId}`,
-      );
+      router.push(`./${result.noticeId}`);
     } else if (result.error) {
-      // 에러 처리
       console.error(result.error);
     }
   };
@@ -40,6 +91,47 @@ export default function NoticeForm(props: NoticeFormProps) {
         <h1 className="font-semibold text-[2.0rem] tracking-[-0.03rem] text-gray-1000 mb-[2.0rem]">
           공지 작성
         </h1>
+        {imageUpload && (
+          <div className="w-full mb-[1.6rem]">
+            <label
+              htmlFor="image-upload"
+              className="font-medium text-content-1 mb-[1.2rem] text-gray-900 block"
+            >
+              {}
+            </label>
+            <div className="flex items-center gap-[1.2rem]">
+              <div className="relative">
+                <input
+                  type="file"
+                  name="file"
+                  id="image-upload"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                />
+                <div className="w-[7rem] h-[7rem] border border-gray-300 flex items-center justify-center rounded-[0.5rem]">
+                  <img src="images/form/insert-image.svg" />
+                </div>
+              </div>
+              {previewUrl && (
+                <div className="relative">
+                  <img
+                    src={previewUrl}
+                    alt="Preview"
+                    className="w-[7rem] h-[7rem] object-cover rounded-[0.5rem]"
+                  />
+                  <button
+                    onClick={handleImageRemove}
+                    className="absolute top-[-8%] right-[-10%] bg-black text-white rounded-full w-[2rem] h-[2rem] p-[0.3rem] flex items-center justify-center"
+                  >
+                    <CgClose />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         <div className="flex flex-col items-start">
           <div className="w-full flex flex-col">
             <label
