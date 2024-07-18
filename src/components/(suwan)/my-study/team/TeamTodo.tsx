@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import Todo from '../common/Todo';
 import { studyMemberTodo } from '@/dummy/studyMemberTodo';
