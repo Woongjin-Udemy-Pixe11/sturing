@@ -1,21 +1,23 @@
 'use client';
 import LongButton from '@/components/common/LongButton';
 import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 type NoticeFormProps = {
   studyId: string;
   handleSubmit: (
     formData: FormData,
   ) => Promise<{ noticeId?: string; error?: string }>;
+  defaultTitle?: string;
+  defaultContent?: string;
 };
 
 export default function NoticeForm(props: NoticeFormProps) {
-  const { studyId, handleSubmit } = props;
+  const { studyId, handleSubmit, defaultTitle, defaultContent } = props;
   const router = useRouter();
 
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState(defaultTitle ? defaultTitle : '');
+  const [content, setContent] = useState(defaultContent ? defaultContent : '');
 
   const validate = useMemo(() => {
     return title == '' || content == '';

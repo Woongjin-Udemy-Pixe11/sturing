@@ -34,27 +34,45 @@ export default function EmojiSelectBtn(props: TProps) {
     await postIcon({ blackboardId, iconName, userId });
 
     setIconStates((prev) => {
-      return prev.map((icon) => {
-        if (icon.iconName === iconName) {
-          const newUsers = icon.users.includes(userId)
-            ? icon.users.filter((id) => id !== userId)
-            : [...icon.users, userId];
+      if (prev.length == 0) {
+        // 새로운 아이콘을 생성하는 경우
+        const newIcon: IconState = {
+          _id: 'temp',
+          blackboardId,
+          iconName,
+          users: [userId],
+        };
+        return [...prev, newIcon];
+      } else {
+        // 기존 아이콘이 있는 경우
+        return prev.map((icon) => {
+          if (icon.iconName === iconName) {
+            const newUsers = icon.users.includes(userId)
+              ? icon.users.filter((id) => id !== userId)
+              : [...icon.users, userId];
 
-          return { ...icon, users: newUsers };
-        }
-        return icon;
-      });
+            return { ...icon, users: newUsers };
+          }
+          return icon;
+        });
+      }
     });
   };
 
   const getIconUserCount = (name: string) => {
-    const iconData = iconStates.find((icon) => icon.iconName === name);
-    return iconData ? iconData.users.length : 0;
+    if (iconStates) {
+      const iconData = iconStates.find((icon) => icon.iconName === name);
+      return iconData ? iconData.users.length : 0;
+    }
+    return 0;
   };
 
   const isIconSelected = (name: string) => {
-    const iconData = iconStates.find((icon) => icon.iconName === name);
-    return iconData ? iconData.users.includes(userId) : false;
+    if (iconStates) {
+      const iconData = iconStates.find((icon) => icon.iconName === name);
+      return iconData ? iconData.users.includes(userId) : false;
+    }
+    return false;
   };
 
   // console.log(iconStates);

@@ -111,3 +111,13 @@ export async function postIcon(props: TPostIconProps) {
     console.error('Error UserEdit:', error);
   }
 }
+
+export async function deleteNotice(noticeId: string) {
+  const res = await fetch(`/api/study-board/notice?noticeId=${noticeId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return res.json();
+}

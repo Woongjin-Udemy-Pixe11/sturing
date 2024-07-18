@@ -24,7 +24,11 @@ export default function SubHeader(props: TSubHeader) {
           isWhite ? `text-white` : ''
         } ${bgGray ? 'bg-gray-100' : ''}`}
       >
-        <GoChevronLeft size={28} className="" onClick={() => router.back()} />
+        <GoChevronLeft
+          size={28}
+          className=""
+          onClick={() => router.push('./')}
+        />
         <div className="text-headline-1 font-medium justify-self-center">
           {title}
         </div>

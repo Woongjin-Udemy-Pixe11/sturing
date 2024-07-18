@@ -54,6 +54,7 @@ export async function POST(request: Request) {
       } else {
         // userId가 존재하지 않으면 추가
         icon.users.push(userId);
+        blackboard.icons.push(icon._id);
       }
     }
 

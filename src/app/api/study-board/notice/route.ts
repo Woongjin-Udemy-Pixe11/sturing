@@ -66,3 +66,38 @@ export async function PATCH(request: Request) {
 
   return new Response(JSON.stringify({ updateView }));
 }
+
+export async function PUT(request: Request) {
+  await connectDB();
+  const { searchParams } = new URL(request.url);
+  const noticeId = searchParams.get('noticeId');
+  const { title, content } = await request.json();
+
+  try {
+    await Blackboard.updateOne(
+      { _id: `${noticeId}` },
+      {
+        title: title,
+        content: content,
+      },
+    );
+    return Response.json(noticeId);
+  } catch (error) {
+    console.error('Error eddit blackboard:', error);
+    return Response.json({ message: 'Blackboard not eddited' });
+  }
+}
+
+export async function DELETE(request: Request) {
+  await connectDB();
+  const { searchParams } = new URL(request.url);
+  const noticeId = searchParams.get('noticeId');
+  try {
+    await Blackboard.deleteOne({ _id: noticeId });
+
+    return Response.json({ message: 'DELETE' });
+  } catch (error) {
+    console.error('Error eddit blackboard:', error);
+    return Response.json({ message: 'Blackboard not delete' });
+  }
+}

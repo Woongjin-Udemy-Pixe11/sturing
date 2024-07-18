@@ -6,11 +6,14 @@ import { useEffect, useRef, useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import KebabModal from '@/components/common/modal/KebabModal';
 import { differenceInDays, differenceInHours } from 'date-fns';
-import { postIcon } from '@/utils/my-study-main/fetch';
+import { deleteNotice, postIcon } from '@/utils/my-study-main/fetch';
 import EmojiSelectBtn from './EmojiSelectBtn';
+import { useRouter } from 'next/navigation';
 
 export default function NoticeBoardDetail(props: any) {
   const { notice, writer, userId } = props;
+  const router = useRouter();
+
   const title = notice.title;
   const content = notice.content;
 
@@ -63,9 +66,13 @@ export default function NoticeBoardDetail(props: any) {
 
   const onClickEddit = () => {
     console.log('수정');
+    router.push(`./${notice._id}/eddit`);
   };
   const onClickDelete = () => {
     console.log('삭제');
+    deleteNotice(notice._id);
+    router.push(`./`);
+    router.refresh();
   };
   return (
     <>
