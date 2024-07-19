@@ -69,16 +69,18 @@ export default function Card(props: TStudy) {
           alt="Card Image"
           className="rounded-[0.8rem] object-cover"
         />
-        <div
-          className="absolute top-0 right-0 m-[0.8rem] p-[0.15rem] text-white"
-          onClick={onClickBookmark}
-        >
-          {isBookmarked ? (
-            <FaBookmark size={13} />
-          ) : (
-            <FaRegBookmark size={13} />
-          )}
-        </div>
+        {userId && (
+          <div
+            className="absolute top-0 right-0 m-[0.8rem] p-[0.15rem] text-white"
+            onClick={onClickBookmark}
+          >
+            {isBookmarked ? (
+              <FaBookmark size={13} />
+            ) : (
+              <FaRegBookmark size={13} />
+            )}
+          </div>
+        )}
         <div className="absolute bottom-0 left-0 right-0 rounded-b-[0.8rem] bg-black bg-opacity-80 text-white text-center text-content-2 p-[0.3rem] select-none">
           {studyMeetings}
         </div>
