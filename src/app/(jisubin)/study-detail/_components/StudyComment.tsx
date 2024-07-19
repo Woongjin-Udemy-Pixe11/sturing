@@ -125,8 +125,8 @@ export default function StudyComment(props: TStudyCommentProps) {
                   <HiEllipsisVertical size={16} />
                 </button>
                 {isOpen && (
-                  <ul className="w-[4rem] text-center border border-[text-gray-800]">
-                    <li>
+                  <ul className="w-[4rem] text-center border border-[text-gray-800] rounded-[0.4rem] mt-[2rem] z-10 absolute">
+                    <li className="border-b-[0.1rem]">
                       <button type="button" onClick={onClickEdit}>
                         수정
                       </button>

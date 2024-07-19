@@ -1,4 +1,3 @@
-import { HiEllipsisVertical } from 'react-icons/hi2';
 import CommentForm from './CommentForm';
 import StudyComment from './StudyComment';
 import { getComments } from '@/lib/actions/commentAction';
@@ -23,9 +22,6 @@ export default async function StudyComments(props: TStudyCommentsProps) {
         <div className="flex flex-col justify-center">
           <div className="flex flex-row items-center justify-between mt-[2.4rem] pb-[1.2rem]">
             <h2 className="mx-[2rem] font-semibold text-gray-950">댓글</h2>
-            <div className="pr-[2rem]">
-              <HiEllipsisVertical />
-            </div>
           </div>
 
           <hr className="mx-[2rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
