@@ -1,5 +1,5 @@
 import SectionNavigator from '@/components/common/SectionNavigator';
-import TaskInfo from '@/app/(suwan)/my-study-main/[studyId]/board/_jisubin_comp/TaskInfo';
+import TaskInfo from '@/app/(suwan)/my-study-main/[studyId]/board/_component/TaskInfo';
 
 export default function page() {
   return (

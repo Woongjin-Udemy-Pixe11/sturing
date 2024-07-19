@@ -1,6 +1,8 @@
 import connectDB from '@/lib/db';
 import { StudyMember } from '@/lib/schemas/studyMemberSchema';
 import { StudyReview } from '@/lib/schemas/studyReviewSchema';
+import { Study } from '@/lib/schemas/studySchema';
+import { differenceInDays } from 'date-fns';
 import mongoose from 'mongoose';
 
 export async function GET(request: Request) {
@@ -71,7 +73,7 @@ export async function PATCH(request: Request) {
   await connectDB();
   const { searchParams } = new URL(request.url);
   const id = searchParams.get('id');
-  const { today, attended } = await request.json();
+  const { today, attended, studyId } = await request.json();
 
   if (!id) {
     return Response.json({ error: 'id is required' }, { status: 400 });
@@ -93,7 +95,17 @@ export async function PATCH(request: Request) {
         (date: string) => date !== today,
       );
     }
-    member.studyProgress = member.attendance.length;
+
+    const studyData = await Study.findById(studyId);
+
+    const period = Math.abs(
+      differenceInDays(studyData.studyStart, studyData.studyEnd),
+    );
+
+    member.studyProgress = Math.floor(
+      (member.attendance.length / period) * 100,
+    );
+
     await member.save();
     return Response.json({
       message: 'Attendance updated successfully',

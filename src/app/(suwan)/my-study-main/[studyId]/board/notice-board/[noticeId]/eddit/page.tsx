@@ -1,20 +1,32 @@
 'use server';
-import BoardTop from '../../_component/BoardTop';
+
+import StudyForm from '@/components/common/StudyForm';
+import BoardTop from '../../../_component/BoardTop';
 import { getSession } from '@/utils/getSessions';
-import NoticeForm from '../../_component/NoticeForm';
+import { redirect } from 'next/navigation';
+import NoticeForm from '../../../_component/NoticeForm';
 import SubHeader from '@/components/common/SubHeader';
+import { fetchBlackboard } from '@/utils/my-study-main/fetch';
 import { TFormData } from '@/types/TStudyBoard';
 
 export default async function page({
   params,
 }: {
-  params: { studyId: string };
+  params: { studyId: string; noticeId: string };
 }) {
-  const studyId = params.studyId;
-
   const session = await getSession();
   let userId = session?.user?.id;
+
+  const studyId = params.studyId;
+  const noticeId = params.noticeId;
+
+  const notice = await fetchBlackboard('notice', noticeId);
+
+  const defaultTitle = notice.title;
+  const defaultContent = notice.content;
+
   const boardType = 'notice';
+  console.log('📍', defaultTitle, defaultContent);
 
   const handleSubmit = async (data: TFormData) => {
     'use server';
@@ -22,13 +34,13 @@ export default async function page({
 
     try {
       const response = await fetch(
-        `${process.env.LOCAL_URL}/api/study-board?boardType=${boardType}&studyId=${studyId}`,
+        `${process.env.LOCAL_URL}/api/study-board?boardType=${boardType}&blackboardId=${noticeId}`,
         {
-          method: 'POST',
+          method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ userId, title, content }),
+          body: JSON.stringify({ title, content }),
         },
       );
       const result = await response.json();
@@ -48,7 +60,8 @@ export default async function page({
           boardType={boardType}
           studyId={studyId}
           handleSubmit={handleSubmit}
-          heading="공지 작성"
+          defaultTitle={defaultTitle}
+          defaultContent={defaultContent}
         />
       </div>
     </div>

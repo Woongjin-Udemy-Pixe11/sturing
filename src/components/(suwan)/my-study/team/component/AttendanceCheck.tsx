@@ -3,6 +3,7 @@ import { FaCircleCheck } from 'react-icons/fa6';
 
 type TMember = {
   _id: string;
+  studyId: string;
   attendance: string[];
   studyProgress: number;
   userId: {
@@ -22,7 +23,7 @@ export default function AttendanceCheck(props: TAttendanceCheckProps) {
 
   const [checked, setChecked] = useState(false);
 
-  //   console.log('🤢', member.attendance);
+  console.log('🤢', member);
   const today = new Date().toISOString().split('T')[0];
 
   useEffect(() => {
@@ -42,7 +43,11 @@ export default function AttendanceCheck(props: TAttendanceCheckProps) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ today: today, attended: newCheckedState }),
+        body: JSON.stringify({
+          today: today,
+          attended: newCheckedState,
+          studyId: member.studyId,
+        }),
       });
 
       if (!response.ok) {

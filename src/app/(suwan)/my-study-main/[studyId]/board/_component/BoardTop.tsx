@@ -1,5 +1,7 @@
+'use client';
 import Link from 'next/link';
 import { GoChevronLeft } from 'react-icons/go';
+import { useRouter } from 'next/navigation';
 
 type TBoardTopProps = {
   title?: string;
@@ -9,10 +11,16 @@ type TBoardTopProps = {
 
 export default function BoardTop(props: TBoardTopProps) {
   const { title, isButton, href } = props;
+  const router = useRouter();
+
+  const onClickBack = () => {
+    router.push('./');
+    router.refresh();
+  };
   return (
     <div className="flex justify-between items-center py-[1.4rem] px-[1.6rem] bg-gray-100">
       <button>
-        <GoChevronLeft size={28} className="" />
+        <GoChevronLeft size={28} className="" onClick={onClickBack} />
       </button>
       <h1 className="text-headline-3 font-medium">{title}</h1>
       <div>

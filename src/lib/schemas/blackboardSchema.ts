@@ -2,15 +2,28 @@ import mongoose from 'mongoose';
 
 const blackboardSchema = new mongoose.Schema(
   {
-    blackboardWriteId: {
+    studyId: {
       type: mongoose.Schema.Types.ObjectId,
       require: true,
-      ref: 'user',
+      ref: 'Study',
     },
-    blackboardTitle: { type: String, required: true },
-    blackboardContent: { type: String, required: true },
-    blackboardImage: { type: String, required: true },
-    blackboardViews: { type: Number, required: true, default: 0 },
+    writerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: 'User',
+    },
+    type: { type: String, required: true },
+    title: { type: String, required: true },
+    content: { type: String, required: true },
+    image: { type: String },
+    views: { type: Number, required: true, default: 0 },
+    icons: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        require: true,
+        ref: 'BlackboardIcon',
+      },
+    ],
   },
   { timestamps: true },
 );

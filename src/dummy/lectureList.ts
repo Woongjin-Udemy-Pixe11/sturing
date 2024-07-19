@@ -22,7 +22,7 @@ export const lectures: TLectures[] = [
       '앱 라우터 또는 페이지 라우터로 NextJS 14를 기초부터 학습하고, 풀스택 ReactJS + NextJS 앱을 구축하세요!',
     lectureURL:
       'https://www.udemy.com/course/nextjs-react-incl-two-paths/?couponCode=KRLETSLEARNNOW',
-    lectureCategory: '개발테크',
+    lectureCategory: '개발 테크',
     lectureInstructor: 'Maximilian Schwarzmüller',
     lectureImg: 'https://img-c.udemycdn.com/course/480x270/4699864_c9d5_3.jpg',
     lectureRating: 4.8,
@@ -89,7 +89,7 @@ export const lectures: TLectures[] = [
     lectureDescription:
       'MySQL 데이터베이스의 기초부터 고급 개념까지 학습하고, 실습을 통해 실제 프로젝트에 적용해보세요!',
     lectureURL: 'https://www.udemy.com/course/softcampus-mysql/',
-    lectureCategory: '개발테크',
+    lectureCategory: '개발 테크',
     lectureInstructor: 'Softcampus Academy',
     lectureImg: 'https://img-c.udemycdn.com/course/480x270/1450064_3918.jpg',
     lectureRating: 4.9,

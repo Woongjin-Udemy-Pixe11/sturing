@@ -1,23 +1,75 @@
+'use client';
+
 import { GoChevronLeft } from 'react-icons/go';
 import { MdMoreHoriz, MdMoreVert } from 'react-icons/md';
 import Image from 'next/image';
-import EmojiSelectBtn from '../../_jisubin_comp/EmojiSelectBtn';
-export default function page() {
-  return (
-    <div className="w-full h-[5.4rem] bg-gray-100">
-      <div className="flex items-center justify-between px-[1.5rem] py-[1.6rem]">
-        <button>
-          <GoChevronLeft size={24} className="" />
-        </button>
-        <button>
-          <MdMoreHoriz size={24} />
-        </button>
-      </div>
+import EmojiSelectBtn from './EmojiSelectBtn';
+import SubHeader from '@/components/common/SubHeader';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { deleteNotice, postIcon } from '@/utils/my-study-main/fetch';
+import KebabModal from '@/components/common/modal/KebabModal';
 
+export default function TaskDetail(props: any) {
+  const { blackboard, writer, userId } = props;
+  const router = useRouter();
+  const boardType = 'task';
+  const [modal, setModal] = useState(false);
+
+  const modalRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const closeModal = (e: MouseEvent) => {
+      if (
+        modal &&
+        modalRef.current &&
+        !modalRef.current.contains(e.target as Node)
+      ) {
+        // 이벤트가 발생한 노드가 모달 컴포넌트 내부에 존재하지 않는다면 close
+        setModal(false);
+      }
+    };
+
+    // 이벤트 리스너를 document 전체에 붙여줌
+    document.addEventListener('mousedown', closeModal);
+
+    return () => {
+      document.removeEventListener('mousedown', closeModal);
+    };
+  }, [modal]);
+
+  const onClickEddit = () => {
+    console.log('수정');
+    router.push(`./${blackboard._id}/eddit`);
+  };
+  const onClickDelete = () => {
+    console.log('삭제');
+    deleteNotice(blackboard._id);
+    router.push(`./`);
+    router.refresh();
+  };
+
+  return (
+    <>
+      {userId === writer._id ? (
+        <SubHeader eddit bgGray onClickMenu={() => setModal(!modal)} />
+      ) : (
+        <SubHeader />
+      )}
+      {modal && (
+        <div
+          ref={modalRef}
+          className="relative inset-0 bg-black bg-opacity-50 z-10"
+        >
+          <KebabModal
+            onClickEddit={onClickEddit}
+            onClickDelete={onClickDelete}
+          />
+        </div>
+      )}
       <div className="bg-white px-[1.6rem] flex flex-col gap-y-[2rem] py-[3rem]">
         <div className="flex flex-row items-center">
           <Image
-            src="/images/dummy-member-img1.png"
+            src={writer.image}
             width={28}
             height={28}
             alt="Picture of the author"
@@ -25,7 +77,7 @@ export default function page() {
           />
           <div className="flex flex-col items-center justify-center gap-x-[0.4rem] ml-[0.8rem]">
             <div className="text-content-1 text-gray-900 font-semibold">
-              갓생살자
+              {writer.nickname}
             </div>
             <div className="text-content-2 text-gray-700">11시간 전</div>
           </div>
@@ -34,24 +86,27 @@ export default function page() {
         <div className="flex flex-col gap-y-[2rem]">
           <div className="flex flex-col justify-start gap-y-[2rem]">
             <h1 className="text-[1.8rem] text-gray-900 font-semibold">
-              1주차 6월 7일 체크리스트 과제
+              {blackboard.title}
             </h1>
-            <p className="text-gray-700">
-              1강 5분 복습, 2강 듣고 과제 노트 작성하기 및 3강 예습하기 총 1시간
-              동안 과제 인증 합니다. 내일은 시간이 조금 부족해서 체크리스트 다
-              완료할 수 있을지...ㅠㅠ
-            </p>
+            <p className="text-gray-700">{blackboard.content}</p>
           </div>
 
-          <Image
-            src="/images/dummy-task-detail-img1.png"
-            width={343}
-            height={343}
-            alt="Picture of the author"
-            className="rounded-[0.8rem] aspect-square object-cover"
-          />
+          {blackboard.image && (
+            <Image
+              src={blackboard.image}
+              width={343}
+              height={343}
+              alt="Picture of the author"
+              className="rounded-[0.8rem] aspect-square object-cover"
+            />
+          )}
         </div>
-        <EmojiSelectBtn />
+        <EmojiSelectBtn
+          boardType={boardType}
+          blackboardId={blackboard._id}
+          userId={userId}
+          icons={blackboard.icons}
+        />
         <div>
           <div className="flex flex-row items-center justify-start gap-x-[0.4rem] text-content-2 mb-[1.2rem]">
             <div>댓글</div>
@@ -192,6 +247,6 @@ export default function page() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -19,7 +19,7 @@ export default function Ismatching({
         redirect('/matching');
       }
 
-      if (token !== session.user.accessToken.toString()) {
+      if (token !== session.user.accessToken) {
         localStorage.setItem('token', session.user.accessToken);
         if (data.matchinginfo === null) {
           redirect('/matching');
