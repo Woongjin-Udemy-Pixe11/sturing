@@ -1,5 +1,5 @@
 import SectionNavigator from '@/components/common/SectionNavigator';
-import TaskInfo from './_jisubin_comp/TaskInfo';
+import TaskInfo from './_component/TaskInfo';
 import Header from '../_components/Header';
 import { fetchBoardList, fetchStudy } from '@/utils/my-study-main/fetch';
 import { getSession } from '@/utils/getSessions';

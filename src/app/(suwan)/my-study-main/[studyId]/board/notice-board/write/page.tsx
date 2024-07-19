@@ -3,11 +3,7 @@ import BoardTop from '../../_component/BoardTop';
 import { getSession } from '@/utils/getSessions';
 import NoticeForm from '../../_component/NoticeForm';
 import SubHeader from '@/components/common/SubHeader';
-type TFormData = {
-  title: string;
-  content: string;
-  img?: string;
-};
+import { TFormData } from '@/types/TStudyBoard';
 
 export default async function page({
   params,
@@ -36,7 +32,7 @@ export default async function page({
         },
       );
       const result = await response.json();
-      return { noticeId: result };
+      return { blackboardId: result };
     } catch (error) {
       console.error('Error posting notice:', error);
       return { error: 'Failed to submit notice' };
@@ -49,6 +45,7 @@ export default async function page({
       <SubHeader bgGray={true} />
       <div className="bg-white p-[1.6rem]">
         <NoticeForm
+          boardType={boardType}
           studyId={studyId}
           handleSubmit={handleSubmit}
           heading="공지 작성"

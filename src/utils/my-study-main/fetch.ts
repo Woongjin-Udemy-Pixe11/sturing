@@ -31,10 +31,10 @@ export async function fetchBoardList(boardType: string, studyId: string) {
   }
 }
 
-export async function fetchNotice(noticeId: string) {
+export async function fetchNotice(blackboardId: string) {
   try {
     const res = await fetch(
-      `${process.env.LOCAL_URL}/api/study-board/notice?noticeId=${noticeId}`,
+      `${process.env.LOCAL_URL}/api/study-board/notice?noticeId=${blackboardId}`,
       { cache: 'no-store' },
     );
     return res.json();

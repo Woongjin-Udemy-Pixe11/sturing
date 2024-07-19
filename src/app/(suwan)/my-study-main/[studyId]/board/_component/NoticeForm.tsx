@@ -4,18 +4,14 @@ import { convertBase64 } from '@/utils/convertBase64';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { CgClose } from 'react-icons/cg';
-
-type TFormData = {
-  title: string;
-  content: string;
-  img?: string;
-};
+import { TFormData } from '@/types/TStudyBoard';
 
 type NoticeFormProps = {
+  boardType?: string;
   studyId: string;
   handleSubmit: (
     data: TFormData,
-  ) => Promise<{ noticeId?: string; error?: string }>;
+  ) => Promise<{ blackboardId?: string; error?: string }>;
   imageUpload?: boolean;
   heading?: string;
   defaultTitle?: string;
@@ -26,6 +22,7 @@ type NoticeFormProps = {
 
 export default function NoticeForm(props: NoticeFormProps) {
   const {
+    boardType,
     studyId,
     handleSubmit,
     imageUpload,
@@ -82,9 +79,13 @@ export default function NoticeForm(props: NoticeFormProps) {
       img = await convertBase64(file);
     }
 
+    const board = boardType == 'notice' ? 'notice-board' : 'task-board';
     const result = await handleSubmit({ title, content, img });
-    if (result.noticeId) {
-      router.push(`./${result.noticeId}`);
+    if (result.blackboardId) {
+      router.replace(
+        `/my-study-main/${studyId}/board/${board}/${result.blackboardId}`,
+      );
+      router.refresh();
     } else if (result.error) {
       console.error(result.error);
     }
@@ -178,7 +179,7 @@ export default function NoticeForm(props: NoticeFormProps) {
               rows={6}
             />
             <div className="flex justify-end w-full text-content-2 mt-[0.8rem] mb-[0.4rem]">
-              <span className="text-gray-900">0</span>
+              <span className="text-gray-900">{content.length}</span>
 
               <span className="text-gray-400">/{contentMaxLength}</span>
             </div>

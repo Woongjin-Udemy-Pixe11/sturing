@@ -34,7 +34,7 @@ export default async function page({
         },
       );
       const result = await response.json();
-      return { noticeId: result };
+      return { blackboardId: result };
     } catch (error) {
       console.error('Error posting notice:', error);
       return { error: 'Failed to submit notice' };
@@ -46,6 +46,7 @@ export default async function page({
       <BoardTop />
       <div className="bg-white p-[1.6rem]">
         <NoticeForm
+          boardType={boardType}
           studyId={studyId}
           handleSubmit={handleSubmit}
           imageUpload

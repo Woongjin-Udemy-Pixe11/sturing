@@ -79,3 +79,39 @@ export async function POST(request: Request) {
     return Response.json({ message: 'Blackboard not saved' });
   }
 }
+
+export async function PUT(request: Request) {
+  await connectDB();
+  const { searchParams } = new URL(request.url);
+  const blackboardId = searchParams.get('blackboardId');
+  const boardType = searchParams.get('boardType');
+  const { title, content, img } = await request.json();
+
+  try {
+    switch (boardType) {
+      case 'notice':
+        await Blackboard.updateOne(
+          { _id: `${blackboardId}` },
+          {
+            title: title,
+            content: content,
+          },
+        );
+        return Response.json(blackboardId);
+
+      case 'task':
+        await Blackboard.updateOne(
+          { _id: `${blackboardId}` },
+          {
+            title: title,
+            content: content,
+            image: img,
+          },
+        );
+        return Response.json(blackboardId);
+    }
+  } catch (error) {
+    console.error('Error eddit blackboard:', error);
+    return Response.json({ message: 'Blackboard not eddited' });
+  }
+}
