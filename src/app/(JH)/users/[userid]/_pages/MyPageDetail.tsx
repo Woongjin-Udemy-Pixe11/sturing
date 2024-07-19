@@ -5,6 +5,7 @@ import UserMatchingInfo from '@/components/(JH)/users/UserMatchingInfo';
 import { logout } from '@/lib/actions/userAction';
 import Link from 'next/link';
 import LongButton from '@/components/common/LongButton';
+import EditProfileImage from '@/components/(JH)/users/EditProfileImage';
 
 export default function MyPageDetail({
   auth,
@@ -29,10 +30,7 @@ export default function MyPageDetail({
             src={`${data.users.image}`}
             className="cover w-full h-full"
           ></img>
-          <FaCamera
-            size={16}
-            className="text-gray-600  border  border-gray-500 rounded-full bg-gray-300 p-1 absolute right-0 bottom-0"
-          />
+          <EditProfileImage id={data.users._id} />
         </div>
       </div>
       <UserDetailInfo data={data} />
