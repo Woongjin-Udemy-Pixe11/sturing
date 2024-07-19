@@ -4,8 +4,37 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 import * as Tabs from '@radix-ui/react-tabs';
 import { IoSearch } from 'react-icons/io5';
 import TabLabel from './TabLabel';
+import { useState, useEffect } from 'react';
 
 export default function CommonTab({ regions, onClickRegion }: any) {
+  const [keyword, setKeyword] = useState('');
+  const [currentTab, setCurrentTab] = useState('서울');
+
+  // Create a mapping of all regions to their parent keys
+  const regionMapping = {};
+  Object.keys(area).forEach((key) => {
+    area[key].forEach((region) => {
+      regionMapping[region] = key;
+    });
+  });
+
+  // Update the current tab based on the keyword
+  useEffect(() => {
+    if (keyword) {
+      for (const region in regionMapping) {
+        if (region.toLowerCase().includes(keyword.toLowerCase())) {
+          setCurrentTab(regionMapping[region]);
+          break;
+        }
+      }
+    }
+  }, [keyword]);
+
+  // Function to check if a region matches the keyword
+  const matchesKeyword = (region) => {
+    return region.toLowerCase().includes(keyword.toLowerCase());
+  };
+
   return (
     <div className="flex flex-col gap-3 w-full, overflow-y-hidden">
       <>
@@ -17,6 +46,10 @@ export default function CommonTab({ regions, onClickRegion }: any) {
             type="text"
             name="search-input"
             id="search-input"
+            value={keyword}
+            onChange={(e) => {
+              setKeyword(e.target.value);
+            }}
             placeholder="스터디 선호지역을 입력해 주세요"
             className="w-[27rem] inline-block bg-inherit py-[1.3rem] pr-[2rem] text-content-1 placeholder-gray-700"
           />
@@ -26,14 +59,18 @@ export default function CommonTab({ regions, onClickRegion }: any) {
         </label>
       </>
 
-      <Tabs.Root defaultValue="서울" className="flex w-full  ">
-        <Tabs.List className="flex flex-col    w-[33%] text-[1.4rem] text-[#909090]">
-          <ScrollArea.Root className=" h-[33.3rem]    bg-white">
+      <Tabs.Root
+        value={currentTab}
+        onValueChange={setCurrentTab}
+        className="flex w-full"
+      >
+        <Tabs.List className="flex flex-col w-[33%] text-[1.4rem] text-[#909090]">
+          <ScrollArea.Root className=" h-[33.3rem] bg-white">
             <ScrollArea.Viewport className="w-full h-full ">
               {Object.keys(area).map((key, index) => {
                 return (
                   <Tabs.Trigger
-                    value={`${key}`}
+                    value={key}
                     key={index}
                     className={` w-full md:max-w-[13.3rem]  h-[4.9rem] py-[1.4rem] px-[4.65rem] tab-trigger`}
                   >
@@ -50,22 +87,26 @@ export default function CommonTab({ regions, onClickRegion }: any) {
         <Tabs.List className="w-[63%]">
           {Object.keys(area).map((key: string, index) => {
             return (
-              <Tabs.Content value={`${key}`} key={index}>
-                <ScrollArea.Root className=" h-[33.3rem]  overflow-hidden  ">
+              <Tabs.Content value={key} key={index}>
+                <ScrollArea.Root className=" h-[33.3rem] overflow-hidden">
                   <ScrollArea.Viewport className="w-full h-full overflow-auto ">
                     {area[key].map((item: any, index) => {
                       let newid: string = item;
 
+                      const isMatch = matchesKeyword(item);
                       const bg = regions.includes(newid)
                         ? 'bg-[#ECF1FF] text-[#4171FF]'
                         : 'bg-white';
+                      const hidden = keyword && !isMatch ? 'hidden' : '';
+
                       return (
                         <Tabs.Content
                           value={`${key}`}
                           key={index}
-                          className={`${bg}  w-full h-[4.9rem] py-[1.4rem] ps-[2rem] border-b-[0.1rem] border-[#E4E4E4]`}
+                          className={`${bg} ${hidden} w-full h-[4.9rem] py-[1.4rem] ps-[2rem] border-b-[0.1rem] border-[#E4E4E4]`}
                           onClick={() => {
                             onClickRegion(item);
+                            setKeyword('');
                           }}
                         >
                           <p className="w-[90%]">{item}</p>
@@ -78,7 +119,7 @@ export default function CommonTab({ regions, onClickRegion }: any) {
                     className="flex select-none touch-none p-0.5 bg-transparent transition-colors duration-160 ease-out hover:bg-gray-200 data-[orientation=vertical]:w-2 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-2"
                     orientation="vertical"
                   >
-                    <ScrollArea.Thumb className="flex-1 h-[90%] bg-[#D0D0D0] rounded-[4px]  " />
+                    <ScrollArea.Thumb className="flex-1 h-[90%] bg-[#D0D0D0] rounded-[4px]" />
                   </ScrollArea.Scrollbar>
                 </ScrollArea.Root>
               </Tabs.Content>

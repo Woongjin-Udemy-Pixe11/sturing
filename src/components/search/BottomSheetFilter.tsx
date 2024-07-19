@@ -28,7 +28,7 @@ export default function BottomSheetFilter({ onClose }: TBottomSheetFilter) {
     { name: '기간', component: <Period /> },
     { name: '수준', component: <Level /> },
   ];
-  console.log(state);
+
   return (
     <div className="w-full flex flex-col justify-between rounded-t-[1rem] border border-gray-300 shadow-modal bg-white h-[75vh] ">
       <span className="block mx-[1.6rem] mt-[2.0rem] mb-[1.2rem] text-[1.8rem]">
