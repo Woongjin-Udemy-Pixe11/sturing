@@ -2,15 +2,22 @@
 
 import { TStudy } from '@/types/TStudy';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
 import Label from './label/Label';
+import {
+  fetchBookmark,
+  postBookmark,
+  updateBookmark,
+} from '@/utils/study-detail/bookmarkUtils';
 
 type TCardSizeList = {
   [key: string]: string;
 };
 export default function Card(props: TStudy) {
   const {
+    userId,
+    studyId,
     studyImage,
     studyMeetings,
     studyType,
@@ -24,13 +31,31 @@ export default function Card(props: TStudy) {
   } = props;
 
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const onBookmarkClick = () => {
-    setIsBookmarked(!isBookmarked);
+
+  const onClickBookmark = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    fetchBookmark(userId, studyId).then((bookmark) => {
+      if (!bookmark) {
+        postBookmark(userId, studyId).then((data) => {
+          setIsBookmarked(!isBookmarked);
+        });
+      } else {
+        updateBookmark(userId, studyId).then((data) => {
+          setIsBookmarked(!isBookmarked);
+        });
+      }
+    });
   };
-  const cardSizeList: TCardSizeList = {
-    '182': 'w-full  m-auto',
-    '167': 'w-full  m-auto',
-  };
+  useEffect(() => {
+    fetchBookmark(userId, studyId).then((bookmark) => {
+      if (!bookmark) {
+        setIsBookmarked(false);
+      } else {
+        setIsBookmarked(bookmark.checked);
+      }
+    });
+  }, [isBookmarked]);
 
   const start = studyStart.split('T')[0].split('-').slice(1).join('.');
   const end = studyEnd.split('T')[0].split('-').slice(1).join('.');
@@ -44,16 +69,18 @@ export default function Card(props: TStudy) {
           alt="Card Image"
           className="rounded-[0.8rem] object-cover"
         />
-        <div
-          className="absolute top-0 right-0 m-[0.8rem] p-[0.15rem] text-white"
-          onClick={onBookmarkClick}
-        >
-          {isBookmarked ? (
-            <FaBookmark size={13} />
-          ) : (
-            <FaRegBookmark size={13} />
-          )}
-        </div>
+        {userId && (
+          <div
+            className="absolute top-0 right-0 m-[0.8rem] p-[0.15rem] text-white"
+            onClick={onClickBookmark}
+          >
+            {isBookmarked ? (
+              <FaBookmark size={13} />
+            ) : (
+              <FaRegBookmark size={13} />
+            )}
+          </div>
+        )}
         <div className="absolute bottom-0 left-0 right-0 rounded-b-[0.8rem] bg-black bg-opacity-80 text-white text-center text-content-2 p-[0.3rem] select-none">
           {studyMeetings}
         </div>

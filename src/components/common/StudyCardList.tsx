@@ -36,6 +36,8 @@ export default async function StudyCardList({
           <li key={study.studyId}>
             <Link href={`/study-detail/${study._id}`}>
               <Card
+                userId={userId}
+                studyId={study._id}
                 studyImage={study.studyImage}
                 studyMeetings={study.studyMeetings}
                 studyType={study.studyType}
