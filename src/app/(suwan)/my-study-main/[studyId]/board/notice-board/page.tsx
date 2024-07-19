@@ -1,7 +1,7 @@
 'use server';
 import BoardTop from '../_component/BoardTop';
 import NoticeBoardList from '../_component/NoticeBoardList';
-import { fetchNoticeList, fetchStudy } from '@/utils/my-study-main/fetch';
+import { fetchBoardList, fetchStudy } from '@/utils/my-study-main/fetch';
 import { getSession } from '@/utils/getSessions';
 
 export default async function page({
@@ -10,8 +10,7 @@ export default async function page({
   params: { studyId: string };
 }) {
   const studyId = params.studyId;
-  const noticeList = await fetchNoticeList(studyId);
-  // console.log(noticeList);
+  const noticeList = await fetchBoardList('notice', studyId);
 
   const session = await getSession();
   const userid = session?.user?.id;

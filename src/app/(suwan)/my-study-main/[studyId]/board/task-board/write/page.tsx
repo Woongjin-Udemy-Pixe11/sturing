@@ -1,11 +1,7 @@
 'use server';
-
-import LongButton from '@/components/common/LongButton';
-import StudyForm from '@/components/common/StudyForm';
 import BoardTop from '../../_component/BoardTop';
 import { getSession } from '@/utils/getSessions';
 import NoticeForm from '../../_component/NoticeForm';
-import { convertBase64 } from '@/utils/convertBase64';
 
 type TFormData = {
   title: string;
@@ -49,20 +45,13 @@ export default async function page({
     <>
       <BoardTop />
       <div className="bg-white p-[1.6rem]">
-        <NoticeForm studyId={studyId} handleSubmit={handleSubmit} imageUpload />
-        {/* <StudyForm
-          heading="과제 게시판 작성"
-          titleLabel="글 제목"
+        <NoticeForm
+          studyId={studyId}
+          handleSubmit={handleSubmit}
           imageUpload
-          imageLabel="과제 인증 사진"
-          contentLabel="제목을 입력해 주세요"
-          titlePlaceholder="내용"
           contentMaxLength={3000}
-          contentPlaceholder="내용을 입력해 주세요"
+          heading="과제 게시판 작성"
         />
-        <LongButton className={'mt-[4rem]'} color="blue">
-          등록하기
-        </LongButton> */}
       </div>
     </>
   );

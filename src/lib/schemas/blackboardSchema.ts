@@ -10,7 +10,7 @@ const blackboardSchema = new mongoose.Schema(
     writerId: {
       type: mongoose.Schema.Types.ObjectId,
       require: true,
-      ref: 'user',
+      ref: 'User',
     },
     type: { type: String, required: true },
     title: { type: String, required: true },

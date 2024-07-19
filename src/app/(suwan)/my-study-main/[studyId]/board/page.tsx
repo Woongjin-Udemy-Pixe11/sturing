@@ -1,7 +1,7 @@
 import SectionNavigator from '@/components/common/SectionNavigator';
 import TaskInfo from './_jisubin_comp/TaskInfo';
 import Header from '../_components/Header';
-import { fetchNoticeList, fetchStudy } from '@/utils/my-study-main/fetch';
+import { fetchBoardList, fetchStudy } from '@/utils/my-study-main/fetch';
 import { getSession } from '@/utils/getSessions';
 
 export default async function page({
@@ -11,7 +11,10 @@ export default async function page({
 }) {
   const studyId = params.studyId;
   const data = await fetchStudy(studyId);
-  const noticeList = await fetchNoticeList(studyId);
+  const noticeList = await fetchBoardList('notice', studyId);
+  const taskList = await fetchBoardList('task', studyId);
+  const viewTask = taskList.slice(-2);
+  console.log('🛍️', viewTask);
 
   const session = await getSession();
   const userid = session?.user?.id;
@@ -51,26 +54,17 @@ export default async function page({
             />
             <hr className="mx-[0.4rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
           </div>
-          <TaskInfo
-            userImg="/images/dummy-member-img1.png"
-            user="갓생살자"
-            time="11시간 전"
-            taskTitle="1주차 6월 3일 체크리스트 과제"
-            taskContent="1강 5분 복습, 2강 듣고 과제 노트 작성하기 및 3강 예습하기 총 1시간
-            동안 과제 인증 합니다. 내일은 시간이"
-            taskImg="/images/dummy-board-img1.png"
-          />
-
-          <TaskInfo
-            userImg="/images/dummy-member-img2.png"
-            user="웅진"
-            isLeader={true}
-            time="1일전"
-            taskTitle="1주차 6월 3일 체크리스트 과제"
-            taskContent="1강 5분 복습, 2강 듣고 과제 노트 작성하기 및 3강 예습하기 총 1시간
-            동안 과제 인증 합니다. 내일은 시간이"
-            taskImg="/images/dummy-board-img1.png"
-          />
+          {taskList.length > 0 &&
+            viewTask.map((task: any) => (
+              <TaskInfo
+                userImg={task.image}
+                user="갓생살자"
+                time="11시간 전"
+                taskTitle={task.title}
+                taskContent={task.content}
+                taskImg={task.image}
+              />
+            ))}
         </div>
       </div>
     </>

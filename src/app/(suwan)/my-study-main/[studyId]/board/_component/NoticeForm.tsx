@@ -17,8 +17,10 @@ type NoticeFormProps = {
     data: TFormData,
   ) => Promise<{ noticeId?: string; error?: string }>;
   imageUpload?: boolean;
+  heading?: string;
   defaultTitle?: string;
   defaultContent?: string;
+  contentMaxLength?: number;
   onImageChange?: (file: File | null) => void;
 };
 
@@ -27,8 +29,10 @@ export default function NoticeForm(props: NoticeFormProps) {
     studyId,
     handleSubmit,
     imageUpload,
+    heading,
     defaultTitle,
     defaultContent,
+    contentMaxLength,
     onImageChange,
   } = props;
   const router = useRouter();
@@ -89,7 +93,7 @@ export default function NoticeForm(props: NoticeFormProps) {
     <>
       <form action={onSubmit}>
         <h1 className="font-semibold text-[2.0rem] tracking-[-0.03rem] text-gray-1000 mb-[2.0rem]">
-          공지 작성
+          {heading}
         </h1>
         {imageUpload && (
           <div className="w-full mb-[1.6rem]">
@@ -168,7 +172,7 @@ export default function NoticeForm(props: NoticeFormProps) {
               name="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              maxLength={500}
+              maxLength={contentMaxLength}
               placeholder="내용을 입력해 주세요"
               className="w-full h-[23rem] px-[1.6rem] py-[1.2rem] p-3 border border-gray-300 rounded-[0.5rem] text-gray-900 placeholder:text-gray-600 placeholder:text-content-1"
               rows={6}
@@ -176,7 +180,7 @@ export default function NoticeForm(props: NoticeFormProps) {
             <div className="flex justify-end w-full text-content-2 mt-[0.8rem] mb-[0.4rem]">
               <span className="text-gray-900">0</span>
 
-              <span className="text-gray-400">/500</span>
+              <span className="text-gray-400">/{contentMaxLength}</span>
             </div>
           </div>
         </div>

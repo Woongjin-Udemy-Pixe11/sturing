@@ -1,6 +1,4 @@
 'use server';
-
-import StudyForm from '@/components/common/StudyForm';
 import BoardTop from '../../_component/BoardTop';
 import { getSession } from '@/utils/getSessions';
 import NoticeForm from '../../_component/NoticeForm';
@@ -50,7 +48,11 @@ export default async function page({
       {/* <BoardTop /> */}
       <SubHeader bgGray={true} />
       <div className="bg-white p-[1.6rem]">
-        <NoticeForm studyId={studyId} handleSubmit={handleSubmit} />
+        <NoticeForm
+          studyId={studyId}
+          handleSubmit={handleSubmit}
+          heading="공지 작성"
+        />
       </div>
     </div>
   );

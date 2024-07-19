@@ -19,10 +19,10 @@ export async function fetchMember(studyId: any) {
   return res.json();
 }
 
-export async function fetchNoticeList(studyId: string) {
+export async function fetchBoardList(boardType: string, studyId: string) {
   try {
     const res = await fetch(
-      `${process.env.LOCAL_URL}/api/study-board/notice?studyId=${studyId}`,
+      `${process.env.LOCAL_URL}/api/study-board?boardType=${boardType}&studyId=${studyId}`,
       { cache: 'no-store' },
     );
     return res.json();
@@ -35,6 +35,18 @@ export async function fetchNotice(noticeId: string) {
   try {
     const res = await fetch(
       `${process.env.LOCAL_URL}/api/study-board/notice?noticeId=${noticeId}`,
+      { cache: 'no-store' },
+    );
+    return res.json();
+  } catch (error) {
+    console.error('Fetch error:', error);
+  }
+}
+
+export async function fetchBlackboard(boardType: string, blackboardId: string) {
+  try {
+    const res = await fetch(
+      `${process.env.LOCAL_URL}/api/study-board?boardType=${boardType}&blackboardId=${blackboardId}`,
       { cache: 'no-store' },
     );
     return res.json();

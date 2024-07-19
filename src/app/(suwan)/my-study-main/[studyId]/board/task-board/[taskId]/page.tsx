@@ -1,3 +1,4 @@
+import { fetchBlackboard, fetchUser } from '@/utils/my-study-main/fetch';
 import TaskDetail from '../../_component/TaskDetail';
 import { getSession } from '@/utils/getSessions';
 
@@ -10,12 +11,15 @@ export default async function page({
 }) {
   const session = await getSession();
   const userId = session?.user?.id;
-
   const taskId = params.taskId;
+  const task = await fetchBlackboard('task', taskId);
+  console.log('🅾️', task);
+
+  const writer = await fetchUser(task.writerId);
 
   return (
     <>
-      <TaskDetail />
+      <TaskDetail blackboard={task} writer={writer} userId={userId} />
     </>
   );
 }
