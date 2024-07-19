@@ -64,16 +64,13 @@ export async function fetchUser(id: string) {
 
 export async function patchView(noticeId: string) {
   try {
-    const response = await fetch(
-      `${process.env.LOCAL_URL}/api/study-board/notice`,
-      {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ noticeId }),
+    const response = await fetch(`${process.env.LOCAL_URL}/api/study-board`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
+      body: JSON.stringify({ noticeId }),
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -87,7 +84,7 @@ export async function patchView(noticeId: string) {
 
 export async function fetchIcon(blackboardId: string) {
   const res = await fetch(
-    `/api/study-board/notice/icon?blackboardId=${blackboardId}`,
+    `/api/study-board/icon?blackboardId=${blackboardId}`,
     { cache: 'no-store' },
   );
   return res.json();
@@ -103,7 +100,7 @@ export async function postIcon(props: TPostIconProps) {
   const { blackboardId, iconName, userId } = props;
 
   try {
-    const response = await fetch(`/api/study-board/notice/icon`, {
+    const response = await fetch(`/api/study-board/icon`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

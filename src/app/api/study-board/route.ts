@@ -129,3 +129,17 @@ export async function DELETE(request: Request) {
     return Response.json({ message: 'Blackboard not delete' });
   }
 }
+
+export async function PATCH(request: Request) {
+  await connectDB();
+  const { noticeId } = await request.json();
+  console.log(noticeId);
+
+  const updateView = await Blackboard.updateOne(
+    { _id: `${noticeId}` },
+    {
+      $inc: { views: 1 },
+    },
+  );
+  return new Response(JSON.stringify({ updateView }));
+}
