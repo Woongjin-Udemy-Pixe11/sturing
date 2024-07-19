@@ -12,22 +12,21 @@ export async function GET(request: Request) {
 
   try {
     if (studyId) {
-      const noticeList = await Blackboard.find({
+      const boardList = await Blackboard.find({
         studyId: studyId,
         type: boardType,
-      });
+      }).populate('writerId', 'nickname image');
 
-      return Response.json(noticeList);
+      console.log('👾', boardList);
+
+      return Response.json(boardList);
     } else if (blackboardId) {
-      if (boardType == 'notice') {
-        const notice = await Blackboard.findById(blackboardId).populate(
-          'icons',
-        );
+      if (boardType == 'notice' || boardType == 'task') {
+        const board = await Blackboard.findById(blackboardId)
+          .populate('icons')
+          .populate('writerId', 'nickname image');
 
-        return Response.json(notice);
-      } else if (boardType == 'task') {
-        const task = await Blackboard.findById(blackboardId).populate('icons');
-        return Response.json(task);
+        return Response.json(board);
       }
     } else {
       return Response.json(
