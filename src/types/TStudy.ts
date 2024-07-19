@@ -1,17 +1,18 @@
 // Study 타입 정의
 export type TStudy = {
   _id?: string;
-  userId?: {
-    _id: string;
-    nickname: string;
-    image: string;
-    studyType: {
-      level?: {
-        [key: string]: string;
-      };
-    };
-  };
-  studyId?: string;
+  // userId?: {
+  //   _id: string;
+  //   nickname: string;
+  //   image: string;
+  //   studyType: {
+  //     level?: {
+  //       [key: string]: string;
+  //     };
+  //   };
+  // };
+  userId?: string;
+  studyId: string;
   studyImage: string;
   studyMeetings: string;
   studyTypeisBlue?: boolean;

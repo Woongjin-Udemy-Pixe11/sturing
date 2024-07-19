@@ -35,7 +35,6 @@ export default async function BookmarkBtnNavigationBar(
   };
   useEffect(() => {
     fetchBookmark(userId, targetId).then((bookmark) => {
-      console.log('bookmark', bookmark);
       if (!bookmark) {
         setIsBookmarked(false);
       } else {
