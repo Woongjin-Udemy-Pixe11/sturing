@@ -47,15 +47,17 @@ export default function Card(props: TStudy) {
       }
     });
   };
-  useEffect(() => {
-    fetchBookmark(userId, studyId).then((bookmark) => {
-      if (!bookmark) {
-        setIsBookmarked(false);
-      } else {
-        setIsBookmarked(bookmark.checked);
-      }
-    });
-  }, [isBookmarked]);
+  if (userId) {
+    useEffect(() => {
+      fetchBookmark(userId, studyId).then((bookmark) => {
+        if (!bookmark) {
+          setIsBookmarked(false);
+        } else {
+          setIsBookmarked(bookmark.checked);
+        }
+      });
+    }, [isBookmarked]);
+  }
 
   const start = studyStart.split('T')[0].split('-').slice(1).join('.');
   const end = studyEnd.split('T')[0].split('-').slice(1).join('.');
