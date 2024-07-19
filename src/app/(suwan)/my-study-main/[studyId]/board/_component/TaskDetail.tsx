@@ -51,7 +51,7 @@ export default function TaskDetail(props: any) {
   return (
     <>
       {userId === writer._id ? (
-        <SubHeader eddit onClickMenu={() => setModal(!modal)} />
+        <SubHeader eddit bgGray onClickMenu={() => setModal(!modal)} />
       ) : (
         <SubHeader />
       )}
@@ -91,13 +91,15 @@ export default function TaskDetail(props: any) {
             <p className="text-gray-700">{blackboard.content}</p>
           </div>
 
-          <Image
-            src={blackboard.image}
-            width={343}
-            height={343}
-            alt="Picture of the author"
-            className="rounded-[0.8rem] aspect-square object-cover"
-          />
+          {blackboard.image && (
+            <Image
+              src={blackboard.image}
+              width={343}
+              height={343}
+              alt="Picture of the author"
+              className="rounded-[0.8rem] aspect-square object-cover"
+            />
+          )}
         </div>
         <EmojiSelectBtn
           boardType={boardType}

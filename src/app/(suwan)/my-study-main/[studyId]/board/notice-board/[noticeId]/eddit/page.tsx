@@ -19,7 +19,7 @@ export default async function page({
 
   const studyId = params.studyId;
   const noticeId = params.noticeId;
-  console.log('😐blackboardId', noticeId);
+
   const notice = await fetchBlackboard('notice', noticeId);
 
   const defaultTitle = notice.title;

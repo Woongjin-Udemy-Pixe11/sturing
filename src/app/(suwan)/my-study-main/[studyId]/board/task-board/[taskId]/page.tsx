@@ -13,7 +13,6 @@ export default async function page({
   const userId = session?.user?.id;
   const taskId = params.taskId;
   const task = await fetchBlackboard('task', taskId);
-  console.log('🅾️', task);
 
   const writer = await fetchUser(task.writerId);
 

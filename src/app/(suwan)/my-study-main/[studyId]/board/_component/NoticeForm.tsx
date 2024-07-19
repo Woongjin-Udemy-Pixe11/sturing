@@ -16,6 +16,7 @@ type NoticeFormProps = {
   heading?: string;
   defaultTitle?: string;
   defaultContent?: string;
+  defaultImage?: string;
   contentMaxLength?: number;
   onImageChange?: (file: File | null) => void;
 };
@@ -29,6 +30,7 @@ export default function NoticeForm(props: NoticeFormProps) {
     heading,
     defaultTitle,
     defaultContent,
+    defaultImage,
     contentMaxLength,
     onImageChange,
   } = props;
@@ -36,12 +38,15 @@ export default function NoticeForm(props: NoticeFormProps) {
 
   const [title, setTitle] = useState(defaultTitle ? defaultTitle : '');
   const [content, setContent] = useState(defaultContent ? defaultContent : '');
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [selectedImg, setSelectedImg] = useState<string | null>(
+    defaultImage ? defaultImage : null,
+  );
+  const [previewUrl, setPreviewUrl] = useState<string | null>(
+    defaultImage ? defaultImage : null,
+  );
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    setSelectedFile(file);
 
     if (file) {
       const reader = new FileReader();
@@ -59,7 +64,7 @@ export default function NoticeForm(props: NoticeFormProps) {
   };
 
   const handleImageRemove = () => {
-    setSelectedFile(null);
+    setSelectedImg(null);
     setPreviewUrl(null);
     if (onImageChange) {
       onImageChange(null);
@@ -74,10 +79,17 @@ export default function NoticeForm(props: NoticeFormProps) {
     const title = formData.get('title') as string;
     const content = formData.get('content') as string;
     const file = formData.get('file') as File | null;
+
+    console.log('😨', file);
     let img;
-    if (file) {
+    if (file && file.size > 0) {
       img = await convertBase64(file);
+    } else if (defaultImage) {
+      img = selectedImg;
+    } else {
+      img = null;
     }
+    console.log('😈', img);
 
     const board = boardType == 'notice' ? 'notice-board' : 'task-board';
     const result = await handleSubmit({ title, content, img });

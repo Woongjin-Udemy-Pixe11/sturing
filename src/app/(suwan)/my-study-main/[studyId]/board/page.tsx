@@ -14,7 +14,6 @@ export default async function page({
   const noticeList = await fetchBoardList('notice', studyId);
   const taskList = await fetchBoardList('task', studyId);
   const viewTask = taskList.slice(-2);
-  console.log('🛍️', viewTask);
 
   const session = await getSession();
   const userid = session?.user?.id;
@@ -56,14 +55,7 @@ export default async function page({
           </div>
           {taskList.length > 0 &&
             viewTask.map((task: any) => (
-              <TaskInfo
-                userImg={task.image}
-                user="갓생살자"
-                time="11시간 전"
-                taskTitle={task.title}
-                taskContent={task.content}
-                taskImg={task.image}
-              />
+              <TaskInfo key={task._id} task={task} isLeader={isLeader} />
             ))}
         </div>
       </div>

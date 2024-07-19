@@ -2,12 +2,8 @@
 import BoardTop from '../../_component/BoardTop';
 import { getSession } from '@/utils/getSessions';
 import NoticeForm from '../../_component/NoticeForm';
+import { TFormData } from '@/types/TStudyBoard';
 
-type TFormData = {
-  title: string;
-  content: string;
-  img?: string;
-};
 export default async function page({
   params,
 }: {

@@ -88,6 +88,7 @@ export async function patchView(noticeId: string) {
 export async function fetchIcon(blackboardId: string) {
   const res = await fetch(
     `/api/study-board/notice/icon?blackboardId=${blackboardId}`,
+    { cache: 'no-store' },
   );
   return res.json();
 }
@@ -124,8 +125,8 @@ export async function postIcon(props: TPostIconProps) {
   }
 }
 
-export async function deleteNotice(noticeId: string) {
-  const res = await fetch(`/api/study-board/notice?noticeId=${noticeId}`, {
+export async function deleteNotice(blackboardId: string) {
+  const res = await fetch(`/api/study-board?blackboardId=${blackboardId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

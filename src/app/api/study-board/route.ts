@@ -48,20 +48,7 @@ export async function POST(request: Request) {
   const { userId, title, content, img } = await request.json();
 
   try {
-    if (boardType == 'notice') {
-      const newBlackboard = new Blackboard({
-        studyId: studyId,
-        writerId: userId,
-        type: boardType,
-        title: title,
-        content: content,
-      });
-      await newBlackboard.save();
-      const blackboardId = newBlackboard._id;
-
-      return Response.json(blackboardId);
-    } else if (boardType == 'task') {
-      console.log('task');
+    if (boardType == 'task' && img) {
       const newBlackboard = new Blackboard({
         studyId: studyId,
         writerId: userId,
@@ -69,6 +56,18 @@ export async function POST(request: Request) {
         title: title,
         content: content,
         image: img,
+      });
+      await newBlackboard.save();
+      const blackboardId = newBlackboard._id;
+
+      return Response.json(blackboardId);
+    } else {
+      const newBlackboard = new Blackboard({
+        studyId: studyId,
+        writerId: userId,
+        type: boardType,
+        title: title,
+        content: content,
       });
       await newBlackboard.save();
       const blackboardId = newBlackboard._id;
@@ -113,5 +112,20 @@ export async function PUT(request: Request) {
   } catch (error) {
     console.error('Error eddit blackboard:', error);
     return Response.json({ message: 'Blackboard not eddited' });
+  }
+}
+
+export async function DELETE(request: Request) {
+  await connectDB();
+  const { searchParams } = new URL(request.url);
+  const blackboardId = searchParams.get('blackboardId');
+  try {
+    await Blackboard.deleteOne({ _id: blackboardId });
+    await BlackboardIcon.deleteMany({ blackboardId: blackboardId });
+
+    return Response.json({ message: 'DELETE' });
+  } catch (error) {
+    console.error('Error eddit blackboard:', error);
+    return Response.json({ message: 'Blackboard not delete' });
   }
 }

@@ -1,5 +1,5 @@
 export type TFormData = {
   title: string;
   content: string;
-  img?: string;
+  img?: string | null;
 };

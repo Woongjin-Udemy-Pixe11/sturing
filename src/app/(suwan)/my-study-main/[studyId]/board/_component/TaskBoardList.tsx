@@ -45,11 +45,13 @@ export default function TaskBoardList(props: TTaskListProps) {
                       </p>
                     </div>
                     <span className="w-[21%] rounded-[0.5rem]">
-                      <img
-                        src={`${task.image}`}
-                        className="w-full object-cover rounded-[0.5rem]"
-                        alt=""
-                      />
+                      {task.image && (
+                        <img
+                          src={task.image}
+                          className="w-full object-cover rounded-[0.5rem]"
+                          alt=""
+                        />
+                      )}
                     </span>
                   </div>
                 </div>
