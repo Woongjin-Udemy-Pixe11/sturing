@@ -23,14 +23,14 @@ export default async function MyBookMarkList({ data }: any) {
                 data.map((study: any, index: any) => (
                   <div key={study.studyName} id={String(index)}>
                     <Card
-                      studyId={study.studyId}
+                      studyId={study._id}
                       studyImage={study.studyImage}
                       studyMeetings={study.studyMeetings}
                       studyType={study.studyType}
                       studyCategory={study.studyCategory}
                       studyName={study.studyName}
-                      studyStart={formatDate(study.studyStart)}
-                      studyEnd={formatDate(study.studyEnd)}
+                      studyStart={study.studyStart}
+                      studyEnd={study.studyEnd}
                       studyPlace={study.studyPlace}
                       studyJoinMember={study.studyJoinMember}
                       studyMember={study.studyMember}
@@ -40,12 +40,12 @@ export default async function MyBookMarkList({ data }: any) {
             </div>
           </Tabs.Content>
           <Tabs.Content value="강의" className="flex flex-col gap-[1.4rem]">
-            <div className="grid grid-cols-2 gap-3 m-auto w-full">
+            {/* <div className="grid grid-cols-2 gap-3 m-auto w-full">
               {data &&
                 data.map((study: any, index: any) => (
                   <div key={study.studyName} id={String(index)}>
                     <Card
-                      studyId={study.studyId}
+                      studyId={study._id}
                       studyImage={study.studyImage}
                       studyMeetings={study.studyMeetings}
                       studyType={study.studyType}
@@ -59,7 +59,7 @@ export default async function MyBookMarkList({ data }: any) {
                     />
                   </div>
                 ))}
-            </div>
+            </div> */}
           </Tabs.Content>
         </div>
       </Tabs.Root>
