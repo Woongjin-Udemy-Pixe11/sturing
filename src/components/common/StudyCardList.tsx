@@ -1,6 +1,7 @@
 import { TStudy } from '@/types/TStudy';
 import Card from './Card';
 import ScrollableContainer from './ScrollableContainer';
+import Link from 'next/link';
 
 // 날짜 형식을 바꾸는 함수
 export const formatDate = (dateString: string) => {
@@ -33,19 +34,20 @@ export default async function StudyCardList({
       {studies &&
         studies.map((study) => (
           <li key={study.studyId}>
-            <Card
-              studyId={study.studyId}
-              studyImage={study.studyImage}
-              studyMeetings={study.studyMeetings}
-              studyType={study.studyType}
-              studyCategory={study.studyCategory}
-              studyName={study.studyName}
-              studyStart={study.studyStart}
-              studyEnd={study.studyEnd}
-              studyPlace={study.studyPlace}
-              studyJoinMember={study.studyJoinMember}
-              studyMember={study.studyMember}
-            />
+            <Link href={`/study-detail/${study._id}`}>
+              <Card
+                studyImage={study.studyImage}
+                studyMeetings={study.studyMeetings}
+                studyType={study.studyType}
+                studyCategory={study.studyCategory}
+                studyName={study.studyName}
+                studyStart={study.studyStart}
+                studyEnd={study.studyEnd}
+                studyPlace={study.studyPlace}
+                studyJoinMember={study.studyJoinMember}
+                studyMember={study.studyMember}
+              />
+            </Link>
           </li>
         ))}
     </ScrollableContainer>
