@@ -1,6 +1,7 @@
 import connectDB from '@/lib/db';
 import { Blackboard } from '@/lib/schemas/blackboardSchema';
 import { BlackboardIcon } from '@/lib/schemas/blackboardIconSchema';
+import { BlackboardComment } from '@/lib/schemas/blackboardCommentSchema';
 import { User } from '@/lib/schemas/userSchema';
 
 export async function GET(request: Request) {
@@ -121,6 +122,7 @@ export async function DELETE(request: Request) {
   try {
     await Blackboard.deleteOne({ _id: blackboardId });
     await BlackboardIcon.deleteMany({ blackboardId: blackboardId });
+    await BlackboardComment.deleteMany({ blackboardId: blackboardId });
 
     return Response.json({ message: 'DELETE' });
   } catch (error) {

@@ -36,7 +36,6 @@ export default function TaskDetail(props: TProps) {
         setModal(false);
       }
     };
-
     // 이벤트 리스너를 document 전체에 붙여줌
     document.addEventListener('mousedown', closeModal);
 
@@ -46,11 +45,9 @@ export default function TaskDetail(props: TProps) {
   }, [modal]);
 
   const onClickEddit = () => {
-    console.log('수정');
     router.push(`./${task._id}/eddit`);
   };
   const onClickDelete = () => {
-    console.log('삭제');
     deleteNotice(task._id);
     router.push(`./`);
     router.refresh();
@@ -64,11 +61,9 @@ export default function TaskDetail(props: TProps) {
         <SubHeader />
       )}
       {modal && (
-        <div
-          ref={modalRef}
-          className="relative inset-0 bg-black bg-opacity-50 z-10"
-        >
+        <div ref={modalRef} className="relative inset-0 z-10">
           <KebabModal
+            eddit
             onClickEddit={onClickEddit}
             onClickDelete={onClickDelete}
           />

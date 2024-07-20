@@ -45,3 +45,16 @@ export async function POST(request: Request) {
     return Response.json({ message: 'Error post comment' });
   }
 }
+
+export async function DELETE(request: Request) {
+  connectDB();
+  const { searchParams } = new URL(request.url);
+  const commentId = searchParams.get('commentId');
+  try {
+    await BlackboardComment.deleteOne({ _id: commentId });
+
+    return Response.json({ message: 'DELETE Comment' });
+  } catch (error) {
+    return Response.json({ message: 'Comment not delete' });
+  }
+}

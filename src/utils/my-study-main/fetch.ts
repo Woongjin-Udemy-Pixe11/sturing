@@ -166,3 +166,13 @@ export async function postComment(props: TPostComment) {
     return { success: false, message: 'Error Post Comment' };
   }
 }
+
+export async function deleteComment(commentId: string) {
+  const res = await fetch(`/api/study-board/comment?commentId=${commentId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return res.json();
+}

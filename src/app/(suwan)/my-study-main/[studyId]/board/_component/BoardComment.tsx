@@ -1,5 +1,9 @@
 'use client';
-import { postComment, fetchComment } from '@/utils/my-study-main/fetch';
+import {
+  postComment,
+  fetchComment,
+  deleteComment,
+} from '@/utils/my-study-main/fetch';
 import { useState } from 'react';
 import Comment from './Comment';
 import { TComment } from '@/types/TStudyBoard';
@@ -50,6 +54,11 @@ export default function BoardComment(props: {
     }
   };
 
+  const onClickDelete = async (commentId: string) => {
+    await deleteComment(commentId);
+    setCommentList(commentList.filter((comment) => comment._id !== commentId));
+  };
+
   return (
     <div className="px-[1.6rem]">
       <div className="flex flex-row items-center justify-start gap-x-[0.4rem] text-content-2  mb-[1.2rem]">
@@ -58,7 +67,11 @@ export default function BoardComment(props: {
       </div>
 
       {commentList.map((comment: TComment) => (
-        <Comment key={comment._id} comment={comment} />
+        <Comment
+          key={comment._id}
+          comment={comment}
+          onClickDelete={onClickDelete}
+        />
       ))}
 
       <hr className="mt-[1.6rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>

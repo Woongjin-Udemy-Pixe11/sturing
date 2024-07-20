@@ -1,11 +1,33 @@
 'use client';
+import KebabModal from '@/components/common/modal/KebabModal';
+
 import { TComment } from '@/types/TStudyBoard';
 import { dateCalculate } from '@/utils/my-study-main/dateCalculate';
+import { useEffect, useRef, useState } from 'react';
 import { MdMoreHoriz, MdMoreVert } from 'react-icons/md';
 
 export default function Comment(props: any) {
-  const { comment } = props;
+  const { comment, onClickDelete } = props;
+  const [modal, setModal] = useState(false);
   const timeAgo = dateCalculate(comment.createdAt);
+
+  const modalRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const closeModal = (e: MouseEvent) => {
+      if (
+        modal &&
+        modalRef.current &&
+        !modalRef.current.contains(e.target as Node)
+      ) {
+        // 이벤트가 발생한 노드가 모달 컴포넌트 내부에 존재하지 않는다면 close
+        setModal(false);
+      }
+    };
+    document.addEventListener('mousedown', closeModal);
+    return () => {
+      document.removeEventListener('mousedown', closeModal);
+    };
+  }, [modal]);
 
   return (
     <>
@@ -27,9 +49,14 @@ export default function Comment(props: any) {
               <div>{timeAgo}</div>
             </div>
           </div>
-          <button className="ml-auto">
+          <button onClick={() => setModal(!modal)} className="ml-auto">
             <MdMoreVert />
           </button>
+          {modal && (
+            <div ref={modalRef} className="relative inset-0 z-10">
+              <KebabModal onClickDelete={() => onClickDelete(comment._id)} />
+            </div>
+          )}
         </div>
         <div className="ml-[4.8rem]">
           <p className="text-content-1 text-gray-1000 mb-[0.4rem]">
