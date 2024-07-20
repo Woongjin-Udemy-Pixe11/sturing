@@ -15,9 +15,9 @@ export async function GET(request: Request) {
       const boardList = await Blackboard.find({
         studyId: studyId,
         type: boardType,
-      }).populate('writerId', 'nickname image');
-
-      console.log('👾', boardList);
+      })
+        .sort({ _id: -1 })
+        .populate('writerId', 'nickname image');
 
       return Response.json(boardList);
     } else if (blackboardId) {
