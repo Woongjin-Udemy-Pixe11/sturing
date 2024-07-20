@@ -5,14 +5,15 @@ const blackboardCommentSchema = new mongoose.Schema(
     blackboardId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'blackboard',
+      ref: 'Blackboard',
     },
-    commentWriteId: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'user',
+      ref: 'User',
     },
-    commentContent: { type: String, required: true },
+    comment: { type: String, required: true },
+    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   },
   { timestamps: true },
 );

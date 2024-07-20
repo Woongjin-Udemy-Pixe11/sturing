@@ -20,3 +20,16 @@ export type TBlackboard = {
   createdAt: string;
   icons: any;
 };
+
+export type TComment = {
+  _id: string;
+  blackboardId: string;
+  userId: {
+    _id: string;
+    nickname: string;
+    image: string;
+  };
+  comment: string;
+  createdAt: string;
+  likes: any;
+};
