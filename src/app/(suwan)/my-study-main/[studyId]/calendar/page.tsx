@@ -1,6 +1,7 @@
+import { getSession } from '@/utils/getSessions';
 import Header from '../_components/Header';
 import { fetchStudy } from '@/utils/my-study-main/fetch';
-import Calendar from '@/components/(suwan)/my-study/common/Calendar';
+import Calendar from './_components/Calendar';
 import Schedule from './_components/Schedule';
 
 const schedule = {
@@ -18,14 +19,18 @@ export default async function Calender({
   params: { studyId: string };
 }) {
   const studyId = params.studyId;
+  const session = await getSession();
+  const userid = session?.user?.id;
+
   const data = await fetchStudy(studyId);
 
   return (
     <>
       <Header studyId={studyId} data={data} />
-      {/* <CalendarContainer /> */}
-      <Calendar studyId={''} userId={''} data={schedule} />
-      <Schedule />
+      <div className="bg-gray-100 p-[2rem]">
+        <Calendar studyId={studyId} userId={userid} data={schedule} />
+        <Schedule />
+      </div>
     </>
   );
 }

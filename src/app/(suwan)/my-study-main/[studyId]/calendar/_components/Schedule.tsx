@@ -4,10 +4,45 @@ import { useState } from 'react';
 
 export default function Schedule() {
   const [clicked, setClicked] = useState(false);
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = (formData: FormData) => {
+    const title = formData.get('title') as string;
+    const place = formData.get('place') as string;
+    let time;
+    if (!title.trim() || !place.trim() || !start.trim()) {
+      alert('입력값을 채워주세요');
+      return;
+    }
+    // 중복제출 방지
+    if (isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      if (end) {
+        time = start + ' - ' + end;
+      } else {
+        time = start;
+      }
+      //post
+      console.log(title, place, time);
+
+      setStart('');
+      setEnd('');
+      setClicked(false);
+    } catch (error) {
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center w-full mt-[2rem] rounded-[5px] px-[2rem] py-[2.4rem] bg-white border border-gray-300">
+      <div className="flex flex-col justify-center items-center w-full rounded-[5px] mt-[2rem] px-[2rem] py-[2.4rem] bg-white border border-gray-300">
         <div className=" bg-white rounded-lg w-full ">
           <div className="flex items-center border-b-[0.1rem] border-gray-300 pb-4">
             <h2 className="text-[1.6rem] font-semibold">06.08(토)</h2>
@@ -24,26 +59,35 @@ export default function Schedule() {
           <div className=" bg-white rounded-lg w-full ">
             <div className="text-[1.4rem]">
               {clicked ? (
-                <div className="flex flex-col gap-[1rem] my-[1.2rem] border rounded-[.5rem] p-[1.6rem]">
+                <form
+                  action={onSubmit}
+                  className="flex flex-col gap-[1rem] my-[1.2rem] border rounded-[.5rem] p-[1.6rem]"
+                >
                   <div>제목</div>
                   <input
+                    name="title"
                     type="text"
                     placeholder="일정을 입력하세요"
-                    className="border px-[1.6rem] py-[1.2rem] w-full"
+                    className="border px-[1.6rem] py-[1.2rem] w-full rounded-md"
                   />
                   <div>장소</div>
                   <input
+                    name="place"
                     type="text"
                     placeholder="스터디 장소를 입력하세요"
-                    className="border px-[1.6rem] py-[1.2rem] w-full"
+                    className="border px-[1.6rem] py-[1.2rem] w-full rounded-md"
                   />
                   <div>시간</div>
                   <div className="flex gap-3 h-[4.5rem]">
-                    <SelectInput type="time" />
-                    <SelectInput type="time" />
+                    <SelectInput
+                      type="time"
+                      onChange={setStart}
+                      value={start}
+                    />
+                    <SelectInput type="time" onChange={setEnd} value={end} />
                   </div>
-                  <div className="ml-auto text-main-600">완료</div>
-                </div>
+                  <button className="ml-auto text-main-600">완료</button>
+                </form>
               ) : (
                 ''
               )}
@@ -53,10 +97,6 @@ export default function Schedule() {
                     2주차 정기 스터디 모임
                   </div>
                   <div className="flex gap-[1rem]">
-                    <img
-                      className="h-[2rem]"
-                      src="/images/studyLabel/pencil.svg"
-                    />
                     <img
                       className="h-[2rem]"
                       src="/images/studyLabel/trashcan.svg"

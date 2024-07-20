@@ -1,16 +1,24 @@
 import mongoose from 'mongoose';
 
-const studyScheduleSchema = new mongoose.Schema({
-  studyLeaderId: {
-    type: mongoose.Schema.Types.ObjectId,
-    require: true,
-    ref: 'user',
+const studyScheduleSchema = new mongoose.Schema(
+  {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: 'User',
+    },
+    title: { type: String, required: true },
+    place: { type: String, required: true },
+    date: { type: Date, required: true },
+    time: { type: String, required: true },
+    studyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: 'Study',
+    },
   },
-  studyScheduleTitle: { type: String, required: true },
-  studySchedulePlace: { type: String, required: true },
-  studyScheduleDate: { type: Date, required: true },
-  studyId: { type: String, required: true },
-});
+  { timestamps: true },
+);
 
 export const StudySchedule =
   mongoose.models?.StudySchedule ||

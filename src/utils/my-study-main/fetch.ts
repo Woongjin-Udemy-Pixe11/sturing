@@ -109,6 +109,7 @@ export async function postIcon(props: TPostIconProps) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const result = await response.json();
+    return result;
   } catch (error) {
     console.error('Error UserEdit:', error);
   }
