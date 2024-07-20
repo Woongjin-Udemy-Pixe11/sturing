@@ -55,13 +55,6 @@ export async function fetchBlackboard(boardType: string, blackboardId: string) {
   }
 }
 
-export async function fetchUser(id: string) {
-  const res = await fetch(`${process.env.LOCAL_URL}/api/users?id=${id}`, {
-    cache: 'no-store',
-  });
-  return res.json();
-}
-
 export async function patchView(noticeId: string) {
   try {
     const response = await fetch(`${process.env.LOCAL_URL}/api/study-board`, {

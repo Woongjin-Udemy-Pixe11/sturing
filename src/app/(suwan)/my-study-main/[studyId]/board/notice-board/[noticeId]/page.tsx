@@ -3,7 +3,6 @@ import NoticeBoardDetail from '@/app/(suwan)/my-study-main/[studyId]/board/_comp
 import { getSession } from '@/utils/getSessions';
 import {
   fetchBlackboard,
-  fetchUser,
   patchView,
   fetchIcon,
 } from '@/utils/my-study-main/fetch';
@@ -21,15 +20,12 @@ export default async function page({
   const notice = await fetchBlackboard('notice', noticeId);
   console.log('📍', notice);
 
-  const writer = await fetchUser(notice.writerId);
-  // console.log('🎉', writer);
-
   // const icons = await fetchIcon(noticeId);
 
   await patchView(noticeId);
   return (
     <>
-      <NoticeBoardDetail blackboard={notice} writer={writer} userId={userId} />
+      <NoticeBoardDetail blackboard={notice} userId={userId} />
     </>
   );
 }

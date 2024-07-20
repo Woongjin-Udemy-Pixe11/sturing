@@ -18,7 +18,7 @@ export default function TaskInfo(props: any) {
       <div className="flex flex-row items-center justify-between py-[1.2rem]">
         <div className="flex flex-row items-center">
           <Image
-            src=""
+            src={task.writerId.image}
             width={28}
             height={28}
             alt="Picture of the author"
@@ -26,7 +26,7 @@ export default function TaskInfo(props: any) {
           />
           <div className="flex flex-row items-center justify-center gap-x-[0.4rem]">
             <div className="text-content-1 text-gray-900 ml-[0.8rem] font-semibold">
-              {task.user}
+              {task.writerId.nickname}
             </div>
             {isLeader ? (
               <div className="text-content-2 text-gray-700">팀장</div>
