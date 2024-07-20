@@ -5,41 +5,27 @@ import Label from '@/components/common/label/Label';
 import { useEffect, useRef, useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import KebabModal from '@/components/common/modal/KebabModal';
-import { differenceInDays, differenceInHours } from 'date-fns';
 import { deleteNotice, postIcon } from '@/utils/my-study-main/fetch';
 import EmojiSelectBtn from './EmojiSelectBtn';
 import { useRouter } from 'next/navigation';
+import { dateCalculate } from '@/utils/my-study-main/dateCalculate';
+import { TBlackboard } from '@/types/TStudyBoard';
 
-export default function NoticeBoardDetail(props: any) {
-  const { blackboard, writer, userId } = props;
+type TProps = {
+  blackboard: TBlackboard;
+  userId: string;
+};
+
+export default function NoticeBoardDetail(props: TProps) {
+  const { blackboard, userId } = props;
   const router = useRouter();
 
   const title = blackboard.title;
   const content = blackboard.content;
 
-  const nickname = writer.nickname;
-  const profileImage = writer.image;
+  const timeAgo = dateCalculate(blackboard.createdAt);
 
-  const now = new Date();
-  const createdTime = new Date(blackboard.createdAt);
-  const diffInHours = differenceInHours(now, createdTime);
-  const diffInDays = differenceInDays(now, createdTime);
-
-  const views = blackboard.views;
   const boardType = 'notice';
-
-  const [isChecked, setIsChecked] = useState(false);
-  const [count, setCount] = useState(0);
-
-  const handleClick = () => {
-    setIsChecked((prevChecked) => !prevChecked);
-    setCount((prevCount) => (isChecked ? prevCount - 1 : prevCount + 1));
-    postIcon(blackboard._id);
-  };
-
-  const checkedColor = isChecked
-    ? 'text-blue-700 bg-main-100 border-main-600'
-    : 'text-gray-700 bg-gray-100 border-gray-300';
 
   const [modal, setModal] = useState(false);
 
@@ -76,8 +62,8 @@ export default function NoticeBoardDetail(props: any) {
   };
   return (
     <>
-      {userId === writer._id ? (
-        <SubHeader eddit onClickMenu={() => setModal(!modal)} />
+      {userId === blackboard.writerId._id ? (
+        <SubHeader eddit bgGray onClickMenu={() => setModal(!modal)} />
       ) : (
         <SubHeader />
       )}
@@ -97,21 +83,17 @@ export default function NoticeBoardDetail(props: any) {
         <div className="flex justify-between items-center pb-[1.8rem] mb-[1.8rem] border-b border-gray-300">
           <div className="flex flex-grow gap-[0.8rem]">
             <div className="w-[4rem] h-[4rem]">
-              <img src={profileImage} alt="" className="w-full" />
+              <img src={blackboard.writerId.image} alt="" className="w-full" />
             </div>
             <div className="text-content-2 text-gray-700">
               <span className="flex gap-[0.4rem] items-center">
                 <h3 className="text-content-1 font-semibold text-gray-900">
-                  {nickname}
+                  {blackboard.writerId.nickname}
                 </h3>
                 <p>팀장</p>
               </span>
-              <span>
-                {diffInDays > 0
-                  ? diffInDays + '일 전'
-                  : diffInHours + '시간 전'}
-              </span>
-              <span> ∙ 조회 {views}</span>
+              <span>{timeAgo}</span>
+              <span> ∙ 조회 {blackboard.views}</span>
             </div>
           </div>
           <div className="shrink-0">

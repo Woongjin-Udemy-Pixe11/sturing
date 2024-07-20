@@ -9,11 +9,20 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { deleteNotice, postIcon } from '@/utils/my-study-main/fetch';
 import KebabModal from '@/components/common/modal/KebabModal';
+import { dateCalculate } from '@/utils/my-study-main/dateCalculate';
+import { TBlackboard } from '@/types/TStudyBoard';
 
-export default function TaskDetail(props: any) {
-  const { blackboard, writer, userId } = props;
+type TProps = {
+  task: TBlackboard;
+  userId: string;
+};
+
+export default function TaskDetail(props: TProps) {
+  const { task, userId } = props;
   const router = useRouter();
   const boardType = 'task';
+  const timeAgo = dateCalculate(task.createdAt);
+
   const [modal, setModal] = useState(false);
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -39,18 +48,18 @@ export default function TaskDetail(props: any) {
 
   const onClickEddit = () => {
     console.log('수정');
-    router.push(`./${blackboard._id}/eddit`);
+    router.push(`./${task._id}/eddit`);
   };
   const onClickDelete = () => {
     console.log('삭제');
-    deleteNotice(blackboard._id);
+    deleteNotice(task._id);
     router.push(`./`);
     router.refresh();
   };
 
   return (
     <>
-      {userId === writer._id ? (
+      {userId === task.writerId._id ? (
         <SubHeader eddit bgGray onClickMenu={() => setModal(!modal)} />
       ) : (
         <SubHeader />
@@ -69,31 +78,34 @@ export default function TaskDetail(props: any) {
       <div className="bg-white px-[1.6rem] flex flex-col gap-y-[2rem] py-[3rem]">
         <div className="flex flex-row items-center">
           <Image
-            src={writer.image}
+            src={task.writerId.image}
             width={28}
             height={28}
             alt="Picture of the author"
             className="rounded-full aspect-square object-cover"
           />
-          <div className="flex flex-col items-center justify-center gap-x-[0.4rem] ml-[0.8rem]">
-            <div className="text-content-1 text-gray-900 font-semibold">
-              {writer.nickname}
-            </div>
-            <div className="text-content-2 text-gray-700">11시간 전</div>
+          <div className="ml-[1rem] text-content-2 text-gray-700">
+            <span className="flex gap-[0.4rem] items-center">
+              <h3 className="text-content-1 font-semibold text-gray-900">
+                {task.writerId.nickname}
+              </h3>
+            </span>
+            <span>{timeAgo}</span>
+            <span> ∙ 조회 {task.views}</span>
           </div>
         </div>
 
         <div className="flex flex-col gap-y-[2rem]">
           <div className="flex flex-col justify-start gap-y-[2rem]">
             <h1 className="text-[1.8rem] text-gray-900 font-semibold">
-              {blackboard.title}
+              {task.title}
             </h1>
-            <p className="text-gray-700">{blackboard.content}</p>
+            <p className="text-gray-700">{task.content}</p>
           </div>
 
-          {blackboard.image && (
+          {task.image && (
             <Image
-              src={blackboard.image}
+              src={task.image}
               width={343}
               height={343}
               alt="Picture of the author"
@@ -103,9 +115,9 @@ export default function TaskDetail(props: any) {
         </div>
         <EmojiSelectBtn
           boardType={boardType}
-          blackboardId={blackboard._id}
+          blackboardId={task._id}
           userId={userId}
-          icons={blackboard.icons}
+          icons={task.icons}
         />
         <div>
           <div className="flex flex-row items-center justify-start gap-x-[0.4rem] text-content-2 mb-[1.2rem]">
