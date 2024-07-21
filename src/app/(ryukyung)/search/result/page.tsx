@@ -1,47 +1,65 @@
+import Footer from '@/components/common/Footer';
 import TabAll from '@/components/search/TabAll';
+import TabBarBlue from '@/components/search/TabBarBlue';
 import TabLecture from '@/components/search/TabLecture';
 import TabStudy from '@/components/search/TabStudy';
+import { getFilteredResults } from '@/lib/actions/filterAction';
 import { IoIosArrowBack } from 'react-icons/io';
-import { IoSearch } from 'react-icons/io5';
-import TabBarBlue from '@/components/search/TabBarBlue';
-import Footer from '@/components/common/Footer';
 import SearchPart from '../../pages/SearchPart';
 
 export default async function page({ searchParams }: { searchParams: any }) {
   console.log('검색결과 페이지가 렌더링됩니다.');
   const keyword = searchParams.keyword;
-  const data = await (
-    await fetch(`http://localhost:3000/api/search?keyword=${keyword}`, {
-      cache: 'no-store',
-    })
-  ).json();
-  console.log(data);
 
-  let searchstudy = data.searchstudies;
+  const filters = {
+    field: searchParams.field?.split(',') || [],
+    region: searchParams.region?.split(',') || [],
+    people: searchParams.people?.split(',') || [],
+    period: searchParams.period || '',
+    level: searchParams.level?.split(',') || [],
+  };
+
+  let data;
+  if (keyword) {
+    data = await (
+      await fetch(`http://localhost:3000/api/search?keyword=${keyword}`, {
+        cache: 'no-store',
+      })
+    ).json();
+  } else {
+    data = await getFilteredResults(filters);
+  }
+
+  let searchstudies = data.searchstudies;
+  let searchlectures = data.searchlectures;
   const tabList = [
     {
       name: '전체',
-      component: <TabAll data={searchstudy} />,
+      component: <TabAll study={searchstudies} lecture={searchlectures} />,
       isLecture: false,
     },
     {
       name: '스터디',
-      component: <TabStudy data={searchstudy} />,
+      component: <TabStudy data={searchstudies} />,
       isLecture: false,
     },
-    { name: '강의', component: <TabLecture />, isLecture: true },
+    {
+      name: '강의',
+      component: <TabLecture data={searchlectures} />,
+      isLecture: true,
+    },
   ];
   return (
     <>
-      <div className="w-full px-[1.6rem] flex  items-center gap-[.8rem] py-[1.2rem]">
-        <button>
+      <div className="w-full flex items-center px-[1.2rem] pb-[2rem]">
+        <button className="flex-shrink-0 mt-[2.4rem]">
           <IoIosArrowBack className="w-[2.4rem] h-[2.4rem]" />
         </button>
-        <div className="w-full">
+        <div className="flex-grow max-w-[97%]">
           <SearchPart isList={false} />
         </div>
       </div>
-      <TabBarBlue tabList={tabList} />
+      <TabBarBlue tabList={tabList} initialFilters={filters} />
       <Footer />
     </>
   );

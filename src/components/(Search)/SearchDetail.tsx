@@ -1,29 +1,43 @@
 // SearchDetail.tsx
 'use client';
-import { IoIosArrowBack } from 'react-icons/io';
-import TabAll from '../search/TabAll';
-import TabLecture from '../search/TabLecture';
-import TabStudy from '../search/TabStudy';
-import { IoSearch } from 'react-icons/io5';
-import TabBarBlue from '../search/TabBarBlue';
-import Footer from '../common/Footer';
+import useLocalStorage from '@/utils/useLocalStorage';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import useLocalStorage from '@/utils/useLocalStorage';
+import { IoIosArrowBack } from 'react-icons/io';
+import { IoSearch } from 'react-icons/io5';
+import Footer from '../common/Footer';
+import TabAll from '../search/TabAll';
+import TabBarBlue from '../search/TabBarBlue';
+import TabLecture from '../search/TabLecture';
+import TabStudy from '../search/TabStudy';
 
-export default function SearchDetail({ searchstudy }: { searchstudy: any }) {
+type SearchDetailProps = {
+  searchstudies: any[];
+  searchlectures: any[];
+  filters: any;
+};
+
+export default function SearchDetail({
+  searchstudies,
+  searchlectures,
+  filters,
+}: SearchDetailProps) {
   const tabList = [
     {
       name: '전체',
-      component: <TabAll data={searchstudy} />,
+      component: <TabAll study={searchstudies} lecture={searchlectures} />,
       isLecture: false,
     },
     {
       name: '스터디',
-      component: <TabStudy data={searchstudy} />,
+      component: <TabStudy data={searchstudies} />,
       isLecture: false,
     },
-    { name: '강의', component: <TabLecture />, isLecture: true },
+    {
+      name: '강의',
+      component: <TabLecture data={searchlectures} />,
+      isLecture: true,
+    },
   ];
   const router = useRouter();
   const [inputValue, setInputValue] = useState('');
@@ -75,7 +89,7 @@ export default function SearchDetail({ searchstudy }: { searchstudy: any }) {
           </button>
         </label>
       </header>
-      <TabBarBlue tabList={tabList} />
+      <TabBarBlue tabList={tabList} initialFilters={filters} />
       <Footer />
     </>
   );

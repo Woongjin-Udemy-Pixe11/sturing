@@ -1,18 +1,17 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { TbChartCandle } from 'react-icons/tb';
 import BottomSheetFilter from './BottomSheetFilter';
 import FilterButton from './FilterButton';
 
-const filterButtonList = [
-  { title: '분야', isBlue: true },
-  { title: '지역', isBlue: false },
-  { title: '인원', isBlue: false },
-  { title: '기간', isBlue: false },
-  { title: '수준', isBlue: false },
-];
-
-export default function FilterBar() {
+export default function FilterBar({ initialFilters }: { initialFilters: any }) {
   const [openFilter, setOpenFilter] = useState(false);
+  const [filterButtonList, setFilterButtonList] = useState(() => [
+    { title: '분야', key: 'field', isBlue: initialFilters.field.length > 0 },
+    { title: '지역', key: 'region', isBlue: initialFilters.region.length > 0 },
+    { title: '인원', key: 'people', isBlue: initialFilters.people.length > 0 },
+    { title: '기간', key: 'period', isBlue: initialFilters.period !== '' },
+    { title: '수준', key: 'level', isBlue: initialFilters.level.length > 0 },
+  ]);
 
   const onClickFilter = () => {
     setOpenFilter(!openFilter);
@@ -22,6 +21,22 @@ export default function FilterBar() {
       document.body.style.overflow = 'auto';
     }
   };
+
+  const closeFilter = () => {
+    setOpenFilter(false);
+    document.body.style.overflow = 'auto';
+  };
+
+  const selectedFilters = useCallback((filters: any) => {
+    setFilterButtonList((prevList) =>
+      prevList.map((button) => ({
+        ...button,
+        isBlue:
+          filters[button.key]?.length > 0 ||
+          (button.key === 'period' && filters[button.key] !== ''),
+      })),
+    );
+  }, []);
 
   return (
     <>
@@ -48,10 +63,14 @@ export default function FilterBar() {
         <>
           <div
             className="fixed inset-0 bg-black bg-opacity-35 z-10"
-            onClick={onClickFilter}
+            onClick={closeFilter}
           ></div>
           <div className="absolute bottom-0 z-10 w-full ">
-            <BottomSheetFilter onClose={() => setOpenFilter(false)} />
+            <BottomSheetFilter
+              onClose={closeFilter}
+              onFilterChange={selectedFilters}
+              initialFilters={initialFilters}
+            />
           </div>
         </>
       )}

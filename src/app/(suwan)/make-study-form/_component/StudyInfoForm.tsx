@@ -15,21 +15,18 @@ export default function StudyInfoForm(props: any) {
   const [content, setContent] = useState('');
   const [location, setLocation] = useState('');
 
-  const convertBase64 = (img: File) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(img);
-    reader.onload = () => {
-      setImage(reader.result as string);
-    };
-  };
+  // const convertBase64 = (img: File) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(img);
+  //   reader.onload = () => {
+  //     setImage(reader.result as string);
+  //   };
+  // };
 
-  const onChangeImage = (img: File | null) => {
-    if (img !== null) {
-      convertBase64(img);
-    } else {
-      setImage('/images/study-img1.png');
-    }
+  const onChangeImage = (img: any) => {
+    setImage(img);
   };
+  console.log(image);
 
   const onChangeCheckBox = () => {
     const newCheckedState = !checked;

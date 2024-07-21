@@ -1,4 +1,5 @@
 'use client';
+import supabase from '@/lib/supabaseClient';
 import { useState } from 'react';
 import { CgClose } from 'react-icons/cg';
 
@@ -42,23 +43,20 @@ export default function StudyForm(props: TStudyFormProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setSelectedFile(file);
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    console.log('test');
+    const file: any = e.target.files?.[0] || null;
 
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewUrl(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setPreviewUrl(null);
-    }
+    const fileName = `${Date.now()}-${Math.random()}`;
+    const { data, error } = await supabase.storage
+      .from('images')
+      .upload(fileName, file);
 
-    if (onImageChange) {
-      onImageChange(file);
-    }
+    const test = supabase.storage.from('images').getPublicUrl(fileName);
+
+    onImageChange(test.data.publicUrl);
+    setSelectedFile(null);
   };
 
   const handleImageRemove = () => {
