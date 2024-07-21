@@ -23,7 +23,6 @@ export default function AttendanceCheck(props: TAttendanceCheckProps) {
 
   const [checked, setChecked] = useState(false);
 
-  console.log('🤢', member);
   const today = new Date().toISOString().split('T')[0];
 
   useEffect(() => {

@@ -4,7 +4,11 @@ import Attend from '@/components/(suwan)/my-study/team/Attend';
 import Gallery from '@/components/(suwan)/my-study/team/Gallery';
 import { getSession } from '@/utils/getSessions';
 import Header from '../_components/Header';
-import { fetchStudy, fetchMember } from '@/utils/my-study-main/fetch';
+import {
+  fetchStudy,
+  fetchMember,
+  fetchBoardList,
+} from '@/utils/my-study-main/fetch';
 
 export default async function Page({
   params,
@@ -17,6 +21,7 @@ export default async function Page({
 
   const studyData = await fetchStudy(studyId);
   const memberData = await fetchMember(studyId);
+  const taskList = await fetchBoardList('task', studyId);
 
   return (
     <>
@@ -25,7 +30,7 @@ export default async function Page({
         <Percent memberData={memberData} />
         <TeamTodo memberData={memberData} />
         <Attend memberData={memberData} />
-        <Gallery />
+        <Gallery taskList={taskList} />
       </div>
       {/* <TeamContainer /> */}
     </>
