@@ -87,7 +87,10 @@ export default async function ApplicationList({
                           </StudyStatus>
                         )}
                         <span className="text-content-2 text-main-500">
-                          {new Date(study.createdAt).toLocaleString()} 지원
+                          {new Date(study.createdAt).toLocaleString('ko-KR', {
+                            timeZone: 'UTC',
+                          })}{' '}
+                          지원
                         </span>
                       </div>
                       <div className="flex gap-[0.8rem] [&>span]:text-content-2 ">
@@ -148,7 +151,10 @@ export default async function ApplicationList({
                         </StudyStatus>
                       )}
                       <span className="text-content-2 text-main-500">
-                        {new Date(study.createdAt).toLocaleString()} 지원
+                        {new Date(study.createdAt).toLocaleString('ko-KR', {
+                          timeZone: 'UTC',
+                        })}{' '}
+                        지원
                       </span>
                     </div>
                     <h3 className="font-semibold text-content-1 pb-[1.6rem] border-b border-gray-300 text-gray-1000 truncate">

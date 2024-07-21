@@ -27,10 +27,10 @@ function applyMatchingFilters(query: any, matching: any, sort: SortOption) {
   switch (sort) {
     case 'type':
       return matching.studyType === '상관없음'
-        ? query.find({ studyType: { $in: ['온라인', '오프라인'] } }).limit(6)
-        : query.find({ studyType: matching.studyType }).limit(6);
+        ? query.find({ studyType: { $in: ['온라인', '오프라인'] } }).limit(12)
+        : query.find({ studyType: matching.studyType }).limit(12);
     case 'category':
-      return query.find({ studyCategory: matching.interests }).limit(12);
+      return query.find({ studyCategory: matching.interests }).limit(6);
     default:
       return query;
   }
@@ -39,9 +39,9 @@ function applyMatchingFilters(query: any, matching: any, sort: SortOption) {
 function applyDefaultFilters(query: any, sort: SortOption) {
   switch (sort) {
     case 'type':
-      return query.sort({ createdAt: -1 }).limit(6);
+      return query.sort({ createdAt: -1 }).limit(12);
     case 'category':
-      return query.sort({ studyViews: -1 }).limit(12);
+      return query.sort({ studyViews: -1 }).limit(6);
     default:
       return query;
   }
