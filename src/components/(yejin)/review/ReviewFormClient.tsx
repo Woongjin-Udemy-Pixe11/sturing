@@ -61,8 +61,12 @@ export default function ReviewFormClient({
     <div>
       <StudyTop content="팀원 후기 남기기" />
       <div className="flex items-center border-y border-gray-300 px-[1.6rem] py-[2rem]">
-        <div className="w-[6rem] h-[6rem] rounded-full mr-[1.2rem]">
-          <img src={evaluatedUser?.image} alt="" className="w-full" />
+        <div className="w-[6rem] h-[6rem] rounded-full mr-[1.2rem] overflow-hidden">
+          <img
+            src={evaluatedUser?.image}
+            alt=""
+            className="w-full object-cover"
+          />
         </div>
         <div>
           <span className="text-gray-900 font-semibold text-[1.6rem] mb-[1rem]">
