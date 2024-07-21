@@ -88,7 +88,7 @@ export default async function ApplicationList({
                         )}
                         <span className="text-content-2 text-main-500">
                           {new Date(study.createdAt).toLocaleString('ko-KR', {
-                            timeZone: 'UTC',
+                            timeZone: 'Asia/Seoul',
                           })}{' '}
                           지원
                         </span>
@@ -152,7 +152,7 @@ export default async function ApplicationList({
                       )}
                       <span className="text-content-2 text-main-500">
                         {new Date(study.createdAt).toLocaleString('ko-KR', {
-                          timeZone: 'UTC',
+                          timeZone: 'Asia/Seoul',
                         })}{' '}
                         지원
                       </span>
@@ -161,8 +161,12 @@ export default async function ApplicationList({
                       {study.studyId?.studyName}
                     </h3>
                     <div className="flex">
-                      <div className="w-[4rem] h-[4rem] rounded-full mr-[1.2rem]">
-                        <img src={`${study.userId?.image}`} alt="" />
+                      <div className="w-[4rem] h-[4rem] rounded-full mr-[1.2rem] overflow-hidden">
+                        <img
+                          src={`${study.userId?.image}`}
+                          alt=""
+                          className="object-cover"
+                        />
                       </div>
                       <div>
                         <div className="flex gap-[0.8rem] mb-[0.1rem] [&>span]:text-content-2 [&>span]:font-medium">

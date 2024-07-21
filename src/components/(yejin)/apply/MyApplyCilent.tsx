@@ -94,7 +94,10 @@ export default function MyApplyCilent({ studyForm }: { studyForm: any }) {
           </div>
           <div className="px-[2rem] py-[2.4rem] border border-gray-300 rounded-[0.8rem] min-h-[30rem]">
             <span className="text-content-2 text-main-500">
-              {new Date(studyForm.createdAt).toLocaleString()} 지원
+              {new Date(studyForm.createdAt).toLocaleString('ko-KR', {
+                timeZone: 'Asia/Seoul',
+              })}
+              지원
             </span>
             <p className="text-body-1 text-gray-900 mt-[0.8rem] mb-[2rem] pb-[2rem] border-b border-gray-300">
               {studyForm.studyFormTitle}
