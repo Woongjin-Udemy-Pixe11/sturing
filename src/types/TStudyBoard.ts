@@ -31,5 +31,6 @@ export type TComment = {
   };
   comment: string;
   createdAt: string;
+  updatedAt: string;
   likes: any;
 };

@@ -7,11 +7,13 @@ export default async function page({
   params,
 }: {
   params: {
+    studyId: string;
     taskId: string;
   };
 }) {
   const session = await getSession();
   const userId = session?.user?.id;
+  const studyId = params.studyId;
   const taskId = params.taskId;
   const task = await fetchBlackboard('task', taskId);
   const commentList = await fetchComment(taskId);
@@ -21,7 +23,9 @@ export default async function page({
       <TaskDetail task={task} userId={userId} />
       <BoardComment
         commentList={commentList}
+        studyId={studyId}
         boardId={task._id}
+        taskId={taskId}
         userId={userId}
       />
     </>
