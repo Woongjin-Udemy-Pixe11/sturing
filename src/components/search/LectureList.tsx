@@ -1,13 +1,15 @@
 import { dummyLectureList } from '@/dummy/searchPage';
-import LectureCard from './LectureCard';
+import Link from 'next/link';
 import GrayFullLink from './GrayFullLink';
+import LectureCard from './LectureCard';
 
 type TLectureListProps = {
   isDetail?: boolean;
+  data?: any[];
 };
 
 export default function LectureList(props: TLectureListProps) {
-  const { isDetail } = props;
+  const { isDetail, data } = props;
   let isFull = false;
   let cardList = dummyLectureList;
 
@@ -15,6 +17,7 @@ export default function LectureList(props: TLectureListProps) {
     isFull = dummyLectureList.length > 2;
     cardList = dummyLectureList.slice(0, 2);
   }
+  console.log(data);
 
   return (
     <>
@@ -25,16 +28,21 @@ export default function LectureList(props: TLectureListProps) {
           </span>
         )}
         <ul className="w-full flex gap-[1.2rem] flex-col">
-          {cardList &&
-            cardList.map((lecture, index) => (
+          {data && data.length > 0 ? (
+            data.map((lecture: any, index) => (
               <li key={index}>
-                <LectureCard
-                  name={lecture.name}
-                  author={lecture.author}
-                  star={lecture.star}
-                />
+                <Link href={`/lecture-detail/${lecture._id}`}>
+                  <LectureCard
+                    name={lecture.lectureName}
+                    author={lecture.lectureInstructor}
+                    star={lecture.lectureRating}
+                  />
+                </Link>
               </li>
-            ))}
+            ))
+          ) : (
+            <div>검색결과가 없습니다!</div>
+          )}
         </ul>
         {/* TODO: url 경로 수정 필요 */}
         {isFull && (

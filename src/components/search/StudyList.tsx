@@ -1,10 +1,11 @@
 import { dummyCardList } from '@/dummy/mainPage';
+import Link from 'next/link';
 import Card from '../common/Card';
 import GrayFullLink from './GrayFullLink';
 
 type TStudyListProps = {
   isDetail?: boolean;
-  data?: any;
+  data?: any[];
 };
 
 export default async function StudyList(props: TStudyListProps) {
@@ -26,26 +27,31 @@ export default async function StudyList(props: TStudyListProps) {
             스터디
           </span>
         )}
-        <ul className="w-full grid grid-cols-2 justify-stretch items-center flex-wrap gap-x-[1.6rem] gap-y-[.8rem] py-[2rem]">
-          {data &&
+        <ul className="w-full grid grid-cols-2 justify-stretch items-start flex-wrap gap-x-[1.6rem] gap-y-[1.6rem] py-[2rem]">
+          {data && data.length > 0 ? (
             data.map((card: any) => (
-              <Card
-                key={card.id}
-                studyImage={card.studyImage}
-                studyMeetings={card.studyMettings}
-                studyTypeisBlue={card.studyTypeisBlue}
-                studyType={card.studyType}
-                studyCategoryisBlue={card.studyCategoryisBlue}
-                studyCategory={card.studyCategory}
-                studyName={card.studyName}
-                studyStart={card.studyStart}
-                studyEnd={card.studyEnd}
-                studyPlace={card.studyPlace}
-                studyJoinMember={card.studyJoinMember}
-                studyMember={card.studyMember}
-              />
-            ))}
-          {data.length === 0 && <div>검색결과가 없습니다!</div>}
+              <Link href={`/study-detail/${card._id}`}>
+                <Card
+                  key={card.id}
+                  studyId={card._id}
+                  studyImage={card.studyImage}
+                  studyMeetings={card.studyMettings}
+                  studyTypeisBlue={card.studyTypeisBlue}
+                  studyType={card.studyType}
+                  studyCategoryisBlue={card.studyCategoryisBlue}
+                  studyCategory={card.studyCategory}
+                  studyName={card.studyName}
+                  studyStart={card.studyStart}
+                  studyEnd={card.studyEnd}
+                  studyPlace={card.studyPlace}
+                  studyJoinMember={card.studyJoinMember}
+                  studyMember={card.studyMember}
+                />
+              </Link>
+            ))
+          ) : (
+            <div>검색결과가 없습니다!</div>
+          )}
         </ul>
         {isFull && (
           <GrayFullLink moveLink={'/search/study'} content="스터디 전체보기" />
