@@ -1,11 +1,10 @@
+import EditProfileImage from '@/components/(JH)/users/EditProfileImage';
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import UserDetailInfo from '@/components/(JH)/users/UserDetailInfo';
-import { FaCamera } from 'react-icons/fa';
 import UserMatchingInfo from '@/components/(JH)/users/UserMatchingInfo';
+import LongButton from '@/components/common/LongButton';
 import { logout } from '@/lib/actions/userAction';
 import Link from 'next/link';
-import LongButton from '@/components/common/LongButton';
-import EditProfileImage from '@/components/(JH)/users/EditProfileImage';
 
 export default function MyPageDetail({
   auth,
@@ -22,15 +21,20 @@ export default function MyPageDetail({
   return (
     <main>
       <MyPageHeader>내정보</MyPageHeader>
-      <div className="py-[2.4rem] px-[14.3rem] ">
+      <div className="py-[2.4rem] relative flex justify-center">
         <div
-          className={`w-[9rem] h-[9rem] border border-gray-500 rounded-full m-auto relative `}
+          className={`w-[9rem] h-[9rem] border border-main-200 rounded-full overflow-hidden`}
         >
           <img
             src={`${data.users.image}`}
-            className="cover w-full h-full"
+            className="object-cover w-full h-full "
           ></img>
-          <EditProfileImage id={data.users._id} />
+        </div>
+        <div className="absolute bottom-[2.4rem] right-1/2 translate-x-[4.5rem]">
+          <EditProfileImage
+            id={data.users._id}
+            currentImage={data.users.image}
+          />
         </div>
       </div>
       <UserDetailInfo data={data} />

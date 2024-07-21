@@ -1,4 +1,3 @@
-import LongButton from '@/components/common/LongButton';
 import Link from 'next/link';
 
 export default function MyStudyInfo({
@@ -12,7 +11,7 @@ export default function MyStudyInfo({
 }) {
   return (
     <>
-      <section className="flex w-full px-[2.4rem] py-[2rem]">
+      <section className="flex w-full py-[2rem]">
         {/* TODO:어떻게하기로했더라 활동중,종료중 */}
 
         <Link
@@ -20,25 +19,35 @@ export default function MyStudyInfo({
           href="/my-study-list"
         >
           <h1>{activestudy}</h1>
-          <h2>활동 중 스터디</h2>
+          <h2 className="font-medium text-gray-700 text-content-1 mt-[0.5rem]">
+            활동 중 스터디
+          </h2>
         </Link>
 
         <Link className="flex-1 text-center" href="/my-study-list">
           <h1>{completedstudy}</h1>
-          <h2>종료 중 스터디</h2>
+          <h2 className="font-medium text-gray-700 text-content-1 mt-[0.5rem]">
+            종료 중 스터디
+          </h2>
         </Link>
       </section>
-      <section className="flex gap-2 mt-3">
-        <LongButton color="white">
-          <Link href={`${userid}/mybookmark`}>
-            <p className="text-gray-900 text-content-1">내 관심목록</p>
-          </Link>
-        </LongButton>
-        <LongButton color="white">
-          <Link href={`/matching`}>
-            <p className="text-gray-900 text-content-1">매칭정보 수정</p>
-          </Link>
-        </LongButton>
+      <section className="flex gap-[.8rem] mt-3">
+        <Link
+          href={`${userid}/mybookmark`}
+          className="w-full text-center bg-white border border-gray-300 rounded-[.5rem] py-[.8rem]"
+        >
+          <button className=" text-gray-900 text-content-1 ">
+            내 관심목록
+          </button>
+        </Link>
+        <Link
+          href={`/matching`}
+          className="w-full text-center bg-white border border-gray-300 rounded-[.5rem] py-[.8rem]"
+        >
+          <button className=" text-gray-900 text-content-1 ">
+            매칭정보 수정
+          </button>
+        </Link>
       </section>
     </>
   );
