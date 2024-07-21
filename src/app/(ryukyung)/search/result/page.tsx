@@ -15,6 +15,7 @@ export default async function page({ searchParams }: { searchParams: any }) {
       cache: 'no-store',
     })
   ).json();
+  console.log(data);
 
   let searchstudy = data.searchstudies;
   const tabList = [
