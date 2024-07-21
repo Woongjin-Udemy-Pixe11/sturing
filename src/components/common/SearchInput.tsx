@@ -12,7 +12,7 @@ export default function SearchInput(props: TSearchInputProps) {
     <>
       <label
         htmlFor="search-input"
-        className="block w-[calc(100% - 3.2rem)] mx-[1.6rem] mt-[2rem] bg-main-100 flex justify-between px-[2rem] rounded-[2.5rem]"
+        className="w-full bg-main-100 flex justify-between px-[2rem] rounded-[2.5rem]"
       >
         <input
           type="text"
