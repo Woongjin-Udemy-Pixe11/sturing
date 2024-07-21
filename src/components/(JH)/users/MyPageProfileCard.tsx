@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import MyPageLabel from './MyPageLabel';
 import UserDetailButton from './UserDetailButton';
 export default async function MyPageProfileCard({
@@ -9,10 +8,13 @@ export default async function MyPageProfileCard({
   auth?: boolean;
 }) {
   return (
-    <section className="flex border-[0.1rem] border-gray-200 py-[2.4rem] px-[2rem] mt-5 rounded-md  gap-3">
-      <div className="w-[7rem] h-[7rem] border border-gray-500 rounded-full ">
+    <section className="flex items-center bg-white/[0.95] border border-gray-300 py-[2.4rem] px-[2rem] rounded-md  gap-[1.2rem]">
+      <div className="w-[7rem] h-[7rem] rounded-full overflow-hidden">
         {/* //TODO:이미지조절 */}
-        <img src={`${data.users.image}`} className="cover w-full h-full"></img>
+        <img
+          src={`${data.users.image}`}
+          className="w-full h-full object-cover"
+        />
       </div>
       <div>
         <div className="flex gap-4">
