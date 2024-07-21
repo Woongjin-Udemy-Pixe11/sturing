@@ -1,7 +1,7 @@
 import { TStudy } from '@/types/TStudy';
-import Card from './Card';
-import ScrollableContainer from './ScrollableContainer';
 import Link from 'next/link';
+import Card from './Card';
+import ScrollableContainer2 from './ScrollableContainer2';
 
 // 날짜 형식을 바꾸는 함수
 export const formatDate = (dateString: string) => {
@@ -30,7 +30,7 @@ export default async function StudyCardList({
   ).json();
 
   return (
-    <ScrollableContainer>
+    <ScrollableContainer2>
       {studies &&
         studies.map((study) => (
           <li key={study.studyId}>
@@ -52,6 +52,6 @@ export default async function StudyCardList({
             </Link>
           </li>
         ))}
-    </ScrollableContainer>
+    </ScrollableContainer2>
   );
 }
