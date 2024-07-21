@@ -32,7 +32,7 @@ export default function Percent(props: any) {
               >
                 <img
                   src={member.userId.image}
-                  className="w-[4rem] rounded-full"
+                  className="w-[4rem] h-[4rem] rounded-full object-cover"
                 />
                 <div className="flex-1 w-[23rem] text-[1.4rem]">
                   <div className="flex items-center">

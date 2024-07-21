@@ -23,7 +23,7 @@ export default function TeamTodo(props: any) {
                 <div key={member._id} className="flex flex-col items-center">
                   <img
                     src={member.userId.image}
-                    className="w-[4rem] rounded-full"
+                    className="w-[4rem] h-[4rem] rounded-full object-cover"
                   />
                   <span className="mt-2">{member.userId.nickname}</span>
                 </div>
