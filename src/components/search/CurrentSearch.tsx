@@ -1,4 +1,3 @@
-import { currentSearchList } from '@/dummy/searchPage';
 import CurrentWord from './CurrentWord';
 
 export default function CurrentSearch({
@@ -11,7 +10,7 @@ export default function CurrentSearch({
   clear: any;
 }) {
   return (
-    <div className="w-[calc(100% - 3.2rem)] px-[1.6rem] my-[4rem]">
+    <div className="w-full my-[4rem]">
       <p className="flex justify-between mb-[2rem]">
         <span className="text-[1.6rem] ">최근검색어</span>
         <button className="text-content-1 text-gray-600" onClick={clear}>
