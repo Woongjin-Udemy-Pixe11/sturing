@@ -33,18 +33,18 @@ export default function UserDetailInfo({ data }: any) {
   };
 
   return (
-    <main>
+    <main className="px-[1.6rem]">
       <h2 className="text-headline-3 font-bold mb-[2.4rem]">기본정보</h2>
       <div className="text-[1.6rem] text-gray-600 flex flex-col gap-[4.6rem]">
-        <div className="flex flex-col gap-3 border-b-2 border-gray-300 pb-[1.2rem]">
+        <div className="flex flex-col gap-3 border-b border-gray-300 pb-[1.4rem]">
           <label>사용자 이름</label>
           <div>{data.users.name}</div>
         </div>
-        <div className="flex flex-col gap-3 border-b-2 border-gray-300 pb-[1.2rem]">
+        <div className="flex flex-col gap-3 border-b border-gray-300 pb-[1.4rem]">
           <label>로그인 이메일</label>
           <div>{data.users.email}</div>
         </div>
-        <div className="flex flex-col gap-3 border-b-2 border-gray-300 pb-[1.2rem]">
+        <div className="flex flex-col gap-3 border-b border-gray-300 pb-[1.4rem]">
           <label htmlFor="nick">닉네임</label>
           <div className="flex justify-between">
             <div className="text-gray-950">

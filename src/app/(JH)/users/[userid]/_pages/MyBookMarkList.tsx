@@ -1,24 +1,26 @@
-import * as Tabs from '@radix-ui/react-tabs';
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import Card from '@/components/common/Card';
-import { formatDate } from '@/components/common/StudyCardList';
+import * as Tabs from '@radix-ui/react-tabs';
 
 export default async function MyBookMarkList({ data }: any) {
   return (
     <main>
       <MyPageHeader>내 관심 목록</MyPageHeader>
-      <Tabs.Root defaultValue="스터디" className="mt-[2rem]">
+      <Tabs.Root defaultValue="스터디" className="border border-gray-300">
         <Tabs.List className="flex">
-          <Tabs.Trigger value="스터디" className="flex-1 minitab-trigger">
+          <Tabs.Trigger
+            value="스터디"
+            className="flex-1 minitab-trigger py-[1.2rem]"
+          >
             스터디
           </Tabs.Trigger>
           <Tabs.Trigger value="강의" className="flex-1 minitab-trigger">
             강의
           </Tabs.Trigger>
         </Tabs.List>
-        <div className="py-5">
+        <div className="px-[1.6rem] py-[2rem]">
           <Tabs.Content value="스터디" className="flex flex-col gap-[1rem]">
-            <div className="grid grid-cols-2 gap-3 m-auto w-full">
+            <div className="grid grid-cols-2 gap-[1rem] m-auto w-full">
               {data &&
                 data.map((study: any, index: any) => (
                   <div key={study.studyName} id={String(index)}>
