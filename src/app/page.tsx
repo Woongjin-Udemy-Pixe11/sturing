@@ -1,5 +1,5 @@
+import Ismatching from '@/components/(JH)/Ismatching';
 import Footer from '@/components/common/Footer';
-import SearchInput from '@/components/common/SearchInput';
 import SectionNavigator from '@/components/common/SectionNavigator';
 import StudyCardList from '@/components/common/StudyCardList';
 import Banner from '@/components/main/Banner';
@@ -10,7 +10,6 @@ import { getSession } from '@/utils/getSessions';
 import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
 import SearchPart from './(ryukyung)/pages/SearchPart';
-import Ismatching from '@/components/(JH)/Ismatching';
 
 export default async function page() {
   const session = await getSession();
