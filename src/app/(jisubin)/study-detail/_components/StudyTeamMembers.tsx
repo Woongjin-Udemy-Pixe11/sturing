@@ -68,8 +68,6 @@ export default async function StudyTeamMembers(props: TStudyTeamMembersProps) {
                     <Image
                       layout="fill"
                       src={member.userId.image}
-                      // width={38}
-                      // height={38}
                       sizes="(max-width: 3rem), (min-height: 3rem)"
                       alt="User Image"
                       className="rounded-full border-gray-300 border-[0.1rem] object-cover"
