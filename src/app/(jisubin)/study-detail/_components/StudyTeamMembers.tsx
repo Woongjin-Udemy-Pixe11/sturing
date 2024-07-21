@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { dummyMemberInfo } from '@/dummy/memberInfo';
 
 type TStudyTeamMembersProps = {
   id: string;
@@ -14,15 +13,6 @@ async function fetchStudyDetail(id: string) {
     },
   );
   if (!res.ok) throw new Error('Failed to fetch study detail');
-  return res.json();
-}
-
-async function fetchStudyLeader(id: string) {
-  if (!id) throw new Error('Invalid ID');
-  const res = await fetch(`${process.env.LOCAL_URL}/api/users/?id=${id}`, {
-    cache: 'no-store',
-  });
-  if (!res.ok) throw new Error('Failed to fetch User');
   return res.json();
 }
 
@@ -41,10 +31,6 @@ async function fetchStudyMember(id: string) {
 export default async function StudyTeamMembers(props: TStudyTeamMembersProps) {
   const { id } = props;
   const study = await fetchStudyDetail(id);
-  let leader = '';
-  if (study.leaderId) {
-    leader = await fetchStudyLeader(study.leaderId);
-  }
   const members = await fetchStudyMember(id);
 
   return (
@@ -75,32 +61,28 @@ export default async function StudyTeamMembers(props: TStudyTeamMembersProps) {
           </h2>
           <hr className="mx-[2rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
           <div className="flex flex-col mx-[2rem] gap-x-[0.4rem] gap-y-[0.4rem] text-content-1">
-            {leader && (
-              <div className="flex flex-row items-center gap-x-[0.8rem]">
-                <Image
-                  src={leader.image}
-                  width={38}
-                  height={38}
-                  alt="User Image"
-                  className="rounded-full border-gray-300 border-[0.1rem]"
-                />
-                <span className="font-semibold">{leader.nickname}</span>
-                <div className="rounded-full w-[0.3rem] h-[0.3rem] bg-main-600"></div>
-                <span className="text-content-2">팀장</span>
-              </div>
-            )}
-
             {members &&
               members.map((member) => (
-                <div className="flex flex-row items-center gap-x-[0.8rem]">
-                  <Image
-                    src={member.userId.image}
-                    width={38}
-                    height={38}
-                    alt="User Image"
-                    className="rounded-full border-gray-300 border-[0.1rem]"
-                  />
+                <div className="flex flex-row items-center gap-x-[0.8rem] mb-[0.8rem]">
+                  <div className="w-[3.8rem] h-[3.8rem] relative">
+                    <Image
+                      layout="fill"
+                      src={member.userId.image}
+                      // width={38}
+                      // height={38}
+                      sizes="(max-width: 3rem), (min-height: 3rem)"
+                      alt="User Image"
+                      className="rounded-full border-gray-300 border-[0.1rem] object-cover"
+                    />
+                  </div>
+
                   <span>{member.userId.nickname}</span>
+                  {member.userId._id == study.leaderId && (
+                    <>
+                      <div className="rounded-full w-[0.3rem] h-[0.3rem] bg-main-600"></div>
+                      <span className="text-content-2">팀장</span>
+                    </>
+                  )}
                 </div>
               ))}
           </div>

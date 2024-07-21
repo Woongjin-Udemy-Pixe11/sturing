@@ -1,9 +1,9 @@
 import LectureList from './LectureList';
 
-export default function TabLecture() {
+export default function TabLecture({ data }: { data: any }) {
   return (
     <>
-      <LectureList isDetail={true} />
+      <LectureList isDetail={true} data={data} />
     </>
   );
 }

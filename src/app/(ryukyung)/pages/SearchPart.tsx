@@ -2,8 +2,8 @@
 import SearchInput from '@/components/common/SearchInput';
 import CurrentSearch from '@/components/search/CurrentSearch';
 import useLocalStorage from '@/utils/useLocalStorage';
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function SearchPart({ isList }: { isList: any }) {
   const router = useRouter();
@@ -46,7 +46,7 @@ export default function SearchPart({ isList }: { isList: any }) {
   };
 
   return (
-    <section>
+    <section className="px-[1.6rem] mt-[2.4rem]">
       <SearchInput
         placeholderText="관심 스터디 분야나 강의명을 검색해 보세요"
         value={inputValue}

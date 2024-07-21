@@ -52,11 +52,11 @@ export default function MyApplyCilent({ studyForm }: { studyForm: any }) {
         </div>
         <div className="flex flex-col px-[1.6rem]">
           <div className="flex justify-between items-center mb-[2rem]">
-            <div className="flex items-center gap-[0.8rem]">
+            <div className="flex items-center gap-[0.8rem] overflow-hidden">
               <img
                 src={studyForm.userId.image}
                 alt=""
-                className="bg-gray-500 w-[4rem] h-[4rem] mr-[0.4rem] border border-gray-300 rounded-full"
+                className="bg-gray-500 object-cover w-[4rem] h-[4rem] mr-[0.4rem] border border-gray-300 rounded-full"
               />
               <span className="text-content-1 text-gray-900 font-bold">
                 {studyForm.userId.nickname}

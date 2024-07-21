@@ -10,16 +10,19 @@ type TTabList = {
 
 type TTabBarBlueProps = {
   tabList: TTabList[];
+  initialFilters: any;
 };
 
 export default function TabBarBlue(props: TTabBarBlueProps) {
-  const { tabList } = props;
+  const { tabList, initialFilters } = props;
   const [activeTab, setActiveTab] = useState(tabList[0].name);
   const activeTabInfo = tabList.find((tab) => tab.name === activeTab);
 
   return (
     <>
-      {!activeTabInfo?.isLecture && <FilterBar />}
+      {!activeTabInfo?.isLecture && (
+        <FilterBar initialFilters={initialFilters} />
+      )}
       <hr className="w-full h-[.6rem] bg-gray-200 my-[.8rem] border-0" />
       <ul className="w-full px-[1.6rem] flex justify-center items-center text-center border-b-[.1rem] border-gray-200">
         {tabList.map((tab) => (

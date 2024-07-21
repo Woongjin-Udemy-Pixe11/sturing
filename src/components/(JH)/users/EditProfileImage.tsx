@@ -4,7 +4,6 @@ import supabase from '@/lib/supabaseClient';
 import { useState } from 'react';
 import { updateImage } from '@/utils/profileUpdate';
 export default function EditProfileImage({ id }: { id: any }) {
-  console.log(id, '📌');
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
   const uploadImage = async (e: any) => {
