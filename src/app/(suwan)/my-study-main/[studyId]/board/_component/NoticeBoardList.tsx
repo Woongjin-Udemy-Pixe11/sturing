@@ -1,16 +1,6 @@
 import Label from '@/components/common/label/Label';
+import { TBlackboard } from '@/types/TStudyBoard';
 import Link from 'next/link';
-
-export type TBlackboard = {
-  _id: string;
-  studyId: string;
-  writerId?: string;
-  type: string;
-  title?: string;
-  content?: string;
-  image?: string;
-  views?: number;
-};
 
 export type TNoticeListProps = {
   noticeList: TBlackboard[];

@@ -1,6 +1,7 @@
-import { fetchBlackboard, fetchUser } from '@/utils/my-study-main/fetch';
+import { fetchBlackboard, fetchComment } from '@/utils/my-study-main/fetch';
 import TaskDetail from '../../_component/TaskDetail';
 import { getSession } from '@/utils/getSessions';
+import BoardComment from '../../_component/BoardComment';
 
 export default async function page({
   params,
@@ -13,12 +14,16 @@ export default async function page({
   const userId = session?.user?.id;
   const taskId = params.taskId;
   const task = await fetchBlackboard('task', taskId);
-
-  const writer = await fetchUser(task.writerId);
+  const commentList = await fetchComment(taskId);
 
   return (
     <>
-      <TaskDetail blackboard={task} writer={writer} userId={userId} />
+      <TaskDetail task={task} userId={userId} />
+      <BoardComment
+        commentList={commentList}
+        boardId={task._id}
+        userId={userId}
+      />
     </>
   );
 }

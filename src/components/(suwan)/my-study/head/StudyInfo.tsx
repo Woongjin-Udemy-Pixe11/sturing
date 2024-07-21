@@ -15,9 +15,9 @@ export default async function StudyInfo({ data }: any) {
   const TYPE = data.studyType;
   const LECTURE = lectureData.lectureName;
   const LECTURE_URL = lectureData.lectureURL;
-  const START = format(data.studyStart, 'y.MM.dd(EEE)', { locale: ko });
+  const START = format(data.studyStart, 'MM.dd(EEE)', { locale: ko });
 
-  const END = format(data.studyEnd, 'y.MM.dd(EEE)', { locale: ko });
+  const END = format(data.studyEnd, 'MM.dd(EEE)', { locale: ko });
 
   const PERIOD = Math.ceil(
     Math.abs(differenceInDays(data.studyStart, data.studyEnd)) / 7,

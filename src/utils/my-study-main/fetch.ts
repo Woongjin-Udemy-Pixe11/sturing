@@ -55,13 +55,6 @@ export async function fetchBlackboard(boardType: string, blackboardId: string) {
   }
 }
 
-export async function fetchUser(id: string) {
-  const res = await fetch(`${process.env.LOCAL_URL}/api/users?id=${id}`, {
-    cache: 'no-store',
-  });
-  return res.json();
-}
-
 export async function patchView(noticeId: string) {
   try {
     const response = await fetch(`${process.env.LOCAL_URL}/api/study-board`, {
@@ -116,7 +109,7 @@ export async function postIcon(props: TPostIconProps) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const result = await response.json();
-    console.log(result);
+    return result;
   } catch (error) {
     console.error('Error UserEdit:', error);
   }
@@ -124,6 +117,59 @@ export async function postIcon(props: TPostIconProps) {
 
 export async function deleteNotice(blackboardId: string) {
   const res = await fetch(`/api/study-board?blackboardId=${blackboardId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return res.json();
+}
+
+export async function fetchComment(blackboardId: string) {
+  try {
+    const res = await fetch(
+      `${process.env.LOCAL_URL}/api/study-board/comment?blackboardId=${blackboardId}`,
+      { cache: 'no-store' },
+    );
+    return res.json();
+  } catch (error) {
+    console.error('Fetch error:', error);
+  }
+}
+
+type TPostComment = {
+  comment: string;
+  userId: string;
+  boardId: string;
+};
+export async function postComment(props: TPostComment) {
+  const { comment, userId, boardId } = props;
+
+  try {
+    const response = await fetch(`/api/study-board/comment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        comment,
+        userId,
+        boardId,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`error! status: ${response.status}`);
+    }
+    const result = await response.json();
+    return { success: true, result };
+  } catch (error) {
+    return { success: false, message: 'Error Post Comment' };
+  }
+}
+
+export async function deleteComment(commentId: string) {
+  const res = await fetch(`/api/study-board/comment?commentId=${commentId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

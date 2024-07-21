@@ -13,7 +13,6 @@ export default async function page({
   const data = await fetchStudy(studyId);
   const noticeList = await fetchBoardList('notice', studyId);
   const taskList = await fetchBoardList('task', studyId);
-  const viewTask = taskList.slice(-2);
 
   const session = await getSession();
   const userid = session?.user?.id;
@@ -38,7 +37,7 @@ export default async function page({
                   필독
                 </div>
                 <span className="text-content-2 truncate">
-                  {noticeList.pop().title}
+                  {noticeList[0].title}
                 </span>
               </div>
             )}
@@ -54,9 +53,11 @@ export default async function page({
             <hr className="mx-[0.4rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
           </div>
           {taskList.length > 0 &&
-            viewTask.map((task: any) => (
-              <TaskInfo key={task._id} task={task} isLeader={isLeader} />
-            ))}
+            taskList
+              .slice(0, 2)
+              .map((task: any) => (
+                <TaskInfo key={task._id} task={task} isLeader={isLeader} />
+              ))}
         </div>
       </div>
     </>
