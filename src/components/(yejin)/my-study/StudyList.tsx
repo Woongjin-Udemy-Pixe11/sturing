@@ -61,7 +61,7 @@ export default async function StudyList(props: StudyProps) {
             <div className="bg-gray-100 px-[1.6rem] flex flex-col gap-[1.6rem] py-[2rem]">
               {activeStudies &&
                 activeStudies.map((study) => (
-                  <Link href={`/study-detail/${study._id}`}>
+                  <Link href={`/my-study-main/${study._id}/team`}>
                     <div
                       key={study.studyId}
                       className="bg-gradient-to-tr from-[#D9E3FF] to-[#FFE4E0] w-full flex flex-col gap-[0.8rem] px-[2rem] py-[2.4rem] rounded-[0.8rem] border border-gray-300"

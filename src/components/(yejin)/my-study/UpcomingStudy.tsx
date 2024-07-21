@@ -18,8 +18,8 @@ export default function UpcomingStudy(props: StudyProps) {
   // 날짜 형식을 바꾸는 함수
   const formatDate2 = (dateString: string) => {
     const date = new Date(dateString);
-    const month = String(date.getMonth() + 1).padEnd(2, '월');
-    const day = String(date.getDate()).padEnd(3, '일');
+    const month = String(date.getMonth() + 1).padStart(2, '0') + '월';
+    const day = String(date.getDate()).padStart(2, '0') + '일';
     return `${month} ${day}`;
   };
 
@@ -38,13 +38,16 @@ export default function UpcomingStudy(props: StudyProps) {
       return '추후협의';
     }
 
-    const [day, time] = timeString.split(' ');
-    const [hour, minute] = time.split(':');
-    const endHour = (parseInt(hour) + 1) % 24;
+    const timePart = timeString.split(' ').pop() || '';
+    const [hour, minute] = timePart.split(':');
 
-    return `${hour}:${minute} ~ ${endHour
-      .toString()
-      .padStart(2, '0')}:${minute}`;
+    const startHour = parseInt(hour);
+    const endHour = (startHour + 1) % 24;
+
+    const formattedStartHour = startHour.toString().padStart(2, '0');
+    const formattedEndHour = endHour.toString().padStart(2, '0');
+
+    return `${formattedStartHour}:${minute} ~ ${formattedEndHour}:${minute}`;
   };
 
   return (
@@ -67,7 +70,7 @@ export default function UpcomingStudy(props: StudyProps) {
             upcomingStudies.map((study) => (
               <SwiperSlide key={study._id}>
                 <Link
-                  href="/my-study-main/{study._id}/team"
+                  href={`/my-study-main/${study._id}/team`}
                   className="bg-white w-full flex flex-col gap-[0.8rem] px-[2rem] py-[2.4rem] rounded-[0.8rem] border border-gray-300"
                 >
                   <div className="[&>span]:ml-0 [&>span]:mr-[0.4rem]">
