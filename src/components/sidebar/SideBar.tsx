@@ -9,7 +9,6 @@ type TSideBarProps = {
 };
 export default function SideBar(props: TSideBarProps) {
   const { onClose, user } = props;
-  console.log('✅', user);
 
   return (
     <>
