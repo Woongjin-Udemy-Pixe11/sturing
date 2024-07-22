@@ -125,8 +125,8 @@ export default function StudyComment(props: TStudyCommentProps) {
                   <HiEllipsisVertical size={16} />
                 </button>
                 {isOpen && (
-                  <ul className="w-[4rem] text-center border border-[text-gray-800] rounded-[0.4rem] mt-[2rem] z-10 absolute">
-                    <li className="border-b-[0.1rem]">
+                  <ul className="w-[4rem] text-center border border-[text-gray-800]">
+                    <li>
                       <button type="button" onClick={onClickEdit}>
                         수정
                       </button>
@@ -144,9 +144,9 @@ export default function StudyComment(props: TStudyCommentProps) {
 
           {isEdit ? (
             <form action={onSubmitEdit}>
-              <div className="h-[3rem] rounded-[8rem] bg-gray-100 border-gray-300 border-[0.1rem] mt-[1rem] relative flex flex-row items-center ">
+              <div className="relative flex flex-row items-center ">
                 <input
-                  className="text-content-2 text-gray-600 pl-[1.5rem] placeholder:bg-transparent focus:outline-none"
+                  className="h-[3rem] rounded-[8rem] bg-gray-100 border-gray-300 border-[0.1rem] mt-[1rem] text-content-2 text-gray-600 pl-[1.5rem] placeholder:bg-transparent focus:outline-none"
                   value={commentContent}
                   onChange={(e) => {
                     setContent(e.target.value);

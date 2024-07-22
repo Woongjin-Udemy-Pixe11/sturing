@@ -177,3 +177,26 @@ export async function deleteComment(commentId: string) {
   });
   return res.json();
 }
+
+// 댓글 수정
+export async function updateComment(commentId: string, commentContent: string) {
+  try {
+    const response = await fetch(`/api/study-board/comment`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        commentId,
+        commentContent,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`error! status: ${response.status}`);
+    }
+    const result = await response.json();
+    return { success: true, result };
+  } catch (error) {
+    return { success: false, message: 'Error Update Comment' };
+  }
+}

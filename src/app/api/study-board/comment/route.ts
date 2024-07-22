@@ -58,3 +58,16 @@ export async function DELETE(request: Request) {
     return Response.json({ message: 'Comment not delete' });
   }
 }
+
+export async function PATCH(request: Request) {
+  connectDB();
+  const { commentId, commentContent } = await request.json();
+  try {
+    const comment = await BlackboardComment.findById({ _id: commentId });
+    comment.comment = commentContent;
+    await comment.save();
+    return Response.json({ message: 'Comment Update Success' });
+  } catch (error) {
+    return Response.json({ message: 'Error Comment Update' });
+  }
+}

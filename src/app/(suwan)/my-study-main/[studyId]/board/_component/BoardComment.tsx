@@ -11,9 +11,11 @@ import { TComment } from '@/types/TStudyBoard';
 export default function BoardComment(props: {
   commentList: TComment[];
   boardId: string;
+  studyId: string;
+  taskId: string;
   userId: string;
 }) {
-  const { boardId, userId } = props;
+  const { boardId, userId, studyId, taskId } = props;
   const [comment, setComment] = useState('');
   const [commentList, setCommentList] = useState(props.commentList);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,6 +42,7 @@ export default function BoardComment(props: {
           blackboardId: boardId,
           likes: [],
           createdAt: result.result.createdAt,
+          updatedAt: result.result.updatedAt,
         };
         setCommentList((prevList) => [...prevList, newComment]);
 
@@ -69,8 +72,12 @@ export default function BoardComment(props: {
       {commentList.map((comment: TComment) => (
         <Comment
           key={comment._id}
+          studyId={studyId}
+          userId={userId}
+          taskId={taskId}
           comment={comment}
           onClickDelete={onClickDelete}
+          setComment={setComment}
         />
       ))}
 

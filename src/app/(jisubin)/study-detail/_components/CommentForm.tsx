@@ -33,15 +33,16 @@ export default function CommentForm(props: TCommentFormProps) {
 
   return (
     <form action={handleSubmit}>
-      <div className="h-[3rem] rounded-[8rem] bg-gray-100 border-gray-300 border-[0.1rem] mx-[2rem] relative flex flex-row items-center ">
+      <div className="relative flex flex-row items-center">
         <input
           placeholder="댓글을 입력하세요."
-          className="text-content-2 text-gray-600 pl-[1.5rem] placeholder:bg-transparent focus:outline-none"
+          className="h-[3rem] rounded-[8rem] bg-gray-100 border-gray-300 border-[0.1rem] mx-[2rem] pr-[4rem] text-content-2 text-gray-600 pl-[1.5rem] 
+          w-full placeholder:bg-transparent focus:outline-none"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           name="content"
         ></input>
-        <button type="submit" className="absolute right-0 pr-[1rem]">
+        <button type="submit" className="absolute right-0 pr-[2rem] mr-[1rem]">
           <svg
             width="18"
             height="18"
