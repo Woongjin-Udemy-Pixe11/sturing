@@ -38,7 +38,6 @@ export async function GET(request: Request) {
       const study = await Study.findOne({
         _id: `${id}`,
       });
-      console.log('아이디 받음');
       return Response.json(study);
     } catch (error) {
       console.log(error);
@@ -58,16 +57,21 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   connectDB();
-  const { data, leaderId } = await request.json();
+  const { studyData, leaderId } = await request.json();
 
-  const newStudy = new Study(data);
-  await newStudy.save();
-  const studyId = newStudy._id;
+  try {
+    const newStudy = new Study(studyData);
+    await newStudy.save();
+    const studyId = newStudy._id;
 
-  await StudyMember.create({
-    studyId: studyId,
-    userId: leaderId,
-  });
+    await StudyMember.create({
+      studyId: studyId,
+      userId: leaderId,
+    });
 
-  return Response.json({ message: 'success' });
+    return Response.json({ message: 'success' });
+  } catch (error) {
+    console.log('study post error', error);
+    return Response.json({ message: 'study post error' });
+  }
 }
