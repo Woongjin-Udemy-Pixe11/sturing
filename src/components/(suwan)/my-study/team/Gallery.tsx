@@ -1,7 +1,6 @@
 import Image from 'next/image';
 
 export default function Gallery({ taskList }: { taskList: any }) {
-  console.log(taskList, '✅');
   return (
     <>
       <div className="flex flex-col justify-center items-center w-[90%] mt-[2rem] rounded-[5px] bg-white border border-gray-300">
@@ -15,9 +14,10 @@ export default function Gallery({ taskList }: { taskList: any }) {
                 return (
                   <div className="relative w-[100%] h-[100%] rounded-[.5rem] border-2 border-gray-300 after:pb-[100%] after:block">
                     <div className="absolute h-[100%] w-[100%] rounded-[.5rem] object-cover;">
-                      <img
+                      <Image
                         src={task.image}
                         alt={'대체글'}
+                        layout="fill"
                         className="object-cover"
                       />
                     </div>
