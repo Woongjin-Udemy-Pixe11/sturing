@@ -1,10 +1,18 @@
 'use client';
 import * as React from 'react';
 import { Calendar } from '@/components/common/calender/ui/calendar';
+import { useCalendarStore } from '@/store/calendarStore';
+import { format } from 'date-fns';
 
 export default function CalendarComponent() {
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
-  console.log(date);
+  const { date, setDate, fetchScheduleList } = useCalendarStore();
+
+  const handleDateChange = (newDate: Date | undefined) => {
+    if (newDate) {
+      setDate(newDate);
+      fetchScheduleList();
+    }
+  };
 
   return (
     <>
@@ -13,7 +21,7 @@ export default function CalendarComponent() {
           <Calendar
             mode="single"
             selected={date}
-            onSelect={setDate}
+            onSelect={handleDateChange}
             className="rounded-md border"
           />
         </div>

@@ -24,7 +24,9 @@ export default function StudyInfoForm(props: any) {
   // };
 
   const onChangeImage = (img: any) => {
-    setImage(img);
+    if (img !== null) {
+      setImage(img);
+    }
   };
   console.log(image);
 

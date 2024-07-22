@@ -5,12 +5,10 @@ export async function GET(request: Request) {
   connectDB();
   const { searchParams } = new URL(request.url);
   const studyId = searchParams.get('studyId');
-  const date = searchParams.get('date');
 
   try {
     const schedule = await StudySchedule.find({
       studyId: studyId,
-      date: date,
     });
     return Response.json(schedule);
   } catch (error) {

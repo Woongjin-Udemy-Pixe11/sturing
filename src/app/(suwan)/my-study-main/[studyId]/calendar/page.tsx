@@ -4,6 +4,7 @@ import Header from '../_components/Header';
 import { fetchStudy } from '@/utils/my-study-main/fetch';
 import Calendar from './_components/Calendar';
 import Schedule from './_components/Schedule';
+import CalendarInitializer from './_components/CalendarInitializer';
 
 const scheduleList = [
   {
@@ -26,15 +27,19 @@ export default async function Calender({
   const userid = session?.user?.id;
 
   const data = await fetchStudy(studyId);
-
   const isLeader = data.leaderId === userid;
 
   return (
     <>
       <Header studyId={studyId} data={data} />
+      <CalendarInitializer studyId={studyId} />
       <div className="bg-gray-100 p-[2rem]">
         <Calendar />
-        <Schedule isLeader scheduleList={scheduleList} />
+        <Schedule
+          isLeader={isLeader}
+          scheduleList={scheduleList}
+          userid={userid}
+        />
       </div>
     </>
   );
