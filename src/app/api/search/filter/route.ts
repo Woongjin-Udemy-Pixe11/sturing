@@ -22,6 +22,7 @@ export async function GET() {
       '신입(1년 이하)',
       '주니어(1~3년차)',
       '시니어(4년 이상)',
+      '상관없음',
     ];
 
     const fieldCounts = await Promise.all(
@@ -59,7 +60,6 @@ export async function GET() {
 
     result.fields['전체'] = await Study.countDocuments();
     result.people['상관없음'] = await Study.countDocuments();
-    result.levels['상관없음'] = await Study.countDocuments();
 
     return Response.json(result);
   } catch (error) {
