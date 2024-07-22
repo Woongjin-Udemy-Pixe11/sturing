@@ -26,7 +26,6 @@ export default async function page({
   const defaultContent = notice.content;
 
   const boardType = 'notice';
-  console.log('📍', defaultTitle, defaultContent);
 
   const handleSubmit = async (data: TFormData) => {
     'use server';

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { CgClose } from 'react-icons/cg';
 import { TFormData } from '@/types/TStudyBoard';
+import supabase from '@/lib/supabaseClient';
 
 type NoticeFormProps = {
   boardType?: string;
@@ -46,20 +47,10 @@ export default function NoticeForm(props: NoticeFormProps) {
   );
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewUrl(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setPreviewUrl(null);
-    }
-
-    if (onImageChange) {
-      onImageChange(file);
+    if (e.target.files && e.target.files[0]) {
+      const file: any = e.target.files[0];
+      setSelectedImg(file);
+      setPreviewUrl(URL.createObjectURL(file));
     }
   };
 
@@ -78,18 +69,14 @@ export default function NoticeForm(props: NoticeFormProps) {
   const onSubmit = async (formData: FormData) => {
     const title = formData.get('title') as string;
     const content = formData.get('content') as string;
-    const file = formData.get('file') as File | null;
+    const fileName = `${Date.now()}-${Math.random()}`;
 
-    console.log('😨', file);
-    let img;
-    if (file && file.size > 0) {
-      img = await convertBase64(file);
-    } else if (defaultImage) {
-      img = selectedImg;
-    } else {
-      img = null;
-    }
-    console.log('😈', img);
+    const { data, error } = await supabase.storage
+      .from('images')
+      .upload(fileName, selectedImg);
+    const test: any = supabase.storage.from('images').getPublicUrl(fileName);
+    const img = test.data.publicUrl;
+    setPreviewUrl(test.data.publicUrl);
 
     const board = boardType == 'notice' ? 'notice-board' : 'task-board';
     const result = await handleSubmit({ title, content, img });

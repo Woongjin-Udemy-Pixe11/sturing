@@ -14,7 +14,6 @@ export default async function page({
   const noticeId = params.noticeId;
 
   const notice = await fetchBlackboard('notice', noticeId);
-  console.log('📍', notice);
 
   await patchView(noticeId);
   return (
