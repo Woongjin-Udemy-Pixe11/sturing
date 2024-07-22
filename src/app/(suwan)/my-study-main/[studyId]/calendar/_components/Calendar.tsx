@@ -1,21 +1,18 @@
 'use client';
 import * as React from 'react';
 import { Calendar } from '@/components/common/calender/ui/calendar';
-// import Todos, { formatingDate } from './../my-todo/Todos';
+import { useCalendarStore } from '@/store/calendarStore';
+import { format } from 'date-fns';
 
-export default function CalendarComponent({
-  studyId,
-  userId,
-  data,
-}: {
-  studyId: any;
-  userId: any;
-  data: any;
-}) {
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
-  //   const isoDate = new Date(date).toISOString();
-  //   let clickdate = formatingDate(isoDate);
-  //   const dateData = data.filter((todo: any) => todo.date === clickdate);
+export default function CalendarComponent() {
+  const { date, setDate, fetchScheduleList } = useCalendarStore();
+
+  const handleDateChange = (newDate: Date | undefined) => {
+    if (newDate) {
+      setDate(newDate);
+      fetchScheduleList();
+    }
+  };
 
   return (
     <>
@@ -24,11 +21,10 @@ export default function CalendarComponent({
           <Calendar
             mode="single"
             selected={date}
-            onSelect={setDate}
+            onSelect={handleDateChange}
             className="rounded-md border"
           />
         </div>
-        {/* <Todos studyId={studyId} userId={userId} dateData={dateData} /> */}
       </div>
     </>
   );

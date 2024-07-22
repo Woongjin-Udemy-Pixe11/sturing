@@ -10,23 +10,16 @@ export default function StudyInfoForm(props: any) {
   const [studyType, setStudyType] = useState<'온라인' | '오프라인' | null>(
     null,
   );
-  const [image, setImage] = useState<string | null>('/images/study-img1.png');
+  const [image, setImage] = useState<File | null>(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [location, setLocation] = useState('');
 
-  // const convertBase64 = (img: File) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(img);
-  //   reader.onload = () => {
-  //     setImage(reader.result as string);
-  //   };
-  // };
-
-  const onChangeImage = (img: any) => {
-    setImage(img);
+  const onChangeImage = (img: File | null) => {
+    if (img !== null) {
+      setImage(img);
+    }
   };
-  console.log(image);
 
   const onChangeCheckBox = () => {
     const newCheckedState = !checked;
@@ -68,6 +61,7 @@ export default function StudyInfoForm(props: any) {
 
   const onClickNext = () => {
     onClickStepTwo(data);
+    setStep((prev: number) => prev + 1);
   };
 
   return (
@@ -185,13 +179,7 @@ export default function StudyInfoForm(props: any) {
         {validate ? (
           <LongButton color="gray">다음</LongButton>
         ) : (
-          <LongButton
-            color="blue"
-            onClick={() => {
-              onClickNext();
-              setStep((prev: number) => prev + 1);
-            }}
-          >
+          <LongButton color="blue" onClick={onClickNext}>
             다음
           </LongButton>
         )}

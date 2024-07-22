@@ -15,7 +15,7 @@ type TStudyFormProps = {
   contentLabel: string;
   imageUpload?: boolean;
   imageLabel?: string;
-  onImageChange?: (file: File | null) => void;
+  onImageChange: (file: File | null) => void;
   onTitleChange?: (title: string) => void;
   onContentChange?: (content: string) => void;
 };
@@ -45,18 +45,17 @@ export default function StudyForm(props: TStudyFormProps) {
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    console.log('test');
-    const file: any = e.target.files?.[0] || null;
+    const file = e.target.files?.[0] || null;
+    setSelectedFile(file);
 
-    const fileName = `${Date.now()}-${Math.random()}`;
-    const { data, error } = await supabase.storage
-      .from('images')
-      .upload(fileName, file);
+    onImageChange(file);
 
-    const test = supabase.storage.from('images').getPublicUrl(fileName);
-
-    onImageChange(test.data.publicUrl);
-    setSelectedFile(null);
+    //이미지 미리보기 코드
+    if (file) {
+      setPreviewUrl(URL.createObjectURL(file));
+    } else {
+      setPreviewUrl(null);
+    }
   };
 
   const handleImageRemove = () => {

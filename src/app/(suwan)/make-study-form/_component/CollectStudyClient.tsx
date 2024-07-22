@@ -2,6 +2,7 @@
 //TODO: 이미지 기본값 넣기
 //TODO: reducer만 써보기
 
+import supabase from '@/lib/supabaseClient';
 import LongButton from '@/components/common/LongButton';
 import { useState, useReducer } from 'react';
 import SelectCateGory from './SelectCateGory';
@@ -53,28 +54,52 @@ export default function CollectStudyClient(props: TProps) {
   };
 
   //TODO: any 수정
-  const onClickStepTwo = (data: any) => {
-    dispatch({ type: 'setImage', payload: data.image });
-    dispatch({ type: 'setName', payload: data.title });
-    dispatch({ type: 'setContent', payload: data.content });
-    dispatch({ type: 'setStudyType', payload: data.studyType });
-    dispatch({ type: 'setLocation', payload: data.location });
+  const onClickStepTwo = (studyData: any) => {
+    dispatch({ type: 'setImage', payload: studyData.image });
+    dispatch({ type: 'setName', payload: studyData.title });
+    dispatch({ type: 'setContent', payload: studyData.content });
+    dispatch({ type: 'setStudyType', payload: studyData.studyType });
+    dispatch({ type: 'setLocation', payload: studyData.location });
   };
 
-  const onClickStepThree = (data: any) => {
-    dispatch({ type: 'setStart', payload: data.start });
-    dispatch({ type: 'setDeadline', payload: data.deadline });
-    dispatch({ type: 'setEnd', payload: data.end });
-    dispatch({ type: 'setMeetings', payload: data.meetings });
-    dispatch({ type: 'setMood', payload: data.mood });
+  const onClickStepThree = (studyData: any) => {
+    dispatch({ type: 'setStart', payload: studyData.start });
+    dispatch({ type: 'setDeadline', payload: studyData.deadline });
+    dispatch({ type: 'setEnd', payload: studyData.end });
+    dispatch({ type: 'setMeetings', payload: studyData.meetings });
+    dispatch({ type: 'setMood', payload: studyData.mood });
   };
 
-  const onClickLevel = (level: any) => {
+  const onClickLevel = (level: string) => {
     dispatch({ type: 'setLevel', payload: level });
   };
 
-  const onClickMember = (member: any) => {
+  const onClickMember = (member: number) => {
     dispatch({ type: 'setMember', payload: member });
+  };
+
+  const onSubmitHandler = async () => {
+    const fileName = `${Date.now()}-${Math.random()}`;
+    const { data, error } = await supabase.storage
+      .from('images')
+      .upload(fileName, study.studyImage);
+
+    if (error) {
+      console.error('이미지 업로드 실패:', error);
+      return;
+    }
+    const { data: urlData } = supabase.storage
+      .from('images')
+      .getPublicUrl(fileName);
+    const supaUrl = urlData.publicUrl;
+
+    // console.log('타입', typeof supaUrl);
+
+    //스터디 복제해서 이미지만 변경
+    const updatedStudy = { ...study, studyImage: supaUrl };
+
+    await postStudy(updatedStudy, leaderId);
+    router.push('/make-study-form/complete');
   };
   //TODO:any 수정
   const collectstep: any = {
@@ -104,13 +129,13 @@ export default function CollectStudyClient(props: TProps) {
     ),
     4: (
       <StudyTeammateForm
-        leaderId={leaderId}
         step={step}
         setStep={setStep}
         study={study}
         onClickLevel={onClickLevel}
         onClickMember={onClickMember}
         dispatch={dispatch}
+        onSubmitHandler={onSubmitHandler}
       />
     ),
   };

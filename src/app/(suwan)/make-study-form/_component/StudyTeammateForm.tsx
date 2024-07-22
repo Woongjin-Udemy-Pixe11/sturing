@@ -15,20 +15,25 @@ const levelOptions: string[] = [
 ];
 
 export default function StudyTemmateForm(props: any) {
-  const { leaderId, setStep, onClickLevel, onClickMember, study, dispatch } =
-    props;
+  const {
+    setStep,
+    onClickLevel,
+    onClickMember,
+    study,
+    dispatch,
+    onSubmitHandler,
+  } = props;
   const router = useRouter();
   const [level, setLevel] = useState('');
   const [studyMembers, setStudyMembers] = useState(1);
 
   let data = {
-    level: level,
+    level: study.studyLevel,
     member: studyMembers,
   };
   const validate = useMemo(() => {
-    return study.studyLevel == '' || studyMembers < 1;
-  }, [level, studyMembers]);
-  console.log(data);
+    return study.studyLevel == '' || study.studyMembers < 1;
+  }, [study]);
 
   //TODO: +1 리팩토링;;;
   const onClickStudyMembers = (type: string) => {
@@ -43,7 +48,6 @@ export default function StudyTemmateForm(props: any) {
     }
   };
 
-  console.log('마지막 리듀서', study);
   return (
     <>
       <section>
@@ -137,9 +141,8 @@ export default function StudyTemmateForm(props: any) {
         ) : (
           <LongButton
             color="blue"
-            onClick={async () => {
-              postStudy(study, leaderId);
-              router.push('/make-study-form/complete');
+            onClick={() => {
+              onSubmitHandler();
             }}
           >
             등록하기
