@@ -7,8 +7,9 @@ type FilterState = {
 };
 
 type FilterAction =
+  | { type: 'setField' | 'setPeople'; payload: string[] }
   | {
-      type: 'setField' | 'setRegion' | 'setPeople' | 'setLevel';
+      type: 'setRegion' | 'setLevel';
       payload: string;
     }
   | { type: 'setPeriod'; payload: string }
@@ -20,13 +21,19 @@ export default function filterReducer(
 ): FilterState {
   switch (action.type) {
     case 'setField':
-    case 'setRegion':
+      return {
+        ...state,
+        field: action.payload,
+      };
     case 'setPeople':
+      return {
+        ...state,
+        people: action.payload,
+      };
+    case 'setRegion':
     case 'setLevel': {
       const filterType = action.type.slice(3).toLowerCase() as
-        | 'field'
         | 'region'
-        | 'people'
         | 'level';
       const newArray = [...state[filterType]];
       if (newArray.includes(action.payload)) {

@@ -22,6 +22,22 @@ export default function Field({ state, onClickField, filterCounts }: any) {
     count: filterCounts[item.name] || 0,
   }));
 
+  const handleFieldClick = (name: string) => {
+    let newField;
+    if (name === '전체') {
+      newField = field.includes('전체') ? [] : ['전체'];
+    } else {
+      if (field.includes('전체')) {
+        newField = [name];
+      } else {
+        newField = field.includes(name)
+          ? field.filter((item: any) => item !== name)
+          : [...field, name];
+      }
+    }
+    onClickField(newField);
+  };
+
   return (
     <>
       <ul className="w-full flex gap-[.8rem] flex-col">
@@ -32,7 +48,7 @@ export default function Field({ state, onClickField, filterCounts }: any) {
                 name={checkbox.name}
                 count={checkbox.count}
                 isChecked={field.includes(checkbox.name)}
-                onClick={onClickField}
+                onClick={handleFieldClick}
               />
             </li>
           ))}
