@@ -3,6 +3,7 @@ import TaskInfo from './_component/TaskInfo';
 import Header from '../_components/Header';
 import { fetchBoardList, fetchStudy } from '@/utils/my-study-main/fetch';
 import { getSession } from '@/utils/getSessions';
+import Link from 'next/link';
 
 export default async function page({
   params,
@@ -32,14 +33,16 @@ export default async function page({
             />
             <hr className="mx-[0.4rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
             {noticeList.length > 0 && (
-              <div className="flex flex-row items-center gap-x-[0.8rem] mb-[2.4rem] mx-[0.4rem]">
-                <div className="min-w-[3.3rem] min-h-[2.2rem] px-[0.6rem] py-[0.2rem] bg-main-100 rounded-[0.3rem] text-main-700 text-content-2 break-all">
-                  필독
+              <Link href={`./board/notice-board/${noticeList[0]._id}`}>
+                <div className="flex flex-row items-center gap-x-[0.8rem] pb-[2.4rem] px-[0.4rem]">
+                  <div className="min-w-[3.3rem] min-h-[2.2rem] px-[0.6rem] py-[0.2rem] bg-main-100 rounded-[0.3rem] text-main-700 text-content-2 break-all">
+                    필독
+                  </div>
+                  <span className="text-content-2 truncate">
+                    {noticeList[0].title}
+                  </span>
                 </div>
-                <span className="text-content-2 truncate">
-                  {noticeList[0].title}
-                </span>
-              </div>
+              </Link>
             )}
           </div>
         </div>
@@ -53,11 +56,11 @@ export default async function page({
             <hr className="mx-[0.4rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
           </div>
           {taskList.length > 0 &&
-            taskList
-              .slice(0, 2)
-              .map((task: any) => (
+            taskList.slice(0, 2).map((task: any) => (
+              <Link href={`./board/task-board/${task._id}`}>
                 <TaskInfo key={task._id} task={task} isLeader={isLeader} />
-              ))}
+              </Link>
+            ))}
         </div>
       </div>
     </>

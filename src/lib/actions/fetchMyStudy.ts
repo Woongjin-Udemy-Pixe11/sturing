@@ -1,16 +1,22 @@
-export async function fetchSchedule(studyId: string, date: string) {
+export async function fetchSchedule(studyId: string) {
   try {
-    const res = await fetch(
-      `/api/study-schedule?studyId=${studyId}&date=${date}`,
-      { cache: 'no-store' },
-    );
+    const res = await fetch(`/api/study-schedule?studyId=${studyId}`, {
+      cache: 'no-store',
+    });
     return res.json();
   } catch (error) {
     console.error('Fetch error:', error);
   }
 }
 
-export async function postSchedule(studyId: string) {
+export async function postSchedule(
+  studyId: string,
+  userId: string,
+  title: string,
+  place: string,
+  date: Date,
+  time: string,
+) {
   try {
     const response = await fetch(`/api/study-schedule?studyId=${studyId}`, {
       method: 'POST',
@@ -19,6 +25,11 @@ export async function postSchedule(studyId: string) {
       },
       body: JSON.stringify({
         studyId,
+        userId,
+        title,
+        place,
+        date,
+        time,
       }),
     });
 
