@@ -1,7 +1,8 @@
 import { dummyLectureList } from '@/dummy/searchPage';
 import Link from 'next/link';
 import GrayFullLink from './GrayFullLink';
-import LectureCard from './LectureCard';
+import dynamic from 'next/dynamic';
+const LectureCard = dynamic(() => import('./LectureCard'));
 
 type TLectureListProps = {
   isDetail?: boolean;

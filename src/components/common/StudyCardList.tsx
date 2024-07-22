@@ -1,7 +1,9 @@
 import { TStudy } from '@/types/TStudy';
 import Link from 'next/link';
-import Card from './Card';
+
 import ScrollableContainer2 from './ScrollableContainer2';
+import dynamic from 'next/dynamic';
+const Card = dynamic(() => import('./Card'));
 
 // 날짜 형식을 바꾸는 함수
 export const formatDate = (dateString: string) => {
