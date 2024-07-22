@@ -17,16 +17,18 @@ export default function SearchPart({ isList }: SearchPartProps) {
     useLocalStorage<string[]>('recent', []);
 
   const onSearch = () => {
-    if (recentSearches.includes(inputValue)) {
-      setInputValue('');
-      router.push(`/search/result?keyword=${inputValue}`);
+    const trimmedInput = inputValue.trim();
+
+    if (trimmedInput === '') {
       return;
     }
-    if (inputValue.trim() !== '') {
-      addSearchToLocalStorage(inputValue);
-      setInputValue('');
-      router.push(`/search/result?keyword=${inputValue}`);
+
+    if (!recentSearches.includes(trimmedInput)) {
+      addSearchToLocalStorage(trimmedInput);
     }
+
+    setInputValue('');
+    router.push(`/search/result?keyword=${trimmedInput}`);
   };
 
   const onRemove = (search: string) => {
