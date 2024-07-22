@@ -30,7 +30,9 @@ export default async function page() {
       <TabBar />
       <Banner />
 
-      <MatchingBanner user={user} />
+      {((data && data.matchinginfo === null) || !data) && (
+        <MatchingBanner user={user} />
+      )}
 
       <SearchPart isList={false} />
       <SectionNavigator title="분야별 스터디 탐색하기" moveLink="/search" />
