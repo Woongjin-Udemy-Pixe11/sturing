@@ -1,9 +1,7 @@
-import Card from '@/components/common/Card';
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
+import Card from '@/components/common/Card';
 
-import { dummyCardList } from '@/dummy/mainPage';
 import { getUserStudies } from '@/app/api/study/user/route';
-import { formatDate } from '@/components/common/StudyCardList';
 
 export default async function StudyLog({ id }: { id: any }) {
   const userstudy = await getUserStudies(id);
@@ -13,7 +11,7 @@ export default async function StudyLog({ id }: { id: any }) {
   return (
     <main>
       <MyPageHeader>스터디 이력</MyPageHeader>
-      <section className="flex flex-wrap gap-2  py-[2rem] ">
+      <section className="flex flex-wrap gap-2 px-[1.6rem] py-[2rem] ">
         <div className="grid grid-cols-2 gap-3 m-auto w-full">
           {userstudy.completed &&
             userstudy.completed.map((study) => (
@@ -25,8 +23,8 @@ export default async function StudyLog({ id }: { id: any }) {
                   studyType={study.studyType}
                   studyCategory={study.studyCategory}
                   studyName={study.studyName}
-                  studyStart={formatDate(study.studyStart)}
-                  studyEnd={formatDate(study.studyEnd)}
+                  studyStart={new Date(study.studyStart).toISOString()}
+                  studyEnd={new Date(study.studyEnd).toISOString()}
                   studyPlace={study.studyPlace}
                   studyJoinMember={study.studyJoinMember}
                   studyMember={study.studyMember}

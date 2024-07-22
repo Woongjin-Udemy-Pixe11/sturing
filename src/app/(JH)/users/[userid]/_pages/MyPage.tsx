@@ -16,7 +16,7 @@ export default async function MyPage({
   completedstudy: number;
   activestudy: number;
 }) {
-  const loginbg = `bg-gradient-to-tr from-[rgba(217,227,255,0.55)] to-[rgba(255,228,224,0.55)]`;
+  const loginbg = `bg-gradient-to-tr from-[rgba(217,227,255,0.5)] to-[rgba(255,228,224,0.5)]`;
   const data = await (
     await fetch(`http://localhost:3000/api/mypage?id=${userid}`, {
       cache: 'no-store',
@@ -46,23 +46,30 @@ export default async function MyPage({
       </section>
       <SturingRate data={data} />
       <div className="border mt-[2rem]">
-        <div className="w-full px-[1.6rem] py-[2rem] flex justify-between items-center text-headline-3 font-semibold">
-          <span>{`받은 스터디 평가 ${
-            data.numberReview ? data.numberReview : 0
-          }`}</span>
-          <Link href={`/users/${userid}/mystudyreview`}>
+        <Link href={`/users/${userid}/mystudyreview`}>
+          <div className="w-full px-[1.6rem] py-[2rem] flex justify-between items-center text-headline-3 font-semibold">
+            <span className="flex gap-[.8rem]">
+              받은 스터디 평가{' '}
+              <span className="text-main-600 ">{`${
+                data.numberReview ? data.numberReview : 0
+              }`}</span>
+            </span>
             <IoIosArrowForward />
-          </Link>
-        </div>
+          </div>
+        </Link>
       </div>
+
       {!auth && (
         <div className="border-b">
-          <div className="w-full px-[1.6rem] py-[2rem] flex justify-between items-center text-headline-3 font-semibold">
-            <span>{`스터디 이력 ${completedstudy}`}</span>
-            <Link href={`/users/${userid}/mystudylog`}>
+          <Link href={`/users/${userid}/mystudylog`}>
+            <div className="w-full px-[1.6rem] py-[2rem] flex justify-between items-center text-headline-3 font-semibold">
+              <span className="flex gap-[.8rem]">
+                스터디 이력{' '}
+                <span className="text-main-600 ">{`${completedstudy}`}</span>
+              </span>
               <IoIosArrowForward />
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
       )}
     </main>
