@@ -1,6 +1,6 @@
 import MatchingContainer from '@/components/(JH)/matching/MatchingContainer';
-import * as Tabs from '@radix-ui/react-tabs';
 import { level } from '@/constant/region';
+import * as Tabs from '@radix-ui/react-tabs';
 
 //TODO:console.log(4번씩찍히는데 이거 최적화해서 memo, useCallback 해야될듯)
 
@@ -20,7 +20,7 @@ export default function Field({ interest, onClickLevel, Level }: any) {
               return (
                 <Tabs.Trigger
                   value={`${field}`}
-                  className="flex-1 minitab-trigger"
+                  className="flex-1 minitab-trigger p-[1.2rem]"
                   key={field}
                 >
                   {field}
@@ -32,7 +32,7 @@ export default function Field({ interest, onClickLevel, Level }: any) {
             {interest.map((field: string) => {
               return (
                 <Tabs.Content value={`${field}`} key={field}>
-                  <div className="m-auto flex flex-col gap-3">
+                  <div className="m-auto flex flex-col ">
                     {Object.keys(level).map((key) => {
                       return (
                         <MatchingContainer

@@ -16,6 +16,22 @@ export default function People({ state, onClickPeople, filterCounts }: any) {
     count: filterCounts[item.name] || 0,
   }));
 
+  const handlePeopleClick = (name: string) => {
+    let newField;
+    if (name === '상관없음') {
+      newField = people.includes('상관없음') ? [] : ['상관없음'];
+    } else {
+      if (people.includes('상관없음')) {
+        newField = [name];
+      } else {
+        newField = people.includes(name)
+          ? people.filter((item: any) => item !== name)
+          : [...people, name];
+      }
+    }
+    onClickPeople(newField);
+  };
+
   return (
     <>
       <ul className="w-full flex flex-col gap-[.8rem]">
@@ -25,7 +41,7 @@ export default function People({ state, onClickPeople, filterCounts }: any) {
               name={checkbox.name}
               count={checkbox.count}
               isChecked={people.includes(checkbox.name)}
-              onClick={onClickPeople}
+              onClick={handlePeopleClick}
             />
           </li>
         ))}
