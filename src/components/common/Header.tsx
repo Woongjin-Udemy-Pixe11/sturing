@@ -2,9 +2,10 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { GoBell } from 'react-icons/go';
-import { IoMenu, IoPersonOutline } from 'react-icons/io5';
-import SideBar from '../sidebar/SideBar';
+import { IoPersonOutline } from 'react-icons/io5';
+import { SlMenu } from 'react-icons/sl';
 import LoginModal from '../(jisubin)/login/LoginModal';
+import SideBar from '../sidebar/SideBar';
 
 export default function Header({ user }: { user?: any }) {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -46,10 +47,10 @@ export default function Header({ user }: { user?: any }) {
       )}
       {isOpenMenu && <SideBar onClose={onClickMenu} user={user} />}
       {isOpenModal && <LoginModal onClose={onClickLogin} />}
-      <header className="w-full h-[5.4rem] flex justify-between items-center px-[0.8rem] text-gray-1000 m-0 bg-white">
-        <div className="w-[50%] flex justify-start items-center gap-[0.8rem]">
-          <button onClick={onClickMenu}>
-            <IoMenu className="w-[2.8rem] h-[2.8rem]" />
+      <header className="w-full h-[5.4rem] flex justify-between items-center px-[1.6rem] text-gray-1000 m-0 bg-white">
+        <div className="w-[50%] flex justify-start items-center gap-[1rem]">
+          <button onClick={onClickMenu} className="flex">
+            <SlMenu className="w-[1.9rem] h-[1.9rem]" />
           </button>
           <Link href="/">
             <h1 className="w-[7.8rem] h-[2.4rem] cursor-pointer">
@@ -65,11 +66,11 @@ export default function Header({ user }: { user?: any }) {
         </div>
         <div className="w-[50%] flex justify-end items-center gap-[1.2rem]">
           <button>
-            <GoBell className="w-[2.4rem] h-[2.4rem]" />
+            <GoBell className="w-[2.4rem] h-[2.5rem]" />
           </button>
-          <Link href={`/users/${user._id}`}>
+          <Link href={`/users/${user._id}`} className="flex justify-center">
             <button onClick={onClickLogin}>
-              <IoPersonOutline className="w-[2.4rem] h-[2.4rem]" />
+              <IoPersonOutline className="w-[2.5rem] h-[2.4rem]" />
             </button>
           </Link>
         </div>
