@@ -45,6 +45,7 @@ export default function NoticeForm(props: NoticeFormProps) {
   const [previewUrl, setPreviewUrl] = useState<string | null>(
     defaultImage ? defaultImage : null,
   );
+  console.log(typeof selectedImg);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -69,14 +70,19 @@ export default function NoticeForm(props: NoticeFormProps) {
   const onSubmit = async (formData: FormData) => {
     const title = formData.get('title') as string;
     const content = formData.get('content') as string;
-    const fileName = `${Date.now()}-${Math.random()}`;
+    let img;
 
-    const { data, error } = await supabase.storage
-      .from('images')
-      .upload(fileName, selectedImg);
-    const test: any = supabase.storage.from('images').getPublicUrl(fileName);
-    const img = test.data.publicUrl;
-    setPreviewUrl(test.data.publicUrl);
+    if (typeof selectedImg === 'object') {
+      const fileName = `${Date.now()}-${Math.random()}`;
+      const { data, error } = await supabase.storage
+        .from('images')
+        .upload(fileName, selectedImg);
+      const url: any = supabase.storage.from('images').getPublicUrl(fileName);
+      img = url.data.publicUrl;
+      setPreviewUrl(url.data.publicUrl);
+    } else {
+      img = selectedImg;
+    }
 
     const board = boardType == 'notice' ? 'notice-board' : 'task-board';
     const result = await handleSubmit({ title, content, img });
