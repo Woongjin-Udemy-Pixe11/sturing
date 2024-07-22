@@ -7,7 +7,11 @@ connectDB();
 type SortOption = 'type' | 'category' | 'popular' | 'recent' | undefined;
 
 async function getStudies(sort: SortOption, userId?: string) {
-  let query = Study.find();
+  let query = Study.find({
+    leaderId: { $ne: userId },
+    studyEnd: { $gt: new Date() },
+    studyStart: { $gt: new Date() },
+  });
 
   if (userId) {
     const matching = await Matching.findOne({ userid: userId });
