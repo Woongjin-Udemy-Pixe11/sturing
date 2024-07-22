@@ -1,6 +1,6 @@
+import { searchLabelList } from '@/constant/searchLabelList';
 import Link from 'next/link';
 import ScrollableContainer from '../common/ScrollableContainer';
-import { searchLabelList } from '@/constant/searchLabelList';
 
 export default function SearchLabelList() {
   return (
@@ -9,7 +9,7 @@ export default function SearchLabelList() {
         searchLabelList.map((label) => (
           <li key={label.title}>
             <Link
-              href={`/search/result?keyword=${label.title}`}
+              href={`/search/result?field=${label.title}`}
               className="flex gap-[0.8rem] px-[0.8rem] py-[0.6rem] rounded-[2.5rem] border-2 cursor-pointer"
             >
               <figure className="relative w-[2.4rem] h-[2.4rem] bg-gray-200 rounded-[50%] flex items-center  justify-center">
