@@ -2,6 +2,7 @@
 
 import connectDB from '@/lib/db';
 import { Study } from '@/lib/schemas/studySchema';
+import { Types } from 'mongoose';
 
 export type FilterState = {
   field: string[];
@@ -57,7 +58,8 @@ export async function getFilteredResults(filterState: FilterState) {
 
     return {
       searchstudies: studies.map((study) => ({
-        id: study._id?.toString(),
+        studyId: (study._id as Types.ObjectId).toString(),
+        _id: (study._id as Types.ObjectId).toString(),
         studyName: study.studyName,
         studyType: study.studyType,
         studyCategory: study.studyCategory,

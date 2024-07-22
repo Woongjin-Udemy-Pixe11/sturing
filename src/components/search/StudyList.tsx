@@ -35,10 +35,8 @@ export default async function StudyList(props: TStudyListProps) {
                   key={card.id}
                   studyId={card._id}
                   studyImage={card.studyImage}
-                  studyMeetings={card.studyMettings}
-                  studyTypeisBlue={card.studyTypeisBlue}
+                  studyMeetings={card.studyMeetings}
                   studyType={card.studyType}
-                  studyCategoryisBlue={card.studyCategoryisBlue}
                   studyCategory={card.studyCategory}
                   studyName={card.studyName}
                   studyStart={card.studyStart}

@@ -37,15 +37,17 @@ export default function UserDetailInfo({ data }: any) {
       <h2 className="text-headline-3 font-bold mb-[2.4rem]">기본정보</h2>
       <div className="text-[1.6rem] text-gray-600 flex flex-col gap-[4.6rem]">
         <div className="flex flex-col gap-3 border-b border-gray-300 pb-[1.4rem]">
-          <label>사용자 이름</label>
+          <label className="text-content-1">사용자 이름</label>
           <div>{data.users.name}</div>
         </div>
         <div className="flex flex-col gap-3 border-b border-gray-300 pb-[1.4rem]">
-          <label>로그인 이메일</label>
+          <label className="text-content-1">로그인 이메일</label>
           <div>{data.users.email}</div>
         </div>
         <div className="flex flex-col gap-3 border-b border-gray-300 pb-[1.4rem]">
-          <label htmlFor="nick">닉네임</label>
+          <label htmlFor="nick" className="text-content-1">
+            닉네임
+          </label>
           <div className="flex justify-between">
             <div className="text-gray-950">
               {editMode ? (

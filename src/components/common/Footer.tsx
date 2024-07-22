@@ -1,10 +1,10 @@
 export default function Footer() {
   return (
     <>
-      <footer className="bg-gray-200  text-center py-[3.4rem]  text-gray-700">
+      <footer className="bg-gray-200 text-content-2 text-center py-[3.4rem]  text-gray-700">
         <ul className="flex justify-center flex-row gap-[1rem] font-semibold">
           <li>개인정보처리방침</li>
-          <li className="border-x-[0.2rem] px-[1rem] border-gray-600">
+          <li className="border-x-[0.1rem] px-[1rem] border-gray-600">
             이용약관
           </li>
           <li>스터링</li>

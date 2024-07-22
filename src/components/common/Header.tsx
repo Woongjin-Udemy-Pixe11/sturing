@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { GoBell } from 'react-icons/go';
 import { IoMenu, IoPersonOutline } from 'react-icons/io5';
-import SideBar from '../sidebar/SideBar';
 import LoginModal from '../(jisubin)/login/LoginModal';
+import SideBar from '../sidebar/SideBar';
 
 export default function Header({ user }: { user?: any }) {
   const [isOpenMenu, setIsOpenMenu] = useState(false);

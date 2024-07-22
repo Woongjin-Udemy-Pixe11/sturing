@@ -70,14 +70,15 @@ export default function BottomSheetFilter({
     level: initialFilters.level || [],
   });
 
-  const onClickField = (field: string) =>
-    dispatch({ type: 'setField', payload: field });
+  const onClickField = (newField: string[]) => {
+    dispatch({ type: 'setField', payload: newField });
+  };
 
   const onClickRegion = (region: string) =>
     dispatch({ type: 'setRegion', payload: region });
 
-  const onClickPeople = (people: string) =>
-    dispatch({ type: 'setPeople', payload: people });
+  const onClickPeople = (newPeople: string[]) =>
+    dispatch({ type: 'setPeople', payload: newPeople });
 
   const onClickPeriod = (period: string) =>
     dispatch({ type: 'setPeriod', payload: period });

@@ -41,14 +41,17 @@ export default function MyPageDetail({
       {data.matchinginfo ? (
         <UserMatchingInfo data={data} />
       ) : (
-        <section className="mt-10 flex flex-col gap-3 ">
-          <div>아직 매칭정보가 없습니다.</div>
-          <Link className="w-[30%]" href="/matching">
+        <section className="mt-[3rem] flex flex-col gap-3 ">
+          <div className="px-[1.6rem]">아직 매칭정보가 없습니다.</div>
+          <Link
+            className="w-[100%] px-[1.6rem] py-[.8rem] pb-[4rem]"
+            href="/matching"
+          >
             <LongButton color="gray">함께 매칭을 하러가요!</LongButton>{' '}
           </Link>
         </section>
       )}
-      <section className="flex justify-center gap-5">
+      <section className="flex justify-center gap-5 mb-[3rem] text-gray-600 font-light">
         <form>
           <button formAction={logout}>로그아웃</button>
         </form>
