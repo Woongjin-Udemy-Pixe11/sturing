@@ -13,8 +13,7 @@ export async function GET(req: Request) {
     }
     return Response.json(user);
   } catch (error) {
-    console.log(error);
-    return Response.json({ error }, { status: 500 });
+    return Response.json({ message: '실패' }, { status: 500 });
   }
 }
 export async function POST(request: Request) {
