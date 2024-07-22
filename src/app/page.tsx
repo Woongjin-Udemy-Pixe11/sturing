@@ -1,7 +1,7 @@
+import dynamic from 'next/dynamic';
 import Ismatching from '@/components/(JH)/Ismatching';
 import Footer from '@/components/common/Footer';
 import SectionNavigator from '@/components/common/SectionNavigator';
-import StudyCardList from '@/components/common/StudyCardList';
 import Banner from '@/components/main/Banner';
 import SearchLabelList from '@/components/main/SearchLabelList';
 import TabBar from '@/components/main/TabBar';
@@ -9,6 +9,9 @@ import UserCardList from '@/components/main/UserCardList';
 import { getSession } from '@/utils/getSessions';
 import SearchPart from './(ryukyung)/pages/SearchPart';
 import { MatchingBanner } from '@/components/common/MatchingBanner';
+const StudyCardList = dynamic(
+  () => import('@/components/common/StudyCardList'),
+);
 
 export default async function page() {
   const session = await getSession();

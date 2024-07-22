@@ -1,8 +1,9 @@
 import { dummyCardList } from '@/dummy/mainPage';
 import Link from 'next/link';
-import Card from '../common/Card';
-import GrayFullLink from './GrayFullLink';
 
+import GrayFullLink from './GrayFullLink';
+import dynamic from 'next/dynamic';
+const Card = dynamic(() => import('@/components/common/Card'));
 type TStudyListProps = {
   isDetail?: boolean;
   data?: any[];
