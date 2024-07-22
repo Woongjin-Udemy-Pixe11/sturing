@@ -27,15 +27,16 @@ export default async function page() {
       <Ismatching session={session} data={data} />
       <TabBar />
       <Banner />
-      <p className="w-full bg-gray-1000 text-gray-100 flex justify-start items-center gap-[0.8rem] px-[1.6rem] py-[1.2rem]">
-        <img src="/small-logo.svg" alt="스터링 미니 로고" />
-        <span className=" text-content-1">
-          매칭 항목 선택하고 딱 맞는 스터디 추천받기
-        </span>
-        <Link href="/">
+      <Link href="/matching">
+        <p className="w-full bg-gray-1000 text-gray-100 flex justify-start items-center gap-[0.8rem] px-[1.6rem] py-[1.2rem]">
+          <img src="/small-logo.svg" alt="스터링 미니 로고" />
+          <span className=" text-content-1">
+            매칭 항목 선택하고 딱 맞는 스터디 추천받기
+          </span>
+
           <IoIosArrowForward />
-        </Link>
-      </p>
+        </p>
+      </Link>
       <SearchPart isList={false} />
       <SectionNavigator title="분야별 스터디 탐색하기" moveLink="/search" />
       <SearchLabelList />
