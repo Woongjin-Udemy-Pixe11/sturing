@@ -18,6 +18,7 @@ export const useCalendarStore = create<CalendarState>((set, get) => ({
   setStudyId: (id) => set({ studyId: id }),
   fetchScheduleList: async () => {
     const { studyId, date } = get();
+    console.log('✅', date);
     const scheduleList = await fetchSchedule(studyId);
     console.log('👔', scheduleList);
     set({ scheduleList });

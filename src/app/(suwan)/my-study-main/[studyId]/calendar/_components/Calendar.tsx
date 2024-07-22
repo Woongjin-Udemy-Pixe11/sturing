@@ -2,10 +2,9 @@
 import * as React from 'react';
 import { Calendar } from '@/components/common/calender/ui/calendar';
 import { useCalendarStore } from '@/store/calendarStore';
-import { format } from 'date-fns';
 
 export default function CalendarComponent() {
-  const { date, setDate, fetchScheduleList } = useCalendarStore();
+  const { date, setDate, fetchScheduleList, scheduleList } = useCalendarStore();
 
   const handleDateChange = (newDate: Date | undefined) => {
     if (newDate) {
@@ -13,6 +12,17 @@ export default function CalendarComponent() {
       fetchScheduleList();
     }
   };
+  const day = scheduleList.map((data) => new Date(data.date));
+  // console.log('💝', day);
+
+  const dottedStyle = {
+    selected: {
+      // backgroundColor: '#1bbd26',
+    },
+    booked: {
+      backgroundColor: '#d9efff',
+    },
+  } as const;
 
   return (
     <>
@@ -23,6 +33,8 @@ export default function CalendarComponent() {
             selected={date}
             onSelect={handleDateChange}
             className="rounded-md border"
+            modifiers={{ booked: day, selected: date }}
+            modifiersStyles={dottedStyle}
           />
         </div>
       </div>
