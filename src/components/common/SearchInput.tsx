@@ -21,6 +21,11 @@ export default function SearchInput(props: TSearchInputProps) {
           placeholder={placeholderText}
           value={value}
           onChange={changeHandler}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              localsave();
+            }
+          }}
           className="w-[27rem] inline-block bg-inherit py-[1.3rem] pr-[2rem] text-content-1 placeholder-gray-700"
         />
         <button onClick={localsave}>
