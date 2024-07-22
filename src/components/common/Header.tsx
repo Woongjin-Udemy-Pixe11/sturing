@@ -30,8 +30,6 @@ export default function Header({ user }: { user?: any }) {
     }
   };
 
-  console.log(user.message, '✔');
-
   return (
     <>
       {isOpenMenu && (
