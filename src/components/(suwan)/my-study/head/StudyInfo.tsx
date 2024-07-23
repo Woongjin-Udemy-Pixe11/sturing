@@ -5,11 +5,8 @@ import { ko } from 'date-fns/locale';
 import { fetchLecture } from '@/utils/my-study-main/fetch';
 
 export default async function StudyInfo({ data }: any) {
-  // console.log('data', data);
-
   const lectureId = data.studyLecture;
   const lectureData = await fetchLecture(lectureId);
-  // console.log('🔍', lectureData);
 
   const NAME = data.studyName;
   const TYPE = data.studyType;
@@ -29,10 +26,6 @@ export default async function StudyInfo({ data }: any) {
   return (
     <>
       <div className="relative w-full text-white shadow-md overflow-hidden">
-        {/* <img
-          className="absolute inset-0 w-full h-full object-cover -z-10"
-          src={IMAGE}
-        /> */}
         <div className="px-[1.5rem] pt-[1.2rem] pb-[3rem] flex flex-col space-y-[2rem]">
           <div className="flex items-center gap-2.5">
             <div className="flex space-x-[0.8rem] mr-[1rem]">

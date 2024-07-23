@@ -27,26 +27,21 @@ function ISODate(arg0: string) {
 }
 
 export async function PATCH(request: Request) {
-  // 데이터베이스에 연결합니다.
   connectDB();
+  const todoId = await request.json();
+  console.log(todoId);
 
-  // 요청에서 JSON 데이터를 파싱합니다.
-  const res = await request.json();
-  console.log(res);
-
-  // 문서를 조회하여 현재 상태를 가져옵니다.
-  const todo = await StudyTodo.findOne({ _id: res });
+  const todo = await StudyTodo.findOne({ _id: todoId });
 
   if (!todo) {
     throw new Error('Todo not found');
   }
-
   // 현재 상태를 반전시킵니다.
   const newTodoCompleted = !todo.todoCompleted;
 
   // 업데이트를 수행합니다.
   const updateResult = await StudyTodo.updateOne(
-    { _id: res },
+    { _id: todoId },
     {
       todoCompleted: newTodoCompleted,
     },
