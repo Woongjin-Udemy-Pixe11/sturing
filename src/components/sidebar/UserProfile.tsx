@@ -1,6 +1,6 @@
+import { logout } from '@/lib/actions/userAction';
 import Link from 'next/link';
 import GitHubLoginBtn from '../common/GitHubLoginBtn';
-import { logout } from '@/lib/actions/userAction';
 
 type TUserProfileProps = {
   user?: any;
@@ -25,11 +25,13 @@ export default function UserProfile(props: TUserProfileProps) {
                   {user.email}
                 </span>
               </p>
-              <img
-                src={user.image}
-                alt={`${user.nickname} 프로필 이미지`}
-                className="w-[6rem] h-[6rem] rounded-[50%]"
-              />
+              <div className="w-[6rem] h-[6rem] rounded-[50%] overflow-hidden">
+                <img
+                  src={user.image}
+                  alt={`${user.nickname} 프로필 이미지`}
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </div>
             <div className="w-full flex justify-between items-center">
               <Link href={`/users/${user._id}`} className="text-headline-3">
