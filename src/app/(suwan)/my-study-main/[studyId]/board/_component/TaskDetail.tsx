@@ -42,12 +42,12 @@ export default function TaskDetail(props: TProps) {
         <SubHeader />
       )}
 
-      <div className="bg-white px-[1.6rem] flex flex-col gap-y-[2rem] py-[3rem]">
+      <div className="bg-white px-[2rem] flex flex-col gap-y-[2rem] py-[3rem]">
         <div className="flex flex-row items-center">
           <img
             src={task.writerId.image}
             alt="Picture of the author"
-            className="w-[2.8rem] rounded-full aspect-square object-cover"
+            className="border border-gray-300 w-[3.8rem] rounded-full aspect-square object-cover"
           />
           <div className="ml-[1rem] text-content-2 text-gray-700">
             <span className="flex gap-[0.4rem] items-center">

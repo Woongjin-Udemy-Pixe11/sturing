@@ -24,8 +24,8 @@ export default async function page({
     <>
       <Header studyId={studyId} data={data} />
 
-      <div className="bg-gray-100 py-[2.4rem]">
-        <div className="mx-[1.6rem] my-[2.4rem] px-[2rem] py-[2.4rem] bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem]  ">
+      <div className="bg-gray-100 py-[2rem] px-[2rem]">
+        <div className="px-[2rem] py-[2.4rem] bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem]  ">
           <Link href={`./board/notice-board`}>
             <div className="pb-[1.4rem] pr-[1rem] w-full flex justify-between items-center text-headline-3 font-semibold">
               <span>공지사항</span>
@@ -48,7 +48,7 @@ export default async function page({
           )}
         </div>
 
-        <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] my-[2.4rem] px-[2rem] py-[2.4rem]">
+        <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] my-[2.4rem] px-[2rem] py-[2.4rem]">
           <Link href={`/my-study-main/${studyId}/board/task-board`}>
             <div className="pb-[1.4rem] pr-[1rem] w-full flex justify-between items-center text-headline-3 font-semibold">
               <span>과제 게시판</span>

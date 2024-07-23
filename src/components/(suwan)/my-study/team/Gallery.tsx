@@ -14,17 +14,15 @@ export default function Gallery({ taskList }: { taskList: any }) {
               taskList.slice(0, 6).map(
                 (task: any) => (
                   // task.image && (
-                  <div className="relative w-[100%] h-[100%] rounded-[.5rem] border-2 border-gray-300 after:pb-[100%] after:block">
-                    <div className="absolute h-[100%] w-[100%] rounded-[.5rem] object-cover;">
-                      <Link href={`./board/task-board/${task._id}`}>
-                        <Image
-                          src={task.image}
-                          alt={'대체글'}
-                          layout="fill"
-                          className="object-cover"
-                        />
-                      </Link>
-                    </div>
+                  <div className="relative w-[100%] h-[100%] object-cover after:pb-[100%] after:block">
+                    <Link href={`./board/task-board/${task._id}`}>
+                      <Image
+                        src={task.image}
+                        alt={'대체글'}
+                        layout="fill"
+                        className="object-cover rounded-[.5rem]"
+                      />
+                    </Link>
                   </div>
                 ),
                 // );

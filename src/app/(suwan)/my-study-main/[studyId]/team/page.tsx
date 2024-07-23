@@ -23,12 +23,17 @@ export default async function Page({
   const memberData = await fetchMember(studyId);
   const taskList = await fetchBoardList('task', studyId);
 
+  const leaderId = studyData.leaderId;
   return (
     <>
       <Header studyId={studyId} data={studyData} />
       <div className="flex flex-col justify-center items-center bg-gray-100 w-full ">
         <Percent memberData={memberData} />
-        <TeamTodo memberData={memberData} />
+        <TeamTodo
+          memberData={memberData}
+          studyId={studyId}
+          leaderId={leaderId}
+        />
         <Attend memberData={memberData} />
         <Gallery taskList={taskList} />
       </div>
