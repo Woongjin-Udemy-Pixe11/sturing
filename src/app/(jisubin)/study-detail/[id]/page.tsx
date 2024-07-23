@@ -36,7 +36,11 @@ export default async function StudyDetailPage(props: TStudyDetailPageProps) {
   const id = params.id;
 
   const study = await fetchStudyDetail(id);
-  let lecture = '';
+  let lecture = {
+    lectureRating: 0,
+    lectureName: '',
+    lectureURL: '',
+  };
   if (study.studyLecture) {
     lecture = await fetchLectureDetail(study.studyLecture);
   }

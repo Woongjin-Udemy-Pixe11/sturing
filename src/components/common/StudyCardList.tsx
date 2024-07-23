@@ -30,7 +30,6 @@ export default async function StudyCardList({
       cache: 'no-store',
     })
   ).json();
-
   return (
     <ScrollableContainer2>
       {studies &&
@@ -39,7 +38,7 @@ export default async function StudyCardList({
             <Link href={`/study-detail/${study._id}`}>
               <Card
                 userId={userId}
-                studyId={study._id}
+                studyId={study._id!}
                 studyImage={study.studyImage}
                 studyMeetings={study.studyMeetings}
                 studyType={study.studyType}
