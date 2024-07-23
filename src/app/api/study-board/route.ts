@@ -133,14 +133,27 @@ export async function DELETE(request: Request) {
 
 export async function PATCH(request: Request) {
   await connectDB();
-  const { noticeId } = await request.json();
+  const { noticeId, boardType } = await request.json();
   console.log(noticeId);
+  let updateView;
+  switch (boardType) {
+    case 'notice':
+      updateView = await Blackboard.updateOne(
+        { _id: `${noticeId}` },
+        {
+          $inc: { views: 1 },
+        },
+      );
+      return Response.json({ updateView });
 
-  const updateView = await Blackboard.updateOne(
-    { _id: `${noticeId}` },
-    {
-      $inc: { views: 1 },
-    },
-  );
+    case 'task':
+      updateView = await Blackboard.updateOne(
+        { _id: `${noticeId}` },
+        {
+          $inc: { views: 1 },
+        },
+      );
+      return Response.json({ updateView });
+  }
   return new Response(JSON.stringify({ updateView }));
 }

@@ -15,7 +15,7 @@ export default async function page({
 
   const notice = await fetchBlackboard('notice', noticeId);
 
-  await patchView(noticeId);
+  await patchView(noticeId, 'notice');
   return (
     <>
       <NoticeBoardDetail blackboard={notice} userId={userId} />
