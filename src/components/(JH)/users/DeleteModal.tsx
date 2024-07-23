@@ -35,7 +35,7 @@ export function DelteUserModal({
   return (
     // "fixed inset-0 bg-black bg-opacity-50 z-40" inset-0
     <div className="fixed inset-0 backdrop-blur-sm ">
-      <section className="fixed  left-0 right-0 mx-auto w-[40rem] top-[30%] h-[20rem] bg-white border-gray-200 border rounded-md text-center p-10 py-[5rem]">
+      <section className="fixed left-0 right-0 mx-auto w-[90%] top-[30%] h-[20rem] bg-white border-gray-200 border rounded-md text-center p-10 py-[5rem]">
         <h1 className="text-headline-2 font-bold">정말 탈퇴하시겠습니까?</h1>
         <div className="flex gap-3 justify-center py-[2rem]">
           <button

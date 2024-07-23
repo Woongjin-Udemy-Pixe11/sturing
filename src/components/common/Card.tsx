@@ -1,15 +1,15 @@
 'use client';
 
 import { TStudy } from '@/types/TStudy';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
-import Label from './label/Label';
 import {
   fetchBookmark,
   postBookmark,
   updateBookmark,
 } from '@/utils/study-detail/bookmarkUtils';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
+import Label from './label/Label';
 
 type TCardSizeList = {
   [key: string]: string;
@@ -106,7 +106,7 @@ export default function Card(props: TStudy) {
       </div>
       <div className="mb-[0.8rem]">
         <div className="font-bold mt-[0.1rem] mb-[1.2rem]">{studyName}</div>
-        <div className="flex items-center mb-1 text-gray-600 text-content-2">
+        <div className="flex items-center mb-1 text-gray-600 text-content-2 pb-[.8rem] border-b border-gray-300">
           <div className="flex flex-row pr-[0.8rem]">
             <svg
               xmlns="http://www.w3.org/2000/svg"

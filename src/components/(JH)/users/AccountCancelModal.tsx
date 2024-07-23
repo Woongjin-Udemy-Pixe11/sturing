@@ -1,4 +1,3 @@
-import LongButton from '@/components/common/LongButton';
 import MyPageHeader from './MypageHeader';
 
 export default function AccountCancelMoadl() {
@@ -17,7 +16,7 @@ export default function AccountCancelMoadl() {
           진행중,종료,대기중인 모든 스터디가 사라집니다.
         </li>
         <li className="px-[0.5rem] py-[1.5rem]">
-          모든 스터디에서 팀원 OOO님이 사라집니다.
+          모든 스터디에서 사용자가 사라집니다.
         </li>
         <li className="px-[0.5rem] py-[1.5rem]">
           작성하신 모든 글(게시물,댓글,투두리스트)등이 전부 삭제됩니다.
