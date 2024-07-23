@@ -2,9 +2,9 @@
 import { area } from '@/constant/region';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import * as Tabs from '@radix-ui/react-tabs';
+import { useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import TabLabel from './TabLabel';
-import { useState, useEffect } from 'react';
 
 export default function CommonTab({ regions, onClickRegion }: any) {
   const [keyword, setKeyword] = useState('');
@@ -40,7 +40,7 @@ export default function CommonTab({ regions, onClickRegion }: any) {
       <>
         <label
           htmlFor="search-input"
-          className="block w-[calc(100% - 3.2rem)] mx-[1.6rem] mt-[2rem] bg-main-100 flex justify-between px-[2rem] rounded-[2.5rem]"
+          className="block w-[calc(100% - 3.2rem)] mx-[1.6rem] my-[1.6rem] bg-main-100 flex justify-between px-[2rem] rounded-[2.5rem]"
         >
           <input
             type="text"
@@ -62,17 +62,17 @@ export default function CommonTab({ regions, onClickRegion }: any) {
       <Tabs.Root
         value={currentTab}
         onValueChange={setCurrentTab}
-        className="flex w-full"
+        className="flex w-full border-t border-gray-300"
       >
-        <Tabs.List className="flex flex-col w-[33%] text-[1.4rem] text-[#909090]">
-          <ScrollArea.Root className=" h-[33.3rem] bg-white">
-            <ScrollArea.Viewport className="w-full h-full ">
+        <Tabs.List className="flex flex-col w-[38%] text-[1.4rem] text-[#909090]">
+          <ScrollArea.Root className=" h-[33.3rem] bg-white pl-[1.6rem]">
+            <ScrollArea.Viewport className="w-full h-full">
               {Object.keys(area).map((key, index) => {
                 return (
                   <Tabs.Trigger
                     value={key}
                     key={index}
-                    className={` w-full md:max-w-[13.3rem]  h-[4.9rem] py-[1.4rem] px-[4.65rem] tab-trigger`}
+                    className={` w-full md:max-w-[13.3rem] py-[1.5rem] px-[1rem] text-content-1 tab-trigger`}
                   >
                     {key}
                   </Tabs.Trigger>
@@ -84,7 +84,7 @@ export default function CommonTab({ regions, onClickRegion }: any) {
             </ScrollArea.Scrollbar>
           </ScrollArea.Root>
         </Tabs.List>
-        <Tabs.List className="w-[63%]">
+        <Tabs.List className="w-[58%]">
           {Object.keys(area).map((key: string, index) => {
             return (
               <Tabs.Content value={key} key={index}>
@@ -103,7 +103,7 @@ export default function CommonTab({ regions, onClickRegion }: any) {
                         <Tabs.Content
                           value={`${key}`}
                           key={index}
-                          className={`${bg} ${hidden} w-full h-[4.9rem] py-[1.4rem] ps-[2rem] border-b-[0.1rem] border-[#E4E4E4]`}
+                          className={`${bg} ${hidden} w-full py-[1.5rem] ps-[2rem] border-b-[0.1rem] text-content-1 text-gray-700 border-[#E4E4E4]`}
                           onClick={() => {
                             onClickRegion(item);
                             setKeyword('');

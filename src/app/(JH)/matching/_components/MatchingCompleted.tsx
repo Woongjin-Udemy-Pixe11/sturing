@@ -1,9 +1,37 @@
 import Card from '@/components/common/Card';
 import LongButton from '@/components/common/LongButton';
-import { dummyCardList } from '@/dummy/mainPage';
+import ScrollableContainer from '@/components/common/ScrollableContainer';
+import { TStudy } from '@/types/TStudy';
 import Link from 'next/link';
 
-export default function MatchingCompleted({ username }: { username: string }) {
+async function getRelatedStudies(userId: string) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/study/main?sort=category&userId=${userId}`,
+    { cache: 'no-store' },
+  );
+  if (!res.ok) {
+    throw new Error('Failed to fetch related studies');
+  }
+  return res.json();
+}
+
+export default async function MatchingCompleted({
+  username,
+  userId,
+}: {
+  username: string;
+  userId: string;
+}) {
+  let relatedStudies: TStudy[] = [];
+  let error: string | null = null;
+
+  try {
+    relatedStudies = await getRelatedStudies(userId);
+  } catch (err) {
+    console.error('Error fetching related studies:', err);
+    error = '관련 스터디를 불러오는 데 실패했습니다.';
+  }
+
   return (
     <div className="flex flex-col gap-[7rem]">
       <section className="flex flex-col items-center w-full  relative pt-[5rem]">
@@ -38,36 +66,31 @@ export default function MatchingCompleted({ username }: { username: string }) {
           매칭 선택을 완료했습니다.
         </h1>
         <p className="text-content-1 text-gray-700 text-center whitespace-pre-line">
-          선택하신 매칭 요소는 내 프로필에서 확인할 수 있으며 {username}님을
-          위한 스터디 추천에 반영됩니다.
+          선택하신 매칭 요소는 내 프로필에서 확인할 수 있으며
+          <br /> {username}님을 위한 스터디 추천에 반영됩니다.
         </p>
       </section>
-      <section className="flex flex-col gap-4">
-        <h1>{username}님과 딱맞는 스터디 추천</h1>
-        <div className="xl:m-auto flex flex-wrap gap-[1.5rem] justify-center xl:p-10 xl:gap-3 xl:flex-wrap xl:justify-start">
-          {/* //TODO:스터디추천 */}
-          {dummyCardList &&
-            dummyCardList
-              .filter((card) => card.studyCatecory !== '마케팅')
-              .map((card, index) => (
-                <div key={index}>
-                  <Card
-                    studyImage={card.studyImage}
-                    studyMeetings={card.studyMettings}
-                    studyTypeisBlue={card.studyTypeisBlue}
-                    studyType={card.studyType}
-                    studyCategoryisBlue={card.studyCategoryisBlue}
-                    studyCategory={card.studyCatecory}
-                    studyName={card.studyName}
-                    studyStart={card.studyStart}
-                    studyEnd={card.studyEnd}
-                    studyPlace={card.studyPlace}
-                    studyJoinMember={card.studyJoinMember}
-                    studyMember={card.studyMember}
-                  />
-                </div>
-              ))}
-        </div>
+      <section className="flex flex-col gap-[2rem] ">
+        <h1 className="pl-[1.6rem]">{username}님과 딱맞는 스터디 추천</h1>
+        <ScrollableContainer>
+          {relatedStudies.map((study, index) => (
+            <div key={index}>
+              <Card
+                studyId={study._id}
+                studyImage={study.studyImage}
+                studyMeetings={study.studyMeetings}
+                studyType={study.studyType}
+                studyCategory={study.studyCategory}
+                studyName={study.studyName}
+                studyStart={study.studyStart}
+                studyEnd={study.studyEnd}
+                studyPlace={study.studyPlace}
+                studyJoinMember={study.studyJoinMember}
+                studyMember={study.studyMember}
+              />
+            </div>
+          ))}
+        </ScrollableContainer>
       </section>
       <footer>
         <div className="w-full absolute bottom-[-10%] px-[1.6rem] py-[1.2rem] flex flex-col gap-[1.2rem]">

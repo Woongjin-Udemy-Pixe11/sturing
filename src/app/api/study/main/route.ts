@@ -6,7 +6,7 @@ connectDB();
 
 type SortOption = 'type' | 'category' | 'popular' | 'recent' | undefined;
 
-async function getStudies(sort: SortOption, userId?: string) {
+export async function getStudies(sort: SortOption, userId?: string) {
   let query = Study.find({
     leaderId: { $ne: userId },
     studyEnd: { $gt: new Date() },
