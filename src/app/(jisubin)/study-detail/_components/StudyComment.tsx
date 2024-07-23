@@ -29,6 +29,7 @@ export default function StudyComment(props: TStudyCommentProps) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [userImage, setUserImage] = useState('/images/dummy-member-img1.png');
 
   // commentDate = new Date(commentDate).toLocaleString('ko-KR', {
   //   timeZone: 'Asia/Seoul',
@@ -70,6 +71,7 @@ export default function StudyComment(props: TStudyCommentProps) {
         if (!res.ok) throw new Error('Failed to fetch User');
         const user = await res.json();
         setNickname(user.nickname);
+        setUserImage(user.image);
       } catch (error) {
         console.error(error);
       }
@@ -82,7 +84,6 @@ export default function StudyComment(props: TStudyCommentProps) {
       try {
         const result = await getComment(commentId);
         if (result.success) {
-          console.log(result.data);
           setDate(result.data.updatedAt);
         } else {
           console.log(result.message);
@@ -102,7 +103,7 @@ export default function StudyComment(props: TStudyCommentProps) {
           <div className="flex flex-row items-center gap-x-[0.8rem] justify-between">
             <div className="flex flex-row items-center justify-center">
               <Image
-                src="/images/dummy-member-img1.png"
+                src={userImage}
                 width={28}
                 height={28}
                 alt="User Image"
@@ -124,8 +125,8 @@ export default function StudyComment(props: TStudyCommentProps) {
                 >
                   <HiEllipsisVertical size={16} />
                 </button>
-                {isOpen && (
-                  <ul className="w-[4rem] text-center border border-[text-gray-800]">
+                {isOpen && !isEdit && (
+                  <ul className="w-[4rem] text-center border border-[text-gray-800] mt-[2rem] z-10 absolute">
                     <li>
                       <button type="button" onClick={onClickEdit}>
                         수정
