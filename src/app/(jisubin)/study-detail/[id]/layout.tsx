@@ -39,7 +39,10 @@ export default async function StudyDetailLayout(
 
   const study = await fetchStudyDetail(id);
 
-  let lecture = '';
+  let lecture = {
+    lectureName: '',
+    lectureURL: '',
+  };
   if (study.studyLecture) {
     lecture = await fetchLectureDetail(study.studyLecture);
   }
@@ -50,8 +53,13 @@ export default async function StudyDetailLayout(
   return (
     <>
       <div
-        style={{ backgroundImage: `url(${study.studyImage})` }}
-        className={`text-white`}
+        style={{
+          backgroundImage: `url(${study.studyImage})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center'
+        }}
+        className={`text-white object-cover`}
       >
         {/*뒤로가기, 공유버튼 색상 흰색으로 변경 필요*/}
         <BackShareHeader />

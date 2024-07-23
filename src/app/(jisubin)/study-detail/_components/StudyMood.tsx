@@ -1,5 +1,5 @@
 import { emojiLabelList } from '@/constant/emojiLabelList';
-import Image from 'next/image';
+
 
 type TStudyMoodProps = {
   mood: string[];
@@ -19,11 +19,14 @@ export default function StudyMood(props: TStudyMoodProps) {
         <hr className="mx-[2rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
         <div className="flex flex-row mx-[2rem] gap-x-[0.4rem]">
           {moodArray.map(([v]) => (
-            <div className="flex flex-row items-center py-[0.55rem] px-[0.8rem] rounded-[0.3rem] border-main-600 border-[0.1rem] gap-x-[0.3rem]">
-              <Image
+            <div
+              className="flex flex-row items-center py-[0.55rem] px-[0.8rem] rounded-[0.3rem] border-main-600 border-[0.1rem] gap-x-[0.3rem]"
+              key={v.title}
+            >
+              <img
                 src={v.imgSrc}
-                width={16}
-                height={17}
+                width={'16px'}
+                height={'17px'}
                 alt="Picture of the Emoji"
               />
               <span className="text-content-1 text-main-600">{v.title}</span>

@@ -35,17 +35,19 @@ export default function Card(props: TStudy) {
   const onClickBookmark = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    fetchBookmark(userId, studyId).then((bookmark) => {
-      if (!bookmark) {
-        postBookmark(userId, studyId).then((data) => {
-          setIsBookmarked(!isBookmarked);
-        });
-      } else {
-        updateBookmark(userId, studyId).then((data) => {
-          setIsBookmarked(!isBookmarked);
-        });
-      }
-    });
+    if (userId) {
+      fetchBookmark(userId, studyId).then((bookmark) => {
+        if (!bookmark) {
+          postBookmark(userId, studyId).then((data) => {
+            setIsBookmarked(!isBookmarked);
+          });
+        } else {
+          updateBookmark(userId, studyId).then((data) => {
+            setIsBookmarked(!isBookmarked);
+          });
+        }
+      });
+    }
   };
   if (userId) {
     useEffect(() => {
@@ -67,9 +69,12 @@ export default function Card(props: TStudy) {
       <div className="relative w-full min-h-[15rem] mb-[1.2rem]">
         <Image
           src={studyImage}
-          fill
+          fill={true}
           alt="Card Image"
           className="rounded-[0.8rem] object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 50vw"
+          priority
+          style={{ minWidth: '163px', minHeight: '150px' }}
         />
         {userId && (
           <div

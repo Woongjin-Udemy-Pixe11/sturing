@@ -9,14 +9,14 @@ export default function RecommendSearch() {
         <ul className="w-full flex flex-wrap gap-[1.2rem] mt-[2rem]">
           {recommendSearchList &&
             recommendSearchList.map((recommendSearch) => (
-              <li
+              <Link
+                href={`${recommendSearch.moveLink}keyword=${recommendSearch.content}`}
                 key={recommendSearch.content}
-                className="border border-main-300 rounded-[.5rem] px-[1.6rem] py-[.8rem] text-main-500"
               >
-                <Link href={recommendSearch.moveLink}>
+                <li className="border border-main-300 rounded-[.5rem] px-[1.6rem] py-[.8rem] text-main-500">
                   {recommendSearch.content}
-                </Link>
-              </li>
+                </li>
+              </Link>
             ))}
         </ul>
       </div>
