@@ -17,6 +17,11 @@ export default function CommentForm(props: TCommentFormProps) {
     formData.append('studyId', studyId);
     formData.append('comment', comment);
     const session = await getSession();
+   if(session?.user?.id===undefined){
+    alert("로그인을 해주세요!")
+     return;
+   }
+
     if (session?.user?.id) {
       formData.append('userId', session.user.id);
     }

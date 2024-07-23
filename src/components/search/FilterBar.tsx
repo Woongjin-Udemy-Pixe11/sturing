@@ -44,11 +44,13 @@ export default function FilterBar({ initialFilters }: { initialFilters: any }) {
         <ul className="flex w-[90%] overflow-x-auto py-[.8rem]">
           {filterButtonList &&
             filterButtonList.map((filterbutton) => (
-              <li key={filterbutton.title} className="inline mr-[.8rem]">
-                <FilterButton
-                  content={filterbutton.title}
-                  isBlue={filterbutton.isBlue}
-                />
+              <li key={filterbutton.key} className="inline mr-[.8rem]">
+                <button onClick={onClickFilter}>
+                  <FilterButton
+                    content={filterbutton.title}
+                    isBlue={filterbutton.isBlue}
+                  />
+                </button>
               </li>
             ))}
         </ul>

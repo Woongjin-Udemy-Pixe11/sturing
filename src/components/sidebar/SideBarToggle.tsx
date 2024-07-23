@@ -24,11 +24,11 @@ export default function SideBarToggle() {
           <ul className="w-full flex flex-wrap gap-[.4rem]">
             {searchLabelList &&
               searchLabelList.map((label) => (
-                <Link href={`/search/result?field=${label.title}`}>
-                  <li
-                    key={label.title}
-                    className="flex gap-[0.8rem] px-[0.8rem] py-[0.6rem] rounded-[2.5rem] border-2 cursor-pointer"
-                  >
+                <Link
+                  href={`/search/result?field=${label.title}`}
+                  key={label.title}
+                >
+                  <li className="flex gap-[0.8rem] px-[0.8rem] py-[0.6rem] rounded-[2.5rem] border-2 cursor-pointer">
                     <figure className="w-[2.4rem] h-[2.4rem] bg-gray-200 rounded-[50%] flex items-center  justify-center">
                       <img
                         src={label.imgSrc}

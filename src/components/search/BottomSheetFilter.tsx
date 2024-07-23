@@ -134,7 +134,6 @@ export default function BottomSheetFilter({
     },
   ];
 
-  console.log('🍇state', state);
   return (
     <div className="w-full flex flex-col justify-between rounded-t-[1rem] border border-gray-300 shadow-modal bg-white h-[75vh] ">
       <span className="block mx-[1.6rem] mt-[2.0rem] mb-[1.2rem] text-[1.8rem]">

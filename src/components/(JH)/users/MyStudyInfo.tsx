@@ -27,7 +27,7 @@ export default function MyStudyInfo({
         <Link className="flex-1 text-center" href="/my-study-list">
           <h1>{completedstudy}</h1>
           <h2 className="font-medium text-gray-700 text-content-1 mt-[0.5rem]">
-            종료 중 스터디
+            종료 스터디
           </h2>
         </Link>
       </section>

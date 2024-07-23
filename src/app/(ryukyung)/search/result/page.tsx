@@ -8,7 +8,6 @@ import { IoIosArrowBack } from 'react-icons/io';
 import SearchPart from '../../pages/SearchPart';
 
 export default async function page({ searchParams }: { searchParams: any }) {
-  console.log('검색결과 페이지가 렌더링됩니다.');
   const keyword = searchParams.keyword;
 
   const filters = {
@@ -31,7 +30,9 @@ export default async function page({ searchParams }: { searchParams: any }) {
   }
 
   let searchstudies = data.searchstudies;
+
   let searchlectures = data.searchlectures;
+
   const tabList = [
     {
       name: '전체',

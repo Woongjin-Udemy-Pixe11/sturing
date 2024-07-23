@@ -18,7 +18,7 @@ export default async function page({
   const session = await getSession();
   const userid = session?.user?.id;
 
-  const isLeader = data.leaderId === userid;
+  const leaderId = data.leaderId;
 
   return (
     <>
@@ -58,7 +58,7 @@ export default async function page({
           {taskList.length > 0 &&
             taskList.slice(0, 2).map((task: any) => (
               <Link href={`./board/task-board/${task._id}`}>
-                <TaskInfo key={task._id} task={task} isLeader={isLeader} />
+                <TaskInfo key={task._id} task={task} leaderId={leaderId} />
               </Link>
             ))}
         </div>

@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 
 export function MatchingBanner({ user }: { user: any }) {
   const router = useRouter();
-  console.log(user === undefined);
 
   const onClickMathcingBanner = () => {
     if (user === undefined) {

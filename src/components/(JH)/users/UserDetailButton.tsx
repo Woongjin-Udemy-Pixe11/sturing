@@ -1,6 +1,6 @@
 'use client';
-import LongButton from '@/components/common/LongButton';
 import { useRouter } from 'next/navigation';
+import { PiCaretRightBold } from 'react-icons/pi';
 export default function UserDetailButton({ id }: { id: any }) {
   const router = useRouter();
   return (
@@ -9,7 +9,7 @@ export default function UserDetailButton({ id }: { id: any }) {
         router.push(`${id}/detail`);
       }}
     >
-      {'>'}
+      <PiCaretRightBold />
     </button>
   );
 }

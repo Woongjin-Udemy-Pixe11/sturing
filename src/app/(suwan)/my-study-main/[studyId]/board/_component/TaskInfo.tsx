@@ -1,9 +1,9 @@
-import Image from 'next/image';
+import { ImGit } from 'react-icons/im';
 
 type TTaskInfoProps = {
   userImg: string;
   user: string;
-  isLeader?: boolean;
+  leaderId: string;
   time: string;
   taskTitle: string;
   taskContent: string;
@@ -11,24 +11,22 @@ type TTaskInfoProps = {
 };
 
 export default function TaskInfo(props: any) {
-  const { task, isLeader } = props;
+  const { task, leaderId } = props;
   console.log('🥵', task);
   return (
     <div className="flex flex-col mx-[1.6rem] gap-y-[1.6rem]">
       <div className="flex flex-row items-center justify-between py-[1.2rem]">
         <div className="flex flex-row items-center">
-          <Image
+          <img
             src={task.writerId.image}
-            width={28}
-            height={28}
             alt="Picture of the author"
-            className="rounded-full aspect-square object-cover"
+            className="w-[2.8rem] rounded-full aspect-square object-cover"
           />
           <div className="flex flex-row items-center justify-center gap-x-[0.4rem]">
             <div className="text-content-1 text-gray-900 ml-[0.8rem] font-semibold">
               {task.writerId.nickname}
             </div>
-            {isLeader ? (
+            {task.writerId._id === leaderId ? (
               <div className="text-content-2 text-gray-700">팀장</div>
             ) : (
               <></>
@@ -47,8 +45,7 @@ export default function TaskInfo(props: any) {
         </div>
         <div className="min-w-[6.4rem] min-h-[6.4rem] relative">
           {task.image && (
-            <Image
-              fill
+            <img
               src={task.image}
               alt="Picture of the Task"
               className="object-cover"
