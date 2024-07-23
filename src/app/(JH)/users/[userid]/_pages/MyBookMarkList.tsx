@@ -1,8 +1,9 @@
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import Card from '@/components/common/Card';
 import * as Tabs from '@radix-ui/react-tabs';
+import Link from 'next/link';
 
-export default async function MyBookMarkList({ data }: any) {
+export default async function MyBookMarkList({ data, id }: any) {
   return (
     <main>
       <MyPageHeader>내 관심 목록</MyPageHeader>
@@ -23,21 +24,24 @@ export default async function MyBookMarkList({ data }: any) {
             <div className="grid grid-cols-2 gap-[1rem] m-auto w-full">
               {data &&
                 data.map((study: any, index: any) => (
-                  <div key={study.studyName} id={String(index)}>
-                    <Card
-                      studyId={study._id}
-                      studyImage={study.studyImage}
-                      studyMeetings={study.studyMeetings}
-                      studyType={study.studyType}
-                      studyCategory={study.studyCategory}
-                      studyName={study.studyName}
-                      studyStart={study.studyStart}
-                      studyEnd={study.studyEnd}
-                      studyPlace={study.studyPlace}
-                      studyJoinMember={study.studyJoinMember}
-                      studyMember={study.studyMember}
-                    />
-                  </div>
+                  <li key={study.studyId}>
+                    <Link href={`/study-detail/${study._id}`}>
+                      <Card
+                        userId={id}
+                        studyId={study._id!}
+                        studyImage={study.studyImage}
+                        studyMeetings={study.studyMeetings}
+                        studyType={study.studyType}
+                        studyCategory={study.studyCategory}
+                        studyName={study.studyName}
+                        studyStart={study.studyStart}
+                        studyEnd={study.studyEnd}
+                        studyPlace={study.studyPlace}
+                        studyJoinMember={study.studyJoinMember}
+                        studyMember={study.studyMember}
+                      />
+                    </Link>
+                  </li>
                 ))}
             </div>
           </Tabs.Content>
