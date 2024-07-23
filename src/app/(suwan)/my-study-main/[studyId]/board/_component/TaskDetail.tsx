@@ -1,7 +1,6 @@
 'use client';
 
 import { GoChevronLeft } from 'react-icons/go';
-import Image from 'next/image';
 import EmojiSelectBtn from './EmojiSelectBtn';
 import SubHeader from '@/components/common/SubHeader';
 import { useRouter } from 'next/navigation';
@@ -45,12 +44,10 @@ export default function TaskDetail(props: TProps) {
 
       <div className="bg-white px-[1.6rem] flex flex-col gap-y-[2rem] py-[3rem]">
         <div className="flex flex-row items-center">
-          <Image
+          <img
             src={task.writerId.image}
-            width={28}
-            height={28}
             alt="Picture of the author"
-            className="rounded-full aspect-square object-cover"
+            className="w-[2.8rem] rounded-full aspect-square object-cover"
           />
           <div className="ml-[1rem] text-content-2 text-gray-700">
             <span className="flex gap-[0.4rem] items-center">
@@ -72,12 +69,10 @@ export default function TaskDetail(props: TProps) {
           </div>
 
           {task.image && (
-            <Image
+            <img
               src={task.image}
-              width={343}
-              height={343}
               alt="Picture of the author"
-              className="rounded-[0.8rem] aspect-square object-cover"
+              className="w-[34.3rem] rounded-[0.8rem] aspect-square object-cover"
             />
           )}
         </div>
