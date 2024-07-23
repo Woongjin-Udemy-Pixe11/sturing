@@ -1,14 +1,14 @@
-import dynamic from 'next/dynamic';
 import Ismatching from '@/components/(JH)/Ismatching';
 import Footer from '@/components/common/Footer';
+import { MatchingBanner } from '@/components/common/MatchingBanner';
 import SectionNavigator from '@/components/common/SectionNavigator';
 import Banner from '@/components/main/Banner';
 import SearchLabelList from '@/components/main/SearchLabelList';
 import TabBar from '@/components/main/TabBar';
 import UserCardList from '@/components/main/UserCardList';
 import { getSession } from '@/utils/getSessions';
+import dynamic from 'next/dynamic';
 import SearchPart from './(ryukyung)/pages/SearchPart';
-import { MatchingBanner } from '@/components/common/MatchingBanner';
 const StudyCardList = dynamic(
   () => import('@/components/common/StudyCardList'),
 );
@@ -50,12 +50,13 @@ export default async function page() {
         <>
           <SectionNavigator
             title={`${user?.nickname}님을 위한 스터디`}
-            moveLink="/search"
+            showArrow={true}
           />
+
           <StudyCardList userId={user?.id} sort={'category'} />
           <SectionNavigator
             title={`${user?.nickname}님을 위한 새로 개설된 스터디`}
-            moveLink="/search"
+            showArrow={true}
           />
           <StudyCardList userId={user?.id} sort={'type'} />
         </>
