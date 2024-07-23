@@ -3,14 +3,14 @@ import { FaCheck } from 'react-icons/fa6';
 
 export default function Type({ studyType, onClickStudyType, nickname }: any) {
   return (
-    <div className="w-full px-[1.4rem]">
+    <div className="w-full px-[1.4rem] h-">
       <section className="py-[2rem] ">
         <h1 className="font-black text-headline-3">{nickname}님이 선호하는</h1>
         <h1 className="font-black text-headline-3">
           스터디 유형을 선택해 주세요
         </h1>
       </section>
-      <section className="mt-[4rem] flex flex-col gap-[1.4rem]">
+      <section className="mt-[4rem] flex flex-col h-[50vh]">
         <MatchingContainer
           onClick={() => {
             onClickStudyType('온라인');
