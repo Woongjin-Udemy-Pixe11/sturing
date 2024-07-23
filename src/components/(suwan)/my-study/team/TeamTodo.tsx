@@ -1,7 +1,8 @@
 'use client';
 import { useState } from 'react';
-import Todo from '../common/Todo';
+
 import { studyMemberTodo } from '@/dummy/studyMemberTodo';
+import Todo from '@/app/(suwan)/my-study-main/[studyId]/my-todo/_components/Todo';
 
 export default function TeamTodo(props: any) {
   const { memberData } = props;

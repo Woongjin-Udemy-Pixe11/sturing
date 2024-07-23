@@ -1,3 +1,17 @@
+export async function fetchTodos(studyId: string, userId: string) {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/study-todo?study=${studyId}&user=${userId}`,
+      {
+        cache: 'no-store',
+      },
+    );
+    return res.json();
+  } catch (error) {
+    console.error('Fetch error:', error);
+  }
+}
+
 //TODO:캐시처리할것
 
 export async function postTodoInfo(data: any) {
@@ -21,7 +35,7 @@ export async function postTodoInfo(data: any) {
     console.log('Error checkList info', error);
   }
 }
-export async function fetchTodoInfo(data: any) {
+export async function patchTodoInfo(data: any) {
   try {
     const response = await fetch(`http://localhost:3000/api/study-todo`, {
       method: 'PATCH',
@@ -37,7 +51,7 @@ export async function fetchTodoInfo(data: any) {
   }
 }
 
-export async function DeleteTodoInfo(data: any) {
+export async function deleteTodoInfo(data: any) {
   try {
     const response = await fetch(`http://localhost:3000/api/study-todo`, {
       method: 'DELETE',

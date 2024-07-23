@@ -67,7 +67,7 @@ export default function Schedule(props: any) {
         new Date(schedule.date).toDateString() === selectedDate,
     ).length;
     setCout(schdulesCount);
-  }, [scheduleList]);
+  }, [date]);
 
   return (
     <>
