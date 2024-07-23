@@ -34,9 +34,9 @@ export async function getUserStudies(userId: string) {
     (study) => study.studyEnd < currentDate,
   );
 
-  const upcomingStudies = uniqueStudies.filter(
-    (study) => study.studyStart > currentDate,
-  );
+  const upcomingStudies = uniqueStudies
+    .filter((study) => study.studyStart > currentDate)
+    .sort((a, b) => a.studyStart.getTime() - b.studyStart.getTime());
 
   const formatStudy = (study: any) => ({
     ...JSON.parse(JSON.stringify(study)),
