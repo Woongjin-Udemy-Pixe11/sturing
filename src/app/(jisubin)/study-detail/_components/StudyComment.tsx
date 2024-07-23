@@ -144,9 +144,9 @@ export default function StudyComment(props: TStudyCommentProps) {
 
           {isEdit ? (
             <form action={onSubmitEdit}>
-              <div className="relative flex flex-row items-center ">
+              <div className="relative flex flex-row items-center mt-[1rem]">
                 <input
-                  className="h-[3rem] rounded-[8rem] bg-gray-100 border-gray-300 border-[0.1rem] mt-[1rem] text-content-2 text-gray-600 pl-[1.5rem] placeholder:bg-transparent focus:outline-none"
+                  className="w-full h-[3rem] rounded-[8rem] bg-gray-100 border-gray-300 border-[0.1rem] text-content-2 text-gray-600 pl-[1.5rem] placeholder:bg-transparent focus:outline-none"
                   value={commentContent}
                   onChange={(e) => {
                     setContent(e.target.value);
