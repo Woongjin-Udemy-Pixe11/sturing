@@ -1,14 +1,17 @@
 import Ismatching from '@/components/(JH)/Ismatching';
 import Footer from '@/components/common/Footer';
+import { MatchingBanner } from '@/components/common/MatchingBanner';
 import SectionNavigator from '@/components/common/SectionNavigator';
-import StudyCardList from '@/components/common/StudyCardList';
 import Banner from '@/components/main/Banner';
 import SearchLabelList from '@/components/main/SearchLabelList';
 import TabBar from '@/components/main/TabBar';
 import UserCardList from '@/components/main/UserCardList';
 import { getSession } from '@/utils/getSessions';
+import dynamic from 'next/dynamic';
 import SearchPart from './(ryukyung)/pages/SearchPart';
-import { MatchingBanner } from '@/components/common/MatchingBanner';
+const StudyCardList = dynamic(
+  () => import('@/components/common/StudyCardList'),
+);
 
 export default async function page() {
   const session = await getSession();
@@ -27,7 +30,9 @@ export default async function page() {
       <TabBar />
       <Banner />
 
-      <MatchingBanner user={user} />
+      {((data && data.matchinginfo === null) || !data) && (
+        <MatchingBanner user={user} />
+      )}
 
       <SearchPart isList={false} />
       <SectionNavigator title="분야별 스터디 탐색하기" moveLink="/search" />
@@ -45,12 +50,13 @@ export default async function page() {
         <>
           <SectionNavigator
             title={`${user?.nickname}님을 위한 스터디`}
-            moveLink="/search"
+            showArrow={true}
           />
+
           <StudyCardList userId={user?.id} sort={'category'} />
           <SectionNavigator
             title={`${user?.nickname}님을 위한 새로 개설된 스터디`}
-            moveLink="/search"
+            showArrow={true}
           />
           <StudyCardList userId={user?.id} sort={'type'} />
         </>

@@ -31,14 +31,14 @@ export default function UserProfile(props: TUserProfileProps) {
                 className="w-[6rem] h-[6rem] rounded-[50%]"
               />
             </div>
-            <p className="w-full flex justify-between items-center">
+            <div className="w-full flex justify-between items-center">
               <Link href={`/users/${user._id}`} className="text-headline-3">
                 <span onClick={onClose}>마이 프로필</span>
               </Link>
               <form action={logout}>
                 <button className="text-gray-600">로그아웃</button>
               </form>
-            </p>
+            </div>
           </>
         )}
       </div>

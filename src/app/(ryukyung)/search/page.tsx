@@ -1,4 +1,3 @@
-import Header from '@/components/common/Header';
 import TabBar from '@/components/main/TabBar';
 
 import RecommendSearch from '@/components/search/RecommendSearch';

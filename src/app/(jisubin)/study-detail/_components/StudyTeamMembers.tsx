@@ -62,11 +62,11 @@ export default async function StudyTeamMembers(props: TStudyTeamMembersProps) {
           <hr className="mx-[2rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>
           <div className="flex flex-col mx-[2rem] gap-x-[0.4rem] gap-y-[0.4rem] text-content-1">
             {members &&
-              members.map((member) => (
+              members.map((member: any) => (
                 <div className="flex flex-row items-center gap-x-[0.8rem] mb-[0.8rem]">
                   <div className="w-[3.8rem] h-[3.8rem] relative">
                     <Image
-                      layout="fill"
+                      fill={true}
                       src={member.userId.image}
                       sizes="(max-width: 3rem), (min-height: 3rem)"
                       alt="User Image"

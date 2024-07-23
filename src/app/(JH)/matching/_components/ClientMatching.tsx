@@ -2,17 +2,16 @@
 //TODO:username 넣을것, Footer 분리해서 각 컴포넌트에 넣고, 스타일 및 함수재정리
 
 import MatchingFooter from '@/components/(JH)/matching/MatchingFooter';
-import { GoChevronLeft } from 'react-icons/go';
-import Type from './Type';
-import { useReducer, useState } from 'react';
-import Interest from './Interest';
-import Field from './Field';
-import Region from './Region';
-import Mood from './Mood';
-import MatchingCompleted from './MatchingCompleted';
-import matchingreducer, { TActionType } from '@/utils/matchingreducer';
 import { postMatchingInfo, updateMatchingInfo } from '@/utils/matchingUtils';
-import mongoose from 'mongoose';
+import matchingreducer, { TActionType } from '@/utils/matchingreducer';
+import { useReducer, useState } from 'react';
+import { GoChevronLeft } from 'react-icons/go';
+import Field from './Field';
+import Interest from './Interest';
+import MatchingCompleted from './MatchingCompleted';
+import Mood from './Mood';
+import Region from './Region';
+import Type from './Type';
 
 export type Tmatching = {
   userid: string;
@@ -131,7 +130,7 @@ export default function ClientMatching({ data, session, exist }: any) {
         nickname={nickname}
       />
     ),
-    6: <MatchingCompleted username={nickname} />,
+    6: <MatchingCompleted username={nickname} userId={id} />,
   };
 
   return (

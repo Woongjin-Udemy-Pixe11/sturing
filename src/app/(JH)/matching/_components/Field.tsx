@@ -13,7 +13,7 @@ export default function Field({ interest, onClickLevel, Level }: any) {
           나의 직업 수준을 선택해 주세요.
         </h1>
       </section>
-      <section className="mt-[4rem] w-full">
+      <section className="mt-[2rem] w-full">
         <Tabs.Root defaultValue={`${interest[0]}`}>
           <Tabs.List className="flex">
             {interest.map((field: string) => {

@@ -1,15 +1,15 @@
 'use client';
 
 import { TStudy } from '@/types/TStudy';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
-import Label from './label/Label';
 import {
   fetchBookmark,
   postBookmark,
   updateBookmark,
 } from '@/utils/study-detail/bookmarkUtils';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
+import Label from './label/Label';
 
 type TCardSizeList = {
   [key: string]: string;
@@ -35,17 +35,19 @@ export default function Card(props: TStudy) {
   const onClickBookmark = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    fetchBookmark(userId, studyId).then((bookmark) => {
-      if (!bookmark) {
-        postBookmark(userId, studyId).then((data) => {
-          setIsBookmarked(!isBookmarked);
-        });
-      } else {
-        updateBookmark(userId, studyId).then((data) => {
-          setIsBookmarked(!isBookmarked);
-        });
-      }
-    });
+    if (userId) {
+      fetchBookmark(userId, studyId).then((bookmark) => {
+        if (!bookmark) {
+          postBookmark(userId, studyId).then((data) => {
+            setIsBookmarked(!isBookmarked);
+          });
+        } else {
+          updateBookmark(userId, studyId).then((data) => {
+            setIsBookmarked(!isBookmarked);
+          });
+        }
+      });
+    }
   };
   if (userId) {
     useEffect(() => {
@@ -62,16 +64,27 @@ export default function Card(props: TStudy) {
   const start = studyStart.split('T')[0].split('-').slice(1).join('.');
   const end = studyEnd.split('T')[0].split('-').slice(1).join('.');
 
+  let isStudyEnd = false;
+  if (new Date(studyEnd).getTime() < new Date().getTime()) {
+    isStudyEnd = true;
+  }
   return (
     <div className="w-full m-auto">
       <div className="relative w-full min-h-[15rem] mb-[1.2rem]">
         <Image
           src={studyImage}
-          fill
+          fill={true}
           alt="Card Image"
-          className="rounded-[0.8rem] object-cover"
+          className={`${
+            isStudyEnd
+              ? 'rounded-[0.8rem] object-cover grayscale'
+              : 'rounded-[0.8rem] object-cover'
+          }`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 50vw"
+          priority
+          style={{ minWidth: '163px', minHeight: '150px' }}
         />
-        {userId && (
+        {(userId || !isStudyEnd) && (
           <div
             className="absolute top-0 right-0 m-[0.8rem] p-[0.15rem] text-white"
             onClick={onClickBookmark}
@@ -84,7 +97,7 @@ export default function Card(props: TStudy) {
           </div>
         )}
         <div className="absolute bottom-0 left-0 right-0 rounded-b-[0.8rem] bg-black bg-opacity-80 text-white text-center text-content-2 p-[0.3rem] select-none">
-          {studyMeetings}
+          {isStudyEnd ? '종료' : studyMeetings}
         </div>
       </div>
       <div className="mb-[0.4rem] [&>span]:ml-0 [&>span]:mr-2 select-none">
@@ -93,7 +106,7 @@ export default function Card(props: TStudy) {
       </div>
       <div className="mb-[0.8rem]">
         <div className="font-bold mt-[0.1rem] mb-[1.2rem]">{studyName}</div>
-        <div className="flex items-center mb-1 text-gray-600 text-content-2">
+        <div className="flex items-center mb-1 text-gray-600 text-content-2 pb-[.8rem] border-b border-gray-300">
           <div className="flex flex-row pr-[0.8rem]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +151,7 @@ export default function Card(props: TStudy) {
       </div>
       <div className="my-2 border-t border-white"></div>
       <p className="text-gray-700 text-content-2">
-        모집 중 {studyJoinMember}/{studyMember}
+        {isStudyEnd ? '종료' : '모집 중'} {studyJoinMember}/{studyMember}
       </p>
     </div>
   );

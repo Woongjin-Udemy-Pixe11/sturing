@@ -14,7 +14,7 @@ export default function MatchingFooter({
   serverAction?: any;
 }) {
   return (
-    <footer className="flex justify-between w-full  px-[1.6rem] absolute bottom-[-10rem]  ">
+    <footer className="flex justify-between w-full  px-[1.6rem] pb-[1.6rem] absolute bottom-[-10rem]  ">
       {step === 1 ? (
         <div></div>
       ) : (

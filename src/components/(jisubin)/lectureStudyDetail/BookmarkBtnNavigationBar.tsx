@@ -14,7 +14,7 @@ type TBookmarkBtnNavigationBarProps = {
   userId: string;
 };
 
-export default async function BookmarkBtnNavigationBar(
+export default function BookmarkBtnNavigationBar(
   props: TBookmarkBtnNavigationBarProps,
 ) {
   const { text, link, targetId, userId } = props;
@@ -34,13 +34,15 @@ export default async function BookmarkBtnNavigationBar(
     });
   };
   useEffect(() => {
-    fetchBookmark(userId, targetId).then((bookmark) => {
-      if (!bookmark) {
-        setIsBookmarked(false);
-      } else {
-        setIsBookmarked(bookmark.checked);
-      }
-    });
+    if (userId) {
+      fetchBookmark(userId, targetId).then((bookmark) => {
+        if (!bookmark) {
+          setIsBookmarked(false);
+        } else {
+          setIsBookmarked(bookmark.checked);
+        }
+      });
+    }
   }, [isBookmarked]);
 
   return (

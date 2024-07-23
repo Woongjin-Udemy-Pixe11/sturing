@@ -16,7 +16,6 @@ export default function MyPageDetail({
   if (!auth) {
     return;
   }
-  console.log(data, '🟢');
 
   return (
     <main>

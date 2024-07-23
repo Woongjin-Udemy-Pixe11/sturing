@@ -1,7 +1,9 @@
 import { TStudy } from '@/types/TStudy';
 import Link from 'next/link';
-import Card from './Card';
+
 import ScrollableContainer2 from './ScrollableContainer2';
+import dynamic from 'next/dynamic';
+const Card = dynamic(() => import('./Card'));
 
 // 날짜 형식을 바꾸는 함수
 export const formatDate = (dateString: string) => {
@@ -28,7 +30,6 @@ export default async function StudyCardList({
       cache: 'no-store',
     })
   ).json();
-
   return (
     <ScrollableContainer2>
       {studies &&
@@ -37,7 +38,7 @@ export default async function StudyCardList({
             <Link href={`/study-detail/${study._id}`}>
               <Card
                 userId={userId}
-                studyId={study._id}
+                studyId={study._id!}
                 studyImage={study.studyImage}
                 studyMeetings={study.studyMeetings}
                 studyType={study.studyType}
