@@ -1,6 +1,6 @@
 import Footer from '@/components/common/Footer';
 import TabAll from '@/components/search/TabAll';
-import TabBarBlue from '@/components/search/TabBarBlue';
+import TabContainer from '@/components/search/TabContainer';
 import TabLecture from '@/components/search/TabLecture';
 import TabStudy from '@/components/search/TabStudy';
 import { getFilteredResults } from '@/lib/actions/filterAction';
@@ -9,6 +9,7 @@ import SearchPart from '../../pages/SearchPart';
 
 export default async function page({ searchParams }: { searchParams: any }) {
   const keyword = searchParams.keyword;
+  const activeTab = searchParams.tab || '전체';
 
   const filters = {
     field: searchParams.field?.split(',') || [],
@@ -36,7 +37,14 @@ export default async function page({ searchParams }: { searchParams: any }) {
   const tabList = [
     {
       name: '전체',
-      component: <TabAll study={searchstudies} lecture={searchlectures} />,
+      component: (
+        <TabAll
+          study={searchstudies}
+          lecture={searchlectures}
+          studyLimit={4}
+          lectureLimit={2}
+        />
+      ),
       isLecture: false,
     },
     {
@@ -60,7 +68,11 @@ export default async function page({ searchParams }: { searchParams: any }) {
           <SearchPart isList={false} />
         </div>
       </div>
-      <TabBarBlue tabList={tabList} initialFilters={filters} />
+      <TabContainer
+        tabList={tabList}
+        initialFilters={filters}
+        activeTab={activeTab}
+      />
       <Footer />
     </>
   );
