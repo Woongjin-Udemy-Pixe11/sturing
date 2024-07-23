@@ -50,7 +50,11 @@ export default function NoticeBoardDetail(props: TProps) {
         <div className="flex justify-between items-center pb-[1.8rem] mb-[1.8rem] border-b border-gray-300">
           <div className="flex flex-grow gap-[0.8rem]">
             <div className="w-[4rem] h-[4rem]">
-              <img src={blackboard.writerId.image} alt="" className="w-full" />
+              <img
+                src={blackboard.writerId.image}
+                alt=""
+                className="rounded-full aspect-square object-cover"
+              />
             </div>
             <div className="text-content-2 text-gray-700">
               <span className="flex gap-[0.4rem] items-center">

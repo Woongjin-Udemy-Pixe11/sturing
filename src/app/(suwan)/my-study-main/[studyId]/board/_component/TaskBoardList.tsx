@@ -1,5 +1,6 @@
 import { TBlackboard } from '@/types/TStudyBoard';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type TTaskListProps = {
   taskList: TBlackboard[];
@@ -25,10 +26,10 @@ export default function TaskBoardList(props: TTaskListProps) {
                   <div className="flex justify-between pb-[1.2rem]">
                     <span className="flex items-center gap-[0.8rem]">
                       <span className="w-[2.8rem] h-[2.8rem]">
-                        <img
+                        <Image
                           src={task.writerId.image}
                           alt=""
-                          className="w-full"
+                          className="rounded-full aspect-square object-cover"
                         />
                       </span>
                       <span className="text-gray-900 text-content-1 font-semibold">
