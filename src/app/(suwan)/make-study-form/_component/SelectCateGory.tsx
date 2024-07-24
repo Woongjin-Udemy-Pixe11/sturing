@@ -45,15 +45,6 @@ export default function SelectCateGory(props: any) {
       </section>
 
       <footer className="flex m-auto gap-2 w-full p-4 py-[2rem]">
-        <LongButton
-          color="white"
-          className="w-[40%]"
-          onClick={() => {
-            setStep((prev: number) => prev - 1);
-          }}
-        >
-          이전
-        </LongButton>
         {validate ? (
           <LongButton color="gray">다음 </LongButton>
         ) : (
