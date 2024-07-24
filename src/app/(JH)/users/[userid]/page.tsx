@@ -5,7 +5,7 @@ import { getUserStudies } from '@/app/api/study/user/route';
 export default async function page({ params }: { params: { userid: string } }) {
   const session = await getSession();
   const userid = session?.user?.id;
-  const userstudy = await getUserStudies(userid!);
+  const userstudy = await getUserStudies(params.userid);
   const activestudy = userstudy.active.length;
   const completedstudy = userstudy.completed.length;
 
@@ -16,5 +16,12 @@ export default async function page({ params }: { params: { userid: string } }) {
     auth = false;
   }
 
-  return <MyPage userid={params.userid} auth={auth} activestudy={activestudy} completedstudy={completedstudy} />;
+  return (
+    <MyPage
+      userid={params.userid}
+      auth={auth}
+      activestudy={activestudy}
+      completedstudy={completedstudy}
+    />
+  );
 }

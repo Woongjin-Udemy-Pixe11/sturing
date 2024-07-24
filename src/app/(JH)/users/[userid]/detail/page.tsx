@@ -1,7 +1,9 @@
 import { getSession } from '@/utils/getSessions';
 import MyPageDetail from '../_pages/MyPageDetail';
+import { Tsession } from '@/types/TSession';
+import { TmypageDetails } from '@/types/TmypageDetail';
 export default async function page({ params }: any) {
-  const session = await getSession();
+  const session: Tsession = await getSession();
   const userid = session?.user?.id;
 
   let auth;
@@ -10,7 +12,7 @@ export default async function page({ params }: any) {
   } else {
     auth = false;
   }
-  const data = await (
+  const data: TmypageDetails = await (
     await fetch(`http://localhost:3000/api/mypage?id=${params.userid}`, {
       cache: 'no-store',
     })

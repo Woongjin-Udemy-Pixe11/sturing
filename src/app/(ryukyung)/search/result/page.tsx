@@ -4,10 +4,21 @@ import TabContainer from '@/components/search/TabContainer';
 import TabLecture from '@/components/search/TabLecture';
 import TabStudy from '@/components/search/TabStudy';
 import { getFilteredResults } from '@/lib/actions/filterAction';
-import { IoIosArrowBack } from 'react-icons/io';
-import SearchPart from '../../pages/SearchPart';
+import BackSearchBar from './_components/BackSearchBar';
+import { TStudyInfo } from '@/types/TStudyInfo';
+import { TLectureDetail } from '@/types/TLecture';
 
-export default async function page({ searchParams }: { searchParams: any }) {
+type TSearchResultProps = {
+  searchParams: { [key: string]: string };
+};
+
+type TSearchResult = {
+  searchstudies: TStudyInfo[];
+  searchlectures?: TLectureDetail[];
+};
+
+export default async function page(props: TSearchResultProps) {
+  const { searchParams } = props;
   const keyword = searchParams.keyword;
   const activeTab = searchParams.tab || '전체';
 
@@ -19,7 +30,7 @@ export default async function page({ searchParams }: { searchParams: any }) {
     level: searchParams.level?.split(',') || [],
   };
 
-  let data;
+  let data: TSearchResult = null;
   if (keyword) {
     data = await (
       await fetch(`http://localhost:3000/api/search?keyword=${keyword}`, {
@@ -31,7 +42,6 @@ export default async function page({ searchParams }: { searchParams: any }) {
   }
 
   let searchstudies = data.searchstudies;
-
   let searchlectures = data.searchlectures;
 
   const tabList = [
@@ -60,14 +70,7 @@ export default async function page({ searchParams }: { searchParams: any }) {
   ];
   return (
     <>
-      <div className="w-full flex items-center px-[1.2rem] pb-[2rem]">
-        <button className="flex-shrink-0 mt-[2.4rem]">
-          <IoIosArrowBack className="w-[2.4rem] h-[2.4rem]" />
-        </button>
-        <div className="flex-grow max-w-[97%]">
-          <SearchPart isList={false} />
-        </div>
-      </div>
+      <BackSearchBar />
       <TabContainer
         keyword={keyword}
         tabList={tabList}

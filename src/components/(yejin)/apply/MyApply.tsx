@@ -11,6 +11,7 @@ async function fetchStudyForm(id: string) {
 
 export default async function MyApply({ id }: { id: string }) {
   const studyForm = await fetchStudyForm(id);
+  console.log(studyForm, '📌');
 
   return <MyApplyCilent studyForm={studyForm} />;
 }

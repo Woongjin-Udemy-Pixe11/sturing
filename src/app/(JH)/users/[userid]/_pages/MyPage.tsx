@@ -5,17 +5,15 @@ import SturingRate from '@/components/(JH)/users/SturingRate';
 import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
 
-export default async function MyPage({
-  auth,
-  userid,
-  activestudy,
-  completedstudy,
-}: {
+type TmypageProps = {
   auth?: boolean;
   userid?: string;
   completedstudy: number;
   activestudy: number;
-}) {
+};
+
+export default async function MyPage(props: TmypageProps) {
+  const { auth, userid, activestudy, completedstudy } = props;
   const loginbg = `bg-gradient-to-tr from-[rgba(217,227,255,0.5)] to-[rgba(255,228,224,0.5)]`;
   const data = await (
     await fetch(`http://localhost:3000/api/mypage?id=${userid}`, {
@@ -25,8 +23,6 @@ export default async function MyPage({
   if (data === null) {
     return '아직 유저가 없습니다.';
   }
-
-  //TODO: 404 페이지 혹은 유저없음 페이지 만들기
 
   return (
     <main className="mb-[5rem]">

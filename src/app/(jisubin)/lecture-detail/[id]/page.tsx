@@ -2,6 +2,7 @@ import LectureDetailRatingPage from './rating/page';
 import LectureStudyInfo from '../_components/LectureStudyInfo';
 import LectureStudy from '../_components/LectureStudy';
 import LectureRating from '../_components/LectureRating';
+import { TLectureDetail } from '@/types/TLecture';
 
 type TLectureDetailProps = {
   params: { id: string };
@@ -18,7 +19,8 @@ export default async function LectureDetail(props: TLectureDetailProps) {
   const { params } = props;
   const id = params.id;
 
-  const lecture = await fetchLectureDetail(id);
+  const lecture: TLectureDetail = await fetchLectureDetail(id);
+  console.log(lecture, '✅');
   return (
     <div className="flex flex-col mt-[2.8rem]">
       <LectureStudyInfo

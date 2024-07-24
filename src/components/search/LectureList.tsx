@@ -3,15 +3,17 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import GrayFullLink from './GrayFullLink';
+import { TLectureDetail } from '@/types/TLecture';
 const LectureCard = dynamic(() => import('./LectureCard'));
 
 type TLectureListProps = {
   isDetail?: boolean;
-  data?: any[];
+  data?: TLectureDetail[];
   limit?: number;
   keyword?: string;
   filters?: any;
 };
+//TODO:filters 타입을잘모르겠다.
 
 export default function LectureList(props: TLectureListProps) {
   const { isDetail, data, limit, keyword, filters } = props;

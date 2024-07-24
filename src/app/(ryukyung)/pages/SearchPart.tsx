@@ -10,7 +10,8 @@ interface SearchPartProps {
   isList: boolean;
 }
 
-export default function SearchPart({ isList }: SearchPartProps) {
+export default function SearchPart(props: SearchPartProps) {
+  const { isList } = props;
   const router = useRouter();
   const [inputValue, setInputValue] = useState<string>('');
   const [recentSearches, addSearchToLocalStorage, removeFromLocal, clearLocal] =

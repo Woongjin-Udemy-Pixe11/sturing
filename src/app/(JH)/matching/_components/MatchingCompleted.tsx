@@ -15,13 +15,15 @@ async function getRelatedStudies(userId: string) {
   return res.json();
 }
 
-export default async function MatchingCompleted({
-  username,
-  userId,
-}: {
+type TmatchingCompletedprops = {
   username: string;
   userId: string;
-}) {
+};
+
+export default async function MatchingCompleted(
+  props: TmatchingCompletedprops,
+) {
+  const { username, userId } = props;
   let relatedStudies: TStudy[] = [];
   let error: string | null = null;
 
@@ -76,7 +78,7 @@ export default async function MatchingCompleted({
           {relatedStudies.map((study, index) => (
             <div key={index}>
               <Card
-                studyId={study._id}
+                studyId={study._id!}
                 studyImage={study.studyImage}
                 studyMeetings={study.studyMeetings}
                 studyType={study.studyType}
