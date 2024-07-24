@@ -27,7 +27,6 @@ export default async function StudyList(props: TStudyListProps) {
     isFull = cardList.length > limit;
     cardList = cardList.slice(0, limit);
   }
-  console.log(data);
 
   const handleViewAllStudies = () => {
     const currentParams = new URLSearchParams(searchParams.toString());

@@ -62,12 +62,12 @@ export default async function page(props: TSearchResultProps) {
     },
     {
       name: '스터디',
-      component: <TabStudy data={searchstudies} />,
+      component: <TabStudy data={searchstudies} userId={userId} />,
       isLecture: false,
     },
     {
       name: '강의',
-      component: <TabLecture data={searchlectures} />,
+      component: <TabLecture data={searchlectures} userId={userId} />,
       isLecture: true,
     },
   ];
