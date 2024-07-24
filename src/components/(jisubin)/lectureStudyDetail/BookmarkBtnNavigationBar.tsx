@@ -3,7 +3,7 @@ import {
   fetchBookmark,
   postBookmark,
   updateBookmark,
-} from '@/utils/study-detail/bookmarkUtils';
+} from '@/utils/bookmark/bookmarkUtils';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
@@ -22,13 +22,13 @@ export default function BookmarkBtnNavigationBar(
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const onClickBookmark = () => {
-    fetchBookmark(userId, targetId).then((bookmark) => {
+    fetchBookmark(target, userId, targetId).then((bookmark) => {
       if (!bookmark) {
-        postBookmark(userId, targetId).then((data) => {
+        postBookmark(target, userId, targetId).then((data) => {
           setIsBookmarked(!isBookmarked);
         });
       } else {
-        updateBookmark(userId, targetId).then((data) => {
+        updateBookmark(target, userId, targetId).then((data) => {
           setIsBookmarked(!isBookmarked);
         });
       }
@@ -36,7 +36,7 @@ export default function BookmarkBtnNavigationBar(
   };
   useEffect(() => {
     if (userId) {
-      fetchBookmark(userId, targetId).then((bookmark) => {
+      fetchBookmark(target, userId, targetId).then((bookmark) => {
         if (!bookmark) {
           setIsBookmarked(false);
         } else {
