@@ -1,3 +1,6 @@
+// 'use server';
+// import { revalidatePath } from 'next/cache';
+
 export async function fetchBookmark(userId: string, targetId: string) {
   const res = await fetch(
     `/api/study-detail/bookmark/?userId=${userId}&targetId=${targetId}`,
@@ -51,7 +54,9 @@ export async function updateBookmark(userId: string, targetId: string) {
     if (!res.ok) {
       throw new Error('Failed to patch bookmark');
     }
-    return await res.json();
+    await res.json();
+    // revalidatePath(`/users/${userId}/mybookmark`);
+    return Response.json({ message: '성공했습니다!' });
   } catch (err) {
     console.error('update bookmark error', err);
   }
