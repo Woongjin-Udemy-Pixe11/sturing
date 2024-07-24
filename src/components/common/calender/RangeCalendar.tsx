@@ -1,5 +1,5 @@
 'use client';
-
+//필터검색에서만 사용
 import * as React from 'react';
 
 import { addDays, format } from 'date-fns';
@@ -12,10 +12,7 @@ type TRangeCalendarProps = {
 
 export default function RangeCalendar(props: TRangeCalendarProps) {
   const { onChangeDate } = props;
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(),
-    to: addDays(new Date(), 3),
-  });
+  const [date, setDate] = React.useState<DateRange | undefined>();
 
   React.useEffect(() => {
     if (onChangeDate) {
@@ -42,7 +39,7 @@ export default function RangeCalendar(props: TRangeCalendarProps) {
         <Calendar
           initialFocus
           mode="range"
-          defaultMonth={date?.from}
+          // defaultMonth={date?.from}
           selected={date}
           onSelect={setDate}
           numberOfMonths={1}
