@@ -110,6 +110,7 @@ export default async function StudyDetailLayout(
         link={`/study-apply/${id}`}
         targetId={id}
         userId={userId}
+        target="study"
       />
     </>
   );
