@@ -3,9 +3,10 @@ import SizeUpLabel from '@/components/common/label/SizeUpLabel';
 import { searchLabelList } from '@/constant/searchLabelList';
 import { TFetchStudy } from '@/types/TStudy';
 import React, { useState, useMemo } from 'react';
+import { TLectureData } from './CollectStudyClient';
 
 type TProps = {
-  lectureData: any;
+  lectureData: TLectureData;
   step: any;
   setStep: any;
   study: TFetchStudy;

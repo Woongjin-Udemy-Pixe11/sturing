@@ -15,15 +15,22 @@ import { TFetchStudy } from '@/types/TStudy';
 import { studyReducer } from '@/utils/study/studyReducer';
 import { useRouter } from 'next/navigation';
 
+export type TLectureData = {
+  lectureName: string;
+  lectureCategory: string;
+  lectureInstructor: string;
+};
 type TProps = {
   leaderId: string;
   lectureId?: string;
-  lectureData?: any;
+  lectureData?: TLectureData;
 };
+
 export default function CollectStudyClient(props: TProps) {
   const { leaderId, lectureId, lectureData } = props;
   const router = useRouter();
 
+  console.log(lectureData);
   let initialStudy: TFetchStudy;
   if (lectureId && lectureData) {
     initialStudy = {
@@ -35,7 +42,7 @@ export default function CollectStudyClient(props: TProps) {
       studyLevel: '',
       studyMember: 0,
       studyLecture: lectureId,
-      studyCategory: lectureData.lectureCategor,
+      studyCategory: lectureData.lectureCategory,
       studyDeadline: '',
       studyStart: '',
       studyEnd: '',
