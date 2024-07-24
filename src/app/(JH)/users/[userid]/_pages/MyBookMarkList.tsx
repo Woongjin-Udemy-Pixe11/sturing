@@ -6,7 +6,7 @@ export default async function MyBookMarkList({ data }: any) {
   return (
     <main>
       <MyPageHeader>내 관심 목록</MyPageHeader>
-      <Tabs.Root defaultValue="스터디" className="border border-gray-300">
+      <Tabs.Root defaultValue="스터디">
         <Tabs.List className="flex">
           <Tabs.Trigger
             value="스터디"
