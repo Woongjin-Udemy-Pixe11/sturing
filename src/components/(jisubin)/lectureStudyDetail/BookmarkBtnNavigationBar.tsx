@@ -12,12 +12,13 @@ type TBookmarkBtnNavigationBarProps = {
   link: string;
   targetId: string;
   userId: string;
+  target: string;
 };
 
 export default function BookmarkBtnNavigationBar(
   props: TBookmarkBtnNavigationBarProps,
 ) {
-  const { isApply, link, targetId, userId } = props;
+  const { isApply, link, targetId, userId, target } = props;
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const onClickBookmark = () => {
@@ -59,7 +60,11 @@ export default function BookmarkBtnNavigationBar(
 
       {isApply ? (
         <button className="w-full ml-[2rem] h-[5rem] rounded-[0.5rem] bg-main-600 font-semibold text-white select-none">
-          <Link href={link}>스터디 지원하기</Link>
+          {target == 'lecture' ? (
+            <Link href={link}>이 강의로 스터디 개설하기</Link>
+          ) : (
+            <Link href={link}>스터디 지원하기</Link>
+          )}
         </button>
       ) : (
         <button
