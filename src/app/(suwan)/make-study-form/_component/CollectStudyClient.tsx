@@ -14,6 +14,7 @@ import { TFetchStudy } from '@/types/TStudy';
 
 import { studyReducer } from '@/utils/study/studyReducer';
 import { useRouter } from 'next/navigation';
+import DefaultModal from '@/components/common/modal/DefaultModal';
 
 export type TLectureData = {
   lectureName: string;
@@ -70,7 +71,6 @@ export default function CollectStudyClient(props: TProps) {
   }
 
   const [step, setStep] = useState<number>(1);
-
   const [study, dispatch] = useReducer<React.Reducer<TFetchStudy, any>>(
     studyReducer,
     initialStudy,
@@ -174,15 +174,36 @@ export default function CollectStudyClient(props: TProps) {
       />
     ),
   };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const onClickCancel = () => {
+    setIsModalOpen(true);
+  };
+  const onClickModalYes = async () => {
+    router.back();
+  };
+  const onClickModalNo = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <main>
       <header>
         <h2
-          onClick={() => router.back()}
+          onClick={onClickCancel}
           className="text-content-1 text-gray-700 p-[1.5rem]"
         >
           취소
         </h2>
+        {isModalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+            <DefaultModal
+              onConfirm={onClickModalYes}
+              onCancel={onClickModalNo}
+              message={`정말로 취소하시겠습니까?\n작성한 정보가 저장되지 않습니다.`}
+            />
+          </div>
+        )}
         <div className="w-full bg-gray-400 rounded-full h-[0.4rem]  ">
           <div
             className="bg-main-500 h-[0.4rem] rounded-full"
