@@ -14,7 +14,7 @@ export default function SearchPart({ isList }: SearchPartProps) {
   const router = useRouter();
   const [inputValue, setInputValue] = useState<string>('');
   const [recentSearches, addSearchToLocalStorage, removeFromLocal, clearLocal] =
-    useLocalStorage<string[]>('recent', []);
+    useLocalStorage('recent', []);
 
   const onSearch = () => {
     const trimmedInput = inputValue.trim();

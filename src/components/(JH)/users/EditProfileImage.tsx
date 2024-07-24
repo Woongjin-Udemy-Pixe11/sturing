@@ -10,7 +10,6 @@ export default function EditProfileImage({
   id: string;
   currentImage: string;
 }) {
-  console.log(id, '📌');
   const [imageUrl, setImageUrl] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);

@@ -1,6 +1,5 @@
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import Card from '@/components/common/Card';
-
 import { getUserStudies } from '@/app/api/study/user/route';
 
 export default async function StudyLog({ id }: { id: any }) {
