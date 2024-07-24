@@ -4,7 +4,7 @@ import { IoClose } from 'react-icons/io5';
 type TCurrentWordProps = {
   moveLink: string;
   content: string;
-  remove: any;
+  remove: () => void;
 };
 
 export default function CurrentWord(props: TCurrentWordProps) {

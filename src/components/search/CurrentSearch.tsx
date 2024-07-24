@@ -1,14 +1,13 @@
 import CurrentWord from './CurrentWord';
 
-export default function CurrentSearch({
-  data,
-  remove,
-  clear,
-}: {
-  data: any;
-  remove: any;
-  clear: any;
-}) {
+type CurrentSearchProps = {
+  data: string[];
+  remove: (search: string) => void;
+  clear: () => void;
+};
+
+export default function CurrentSearch(props: CurrentSearchProps) {
+  const { data, remove, clear } = props;
   return (
     <div className="w-full my-[4rem]">
       <p className="flex justify-between mb-[2rem]">

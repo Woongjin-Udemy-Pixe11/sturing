@@ -3,6 +3,9 @@ import StudyDetailTitle from '@/app/(jisubin)/study-detail/_components/StudyDeta
 import BookmarkBtnNavigationBar from '@/components/(jisubin)/lectureStudyDetail/BookmarkBtnNavigationBar';
 import DetailTabBar from '@/components/(jisubin)/lectureStudyDetail/DetailTabBar';
 import CourseLink from '@/components/common/CourseLink';
+import { TLectureDetail } from '@/types/TLecture';
+import { Tsession } from '@/types/TSession';
+import { TStudyInfo } from '@/types/TStudyInfo';
 import { getSession } from '@/utils/getSessions';
 
 type TStudyDetailLayoutProps = {
@@ -37,21 +40,18 @@ export default async function StudyDetailLayout(
   const { children, params } = props;
   const id = params.id;
 
-  const study = await fetchStudyDetail(id);
+  const study: TStudyInfo = await fetchStudyDetail(id);
 
-  let lecture = {
-    lectureName: '',
-    lectureURL: '',
-  };
+  let lecture: TLectureDetail = null;
 
   if (study.studyLecture) {
     lecture = await fetchLectureDetail(study.studyLecture);
   }
 
-  const session = await getSession();
+  const session: Tsession = await getSession();
   const userId = session?.user?.id;
 
-  let isApply = true;
+  let isApply: boolean = true;
   if (
     new Date(study.studyStart).getTime() <= new Date().getTime() ||
     study.studyJoinMember == study.studyMember

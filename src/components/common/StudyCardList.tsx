@@ -13,13 +13,13 @@ export const formatDate = (dateString: string) => {
   return `${month}.${day}`;
 };
 
-export default async function StudyCardList({
-  sort,
-  userId,
-}: {
+type TStudyCardListProps = {
   sort?: string;
   userId?: string;
-}) {
+};
+
+export default async function StudyCardList(props: TStudyCardListProps) {
+  const { sort, userId } = props;
   let url = `${process.env.LOCAL_URL}/api/study/main?sort=${sort}`;
   if (userId) {
     url += `&userId=${userId}`;
