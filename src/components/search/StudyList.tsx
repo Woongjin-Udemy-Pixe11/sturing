@@ -12,11 +12,12 @@ type TStudyListProps = {
   limit?: number;
   keyword?: string;
   filters?: any;
+  userId: string;
 };
 //TODO:filter타입이뭔지모르겠다.
 
 export default async function StudyList(props: TStudyListProps) {
-  const { isDetail, data, limit, keyword, filters } = props;
+  const { isDetail, data, limit, keyword, filters, userId } = props;
   const router = useRouter();
   const searchParams = useSearchParams();
   let isFull = false;
@@ -26,7 +27,6 @@ export default async function StudyList(props: TStudyListProps) {
     isFull = cardList.length > limit;
     cardList = cardList.slice(0, limit);
   }
-  console.log(data);
 
   const handleViewAllStudies = () => {
     const currentParams = new URLSearchParams(searchParams.toString());
@@ -48,6 +48,7 @@ export default async function StudyList(props: TStudyListProps) {
               <Link href={`/study-detail/${card._id}`}>
                 <Card
                   key={card.id}
+                  userId={userId}
                   studyId={card._id}
                   studyImage={card.studyImage}
                   studyMeetings={card.studyMeetings}

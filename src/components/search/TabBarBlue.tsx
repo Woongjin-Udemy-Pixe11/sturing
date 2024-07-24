@@ -37,7 +37,7 @@ export default function TabBarBlue(props: TTabBarBlueProps) {
         <FilterBar initialFilters={initialFilters} />
       )}
       <hr className="w-full h-[.6rem] bg-gray-200 my-[.8rem] border-0" />
-      <ul className="w-full px-[1.6rem] flex justify-center items-center text-center border-b-[.1rem] border-gray-200">
+      <ul className="w-full px-[1.6rem] flex justify-center items-center text-center border-b-[.1rem] border-gray-200 overflow-auto">
         {tabList.map((tab) => (
           <li
             key={tab.name}

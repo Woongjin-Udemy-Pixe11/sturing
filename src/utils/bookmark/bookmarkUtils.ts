@@ -1,7 +1,11 @@
 // 'use server';
 // import { revalidatePath } from 'next/cache';
 
-export async function fetchBookmark(userId: string, targetId: string) {
+export async function fetchBookmark(
+  target: string,
+  userId: string,
+  targetId: string,
+) {
   const res = await fetch(
     `/api/study-detail/bookmark/?userId=${userId}&targetId=${targetId}`,
   );
@@ -9,7 +13,11 @@ export async function fetchBookmark(userId: string, targetId: string) {
   return await res.json();
 }
 
-export async function postBookmark(userId: string, targetId: string) {
+export async function postBookmark(
+  target: string,
+  userId: string,
+  targetId: string,
+) {
   try {
     const res = await fetch(
       `/api/study-detail/bookmark/?userId=${userId}&targetId=${targetId}`,
@@ -35,10 +43,14 @@ export async function postBookmark(userId: string, targetId: string) {
   }
 }
 
-export async function updateBookmark(userId: string, targetId: string) {
+export async function updateBookmark(
+  target: string,
+  userId: string,
+  targetId: string,
+) {
   let isChecked = false;
   try {
-    fetchBookmark(userId, targetId).then((bookmark) => {
+    fetchBookmark(target, userId, targetId).then((bookmark) => {
       const { checked } = bookmark;
       isChecked = checked;
     });
@@ -55,7 +67,7 @@ export async function updateBookmark(userId: string, targetId: string) {
       throw new Error('Failed to patch bookmark');
     }
     await res.json();
-    // revalidatePath(`/users/${userId}/mybookmark`);
+    //revalidatePath(`${process.env.LOCAL_URL}/users/${userId}/mybookmark`);
     return Response.json({ message: '성공했습니다!' });
   } catch (err) {
     console.error('update bookmark error', err);
