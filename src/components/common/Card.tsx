@@ -5,7 +5,7 @@ import {
   fetchBookmark,
   postBookmark,
   updateBookmark,
-} from '@/utils/study-detail/bookmarkUtils';
+} from '@/utils/bookmark/bookmarkUtils';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
@@ -36,13 +36,13 @@ export default function Card(props: TStudy) {
     e.preventDefault();
     e.stopPropagation();
     if (userId) {
-      fetchBookmark(userId, studyId).then((bookmark) => {
+      fetchBookmark('study', userId, studyId).then((bookmark) => {
         if (!bookmark) {
-          postBookmark(userId, studyId).then((data) => {
+          postBookmark('study', userId, studyId).then((data) => {
             setIsBookmarked(!isBookmarked);
           });
         } else {
-          updateBookmark(userId, studyId).then((data) => {
+          updateBookmark('study', userId, studyId).then((data) => {
             setIsBookmarked(!isBookmarked);
           });
         }
@@ -51,7 +51,7 @@ export default function Card(props: TStudy) {
   };
   if (userId) {
     useEffect(() => {
-      fetchBookmark(userId, studyId).then((bookmark) => {
+      fetchBookmark('study', userId, studyId).then((bookmark) => {
         if (!bookmark) {
           setIsBookmarked(false);
         } else {
@@ -85,7 +85,7 @@ export default function Card(props: TStudy) {
           style={{ minWidth: '163px', minHeight: '150px' }}
         />
         {userId && (
-          <div
+          <button
             className="absolute top-0 right-0 m-[0.8rem] p-[0.15rem] text-white"
             onClick={onClickBookmark}
           >
@@ -94,7 +94,7 @@ export default function Card(props: TStudy) {
             ) : (
               <FaRegBookmark size={13} />
             )}
-          </div>
+          </button>
         )}
         <div className="absolute bottom-0 left-0 right-0 rounded-b-[0.8rem] bg-black bg-opacity-80 text-white text-center text-content-2 p-[0.3rem] select-none">
           {isStudyEnd ? '종료' : studyMeetings}

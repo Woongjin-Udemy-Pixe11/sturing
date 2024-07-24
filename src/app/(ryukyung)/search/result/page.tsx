@@ -5,6 +5,7 @@ import TabLecture from '@/components/search/TabLecture';
 import TabStudy from '@/components/search/TabStudy';
 import { getFilteredResults } from '@/lib/actions/filterAction';
 import BackSearchBar from './_components/BackSearchBar';
+import { getSession } from '@/utils/getSessions';
 import { TStudyInfo } from '@/types/TStudyInfo';
 import { TLectureDetail } from '@/types/TLecture';
 
@@ -21,7 +22,8 @@ export default async function page(props: TSearchResultProps) {
   const { searchParams } = props;
   const keyword = searchParams.keyword;
   const activeTab = searchParams.tab || '전체';
-
+  const session = await getSession();
+  const userId = session?.user?.id;
   const filters = {
     field: searchParams.field?.split(',') || [],
     region: searchParams.region?.split(',') || [],
@@ -53,18 +55,19 @@ export default async function page(props: TSearchResultProps) {
           lecture={searchlectures}
           studyLimit={4}
           lectureLimit={2}
+          userId={userId}
         />
       ),
       isLecture: false,
     },
     {
       name: '스터디',
-      component: <TabStudy data={searchstudies} />,
+      component: <TabStudy data={searchstudies} userId={userId} />,
       isLecture: false,
     },
     {
       name: '강의',
-      component: <TabLecture data={searchlectures} />,
+      component: <TabLecture data={searchlectures} userId={userId} />,
       isLecture: true,
     },
   ];

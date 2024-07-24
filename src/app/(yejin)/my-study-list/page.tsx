@@ -8,12 +8,12 @@ import { getSession } from '@/utils/getSessions';
 
 export default async function page() {
   const session = await getSession();
+  const userId = session.user.id;
 
-  if (!session || !session.user || !session.user.id) {
+  if (!session || !session.user || !userId) {
     return <div>로그인이 필요합니다.</div>;
   }
 
-  const userId = session.user.id;
   const studies = await getUserStudies(userId);
 
   return (
