@@ -18,6 +18,8 @@ export default function StudyInfoForm(props: any) {
   const onChangeImage = (img: File | null) => {
     if (img !== null) {
       setImage(img);
+    } else {
+      setImage(null);
     }
   };
 
@@ -50,6 +52,7 @@ export default function StudyInfoForm(props: any) {
 
   const validate = useMemo(() => {
     return (
+      image == null ||
       title == '' ||
       title.length < 5 ||
       content == '' ||
@@ -57,7 +60,7 @@ export default function StudyInfoForm(props: any) {
       studyType == null ||
       location == ''
     );
-  }, [title, content, studyType, location]);
+  }, [image, title, content, studyType, location]);
 
   const onClickNext = () => {
     onClickStepTwo(data);

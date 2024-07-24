@@ -15,38 +15,66 @@ import { TFetchStudy } from '@/types/TStudy';
 import { studyReducer } from '@/utils/study/studyReducer';
 import { useRouter } from 'next/navigation';
 
+export type TLectureData = {
+  lectureName: string;
+  lectureCategory: string;
+  lectureInstructor: string;
+};
 type TProps = {
   leaderId: string;
-  lectureId: string;
-  lectureName: string;
+  lectureId?: string;
+  lectureData?: TLectureData;
 };
+
 export default function CollectStudyClient(props: TProps) {
-  const { leaderId, lectureId, lectureName } = props;
+  const { leaderId, lectureId, lectureData } = props;
   const router = useRouter();
 
-  const mockdata: TFetchStudy = {
-    leaderId: leaderId,
-    studyImage: '/images/study-img1.png',
-    studyName: '',
-    studyContent: '',
-    studyType: '',
-    studyLevel: '',
-    studyMember: 0,
-    studyLecture: lectureId,
-    studyCategory: '',
-    studyDeadline: '',
-    studyStart: '',
-    studyEnd: '',
-    studyPlace: '',
-    studyMeetings: '',
-    studyMood: '',
-  };
+  console.log(lectureData);
+  let initialStudy: TFetchStudy;
+  if (lectureId && lectureData) {
+    initialStudy = {
+      leaderId: leaderId,
+      studyImage: '/images/study-img1.png',
+      studyName: '',
+      studyContent: '',
+      studyType: '',
+      studyLevel: '',
+      studyMember: 0,
+      studyLecture: lectureId,
+      studyCategory: lectureData.lectureCategory,
+      studyDeadline: '',
+      studyStart: '',
+      studyEnd: '',
+      studyPlace: '',
+      studyMeetings: '',
+      studyMood: '',
+    };
+  } else {
+    initialStudy = {
+      leaderId: leaderId,
+      studyImage: '/images/study-img1.png',
+      studyName: '',
+      studyContent: '',
+      studyType: '',
+      studyLevel: '',
+      studyMember: 0,
+      studyLecture: null,
+      studyCategory: '',
+      studyDeadline: '',
+      studyStart: '',
+      studyEnd: '',
+      studyPlace: '',
+      studyMeetings: '',
+      studyMood: '',
+    };
+  }
 
   const [step, setStep] = useState<number>(1);
 
   const [study, dispatch] = useReducer<React.Reducer<TFetchStudy, any>>(
     studyReducer,
-    mockdata,
+    initialStudy,
   );
 
   const onClickStepOne = (category: string) => {
@@ -105,7 +133,7 @@ export default function CollectStudyClient(props: TProps) {
   const collectstep: any = {
     1: (
       <SelectCateGory
-        lectureName={lectureName}
+        lectureData={lectureData}
         step={step}
         setStep={setStep}
         study={study}
