@@ -147,7 +147,7 @@ export default function BottomSheetFilter({
           <button
             type="button"
             onClick={resetFilters}
-            className="px-[2.4rem] py-[1.2rem] text-gray-600 text-[1.6rem] flex items-center justify-center gap-[.4rem] border border-gray-600 rounded-[.5rem]"
+            className="px-[2.4rem] py-[1.2rem] text-gray-600 text-[1.6rem] flex items-center justify-center gap-[.4rem] border border-gray-400 rounded-[.5rem]"
           >
             <GrPowerReset />
             초기화

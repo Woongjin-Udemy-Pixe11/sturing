@@ -4,14 +4,21 @@ import StudyList from './StudyList';
 type TabAllProps = {
   study: any[];
   lecture: any[];
+  studyLimit: number;
+  lectureLimit: number;
 };
 
-export default function TabAll({ study, lecture }: TabAllProps) {
+export default function TabAll({
+  study,
+  lecture,
+  studyLimit,
+  lectureLimit,
+}: TabAllProps) {
   return (
     <>
-      <StudyList data={study} />
+      <StudyList data={study} limit={studyLimit} />
       <hr className="w-full h-[.6rem] bg-gray-200 my-[2rem] border-0" />
-      <LectureList data={lecture} />
+      <LectureList data={lecture} limit={lectureLimit} />
     </>
   );
 }

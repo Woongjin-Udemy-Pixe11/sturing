@@ -1,24 +1,36 @@
-import { dummyCardList } from '@/dummy/mainPage';
+'use client';
 import Link from 'next/link';
 
-import GrayFullLink from './GrayFullLink';
 import dynamic from 'next/dynamic';
+import { useRouter, useSearchParams } from 'next/navigation';
+import GrayFullLink from './GrayFullLink';
 const Card = dynamic(() => import('@/components/common/Card'));
 type TStudyListProps = {
   isDetail?: boolean;
   data?: any[];
+  limit?: number;
+  keyword?: string;
+  filters?: any;
 };
 
 export default async function StudyList(props: TStudyListProps) {
-  const { isDetail, data } = props;
+  const { isDetail, data, limit, keyword, filters } = props;
+  const router = useRouter();
+  const searchParams = useSearchParams();
   let isFull = false;
-  let cardList = dummyCardList;
+  let cardList = data || [];
 
-  if (!isDetail) {
-    isFull = dummyCardList.length > 4 ? true : false;
-    cardList = dummyCardList.slice(0, 4);
+  if (!isDetail && limit) {
+    isFull = cardList.length > limit;
+    cardList = cardList.slice(0, limit);
   }
   console.log(data);
+
+  const handleViewAllStudies = () => {
+    const currentParams = new URLSearchParams(searchParams.toString());
+    currentParams.set('tab', '스터디');
+    return `/search/result?${currentParams.toString()}`;
+  };
 
   return (
     <>
@@ -29,8 +41,8 @@ export default async function StudyList(props: TStudyListProps) {
           </span>
         )}
         <ul className="w-full grid grid-cols-2 justify-stretch items-start flex-wrap gap-x-[1.6rem] gap-y-[1.6rem] py-[2rem]">
-          {data && data.length > 0 ? (
-            data.map((card: any) => (
+          {cardList && cardList.length > 0 ? (
+            cardList.map((card: any) => (
               <Link href={`/study-detail/${card._id}`}>
                 <Card
                   key={card.id}
@@ -53,7 +65,10 @@ export default async function StudyList(props: TStudyListProps) {
           )}
         </ul>
         {isFull && (
-          <GrayFullLink moveLink={'/search/study'} content="스터디 전체보기" />
+          <GrayFullLink
+            content="스터디 전체보기"
+            moveLink={handleViewAllStudies()}
+          />
         )}
       </div>
     </>

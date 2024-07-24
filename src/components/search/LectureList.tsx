@@ -1,24 +1,35 @@
-import { dummyLectureList } from '@/dummy/searchPage';
-import Link from 'next/link';
-import GrayFullLink from './GrayFullLink';
+'use client';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+import GrayFullLink from './GrayFullLink';
 const LectureCard = dynamic(() => import('./LectureCard'));
 
 type TLectureListProps = {
   isDetail?: boolean;
   data?: any[];
+  limit?: number;
+  keyword?: string;
+  filters?: any;
 };
 
 export default function LectureList(props: TLectureListProps) {
-  const { isDetail, data } = props;
+  const { isDetail, data, limit, keyword, filters } = props;
+  const router = useRouter();
+  const searchParams = useSearchParams();
   let isFull = false;
-  let cardList = dummyLectureList;
+  let cardList = data || [];
 
-  if (!isDetail) {
-    isFull = dummyLectureList.length > 2;
-    cardList = dummyLectureList.slice(0, 2);
+  if (!isDetail && limit) {
+    isFull = cardList.length > limit;
+    cardList = cardList.slice(0, limit);
   }
-  console.log(data);
+
+  const handleViewAllLectures = () => {
+    const currentParams = new URLSearchParams(searchParams.toString());
+    currentParams.set('tab', '강의');
+    return `/search/result?${currentParams.toString()}`;
+  };
 
   return (
     <>
@@ -29,8 +40,8 @@ export default function LectureList(props: TLectureListProps) {
           </span>
         )}
         <ul className="w-full flex gap-[1.2rem] flex-col">
-          {data && data.length > 0 ? (
-            data.map((lecture: any, index) => (
+          {cardList && cardList.length > 0 ? (
+            cardList.map((lecture: any, index) => (
               <li key={index}>
                 <Link href={`/lecture-detail/${lecture._id}`}>
                   <LectureCard
@@ -47,7 +58,10 @@ export default function LectureList(props: TLectureListProps) {
         </ul>
         {/* TODO: url 경로 수정 필요 */}
         {isFull && (
-          <GrayFullLink moveLink={'/search/lecture'} content="강의 전체보기" />
+          <GrayFullLink
+            content="강의 전체보기"
+            moveLink={handleViewAllLectures()}
+          />
         )}
       </div>
     </>

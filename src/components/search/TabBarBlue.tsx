@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FilterBar from './FilterBar';
 
 type TTabList = {
@@ -11,12 +11,25 @@ type TTabList = {
 type TTabBarBlueProps = {
   tabList: TTabList[];
   initialFilters: any;
+  activeTab: string;
+  onTabChange?: (tabName: string) => void;
 };
 
 export default function TabBarBlue(props: TTabBarBlueProps) {
-  const { tabList, initialFilters } = props;
-  const [activeTab, setActiveTab] = useState(tabList[0].name);
-  const activeTabInfo = tabList.find((tab) => tab.name === activeTab);
+  const { tabList, initialFilters, activeTab, onTabChange } = props;
+  const [currentTab, setCurrentTab] = useState(activeTab);
+  const activeTabInfo = tabList.find((tab) => tab.name === currentTab);
+
+  useEffect(() => {
+    setCurrentTab(activeTab);
+  }, [activeTab]);
+
+  const handleTabChange = (tabName: string) => {
+    setCurrentTab(tabName);
+    if (onTabChange) {
+      onTabChange(tabName);
+    }
+  };
 
   return (
     <>
@@ -29,16 +42,16 @@ export default function TabBarBlue(props: TTabBarBlueProps) {
           <li
             key={tab.name}
             className={`${
-              activeTab === tab.name ? 'font-bold text-blue-600' : ''
+              currentTab === tab.name ? 'font-bold text-blue-600' : ''
             } w-full py-[1.2rem]`}
-            onClick={() => setActiveTab(tab.name)}
+            onClick={() => handleTabChange(tab.name)}
           >
             {tab.name}
           </li>
         ))}
       </ul>
       <div className="w-full p-[1.6rem]">
-        {tabList.find((tab) => tab.name === activeTab)?.component}
+        {tabList.find((tab) => tab.name === currentTab)?.component}
       </div>
     </>
   );
