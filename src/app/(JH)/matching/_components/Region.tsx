@@ -1,6 +1,13 @@
 import CommonTab from '@/components/common/Tab/CommonTab';
 
-export default function Region({ regions, onClickRegion, nickname }: any) {
+type Tregionprops = {
+  regions: string[];
+  onClickRegion: (region: string) => void;
+  nickname: string;
+};
+
+export default function Region(props: Tregionprops) {
+  const { regions, onClickRegion, nickname } = props;
   return (
     <div className="w-full">
       <section className="pt-[2rem] px-[1.6rem]">

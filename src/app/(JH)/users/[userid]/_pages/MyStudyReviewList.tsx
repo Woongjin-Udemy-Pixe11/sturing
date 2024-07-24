@@ -1,8 +1,16 @@
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import StudyReviewCard from '@/components/(JH)/users/StudyReviewCard';
+import { TstudyReview } from '@/types/TStudyReview';
 
-export default async function MyStudyReviewList({ data }: { data: any }) {
-  console.log(data);
+type TmyStudyReviewListProps = {
+  data: TstudyReview[];
+};
+
+export default async function MyStudyReviewList(
+  props: TmyStudyReviewListProps,
+) {
+  const { data } = props;
+
   return (
     <main>
       <MyPageHeader>받은 스터디 평가</MyPageHeader>
@@ -10,7 +18,7 @@ export default async function MyStudyReviewList({ data }: { data: any }) {
         <div className="my-[2rem]">후기 {data.length}개</div>
         <div className="flex flex-col gap-[2rem]">
           {data &&
-            data.map((review: any) => {
+            data.map((review) => {
               return <StudyReviewCard key={review._id} review={review} />;
             })}
         </div>

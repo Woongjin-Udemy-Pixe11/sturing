@@ -44,8 +44,8 @@ export default function TeamTodo(props: any) {
             </span>
           </div>
 
-          <div className="text-[1.4rem] pt-[2rem] ">
-            <div className="flex justify-around items-center text-[1.4rem] gap-[1rem]">
+          <div className="text-[1.4rem] pt-[2rem]">
+            <div className="flex justify-around items-center text-[1.4rem] gap-[1rem] pb-[1rem]">
               {memberList.map((member: any) => (
                 <div
                   onClick={() => onClickMember(member.userId._id)}
@@ -69,7 +69,7 @@ export default function TeamTodo(props: any) {
               {todos.length > 0
                 ? todos.map((todo: any) => (
                     <div key={todo._id}>
-                      <label className="inline-flex items-center space-x-2 relative py-[1rem] px-[1rem] my-[1rem]">
+                      <label className="inline-flex items-center space-x-2 relative py-[1rem] px-[1rem]">
                         <label htmlFor="checkbox" className="">
                           {todo.todoCompleted ? (
                             <FaCircleCheck
@@ -91,12 +91,6 @@ export default function TeamTodo(props: any) {
                     </div>
                   ))
                 : ''}
-
-              {/* {studyMemberTodo[0].todos.map((todo) => (
-                <>
-                  <Todo todo={todo.todo} checked={todo.checked} />
-                </>
-              ))} */}
             </div>
           </div>
         </div>

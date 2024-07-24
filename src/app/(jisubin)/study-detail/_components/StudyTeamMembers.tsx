@@ -1,3 +1,5 @@
+import { TStudyInfo } from '@/types/TStudyInfo';
+import { TStudyMember } from '@/types/TStudyMember';
 import Image from 'next/image';
 
 type TStudyTeamMembersProps = {
@@ -30,8 +32,8 @@ async function fetchStudyMember(id: string) {
 
 export default async function StudyTeamMembers(props: TStudyTeamMembersProps) {
   const { id } = props;
-  const study = await fetchStudyDetail(id);
-  const members = await fetchStudyMember(id);
+  const study: TStudyInfo = await fetchStudyDetail(id);
+  const members: TStudyMember[] = await fetchStudyMember(id);
 
   return (
     <>

@@ -4,15 +4,17 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams } from 'next/navigation';
 import GrayFullLink from './GrayFullLink';
+import { TStudyInfo } from '@/types/TStudyInfo';
 const Card = dynamic(() => import('@/components/common/Card'));
 type TStudyListProps = {
   isDetail?: boolean;
-  data?: any[];
+  data?: TStudyInfo[];
   limit?: number;
   keyword?: string;
   filters?: any;
   userId: string;
 };
+//TODO:filter타입이뭔지모르겠다.
 
 export default async function StudyList(props: TStudyListProps) {
   const { isDetail, data, limit, keyword, filters, userId } = props;

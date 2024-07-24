@@ -1,6 +1,11 @@
-export default function StudyReviewCard({ review }: any) {
-  console.log(review);
-  //TODO:스터디리뷰스키마 수정, 작성한 유저 프로필 보이도록 처리해야함.
+import { TstudyReview } from '@/types/TStudyReview';
+
+type TstudyReviewCardProps = {
+  review: TstudyReview;
+};
+
+export default function StudyReviewCard(props: TstudyReviewCardProps) {
+  const { review } = props;
   return (
     <section className="flex gap-[0.8rem]  border-b border-gray-300 pb-[2rem] w-full">
       <div className="w-[4rem] h-[4rem] border border-gray-500 rounded-full overflow-hidden">

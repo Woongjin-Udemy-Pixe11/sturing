@@ -16,7 +16,6 @@ export default function RenderTeam({
     setStudyId(studyId);
     setUserId(userId);
     fetchMemberList();
-    console.log('🎁', memberList);
   }, [studyId, userId, fetchMemberList]);
 
   return null;

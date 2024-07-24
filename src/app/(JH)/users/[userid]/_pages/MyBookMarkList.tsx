@@ -1,14 +1,16 @@
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import Card from '@/components/common/Card';
 import LectureCard from '@/components/search/LectureCard';
+import { TStudyInfo } from '@/types/TStudyInfo';
+import { Tsession } from '@/types/TSession';
 import { getSession } from '@/utils/getSessions';
 import * as Tabs from '@radix-ui/react-tabs';
 import Link from 'next/link';
 
 export default async function MyBookMarkList() {
-  const session = await getSession();
+  const session: Tsession = await getSession();
   const userId = session?.user?.id;
-  const studyBookmarkList = await (
+  const studyBookmarkList: TStudyInfo[] = await (
     await fetch(`http://localhost:3000/api/bookmark/study/?id=${userId}`, {
       cache: 'no-store',
     })
@@ -40,7 +42,7 @@ export default async function MyBookMarkList() {
               {studyBookmarkList &&
                 studyBookmarkList
                   .filter((study) => study !== null)
-                  .map((study: any, index: any) => (
+                  .map((study: TStudyInfo, index: number) => (
                     <div key={study._id}>
                       <Link href={`/study-detail/${study._id}`}>
                         <Card
@@ -66,7 +68,7 @@ export default async function MyBookMarkList() {
             <div className="flex flex-col gap-y-[1rem] m-auto w-full">
               {lectureBookmarkList &&
                 lectureBookmarkList
-                  .filter((lecture) => lecture !== null)
+                  .filter((lecture, index: number) => lecture !== null)
                   .map((lecture: any, index: any) => (
                     <div key={lecture._id}>
                       <Link href={`/lecture-detail/${lecture._id}`}>

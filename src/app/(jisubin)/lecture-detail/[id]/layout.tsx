@@ -5,6 +5,8 @@ import BackShareHeader from '../../_components/BackShareHeader';
 import LectureStudyTitle from '../_components/LectureStudyTitle';
 import LectureDetailTitle from '../_components/LectureDetailTitle';
 import { getSession } from '@/utils/getSessions';
+import { TLectureDetail } from '@/types/TLecture';
+import { Tsession } from '@/types/TSession';
 
 type TLectureDetailLayoutProps = {
   children: React.ReactNode;
@@ -26,9 +28,9 @@ export default async function LectureDetailLayout(
   const { children, params } = props;
   const id = params.id;
 
-  const lecture = await fetchLectureDetail(id);
+  const lecture: TLectureDetail = await fetchLectureDetail(id);
 
-  const session = await getSession(); // 예시: next-auth 사용 시
+  const session: Tsession = await getSession(); // 예시: next-auth 사용 시
   const userId = session?.user?.id;
   return (
     <>

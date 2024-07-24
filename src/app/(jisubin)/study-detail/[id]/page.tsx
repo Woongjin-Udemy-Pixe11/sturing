@@ -3,6 +3,8 @@ import LectureInfo from '../_components/LectureInfo';
 import StudyMood from '../_components/StudyMood';
 import StudyTeamMembers from '../_components/StudyTeamMembers';
 import StudyComments from '../_components/StudyComments';
+import { TStudyInfo } from '@/types/TStudyInfo';
+import { TLectureDetail } from '@/types/TLecture';
 
 type TStudyDetailPageProps = {
   params: { id: string };
@@ -33,12 +35,8 @@ export default async function StudyDetailPage(props: TStudyDetailPageProps) {
   const { params } = props;
   const id = params.id;
 
-  const study = await fetchStudyDetail(id);
-  let lecture = {
-    lectureRating: 0,
-    lectureName: '',
-    lectureURL: '',
-  };
+  const study: TStudyInfo = await fetchStudyDetail(id);
+  let lecture: TLectureDetail = null;
   if (study.studyLecture) {
     lecture = await fetchLectureDetail(study.studyLecture);
   }

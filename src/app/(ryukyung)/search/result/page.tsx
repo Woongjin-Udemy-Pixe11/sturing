@@ -6,8 +6,20 @@ import TabStudy from '@/components/search/TabStudy';
 import { getFilteredResults } from '@/lib/actions/filterAction';
 import BackSearchBar from './_components/BackSearchBar';
 import { getSession } from '@/utils/getSessions';
+import { TStudyInfo } from '@/types/TStudyInfo';
+import { TLectureDetail } from '@/types/TLecture';
 
-export default async function page({ searchParams }: { searchParams: any }) {
+type TSearchResultProps = {
+  searchParams: { [key: string]: string };
+};
+
+type TSearchResult = {
+  searchstudies: TStudyInfo[];
+  searchlectures?: TLectureDetail[];
+};
+
+export default async function page(props: TSearchResultProps) {
+  const { searchParams } = props;
   const keyword = searchParams.keyword;
   const activeTab = searchParams.tab || '전체';
   const session = await getSession();
@@ -20,7 +32,7 @@ export default async function page({ searchParams }: { searchParams: any }) {
     level: searchParams.level?.split(',') || [],
   };
 
-  let data;
+  let data: TSearchResult = null;
   if (keyword) {
     data = await (
       await fetch(`http://localhost:3000/api/search?keyword=${keyword}`, {
@@ -32,7 +44,6 @@ export default async function page({ searchParams }: { searchParams: any }) {
   }
 
   let searchstudies = data.searchstudies;
-
   let searchlectures = data.searchlectures;
 
   const tabList = [

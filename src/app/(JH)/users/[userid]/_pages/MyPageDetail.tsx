@@ -4,15 +4,16 @@ import UserDetailInfo from '@/components/(JH)/users/UserDetailInfo';
 import UserMatchingInfo from '@/components/(JH)/users/UserMatchingInfo';
 import LongButton from '@/components/common/LongButton';
 import { logout } from '@/lib/actions/userAction';
+import { TmypageDetails } from '@/types/TmypageDetail';
 import Link from 'next/link';
 
-export default function MyPageDetail({
-  auth,
-  data,
-}: {
+type TmypageDetailProps = {
   auth: boolean;
-  data: any;
-}) {
+  data: TmypageDetails;
+};
+
+export default function MyPageDetail(props: TmypageDetailProps) {
+  const { auth, data } = props;
   if (!auth) {
     return;
   }

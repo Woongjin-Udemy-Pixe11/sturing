@@ -2,9 +2,16 @@ import MatchingContainer from '@/components/(JH)/matching/MatchingContainer';
 import { level } from '@/constant/region';
 import * as Tabs from '@radix-ui/react-tabs';
 
-//TODO:console.log(4번씩찍히는데 이거 최적화해서 memo, useCallback 해야될듯)
+type Tfieldprops = {
+  interest: string[];
+  onClickLevel: (field: string, level: string, interest: string[]) => void;
+  Level: {
+    [key: string]: string;
+  };
+};
 
-export default function Field({ interest, onClickLevel, Level }: any) {
+export default function Field(props: Tfieldprops) {
+  const { interest, onClickLevel, Level } = props;
   return (
     <div className="w-full px-[1.4rem]">
       <section className="py-[2rem] ">

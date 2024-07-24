@@ -1,6 +1,13 @@
 import StudyLog from '../_pages/StudyLog';
 
-export default function page({ params }: { params: any }) {
+type TmystudyLog = {
+  params: {
+    userid: string;
+  };
+};
+
+export default function page(props: TmystudyLog) {
+  const { params } = props;
   const id = params.userid;
   return <StudyLog id={id} />;
 }

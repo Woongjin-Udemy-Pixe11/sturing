@@ -1,15 +1,17 @@
+import { TStudyInfo } from '@/types/TStudyInfo';
 import LectureList from './LectureList';
 import StudyList from './StudyList';
+import { TLectureDetail } from '@/types/TLecture';
 
-type TabAllProps = {
-  study: any[];
-  lecture: any[];
+type TtabAllProps = {
+  study: TStudyInfo[];
+  lecture: TLectureDetail[];
   studyLimit: number;
   lectureLimit: number;
   userId: string;
 };
 
-export default function TabAll(props: TabAllProps) {
+export default function TabAll(props: TtabAllProps) {
   const { study, lecture, studyLimit, lectureLimit, userId } = props;
   return (
     <>
