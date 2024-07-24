@@ -63,7 +63,7 @@ export default function BoardComment(props: {
   };
 
   return (
-    <div className="px-[1.6rem]">
+    <div className="px-[2rem]">
       <div className="flex flex-row items-center justify-start gap-x-[0.4rem] text-content-2  mb-[1.2rem]">
         <div>댓글</div>
         <span>{commentList.length}</span>

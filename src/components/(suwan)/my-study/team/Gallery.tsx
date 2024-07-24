@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Gallery({ taskList }: { taskList: any }) {
   return (
@@ -8,26 +9,24 @@ export default function Gallery({ taskList }: { taskList: any }) {
           <div className="flex items-center border-b-[0.1rem] border-gray-300 pb-4">
             <h2 className="text-[1.6rem] font-semibold">팀원 사진 인증</h2>
           </div>
-          <div className="grid grid-rows-2 grid-cols-3 gap-[.4rem] py-[2rem] w-[100%]">
+          <div className="grid grid-cols-3 gap-[.4rem] py-[2rem] w-[100%]">
             {taskList &&
-              taskList.map((task: any) => {
-                return (
-                  <div className="relative w-[100%] h-[100%] rounded-[.5rem] border-2 border-gray-300 after:pb-[100%] after:block">
-                    <div className="absolute h-[100%] w-[100%] rounded-[.5rem] object-cover;">
+              taskList.slice(0, 6).map(
+                (task: any) => (
+                  // task.image && (
+                  <div className="relative w-[100%] h-[100%] object-cover after:pb-[100%] after:block">
+                    <Link href={`./board/task-board/${task._id}`}>
                       <Image
                         src={task.image}
                         alt={'대체글'}
                         layout="fill"
-                        className="object-cover"
+                        className="object-cover rounded-[.5rem]"
                       />
-                    </div>
+                    </Link>
                   </div>
-                );
-              })}
-          </div>
-
-          <div className="w-full flex justify-center">
-            <img src="/images/studyLabel/arrow_down.svg" />
+                ),
+                // );
+              )}
           </div>
         </div>
       </div>

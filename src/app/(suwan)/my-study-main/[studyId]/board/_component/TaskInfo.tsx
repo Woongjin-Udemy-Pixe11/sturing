@@ -1,4 +1,4 @@
-import { ImGit } from 'react-icons/im';
+import { dateCalculate } from '@/utils/my-study-main/dateCalculate';
 
 type TTaskInfoProps = {
   userImg: string;
@@ -12,15 +12,14 @@ type TTaskInfoProps = {
 
 export default function TaskInfo(props: any) {
   const { task, leaderId } = props;
-  console.log('🥵', task);
   return (
-    <div className="flex flex-col mx-[1.6rem] gap-y-[1.6rem]">
+    <div className="flex flex-col gap-y-[1.6rem] py-[1.6rem]">
       <div className="flex flex-row items-center justify-between py-[1.2rem]">
         <div className="flex flex-row items-center">
           <img
             src={task.writerId.image}
             alt="Picture of the author"
-            className="w-[2.8rem] rounded-full aspect-square object-cover"
+            className="border border-gray-300 w-[2.8rem] rounded-full aspect-square object-cover"
           />
           <div className="flex flex-row items-center justify-center gap-x-[0.4rem]">
             <div className="text-content-1 text-gray-900 ml-[0.8rem] font-semibold">
@@ -34,7 +33,9 @@ export default function TaskInfo(props: any) {
           </div>
           <div className="text-content-2 text-gray-700 ml-[0.4rem]"></div>
         </div>
-        <div className="text-content-2 text-gray-600">{task.time}</div>
+        <div className="text-content-2 text-gray-600">
+          {dateCalculate(task.createdAt)}
+        </div>
       </div>
       <div className="flex flex-row justify-between gap-x-[1.2rem]">
         <div className="flex flex-col gap-x-[1.2rem] gap-y-[0.4rem]">
@@ -48,12 +49,12 @@ export default function TaskInfo(props: any) {
             <img
               src={task.image}
               alt="Picture of the Task"
-              className="object-cover"
+              className="w-[10rem] h-[10rem] object-cover rounded-[0.5rem]"
             />
           )}
         </div>
       </div>
-      <hr className=" my-[1.8rem] border-b-gray-300 border-b-1"></hr>
+      <hr className="my-[1.8rem] border-b-gray-300 border-b-1"></hr>
     </div>
   );
 }

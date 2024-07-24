@@ -55,14 +55,14 @@ export async function fetchBlackboard(boardType: string, blackboardId: string) {
   }
 }
 
-export async function patchView(noticeId: string) {
+export async function patchView(noticeId: string, boardType: string) {
   try {
     const response = await fetch(`${process.env.LOCAL_URL}/api/study-board`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ noticeId }),
+      body: JSON.stringify({ noticeId, boardType }),
     });
 
     if (!response.ok) {
