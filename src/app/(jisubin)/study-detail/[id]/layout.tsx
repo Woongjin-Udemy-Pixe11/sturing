@@ -4,7 +4,7 @@ import BookmarkBtnNavigationBar from '@/components/(jisubin)/lectureStudyDetail/
 import DetailTabBar from '@/components/(jisubin)/lectureStudyDetail/DetailTabBar';
 import CourseLink from '@/components/common/CourseLink';
 import { getSession } from '@/utils/getSessions';
-import { Suspense } from 'react';
+
 type TStudyDetailLayoutProps = {
   children: React.ReactNode;
   params: { id: string };
@@ -43,12 +43,21 @@ export default async function StudyDetailLayout(
     lectureName: '',
     lectureURL: '',
   };
+
   if (study.studyLecture) {
     lecture = await fetchLectureDetail(study.studyLecture);
   }
 
   const session = await getSession();
   const userId = session?.user?.id;
+
+  let isApply = true;
+  if (
+    new Date(study.studyStart).getTime() <= new Date().getTime() ||
+    study.studyJoinMember == study.studyMember
+  ) {
+    isApply = false;
+  }
 
   return (
     <>
@@ -57,11 +66,10 @@ export default async function StudyDetailLayout(
           backgroundImage: `url(${study.studyImage})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center'
+          backgroundPosition: 'center',
         }}
         className={`text-white object-cover`}
       >
-        {/*뒤로가기, 공유버튼 색상 흰색으로 변경 필요*/}
         <BackShareHeader />
         <StudyDetailTitle
           type={study.studyType}
@@ -97,14 +105,12 @@ export default async function StudyDetailLayout(
         {children}
       </div>
 
-      {/* <Suspense> */}
       <BookmarkBtnNavigationBar
-        text="스터디 지원하기"
+        isApply={isApply}
         link={`/study-apply/${id}`}
         targetId={id}
         userId={userId}
       />
-      {/* </Suspense> */}
     </>
   );
 }

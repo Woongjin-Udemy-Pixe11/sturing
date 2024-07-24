@@ -84,7 +84,7 @@ export default function Card(props: TStudy) {
           priority
           style={{ minWidth: '163px', minHeight: '150px' }}
         />
-        {(userId || !isStudyEnd) && (
+        {userId && (
           <div
             className="absolute top-0 right-0 m-[0.8rem] p-[0.15rem] text-white"
             onClick={onClickBookmark}

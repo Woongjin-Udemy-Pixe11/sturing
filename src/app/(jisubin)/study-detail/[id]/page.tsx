@@ -1,5 +1,3 @@
-import TeamMembersPage from './teamMembers/page';
-import CommentPage from './comment/page';
 import StudyInfo from '@/app/(jisubin)/study-detail/_components/StudyInfo';
 import LectureInfo from '../_components/LectureInfo';
 import StudyMood from '../_components/StudyMood';
