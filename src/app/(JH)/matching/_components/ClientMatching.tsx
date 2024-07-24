@@ -11,19 +11,16 @@ import MatchingCompleted from './MatchingCompleted';
 import Mood from './Mood';
 import Region from './Region';
 import Type from './Type';
+import { Tmatching, Tsession } from '@/types/TSession';
 
-export type Tmatching = {
-  userid: string;
-  interests: string[];
-  level: {
-    [key: string]: string;
-  };
-  studyType: string;
-  preferRegion: string[];
-  preferMood: string[];
+export type TClientMatchingProps = {
+  data: Tmatching;
+  session: Tsession;
+  exist: boolean;
 };
 
-export default function ClientMatching({ data, session, exist }: any) {
+export default function ClientMatching(props: TClientMatchingProps) {
+  const { data, session, exist } = props;
   let username = session.user.name;
   let nickname = session.user.nickname;
   const id = session.user.id;

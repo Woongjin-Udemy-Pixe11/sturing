@@ -1,13 +1,15 @@
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import Card from '@/components/common/Card';
+import { TStudyInfo } from '@/types/TStudyInfo';
+import { Tsession } from '@/types/TSession';
 import { getSession } from '@/utils/getSessions';
 import * as Tabs from '@radix-ui/react-tabs';
 import Link from 'next/link';
 
 export default async function MyBookMarkList() {
-  const session = await getSession();
+  const session: Tsession = await getSession();
   const id = session?.user?.id;
-  const data = await (
+  const data: TStudyInfo[] = await (
     await fetch(`http://localhost:3000/api/bookmark?id=${id}`, {
       cache: 'no-store',
     })
@@ -31,12 +33,12 @@ export default async function MyBookMarkList() {
           <Tabs.Content value="스터디" className="flex flex-col gap-[1rem]">
             <div className="grid grid-cols-2 gap-[1rem] m-auto w-full">
               {data &&
-                data.map((study: any, index: any) => (
-                  <div key={study.studyId}>
+                data.map((study, index: number) => (
+                  <div key={study._id}>
                     <Link href={`/study-detail/${study._id}`}>
                       <Card
                         userId={id}
-                        studyId={study._id!}
+                        studyId={study._id}
                         studyImage={study.studyImage}
                         studyMeetings={study.studyMeetings}
                         studyType={study.studyType}
