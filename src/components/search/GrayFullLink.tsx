@@ -1,18 +1,20 @@
+import Link from 'next/link';
+
 type TGrayFullLink = {
-  onClick?: () => void;
+  moveLink: string;
   content: string;
 };
 
 export default function GrayFullLink(props: TGrayFullLink) {
-  const { onClick, content } = props;
+  const { moveLink, content } = props;
   return (
     <>
-      <button
-        onClick={onClick}
+      <Link
+        href={moveLink}
         className="block w-full border  border-gray-400 text-gray-800 text-[1.6rem] rounded-[.5rem] text-center py-[1.2rem] mt-[2.4rem]"
       >
         {content}
-      </button>
+      </Link>
     </>
   );
 }

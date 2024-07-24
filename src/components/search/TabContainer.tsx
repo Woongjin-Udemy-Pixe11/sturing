@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import TabBarBlue from './TabBarBlue';
 
 type TTabList = {
@@ -27,9 +27,13 @@ export default function TabContainer({
   activeTab = '전체',
 }: TTabListProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleTabChange = (tabName: string) => {
-    router.push(`?tab=${tabName}`);
+    const currentParams = new URLSearchParams(searchParams.toString());
+    currentParams.set('tab', tabName);
+
+    router.push(`/search/result?${currentParams.toString()}`);
   };
 
   return (
