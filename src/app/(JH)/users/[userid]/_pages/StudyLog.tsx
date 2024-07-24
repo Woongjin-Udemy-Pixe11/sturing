@@ -10,7 +10,6 @@ type TstudyLogPorps = {
 export default async function StudyLog(props: TstudyLogPorps) {
   const { id } = props;
   const userstudy: TgetUserStudies = await getUserStudies(id);
-  console.log(userstudy);
   if (userstudy.completed.length === 0) {
     return <div>아직 스터디 이력이없습니다.</div>;
   }

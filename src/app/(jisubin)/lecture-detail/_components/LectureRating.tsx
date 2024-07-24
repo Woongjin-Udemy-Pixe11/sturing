@@ -1,5 +1,6 @@
 import TitleNavigator from '@/components/(jisubin)/lectureStudyDetail/TitleNavigator';
 import Label from '@/components/common/label/Label';
+import { TLectureDetail } from '@/types/TLecture';
 
 type TLectureRatingProps = {
   id: string;
@@ -14,7 +15,7 @@ async function fetchLectureDetail(id: string) {
 
 export default async function LectureRating(props: TLectureRatingProps) {
   const { id } = props;
-  const lecture = await fetchLectureDetail(id);
+  const lecture: TLectureDetail = await fetchLectureDetail(id);
   const reviews = lecture.lectureReviews;
   return (
     <>

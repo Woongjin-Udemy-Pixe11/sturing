@@ -1,3 +1,4 @@
+import { TGetComments } from '@/types/TStudyComment';
 import CommentForm from './CommentForm';
 import StudyComment from './StudyComment';
 import { getComments } from '@/lib/actions/commentAction';
@@ -10,8 +11,8 @@ type TStudyCommentsProps = {
 export default async function StudyComments(props: TStudyCommentsProps) {
   const { id } = props;
 
-  let comments = await getComments(id);
-  comments = comments.data;
+  let comment: TGetComments = await getComments(id);
+  let comments = comment.data;
 
   const session = await getSession();
   const userId = session?.user?.id;
@@ -30,6 +31,7 @@ export default async function StudyComments(props: TStudyCommentsProps) {
             {comments &&
               comments.map((comment) => (
                 <StudyComment
+                  key={comment._id}
                   commentId={comment._id}
                   userId={userId}
                   studyId={id}
