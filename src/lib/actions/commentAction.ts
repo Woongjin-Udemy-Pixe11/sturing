@@ -13,6 +13,7 @@ export async function getComments(studyId: string) {
     if (!comments) {
       return { success: false, message: 'Comments not found' };
     }
+
     return { success: true, data: comments };
   } catch (error) {
     console.error('Error:', error);

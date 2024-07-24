@@ -5,11 +5,13 @@ import TabLecture from '@/components/search/TabLecture';
 import TabStudy from '@/components/search/TabStudy';
 import { getFilteredResults } from '@/lib/actions/filterAction';
 import BackSearchBar from './_components/BackSearchBar';
+import { getSession } from '@/utils/getSessions';
 
 export default async function page({ searchParams }: { searchParams: any }) {
   const keyword = searchParams.keyword;
   const activeTab = searchParams.tab || '전체';
-
+  const session = await getSession();
+  const userId = session?.user?.id;
   const filters = {
     field: searchParams.field?.split(',') || [],
     region: searchParams.region?.split(',') || [],
@@ -42,6 +44,7 @@ export default async function page({ searchParams }: { searchParams: any }) {
           lecture={searchlectures}
           studyLimit={4}
           lectureLimit={2}
+          userId={userId}
         />
       ),
       isLecture: false,

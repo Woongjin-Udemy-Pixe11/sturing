@@ -11,10 +11,11 @@ type TStudyListProps = {
   limit?: number;
   keyword?: string;
   filters?: any;
+  userId: string;
 };
 
 export default async function StudyList(props: TStudyListProps) {
-  const { isDetail, data, limit, keyword, filters } = props;
+  const { isDetail, data, limit, keyword, filters, userId } = props;
   const router = useRouter();
   const searchParams = useSearchParams();
   let isFull = false;
@@ -46,6 +47,7 @@ export default async function StudyList(props: TStudyListProps) {
               <Link href={`/study-detail/${card._id}`}>
                 <Card
                   key={card.id}
+                  userId={userId}
                   studyId={card._id}
                   studyImage={card.studyImage}
                   studyMeetings={card.studyMeetings}

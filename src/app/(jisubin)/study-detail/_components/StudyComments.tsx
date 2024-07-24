@@ -12,7 +12,6 @@ export default async function StudyComments(props: TStudyCommentsProps) {
 
   let comments = await getComments(id);
   comments = comments.data;
-
   const session = await getSession();
   const userId = session?.user?.id;
 

@@ -11,10 +11,11 @@ type TLectureListProps = {
   limit?: number;
   keyword?: string;
   filters?: any;
+  userId: string;
 };
 
 export default function LectureList(props: TLectureListProps) {
-  const { isDetail, data, limit, keyword, filters } = props;
+  const { isDetail, data, limit, keyword, filters, userId } = props;
   const router = useRouter();
   const searchParams = useSearchParams();
   let isFull = false;
@@ -48,6 +49,8 @@ export default function LectureList(props: TLectureListProps) {
                     name={lecture.lectureName}
                     author={lecture.lectureInstructor}
                     star={lecture.lectureRating}
+                    userId={userId}
+                    targetId={lecture._id}
                   />
                 </Link>
               </li>
