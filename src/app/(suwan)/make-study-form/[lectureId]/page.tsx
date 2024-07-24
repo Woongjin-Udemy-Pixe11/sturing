@@ -13,7 +13,7 @@ export default async function page({
 
   const lectureData = await (
     await fetch(
-      `${process.env.LOCAL_URL}/api/lecture/${lectureId}?data=lectureName&data=lectureCategory`,
+      `${process.env.LOCAL_URL}/api/lecture/${lectureId}?data=lectureName&data=lectureCategory&data=lectureInstructor`,
     )
   ).json();
   console.log('🥬', lectureData);
@@ -24,8 +24,7 @@ export default async function page({
         <CollectStudyClient
           leaderId={userId}
           lectureId={lectureId}
-          lectureName={lectureData.lectureName}
-          lectureCategor={lectureData.lectureCategory}
+          lectureData={lectureData}
         />
       )}
     </>

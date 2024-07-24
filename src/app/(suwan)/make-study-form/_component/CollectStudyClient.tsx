@@ -18,36 +18,56 @@ import { useRouter } from 'next/navigation';
 type TProps = {
   leaderId: string;
   lectureId?: string;
-  lectureName: string;
-  lectureCategor: string;
+  lectureData?: any;
 };
 export default function CollectStudyClient(props: TProps) {
-  const { leaderId, lectureId, lectureName, lectureCategor } = props;
+  const { leaderId, lectureId, lectureData } = props;
   const router = useRouter();
 
-  const mockdata: TFetchStudy = {
-    leaderId: leaderId,
-    studyImage: '/images/study-img1.png',
-    studyName: '',
-    studyContent: '',
-    studyType: '',
-    studyLevel: '',
-    studyMember: 0,
-    studyLecture: lectureId,
-    studyCategory: lectureCategor,
-    studyDeadline: '',
-    studyStart: '',
-    studyEnd: '',
-    studyPlace: '',
-    studyMeetings: '',
-    studyMood: '',
-  };
+  let initialStudy: TFetchStudy;
+  if (lectureId && lectureData) {
+    initialStudy = {
+      leaderId: leaderId,
+      studyImage: '/images/study-img1.png',
+      studyName: '',
+      studyContent: '',
+      studyType: '',
+      studyLevel: '',
+      studyMember: 0,
+      studyLecture: lectureId,
+      studyCategory: lectureData.lectureCategor,
+      studyDeadline: '',
+      studyStart: '',
+      studyEnd: '',
+      studyPlace: '',
+      studyMeetings: '',
+      studyMood: '',
+    };
+  } else {
+    initialStudy = {
+      leaderId: leaderId,
+      studyImage: '/images/study-img1.png',
+      studyName: '',
+      studyContent: '',
+      studyType: '',
+      studyLevel: '',
+      studyMember: 0,
+      studyLecture: null,
+      studyCategory: '',
+      studyDeadline: '',
+      studyStart: '',
+      studyEnd: '',
+      studyPlace: '',
+      studyMeetings: '',
+      studyMood: '',
+    };
+  }
 
   const [step, setStep] = useState<number>(1);
 
   const [study, dispatch] = useReducer<React.Reducer<TFetchStudy, any>>(
     studyReducer,
-    mockdata,
+    initialStudy,
   );
 
   const onClickStepOne = (category: string) => {
@@ -106,7 +126,7 @@ export default function CollectStudyClient(props: TProps) {
   const collectstep: any = {
     1: (
       <SelectCateGory
-        lectureName={lectureName}
+        lectureData={lectureData}
         step={step}
         setStep={setStep}
         study={study}

@@ -1,11 +1,18 @@
 import LongButton from '@/components/common/LongButton';
 import SizeUpLabel from '@/components/common/label/SizeUpLabel';
 import { searchLabelList } from '@/constant/searchLabelList';
+import { TFetchStudy } from '@/types/TStudy';
 import React, { useState, useMemo } from 'react';
 
-//TODO any 수정
-export default function SelectCateGory(props: any) {
-  const { setStep, onClickStepOne, lectureName, study } = props;
+type TProps = {
+  lectureData: any;
+  step: any;
+  setStep: any;
+  study: TFetchStudy;
+  onClickStepOne: (category: string) => void;
+};
+export default function SelectCateGory(props: TProps) {
+  const { setStep, onClickStepOne, lectureData, study } = props;
 
   const [category, setCategory] = useState<string>(study.studyCategory);
 
@@ -19,15 +26,16 @@ export default function SelectCateGory(props: any) {
   }, [category]);
 
   return (
-    <>
-      <section className="px-[0.3rem]">
-        <h1 className="font-bold text-headline-2 py-[1.9rem] px-[1.3rem]">
-          선택한 강의
-        </h1>
-        <article className="bg-gray-300 px-[2rem] py-[1.2rem] rounded-e-lg">
-          <h2>{lectureName}</h2>
+    <div className="px-[2rem] py-[2rem]">
+      <section>
+        <h1 className="font-bold text-headline-2 mb-[2rem]">선택한 강의</h1>
+        <article className="bg-gray-200 px-[2rem] py-[1.2rem] rounded-md border border-gray-300">
+          <h2>{lectureData.lectureName}</h2>
+          <h3 className="text-gray-600 text-content-1 mt-[.4rem]">
+            {lectureData.lectureInstructor}
+          </h3>
         </article>
-        <article className="px-[1.3rem] py-[0.9rem]">
+        <article className="py-[2rem]">
           <h2 className="text-content-2">카테고리</h2>
           <div className="flex py-[1.2rem] flex-wrap gap-2">
             {searchLabelList.map((label, index) => {
@@ -44,7 +52,7 @@ export default function SelectCateGory(props: any) {
         </article>
       </section>
 
-      <footer className="flex m-auto gap-2 w-full p-4 py-[2rem]">
+      <footer className="flex m-auto gap-2 w-full py-[2rem]">
         {validate ? (
           <LongButton color="gray">다음 </LongButton>
         ) : (
@@ -58,6 +66,6 @@ export default function SelectCateGory(props: any) {
           </LongButton>
         )}
       </footer>
-    </>
+    </div>
   );
 }
