@@ -27,24 +27,9 @@ export default async function StudyList(props: TStudyListProps) {
   console.log(data);
 
   const handleViewAllStudies = () => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set('tab', '스터디');
-
-    if (keyword) {
-      newSearchParams.set('keyword', keyword);
-    }
-
-    if (filters) {
-      Object.entries(filters).forEach(([key, value]) => {
-        if (Array.isArray(value)) {
-          newSearchParams.set(key, value.join(','));
-        } else if (value) {
-          newSearchParams.set(key, value.toString());
-        }
-      });
-    }
-
-    router.push(`/search/result?${newSearchParams.toString()}`);
+    const currentParams = new URLSearchParams(searchParams.toString());
+    currentParams.set('tab', '스터디');
+    return `/search/result?${currentParams.toString()}`;
   };
 
   return (
@@ -82,7 +67,7 @@ export default async function StudyList(props: TStudyListProps) {
         {isFull && (
           <GrayFullLink
             content="스터디 전체보기"
-            onClick={handleViewAllStudies}
+            moveLink={handleViewAllStudies()}
           />
         )}
       </div>

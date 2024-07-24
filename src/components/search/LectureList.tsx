@@ -26,24 +26,9 @@ export default function LectureList(props: TLectureListProps) {
   }
 
   const handleViewAllLectures = () => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set('tab', '강의');
-
-    if (keyword) {
-      newSearchParams.set('keyword', keyword);
-    }
-
-    if (filters) {
-      Object.entries(filters).forEach(([key, value]) => {
-        if (Array.isArray(value)) {
-          newSearchParams.set(key, value.join(','));
-        } else if (value) {
-          newSearchParams.set(key, value.toString());
-        }
-      });
-    }
-
-    router.push(`/search/result?${newSearchParams.toString()}`);
+    const currentParams = new URLSearchParams(searchParams.toString());
+    currentParams.set('tab', '강의');
+    return `/search/result?${currentParams.toString()}`;
   };
 
   return (
@@ -75,7 +60,7 @@ export default function LectureList(props: TLectureListProps) {
         {isFull && (
           <GrayFullLink
             content="강의 전체보기"
-            onClick={handleViewAllLectures}
+            moveLink={handleViewAllLectures()}
           />
         )}
       </div>
