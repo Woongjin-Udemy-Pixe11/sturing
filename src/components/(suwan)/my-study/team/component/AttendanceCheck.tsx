@@ -1,3 +1,6 @@
+import { useMemberStore } from '@/store/memberStore';
+import { useMyStudyStore } from '@/store/myStudyStore';
+import { patchMember } from '@/utils/my-study-main/fetch';
 import { useEffect, useState } from 'react';
 import { FaCircleCheck } from 'react-icons/fa6';
 
@@ -20,6 +23,8 @@ type TAttendanceCheckProps = {
 
 export default function AttendanceCheck(props: TAttendanceCheckProps) {
   const { member, updateAttendNum } = props;
+  const { studyId } = useMyStudyStore();
+  const { fetchMemberList } = useMemberStore();
 
   const [checked, setChecked] = useState(false);
 
@@ -35,26 +40,11 @@ export default function AttendanceCheck(props: TAttendanceCheckProps) {
     const newCheckedState = !checked;
     setChecked(newCheckedState);
     updateAttendNum(newCheckedState);
-
     try {
-      const response = await fetch(`/api/study-member?id=${member._id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          today: today,
-          attended: newCheckedState,
-          studyId: member.studyId,
-        }),
-      });
+      await patchMember(studyId, member._id, today, newCheckedState);
 
-      if (!response.ok) {
-        throw new Error('Failed to update attendance');
-      }
+      fetchMemberList();
     } catch (error) {
-      console.error('Error updating attendance:', error);
-      // 에러 발생 시 체크박스 상태를 원래대로 되돌립니다.
       setChecked(!newCheckedState);
       updateAttendNum(!newCheckedState);
     }

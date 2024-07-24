@@ -1,23 +1,27 @@
 'use client';
 import { TTdo } from '@/dummy/studyMemberTodo';
 
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import Todo from './Todo';
 import { useCalendarStore } from '@/store/calendarStore';
 import { postTodoInfo } from '@/lib/actions/todoAction';
+import { useMyStudyStore } from '@/store/myStudyStore';
 
 export default function Todos() {
-  const { date, todoList, studyId, userId, fetchTodoList } = useCalendarStore();
+  const { studyId, userId } = useMyStudyStore();
+  const { date, todoList, fetchTodoList } = useCalendarStore();
   let selectedDate = date.toDateString();
 
   const [todoInfo, setTodoInfo] = useState({
-    studyId: studyId,
-    userId: userId,
+    studyId,
+    userId,
     todoContent: '',
     todoCompleted: false,
-    date: date,
+    date,
   });
   const [count, setCout] = useState(0);
+  console.log('🍎', todoInfo);
+
   const onChangeTodo = (e: any) => {
     setTodoInfo((prev) => ({
       ...prev,
@@ -25,16 +29,20 @@ export default function Todos() {
     }));
   };
   const onSubmitTodo = async () => {
-    postTodoInfo(todoInfo);
-    setTodoInfo((prev) => ({
-      ...prev,
-      todoContent: '',
-    }));
-
-    fetchTodoList();
+    try {
+      const result = await postTodoInfo(todoInfo);
+      console.log(result);
+      if (result.success) {
+        setTodoInfo((prev) => ({
+          ...prev,
+          todoContent: '',
+        }));
+        fetchTodoList();
+      }
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
   };
-
-  console.log('✅', todoList);
 
   useLayoutEffect(() => {
     const todoCount = todoList.filter(
@@ -42,6 +50,14 @@ export default function Todos() {
     ).length;
     setCout(todoCount);
   }, [date, todoList]);
+
+  useEffect(() => {
+    setTodoInfo((prev) => ({
+      ...prev,
+      studyId,
+      userId,
+    }));
+  }, [studyId, userId]);
 
   return (
     <>

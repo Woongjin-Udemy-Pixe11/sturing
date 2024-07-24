@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { fetchSchedule } from '@/lib/actions/fetchMyStudy';
 import { fetchTodos } from '@/lib/actions/todoAction';
+import { useMyStudyStore } from './myStudyStore';
 
 type CalendarState = {
   date: Date;
@@ -33,8 +34,8 @@ export const useCalendarStore = create<CalendarState>((set, get) => ({
     set({ scheduleList });
   },
   fetchTodoList: async () => {
-    const { studyId, userId } = get();
-    console.log(studyId, userId);
+    const studyId = useMyStudyStore.getState().studyId;
+    const userId = useMyStudyStore.getState().userId;
     const todoList = await fetchTodos(studyId, userId);
     set({ todoList });
   },

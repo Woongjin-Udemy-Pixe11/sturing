@@ -8,9 +8,11 @@ import { fetchTodos } from '@/lib/actions/todoAction';
 import { FaCircleCheck } from 'react-icons/fa6';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
+import { useMemberStore } from '@/store/memberStore';
 
 export default function TeamTodo(props: any) {
-  const { studyId, memberData, leaderId } = props;
+  const { studyId, leaderId } = props;
+  const { memberList } = useMemberStore();
   const today = new Date().toDateString();
   const [clickedMember, setClickedMember] = useState(leaderId);
   const [todos, setTodos] = useState([]);
@@ -44,7 +46,7 @@ export default function TeamTodo(props: any) {
 
           <div className="text-[1.4rem] pt-[2rem] ">
             <div className="flex justify-around items-center text-[1.4rem] gap-[1rem]">
-              {memberData.map((member: any) => (
+              {memberList.map((member: any) => (
                 <div
                   onClick={() => onClickMember(member.userId._id)}
                   key={member.userId._id}

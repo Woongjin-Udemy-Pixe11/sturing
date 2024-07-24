@@ -45,7 +45,6 @@ export default function NoticeForm(props: NoticeFormProps) {
   const [previewUrl, setPreviewUrl] = useState<string | null>(
     defaultImage ? defaultImage : null,
   );
-  console.log(typeof selectedImg);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -120,7 +119,7 @@ export default function NoticeForm(props: NoticeFormProps) {
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 />
                 <div className="w-[7rem] h-[7rem] border border-gray-300 flex items-center justify-center rounded-[0.5rem]">
-                  <img src="images/form/insert-image.svg" />
+                  <img src="/images/form/insert-image.svg" />
                 </div>
               </div>
               {previewUrl && (
