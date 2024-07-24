@@ -1,7 +1,7 @@
 'use client';
 import { TTdo } from '@/dummy/studyMemberTodo';
 
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import Todo from './Todo';
 import { useCalendarStore } from '@/store/calendarStore';
 import { postTodoInfo } from '@/lib/actions/todoAction';
@@ -20,6 +20,7 @@ export default function Todos() {
     date,
   });
   const [count, setCout] = useState(0);
+  console.log('🍎', todoInfo);
 
   const onChangeTodo = (e: any) => {
     setTodoInfo((prev) => ({
@@ -49,6 +50,14 @@ export default function Todos() {
     ).length;
     setCout(todoCount);
   }, [date, todoList]);
+
+  useEffect(() => {
+    setTodoInfo((prev) => ({
+      ...prev,
+      studyId,
+      userId,
+    }));
+  }, [studyId, userId]);
 
   return (
     <>
