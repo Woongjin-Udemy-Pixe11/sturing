@@ -2,15 +2,14 @@
 
 import { signOut } from 'next-auth/react';
 
-export function DelteUserModal({
-  id,
-  show,
-  onClose,
-}: {
-  id: any;
-  show: any;
-  onClose: any;
-}) {
+type TDeleteUserModalProps = {
+  id: string;
+  show: boolean;
+  onClose: () => void;
+};
+
+export function DelteUserModal(props: TDeleteUserModalProps) {
+  const { id, show, onClose } = props;
   if (!show) return null;
   const deleteUser = async (id: string) => {
     try {

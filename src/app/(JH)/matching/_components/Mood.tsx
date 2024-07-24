@@ -2,8 +2,14 @@ import FlexContainer from '@/components/(JH)/matching/FlexContainer';
 import SelectMatching from '@/components/(JH)/matching/SelectMatching';
 import { emojiLabelList } from '@/constant/emojiLabelList';
 
-export default function Mood({ moods, onClickMood, nickname }: any) {
-  let 대표 = moods[0];
+type Tmoodprops = {
+  moods: string[];
+  onClickMood: (mood: string) => void;
+  nickname: string;
+};
+
+export default function Mood(props: Tmoodprops) {
+  const { moods, onClickMood, nickname } = props;
   return (
     <div className="w-full px-[1.6rem] py-[2rem]">
       <section>
@@ -19,9 +25,8 @@ export default function Mood({ moods, onClickMood, nickname }: any) {
         {emojiLabelList.map((label) => {
           let count = moods.indexOf(label.title);
           return (
-            <div className="relative">
+            <div className="relative" key={label.title}>
               <SelectMatching
-                key={label.title}
                 type="mood"
                 onClick={() => {
                   onClickMood(label.title);

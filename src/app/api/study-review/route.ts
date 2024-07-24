@@ -2,6 +2,7 @@ import connectDB from '@/lib/db';
 import { StudyReview } from '@/lib/schemas/studyReviewSchema';
 import { Study } from '@/lib/schemas/studySchema';
 import { User } from '@/lib/schemas/userSchema';
+import { TstudyReview } from '@/types/TStudyReview';
 import { revalidatePath } from 'next/cache';
 
 export async function GET(request: Request) {
@@ -16,7 +17,7 @@ export async function GET(request: Request) {
 
     // 마이페이지 리뷰
     if (id) {
-      let reviewList = await StudyReview.find({
+      let reviewList: TstudyReview[] = await StudyReview.find({
         evaluateduser: `${id}`,
       }).populate({ path: 'userId', select: 'nickname image' });
       console.log(reviewList);

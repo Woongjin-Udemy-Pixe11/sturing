@@ -1,7 +1,14 @@
 import MatchingContainer from '@/components/(JH)/matching/MatchingContainer';
 import { FaCheck } from 'react-icons/fa6';
 
-export default function Type({ studyType, onClickStudyType, nickname }: any) {
+type Ttype = {
+  studyType: string;
+  onClickStudyType: (field: string) => void;
+  nickname: string;
+};
+
+export default function Type(props: Ttype) {
+  const { studyType, onClickStudyType, nickname } = props;
   return (
     <div className="w-full px-[1.4rem] h-">
       <section className="py-[2rem] ">

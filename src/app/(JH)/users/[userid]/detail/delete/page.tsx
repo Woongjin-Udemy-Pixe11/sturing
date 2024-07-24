@@ -3,19 +3,23 @@ import DelteUserModal from '@/components/(JH)/users/DeleteModal';
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import { useState } from 'react';
 
-export default function page({ params }: { params: any }) {
+type TdeleteProps = {
+  params: {
+    userid: string;
+  };
+};
+
+export default function page(props: TdeleteProps) {
+  const { params } = props;
   const [isOpen, setIsOpen] = useState(false);
   const id = params.userid;
+  const onCloseModal = () => {
+    setIsOpen(false);
+  };
 
   return (
     <main>
-      <DelteUserModal
-        id={id}
-        show={isOpen}
-        onClose={() => {
-          setIsOpen(false);
-        }}
-      />
+      <DelteUserModal id={id} show={isOpen} onClose={onCloseModal} />
       <MyPageHeader>회원 탈퇴</MyPageHeader>
       <section className="text-headline-2 font-bold px-[1.6rem] py-[3.2rem]">
         <h1>정말 탈퇴하시겠어요?</h1>

@@ -5,13 +5,12 @@ import FlexContainer from '@/components/(JH)/matching/FlexContainer';
 
 type TInterestProps = {
   interest: string[];
-  onClickInterest: any;
-  nickname: any;
+  onClickInterest: (field: string) => void;
+  nickname: string;
 };
 
 export default function Interest(props: TInterestProps) {
   const { interest, onClickInterest, nickname } = props;
-  let 대표 = interest[0];
 
   return (
     <div className="w-full px-[1.6rem] py-[2rem]">
@@ -30,9 +29,8 @@ export default function Interest(props: TInterestProps) {
           .map((label) => {
             let count = interest.indexOf(label.title);
             return (
-              <div className="relative">
+              <div className="relative" key={label.title}>
                 <SelectMatching
-                  key={label.title}
                   type="interest"
                   onClick={() => {
                     onClickInterest(label.title);

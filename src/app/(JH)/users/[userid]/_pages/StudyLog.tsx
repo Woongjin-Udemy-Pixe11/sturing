@@ -1,9 +1,16 @@
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import Card from '@/components/common/Card';
 import { getUserStudies } from '@/app/api/study/user/route';
+import { TgetUserStudies } from '@/types/TgetUserStudy';
 
-export default async function StudyLog({ id }: { id: any }) {
-  const userstudy = await getUserStudies(id);
+type TstudyLogPorps = {
+  id: string;
+};
+
+export default async function StudyLog(props: TstudyLogPorps) {
+  const { id } = props;
+  const userstudy: TgetUserStudies = await getUserStudies(id);
+  console.log(userstudy);
   if (userstudy.completed.length === 0) {
     return <div>아직 스터디 이력이없습니다.</div>;
   }
@@ -14,9 +21,9 @@ export default async function StudyLog({ id }: { id: any }) {
         <div className="grid grid-cols-2 gap-3 m-auto w-full">
           {userstudy.completed &&
             userstudy.completed.map((study) => (
-              <div key={study.studyName} id={study.studyId}>
+              <div key={study.studyName} id={study._id}>
                 <Card
-                  studyId={study.studyId}
+                  studyId={study._id}
                   studyImage={study.studyImage}
                   studyMeetings={study.studyMeetings}
                   studyType={study.studyType}
