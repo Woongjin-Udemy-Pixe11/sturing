@@ -107,10 +107,7 @@ export async function PATCH(request: Request) {
     );
 
     await member.save();
-    return Response.json({
-      message: 'Attendance updated successfully',
-      member,
-    });
+    return Response.json(member);
   } catch (error) {
     console.error('Error', error);
     return Response.json({ error: 'Failed' }, { status: 500 });

@@ -1,4 +1,6 @@
+'use client';
 import { studyMember } from '@/dummy/studyMember';
+import { useMemberStore } from '@/store/memberStore';
 type TStudyMember = {
   name: string;
   profileImage: string;
@@ -6,8 +8,9 @@ type TStudyMember = {
   isLeader?: boolean;
 };
 
-export default function Percent(props: any) {
-  const { memberData } = props;
+export default function Percent() {
+  const { memberList } = useMemberStore();
+  console.log('💧', memberList);
   const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => (
     <div className="w-full  bg-gray-200 rounded-full h-2.5 mt-2">
       <div
@@ -25,7 +28,7 @@ export default function Percent(props: any) {
           </div>
 
           <div className="space-y-[2rem] py-[2rem]">
-            {memberData.map((member: any) => (
+            {memberList.map((member: any) => (
               <div
                 key={member._id}
                 className="flex items-center space-x-[1rem]"

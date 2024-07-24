@@ -2,27 +2,13 @@
 import { useState, useEffect } from 'react';
 
 import AttendanceCheck from './component/AttendanceCheck';
-
-const membersAttend = [
-  {
-    _id: '66910c9ca54aaa086d570bcd',
-    studyId: '6690f2459f83f441c5237b0d',
-    userId: {
-      _id: '668f82e91e91188d1aed5b61',
-      nickname: '스터링22870',
-      image: '/images/ungin_profile.png',
-    },
-    attendance: [],
-    studyProgress: 0,
-    __v: 0,
-  },
-];
+import { fetchMember } from '@/utils/my-study-main/fetch';
+import { useMyStudyStore } from '@/store/myStudyStore';
+import { useMemberStore } from '@/store/memberStore';
 
 export default function Attend(props: any) {
-  const { memberData } = props;
-
+  const { memberList } = useMemberStore();
   const [attendNum, setAttendNum] = useState<number>(0);
-  // console.log('🥶', memberData);
 
   const updateAttendNum = (isChecked: boolean) => {
     setAttendNum((prev) => (isChecked ? prev + 1 : prev - 1));
@@ -32,11 +18,12 @@ export default function Attend(props: any) {
 
   useEffect(() => {
     // 초기 출석 수 계산
-    const initialAttendNum = memberData.filter((member: any) =>
+    const initialAttendNum = memberList.filter((member: any) =>
       member.attendance.includes(today),
     ).length;
     setAttendNum(initialAttendNum);
-  }, [memberData]);
+    //fetchmember
+  }, [memberList]);
 
   return (
     <>
@@ -45,14 +32,14 @@ export default function Attend(props: any) {
           <div className="flex items-center border-b-[0.1rem] border-gray-300 pb-4">
             <h2 className="text-[1.6rem] font-semibold">출석체크 현황</h2>
             <span className="text-[1.4rem] font-semibold text-main-600 px-[1rem]">
-              {attendNum}/{memberData.length}
+              {attendNum}/{memberList.length}
             </span>
           </div>
 
           <div className="w-full flex flex-row justify-between text-[1.4rem] p-[2rem]">
-            {memberData.map((member: any) => (
+            {memberList.map((member: any) => (
               <AttendanceCheck
-                key={member.id}
+                key={member.userId._id}
                 member={member}
                 updateAttendNum={updateAttendNum}
               />
