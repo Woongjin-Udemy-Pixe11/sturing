@@ -6,7 +6,7 @@ import React, { useState, useMemo } from 'react';
 import { TLectureData } from './CollectStudyClient';
 
 type TProps = {
-  lectureData: TLectureData;
+  lectureData: TLectureData | undefined;
   step: any;
   setStep: any;
   study: TFetchStudy;
@@ -29,13 +29,18 @@ export default function SelectCateGory(props: TProps) {
   return (
     <div className="px-[2rem] py-[2rem]">
       <section>
-        <h1 className="font-bold text-headline-2 mb-[2rem]">선택한 강의</h1>
-        <article className="bg-gray-200 px-[2rem] py-[1.2rem] rounded-md border border-gray-300">
-          <h2>{lectureData.lectureName}</h2>
-          <h3 className="text-gray-600 text-content-1 mt-[.4rem]">
-            {lectureData.lectureInstructor}
-          </h3>
-        </article>
+        {lectureData && (
+          <>
+            <h1 className="font-bold text-headline-2 mb-[2rem]">선택한 강의</h1>
+            <article className="bg-gray-200 px-[2rem] py-[1.2rem] rounded-md border border-gray-300">
+              <h2>{lectureData.lectureName}</h2>
+              <h3 className="text-gray-600 text-content-1 mt-[.4rem]">
+                {lectureData.lectureInstructor}
+              </h3>
+            </article>
+          </>
+        )}
+
         <article className="py-[2rem]">
           <h2 className="text-content-2">카테고리</h2>
           <div className="flex py-[1.2rem] flex-wrap gap-2">

@@ -30,7 +30,6 @@ export default function CollectStudyClient(props: TProps) {
   const { leaderId, lectureId, lectureData } = props;
   const router = useRouter();
 
-  console.log(lectureData);
   let initialStudy: TFetchStudy;
   if (lectureId && lectureData) {
     initialStudy = {
@@ -58,7 +57,7 @@ export default function CollectStudyClient(props: TProps) {
       studyContent: '',
       studyType: '',
       studyLevel: '',
-      studyMember: 0,
+      studyMember: 3,
       studyLecture: null,
       studyCategory: '',
       studyDeadline: '',
@@ -105,29 +104,37 @@ export default function CollectStudyClient(props: TProps) {
   const onClickMember = (member: number) => {
     dispatch({ type: 'setMember', payload: member });
   };
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmitHandler = async () => {
-    const fileName = `${Date.now()}-${Math.random()}`;
-    const { data, error } = await supabase.storage
-      .from('images')
-      .upload(fileName, study.studyImage);
+    if (isSubmitting) return;
 
-    if (error) {
-      console.error('이미지 업로드 실패:', error);
-      return;
+    try {
+      setIsSubmitting(true);
+
+      const fileName = `${Date.now()}-${Math.random()}`;
+      const { data, error } = await supabase.storage
+        .from('images')
+        .upload(fileName, study.studyImage);
+
+      if (error) {
+        console.error('이미지 업로드 실패:', error);
+        return;
+      }
+      const { data: urlData } = supabase.storage
+        .from('images')
+        .getPublicUrl(fileName);
+      const supaUrl = urlData.publicUrl;
+
+      const updatedStudy = { ...study, studyImage: supaUrl };
+
+      await postStudy(updatedStudy, leaderId);
+      router.replace('/make-study-form/complete');
+    } catch (error) {
+      console.error('제출 중 오류 발생:', error);
+    } finally {
+      setIsSubmitting(false);
     }
-    const { data: urlData } = supabase.storage
-      .from('images')
-      .getPublicUrl(fileName);
-    const supaUrl = urlData.publicUrl;
-
-    // console.log('타입', typeof supaUrl);
-
-    //스터디 복제해서 이미지만 변경
-    const updatedStudy = { ...study, studyImage: supaUrl };
-
-    await postStudy(updatedStudy, leaderId);
-    router.push('/make-study-form/complete');
   };
   //TODO:any 수정
   const collectstep: any = {
