@@ -21,9 +21,7 @@ export default async function Page({
   const studyId = params.studyId;
 
   const studyData = await fetchStudy(studyId);
-
   const taskList = await fetchBoardList('task', studyId);
-
   const leaderId = studyData.leaderId;
   return (
     <>

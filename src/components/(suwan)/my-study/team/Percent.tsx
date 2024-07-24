@@ -10,7 +10,7 @@ type TStudyMember = {
 
 export default function Percent() {
   const { memberList } = useMemberStore();
-  console.log('💧', memberList);
+
   const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => (
     <div className="w-full  bg-gray-200 rounded-full h-2.5 mt-2">
       <div

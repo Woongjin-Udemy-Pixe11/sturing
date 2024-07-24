@@ -50,7 +50,7 @@ export async function patchMember(
 export async function fetchBoardList(boardType: string, studyId: string) {
   try {
     const res = await fetch(
-      `/api/study-board?boardType=${boardType}&studyId=${studyId}`,
+      `${process.env.LOCAL_URL}/api/study-board?boardType=${boardType}&studyId=${studyId}`,
       { cache: 'no-store' },
     );
     return res.json();

@@ -19,6 +19,7 @@ export default async function page({
   const userid = session?.user?.id;
 
   const leaderId = data.leaderId;
+  console.log('🍆', taskList);
 
   return (
     <>
