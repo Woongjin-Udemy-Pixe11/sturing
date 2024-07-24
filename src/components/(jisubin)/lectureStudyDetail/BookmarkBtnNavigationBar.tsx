@@ -64,9 +64,9 @@ export default function BookmarkBtnNavigationBar(
       ) : (
         <button
           className="w-full ml-[2rem] h-[5rem] rounded-[0.5rem] bg-gray-600 font-semibold text-white select-none"
-          disabled={true}
+          disabled
         >
-          <Link href={link}>모집 종료</Link>
+          모집 완료
         </button>
       )}
     </div>
