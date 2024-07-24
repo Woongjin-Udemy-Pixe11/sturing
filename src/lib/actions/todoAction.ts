@@ -13,8 +13,15 @@ export async function fetchTodos(studyId: string, userId: string) {
 }
 
 //TODO:캐시처리할것
-
-export async function postTodoInfo(data: any) {
+type TTodo = {
+  studyId: string;
+  userId: string;
+  todoContent: string;
+  todoCompleted: boolean;
+  date: Date;
+};
+export async function postTodoInfo(data: TTodo) {
+  console.log('🥑', data);
   try {
     const response = await fetch(`http://localhost:3000/api/study-todo`, {
       method: 'POST',
@@ -23,16 +30,13 @@ export async function postTodoInfo(data: any) {
       },
       body: JSON.stringify(data),
     });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
 
     const result = await response.json();
 
-    console.log('Server Response:', result);
-    return result;
+    return { success: true, result };
   } catch (error) {
     console.log('Error checkList info', error);
+    return { success: false, message: 'Error Post Comment' };
   }
 }
 export async function patchTodoInfo(data: any) {

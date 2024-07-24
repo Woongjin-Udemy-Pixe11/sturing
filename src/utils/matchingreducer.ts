@@ -26,6 +26,10 @@ export default function matchingreducer(state: Tmatching, action: TActionType) {
       } else {
         if (newInterests.length === 3) {
           newInterests.shift();
+          return {
+            ...state,
+            interests: [action.payload, ...newInterests],
+          };
         }
         return {
           ...state,
@@ -33,7 +37,6 @@ export default function matchingreducer(state: Tmatching, action: TActionType) {
         };
       }
     }
-    //TODO:만약 이미선택된것이 한번더 선택된다면, 마찬가지로 취소가 되어야하는지?
     case 'setLevel': {
       return {
         ...state,
@@ -83,6 +86,10 @@ export default function matchingreducer(state: Tmatching, action: TActionType) {
       } else {
         if (newMood.length === 3) {
           newMood.shift();
+          return {
+            ...state,
+            preferMood: [action.payload, ...newMood],
+          };
         }
         return {
           ...state,
@@ -93,7 +100,6 @@ export default function matchingreducer(state: Tmatching, action: TActionType) {
     case 'clearlevel': {
       const newinterest: string[] = action.payload.interests;
       const prevLevel = action.payload.personlevel;
-      //TODO:타입에러수정
       for (const key of Object.keys(prevLevel)) {
         if (!newinterest.includes(key)) {
           delete prevLevel[`${key}`];

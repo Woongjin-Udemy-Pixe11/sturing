@@ -1,5 +1,4 @@
 'use client';
-//TODO:username 넣을것, Footer 분리해서 각 컴포넌트에 넣고, 스타일 및 함수재정리
 
 import MatchingFooter from '@/components/(JH)/matching/MatchingFooter';
 import { postMatchingInfo, updateMatchingInfo } from '@/utils/matchingUtils';
@@ -23,8 +22,6 @@ export type Tmatching = {
   preferRegion: string[];
   preferMood: string[];
 };
-
-//TODO:전역으로 Tmatching 을 제외하는 방향도 나쁘지않을것같다.
 
 export default function ClientMatching({ data, session, exist }: any) {
   let username = session.user.name;
@@ -93,7 +90,6 @@ export default function ClientMatching({ data, session, exist }: any) {
 
     setStep((prev) => prev - 1);
   };
-  //TODO:dispatch 함수의 타입작성하기
   const stepComponet: any = {
     1: (
       <Interest

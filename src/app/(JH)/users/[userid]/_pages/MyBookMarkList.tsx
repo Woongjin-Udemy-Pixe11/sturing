@@ -1,12 +1,21 @@
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import Card from '@/components/common/Card';
+import { getSession } from '@/utils/getSessions';
 import * as Tabs from '@radix-ui/react-tabs';
+import Link from 'next/link';
 
-export default async function MyBookMarkList({ data }: any) {
+export default async function MyBookMarkList() {
+  const session = await getSession();
+  const id = session?.user?.id;
+  const data = await (
+    await fetch(`http://localhost:3000/api/bookmark?id=${id}`, {
+      cache: 'no-store',
+    })
+  ).json();
   return (
     <main>
       <MyPageHeader>내 관심 목록</MyPageHeader>
-      <Tabs.Root defaultValue="스터디" className="border border-gray-300">
+      <Tabs.Root defaultValue="스터디">
         <Tabs.List className="flex">
           <Tabs.Trigger
             value="스터디"
@@ -23,20 +32,23 @@ export default async function MyBookMarkList({ data }: any) {
             <div className="grid grid-cols-2 gap-[1rem] m-auto w-full">
               {data &&
                 data.map((study: any, index: any) => (
-                  <div key={study.studyName} id={String(index)}>
-                    <Card
-                      studyId={study._id}
-                      studyImage={study.studyImage}
-                      studyMeetings={study.studyMeetings}
-                      studyType={study.studyType}
-                      studyCategory={study.studyCategory}
-                      studyName={study.studyName}
-                      studyStart={study.studyStart}
-                      studyEnd={study.studyEnd}
-                      studyPlace={study.studyPlace}
-                      studyJoinMember={study.studyJoinMember}
-                      studyMember={study.studyMember}
-                    />
+                  <div key={study.studyId}>
+                    <Link href={`/study-detail/${study._id}`}>
+                      <Card
+                        userId={id}
+                        studyId={study._id!}
+                        studyImage={study.studyImage}
+                        studyMeetings={study.studyMeetings}
+                        studyType={study.studyType}
+                        studyCategory={study.studyCategory}
+                        studyName={study.studyName}
+                        studyStart={study.studyStart}
+                        studyEnd={study.studyEnd}
+                        studyPlace={study.studyPlace}
+                        studyJoinMember={study.studyJoinMember}
+                        studyMember={study.studyMember}
+                      />
+                    </Link>
                   </div>
                 ))}
             </div>

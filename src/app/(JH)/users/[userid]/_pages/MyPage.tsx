@@ -25,7 +25,6 @@ export default async function MyPage({
   if (data === null) {
     return '아직 유저가 없습니다.';
   }
-  console.log(data);
 
   //TODO: 404 페이지 혹은 유저없음 페이지 만들기
 

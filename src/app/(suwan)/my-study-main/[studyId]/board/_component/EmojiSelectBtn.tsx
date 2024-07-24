@@ -83,16 +83,16 @@ export default function EmojiSelectBtn(props: TProps) {
         ({ name, emoji }) => (
           <div
             key={name}
-            className={`w-[3.8rem] h-[2.2rem] rounded-[8rem]  border-[0.1rem] ${
+            className={`flex items-center justify-center w-[3.8rem] h-[2.2rem] rounded-[8rem] border-[0.1rem] ${
               isIconSelected(name)
                 ? 'bg-main-100 border-main-600'
                 : 'border-gray-300'
             }`}
           >
-            <div className="flex flex-row items-center justify-center gap-x-[0.4rem] text-content-2">
+            <div className="flex flex-row items-center justify-center text-content-2">
               <button onClick={() => onClickIcon(name)}>
                 {emoji}
-                <span>{getIconUserCount(name)}</span>
+                <span className="pl-[.2rem]">{getIconUserCount(name)}</span>
               </button>
             </div>
           </div>

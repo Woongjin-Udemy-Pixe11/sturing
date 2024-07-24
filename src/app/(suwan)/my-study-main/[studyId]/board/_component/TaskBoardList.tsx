@@ -1,4 +1,5 @@
 import { TBlackboard } from '@/types/TStudyBoard';
+import { dateCalculate } from '@/utils/my-study-main/dateCalculate';
 import Link from 'next/link';
 
 type TTaskListProps = {
@@ -11,7 +12,8 @@ export default function TaskBoardList(props: TTaskListProps) {
   return (
     <>
       <ul className="px-[1.6rem] py-[1.8rem] flex flex-col min-h-[80vh] bg-white">
-        {taskList.length > 0 &&
+        {taskList &&
+          taskList.length > 0 &&
           taskList.map((task) => (
             <li
               key={task._id}
@@ -24,18 +26,18 @@ export default function TaskBoardList(props: TTaskListProps) {
                 <div className="w-full">
                   <div className="flex justify-between pb-[1.2rem]">
                     <span className="flex items-center gap-[0.8rem]">
-                      <span className="w-[2.8rem] h-[2.8rem]">
-                        <img
-                          src={task.writerId.image}
-                          alt=""
-                          className="rounded-full aspect-square object-cover"
-                        />
-                      </span>
+                      <img
+                        src={task.writerId.image}
+                        alt=""
+                        className="border border-gray-300 w-[3.8rem] rounded-full aspect-square object-cover"
+                      />
                       <span className="text-gray-900 text-content-1 font-semibold">
                         {task.writerId.nickname}
                       </span>
                     </span>
-                    <span className="text-content-2 text-gray-600">{''}</span>
+                    <span className="text-content-2 text-gray-600">
+                      {dateCalculate(task.createdAt)}
+                    </span>
                   </div>
                   <div className="w-full flex justify-between gap-[1.2rem]">
                     <div className="flex flex-col gap-[0.4rem] h-[6.2rem]">

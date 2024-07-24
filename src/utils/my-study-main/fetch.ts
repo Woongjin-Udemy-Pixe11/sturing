@@ -13,10 +13,38 @@ export async function fetchStudy(studyId: any) {
 }
 
 export async function fetchMember(studyId: any) {
-  const res = await fetch(
-    `${process.env.LOCAL_URL}/api/study-member?studyId=${studyId}`,
-  );
-  return res.json();
+  try {
+    const res = await fetch(`/api/study-member?studyId=${studyId}`);
+    return res.json();
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
+export async function patchMember(
+  studyId: string,
+  memberId: string,
+  today: string,
+  attended: boolean,
+) {
+  try {
+    const response = await fetch(`/api/study-member?id=${memberId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        today,
+        attended,
+        studyId,
+      }),
+    });
+
+    return response.json();
+  } catch (error) {
+    console.error('Error updating attendance:', error);
+  }
 }
 
 export async function fetchBoardList(boardType: string, studyId: string) {
@@ -55,14 +83,14 @@ export async function fetchBlackboard(boardType: string, blackboardId: string) {
   }
 }
 
-export async function patchView(noticeId: string) {
+export async function patchView(noticeId: string, boardType: string) {
   try {
     const response = await fetch(`${process.env.LOCAL_URL}/api/study-board`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ noticeId }),
+      body: JSON.stringify({ noticeId, boardType }),
     });
 
     if (!response.ok) {
