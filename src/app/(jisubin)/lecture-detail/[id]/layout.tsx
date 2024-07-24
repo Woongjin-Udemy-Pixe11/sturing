@@ -59,10 +59,11 @@ export default async function LectureDetailLayout(
       {children}
       <div className="flex justify-center">
         <BookmarkBtnNavigationBar
-          text="이 강의로 스터디 개설하기"
+          isApply={true}
           link={`/make-study-form/${id}`}
           userId={userId}
           targetId={id}
+          target="lecture"
         />
       </div>
     </>
