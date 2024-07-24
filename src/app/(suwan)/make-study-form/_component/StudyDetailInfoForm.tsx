@@ -3,7 +3,6 @@
 //TODO: Select 공통스타일로 뺄것인가?
 import Label from '@/components/common/label/Label';
 import SizeUpLabel from '@/components/common/label/SizeUpLabel';
-import RangeCalendar from '@/components/common/calender/RangeCalendar';
 import { emojiLabelList } from '@/constant/emojiLabelList';
 import SelectInput from './SelectInput';
 import { useEffect, useState, useMemo } from 'react';
@@ -11,6 +10,7 @@ import LongButton from '@/components/common/LongButton';
 import { DateRange } from 'react-day-picker';
 import { differenceInDays, format, addDays } from 'date-fns';
 import { FiCheck } from 'react-icons/fi';
+import Calendar from './Calendar';
 
 export default function StudyDetailInfoForm(props: any) {
   const { step, setStep, study, onClickStepThree } = props;
@@ -22,6 +22,8 @@ export default function StudyDetailInfoForm(props: any) {
 
   const [mood, setMood] = useState<string[]>([]);
   const [checked, setChecked] = useState(false);
+
+  let disabledDay = addDays(new Date(), 3);
 
   let data = {
     start: date?.from && format(date?.from, 'y-MM-dd'),
@@ -81,7 +83,7 @@ export default function StudyDetailInfoForm(props: any) {
         <article className="border-b border-gray-300">
           <h3 className="text-content-1 py-[2rem]">스터디 진행 기간</h3>
           <div className="border-gray-300 border p-[2rem] py-[1.2rem] w-full">
-            <RangeCalendar onChangeDate={onChangeDate} />
+            <Calendar onChangeDate={onChangeDate} disabledDay={disabledDay} />
           </div>
 
           <h2 className="text-red text-content-1 py-[3rem]">
