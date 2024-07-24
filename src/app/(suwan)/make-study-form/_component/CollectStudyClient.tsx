@@ -17,11 +17,12 @@ import { useRouter } from 'next/navigation';
 
 type TProps = {
   leaderId: string;
-  lectureId: string;
+  lectureId?: string;
   lectureName: string;
+  lectureCategor: string;
 };
 export default function CollectStudyClient(props: TProps) {
-  const { leaderId, lectureId, lectureName } = props;
+  const { leaderId, lectureId, lectureName, lectureCategor } = props;
   const router = useRouter();
 
   const mockdata: TFetchStudy = {
@@ -33,7 +34,7 @@ export default function CollectStudyClient(props: TProps) {
     studyLevel: '',
     studyMember: 0,
     studyLecture: lectureId,
-    studyCategory: '',
+    studyCategory: lectureCategor,
     studyDeadline: '',
     studyStart: '',
     studyEnd: '',

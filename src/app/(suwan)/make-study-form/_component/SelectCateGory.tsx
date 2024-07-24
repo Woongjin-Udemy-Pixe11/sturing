@@ -5,18 +5,18 @@ import React, { useState, useMemo } from 'react';
 
 //TODO any 수정
 export default function SelectCateGory(props: any) {
-  const { setStep, onClickStepOne, lectureName } = props;
+  const { setStep, onClickStepOne, lectureName, study } = props;
 
-  const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+  const [category, setCategory] = useState<string>(study.studyCategory);
 
-  const handleClick = (index: number) => {
-    setClickedIndex(index);
-    onClickStepOne(searchLabelList[index].value);
+  const handleClick = (title: string) => {
+    setCategory(title);
+    onClickStepOne(category);
   };
 
   const validate = useMemo(() => {
-    return clickedIndex == null;
-  }, [clickedIndex]);
+    return category == null;
+  }, [category]);
 
   return (
     <>
@@ -35,8 +35,8 @@ export default function SelectCateGory(props: any) {
                 <SizeUpLabel
                   key={index}
                   children={label.title}
-                  isClicked={clickedIndex === index}
-                  onClick={() => handleClick(index)}
+                  isClicked={category === label.title}
+                  onClick={() => handleClick(label.title)}
                 ></SizeUpLabel>
               );
             })}
