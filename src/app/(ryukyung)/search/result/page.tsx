@@ -69,6 +69,7 @@ export default async function page({ searchParams }: { searchParams: any }) {
         </div>
       </div>
       <TabContainer
+        keyword={keyword}
         tabList={tabList}
         initialFilters={filters}
         activeTab={activeTab}

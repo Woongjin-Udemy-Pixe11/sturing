@@ -11,6 +11,7 @@ type TInterestProps = {
 
 export default function Interest(props: TInterestProps) {
   const { interest, onClickInterest, nickname } = props;
+  let 대표 = interest[0];
 
   return (
     <div className="w-full px-[1.6rem] py-[2rem]">
@@ -26,19 +27,29 @@ export default function Interest(props: TInterestProps) {
       <FlexContainer>
         {searchLabelList
           .filter((label) => label.title !== '기타')
-          .map((label) => (
-            <SelectMatching
-              key={label.title}
-              type="interest"
-              onClick={() => {
-                onClickInterest(label.title);
-              }}
-              active={interest.includes(label.title) ? true : false}
-            >
-              <img src={label.imgSrc} alt={label.imgAlt} />
-              <div>{label.title}</div>
-            </SelectMatching>
-          ))}
+          .map((label) => {
+            let count = interest.indexOf(label.title);
+            return (
+              <div className="relative">
+                <SelectMatching
+                  key={label.title}
+                  type="interest"
+                  onClick={() => {
+                    onClickInterest(label.title);
+                  }}
+                  active={interest.includes(label.title) ? true : false}
+                >
+                  <img src={label.imgSrc} alt={label.imgAlt} />
+                  <div>{label.title}</div>
+                </SelectMatching>
+                {count !== -1 && (
+                  <div className="text-blue-600 border border-blue-600 p-2 rounded-full absolute top-1 right-2 text-content-2 w-[12px] h-[12px] flex items-center justify-center">
+                    {count + 1}
+                  </div>
+                )}
+              </div>
+            );
+          })}
       </FlexContainer>
     </div>
   );

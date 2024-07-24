@@ -19,17 +19,19 @@ type TTabListProps = {
     level?: string[];
   };
   activeTab?: string;
+  keyword?: string;
 };
 
 export default function TabContainer({
   tabList,
   initialFilters,
   activeTab = '전체',
+  keyword,
 }: TTabListProps) {
   const router = useRouter();
 
   const handleTabChange = (tabName: string) => {
-    router.push(`?tab=${tabName}`);
+    router.push(`/search/result?keyword=${keyword}&tab=${tabName}`);
   };
 
   return (

@@ -3,6 +3,7 @@ import SelectMatching from '@/components/(JH)/matching/SelectMatching';
 import { emojiLabelList } from '@/constant/emojiLabelList';
 
 export default function Mood({ moods, onClickMood, nickname }: any) {
+  let 대표 = moods[0];
   return (
     <div className="w-full px-[1.6rem] py-[2rem]">
       <section>
@@ -15,19 +16,29 @@ export default function Mood({ moods, onClickMood, nickname }: any) {
         </p>
       </section>
       <FlexContainer>
-        {emojiLabelList.map((label) => (
-          <SelectMatching
-            key={label.title}
-            type="mood"
-            onClick={() => {
-              onClickMood(label.title);
-            }}
-            active={moods.includes(label.title) && true}
-          >
-            <img src={label.imgSrc} alt={label.imgAlt} />
-            <div className="ml-2">{label.title}</div>
-          </SelectMatching>
-        ))}
+        {emojiLabelList.map((label) => {
+          let count = moods.indexOf(label.title);
+          return (
+            <div className="relative">
+              <SelectMatching
+                key={label.title}
+                type="mood"
+                onClick={() => {
+                  onClickMood(label.title);
+                }}
+                active={moods.includes(label.title) && true}
+              >
+                <img src={label.imgSrc} alt={label.imgAlt} />
+                <div className="ml-2">{label.title}</div>
+              </SelectMatching>
+              {count !== -1 && (
+                <div className="text-blue-600 border border-blue-600 p-2 rounded-full absolute top-1 right-2 text-content-2 w-[12px] h-[12px] flex items-center justify-center">
+                  {count + 1}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </FlexContainer>
     </div>
   );

@@ -23,3 +23,7 @@ export const updateImage = async (data: { id: string; url: string }) => {
     console.error('Error UserEdit:', error);
   }
 };
+
+export const updateBookMarkPage = async (id: string) => {
+  revalidatePath(`users/${id}/mybook`);
+};

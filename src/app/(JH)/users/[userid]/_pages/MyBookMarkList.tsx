@@ -1,9 +1,17 @@
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import Card from '@/components/common/Card';
+import { getSession } from '@/utils/getSessions';
 import * as Tabs from '@radix-ui/react-tabs';
 import Link from 'next/link';
 
-export default async function MyBookMarkList({ data, id }: any) {
+export default async function MyBookMarkList() {
+  const session = await getSession();
+  const id = session?.user?.id;
+  const data = await (
+    await fetch(`http://localhost:3000/api/bookmark?id=${id}`, {
+      cache: 'no-store',
+    })
+  ).json();
   return (
     <main>
       <MyPageHeader>내 관심 목록</MyPageHeader>
@@ -24,7 +32,7 @@ export default async function MyBookMarkList({ data, id }: any) {
             <div className="grid grid-cols-2 gap-[1rem] m-auto w-full">
               {data &&
                 data.map((study: any, index: any) => (
-                  <li key={study.studyId}>
+                  <div key={study.studyId}>
                     <Link href={`/study-detail/${study._id}`}>
                       <Card
                         userId={id}
@@ -41,7 +49,7 @@ export default async function MyBookMarkList({ data, id }: any) {
                         studyMember={study.studyMember}
                       />
                     </Link>
-                  </li>
+                  </div>
                 ))}
             </div>
           </Tabs.Content>
