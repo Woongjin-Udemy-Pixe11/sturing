@@ -76,7 +76,7 @@ export default function StudyDetailInfoForm(props: any) {
   };
   return (
     <>
-      <section className="px-[1.6rem] py-[2rem]">
+      <section className="px-[1.6rem] py-[2rem] overflow-auto">
         <h1 className="font-bold text-headline-3">
           스터디 상세 정보를 입력해 주세요.
         </h1>

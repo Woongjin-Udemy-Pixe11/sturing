@@ -196,7 +196,7 @@ export default function CollectStudyClient(props: TProps) {
           취소
         </h2>
         {isModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20">
             <DefaultModal
               onConfirm={onClickModalYes}
               onCancel={onClickModalNo}

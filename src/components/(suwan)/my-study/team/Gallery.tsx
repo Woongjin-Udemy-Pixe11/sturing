@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function Gallery({ taskList }: { taskList: any }) {
   return (
     <>
-      <div className="flex flex-col justify-center items-center w-[90%] mt-[2rem] rounded-[5px] bg-white border border-gray-300">
+      <div className="flex flex-col justify-center items-center w-[90%] my-[2rem] rounded-[5px] bg-white border border-gray-300">
         <div className=" bg-white p-6 rounded-lg w-full px-[2rem] ">
           <div className="flex items-center border-b-[0.1rem] border-gray-300 pb-4">
             <h2 className="text-[1.6rem] font-semibold">팀원 사진 인증</h2>
