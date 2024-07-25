@@ -1,18 +1,22 @@
 'use client';
-//필터검색에서만 사용
+
 import * as React from 'react';
 
 import { addDays, format } from 'date-fns';
-import { DateRange } from 'react-day-picker';
-import { Calendar } from './ui/calendar';
+import { DateRange, DayPickerRangeProps } from 'react-day-picker';
+import { Calendar } from '@/components/common/calender/ui/calendar';
 
 type TRangeCalendarProps = {
   onChangeDate?: (dateRange: DateRange | undefined) => void;
+  disabledDay: any;
 };
 
 export default function RangeCalendar(props: TRangeCalendarProps) {
-  const { onChangeDate } = props;
-  const [date, setDate] = React.useState<DateRange | undefined>();
+  const { onChangeDate, disabledDay } = props;
+  const [date, setDate] = React.useState<DateRange | undefined>({
+    from: addDays(new Date(), 3),
+    to: addDays(new Date(), 6),
+  });
 
   React.useEffect(() => {
     if (onChangeDate) {
@@ -39,10 +43,11 @@ export default function RangeCalendar(props: TRangeCalendarProps) {
         <Calendar
           initialFocus
           mode="range"
-          // defaultMonth={date?.from}
+          defaultMonth={date?.from}
           selected={date}
           onSelect={setDate}
           numberOfMonths={1}
+          disabled={{ before: disabledDay }}
         />
       </div>
     </div>

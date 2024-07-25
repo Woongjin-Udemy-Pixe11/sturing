@@ -20,7 +20,6 @@ export default function Todos() {
     date,
   });
   const [count, setCout] = useState(0);
-  console.log('🍎', todoInfo);
 
   const onChangeTodo = (e: any) => {
     setTodoInfo((prev) => ({

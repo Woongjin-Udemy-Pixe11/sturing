@@ -9,6 +9,7 @@ import UserCardList from '@/components/main/UserCardList';
 import { getSession } from '@/utils/getSessions';
 import dynamic from 'next/dynamic';
 import SearchPart from './(ryukyung)/pages/SearchPart';
+import CreateStudyButton from '@/components/common/CreateStudyButton';
 const StudyCardList = dynamic(
   () => import('@/components/common/StudyCardList'),
 );
@@ -64,6 +65,7 @@ export default async function page() {
         스터링 활동 우수 팀원
       </span>
       <UserCardList />
+      {id && <CreateStudyButton />}
       <Footer />
     </>
   );

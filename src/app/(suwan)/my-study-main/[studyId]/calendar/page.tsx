@@ -22,7 +22,7 @@ export default async function Calender({
     <>
       <Header studyId={studyId} data={data} />
       <CalendarInitializer studyId={studyId} />
-      <div className="bg-gray-100 p-[2rem] h-full">
+      <div className="bg-gray-100 p-[2rem] h-[100%]">
         <Calendar type="schedule" />
         <Schedule isLeader={isLeader} userid={userid} />
       </div>

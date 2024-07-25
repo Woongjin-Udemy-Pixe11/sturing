@@ -14,6 +14,7 @@ import { TFetchStudy } from '@/types/TStudy';
 
 import { studyReducer } from '@/utils/study/studyReducer';
 import { useRouter } from 'next/navigation';
+import DefaultModal from '@/components/common/modal/DefaultModal';
 
 export type TLectureData = {
   lectureName: string;
@@ -30,7 +31,6 @@ export default function CollectStudyClient(props: TProps) {
   const { leaderId, lectureId, lectureData } = props;
   const router = useRouter();
 
-  console.log(lectureData);
   let initialStudy: TFetchStudy;
   if (lectureId && lectureData) {
     initialStudy = {
@@ -58,7 +58,7 @@ export default function CollectStudyClient(props: TProps) {
       studyContent: '',
       studyType: '',
       studyLevel: '',
-      studyMember: 0,
+      studyMember: 3,
       studyLecture: null,
       studyCategory: '',
       studyDeadline: '',
@@ -71,7 +71,6 @@ export default function CollectStudyClient(props: TProps) {
   }
 
   const [step, setStep] = useState<number>(1);
-
   const [study, dispatch] = useReducer<React.Reducer<TFetchStudy, any>>(
     studyReducer,
     initialStudy,
@@ -105,29 +104,37 @@ export default function CollectStudyClient(props: TProps) {
   const onClickMember = (member: number) => {
     dispatch({ type: 'setMember', payload: member });
   };
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmitHandler = async () => {
-    const fileName = `${Date.now()}-${Math.random()}`;
-    const { data, error } = await supabase.storage
-      .from('images')
-      .upload(fileName, study.studyImage);
+    if (isSubmitting) return;
 
-    if (error) {
-      console.error('이미지 업로드 실패:', error);
-      return;
+    try {
+      setIsSubmitting(true);
+
+      const fileName = `${Date.now()}-${Math.random()}`;
+      const { data, error } = await supabase.storage
+        .from('images')
+        .upload(fileName, study.studyImage);
+
+      if (error) {
+        console.error('이미지 업로드 실패:', error);
+        return;
+      }
+      const { data: urlData } = supabase.storage
+        .from('images')
+        .getPublicUrl(fileName);
+      const supaUrl = urlData.publicUrl;
+
+      const updatedStudy = { ...study, studyImage: supaUrl };
+
+      await postStudy(updatedStudy, leaderId);
+      router.replace('/make-study-form/complete');
+    } catch (error) {
+      console.error('제출 중 오류 발생:', error);
+    } finally {
+      setIsSubmitting(false);
     }
-    const { data: urlData } = supabase.storage
-      .from('images')
-      .getPublicUrl(fileName);
-    const supaUrl = urlData.publicUrl;
-
-    // console.log('타입', typeof supaUrl);
-
-    //스터디 복제해서 이미지만 변경
-    const updatedStudy = { ...study, studyImage: supaUrl };
-
-    await postStudy(updatedStudy, leaderId);
-    router.push('/make-study-form/complete');
   };
   //TODO:any 수정
   const collectstep: any = {
@@ -167,15 +174,36 @@ export default function CollectStudyClient(props: TProps) {
       />
     ),
   };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const onClickCancel = () => {
+    setIsModalOpen(true);
+  };
+  const onClickModalYes = async () => {
+    router.back();
+  };
+  const onClickModalNo = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <main>
       <header>
         <h2
-          onClick={() => router.back()}
+          onClick={onClickCancel}
           className="text-content-1 text-gray-700 p-[1.5rem]"
         >
           취소
         </h2>
+        {isModalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20">
+            <DefaultModal
+              onConfirm={onClickModalYes}
+              onCancel={onClickModalNo}
+              message={`정말로 취소하시겠습니까?\n작성한 정보가 저장되지 않습니다.`}
+            />
+          </div>
+        )}
         <div className="w-full bg-gray-400 rounded-full h-[0.4rem]  ">
           <div
             className="bg-main-500 h-[0.4rem] rounded-full"
