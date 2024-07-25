@@ -86,7 +86,7 @@ export default function Card(props: TStudy) {
         />
         {userId && (
           <button
-            className="absolute top-0 right-0 m-[0.8rem] p-[0.15rem] text-white"
+            className="absolute top-0 right-0 m-[0.8rem] p-[0.15rem] text-white drop-shadow-bookmark"
             onClick={onClickBookmark}
           >
             {isBookmarked ? (
