@@ -42,7 +42,10 @@ export default function CreateStudyButton() {
         {isOpen && (
           <div className="w-[16rem] absolute bottom-[calc(11%+5.8rem)] right-[5%] bg-white px-[1.2rem] py-[1rem] rounded-[0.5rem] flex items-center">
             <img src="blue-logo.svg" alt="Icon" className="mr-[1.2rem]" />
-            <Link href="/" className="text-content-1 text-gray-1000">
+            <Link
+              href="/make-study-form/common"
+              className="text-content-1 text-gray-1000"
+            >
               내 스터디 개설하기
             </Link>
           </div>

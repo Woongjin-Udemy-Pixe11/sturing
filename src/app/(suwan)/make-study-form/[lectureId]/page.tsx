@@ -16,7 +16,6 @@ export default async function page({
       `${process.env.LOCAL_URL}/api/lecture/${lectureId}?data=lectureName&data=lectureCategory&data=lectureInstructor`,
     )
   ).json();
-  console.log('🥬', lectureData);
 
   return (
     <>

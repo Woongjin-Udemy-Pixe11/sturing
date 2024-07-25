@@ -15,22 +15,11 @@ const levelOptions: string[] = [
 ];
 
 export default function StudyTemmateForm(props: any) {
-  const {
-    setStep,
-    onClickLevel,
-    onClickMember,
-    study,
-    dispatch,
-    onSubmitHandler,
-  } = props;
-  const router = useRouter();
-  const [level, setLevel] = useState('');
-  const [studyMembers, setStudyMembers] = useState(1);
+  const { setStep, onClickLevel, onClickMember, study, onSubmitHandler } =
+    props;
 
-  let data = {
-    level: study.studyLevel,
-    member: studyMembers,
-  };
+  const [studyMembers, setStudyMembers] = useState(3);
+
   const validate = useMemo(() => {
     return study.studyLevel == '' || study.studyMembers < 1;
   }, [study]);
