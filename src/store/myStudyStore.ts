@@ -7,7 +7,7 @@ type TMyStudyStore = {
   setUserId: (id: string) => void;
 };
 
-export const useMyStudyStore = create<TMyStudyStore>((set, get) => ({
+export const useMyStudyStore = create<TMyStudyStore>((set) => ({
   studyId: '',
   userId: '',
   setStudyId: (id) => set({ studyId: id }),

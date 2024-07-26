@@ -9,7 +9,7 @@ export default function RenderTodo({
 }: {
   studyId: string;
   userId: string;
-}) {
+}): null {
   const { setStudyId, setUserId } = useMyStudyStore();
   const { fetchTodoList } = useCalendarStore();
 

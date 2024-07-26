@@ -7,11 +7,9 @@ type CalendarState = {
   date: Date;
   scheduleList: any[];
   todoList: any[];
-  studyId: string;
-  userId: string;
+
   setDate: (date: Date) => void;
-  setStudyId: (id: string) => void;
-  setUserId: (id: string) => void;
+
   fetchScheduleList: () => Promise<void>;
   fetchTodoList: () => Promise<void>;
 };
@@ -20,15 +18,10 @@ export const useCalendarStore = create<CalendarState>((set, get) => ({
   date: new Date(),
   scheduleList: [],
   todoList: [],
-  studyId: '',
-  userId: '',
 
   setDate: (newDate) => set({ date: newDate }),
-  setStudyId: (id) => set({ studyId: id }),
-  setUserId: (id) => set({ userId: id }),
   fetchScheduleList: async () => {
-    const { studyId, date } = get();
-
+    const studyId = useMyStudyStore.getState().studyId;
     const scheduleList = await fetchSchedule(studyId);
     console.log('👔', scheduleList);
     set({ scheduleList });

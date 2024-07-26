@@ -9,7 +9,7 @@ export default function RenderTeam({
 }: {
   studyId: string;
   userId: string;
-}) {
+}): null {
   const { setStudyId, setUserId } = useMyStudyStore();
   const { memberList, fetchMemberList } = useMemberStore();
   useEffect(() => {
