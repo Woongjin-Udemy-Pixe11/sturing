@@ -5,6 +5,8 @@ import Calendar from '../_components/Calendar';
 import Todos from './_components/Todos';
 import RenderTodo from './_components/RenderTodo';
 
+export const dynamic = 'force-dynamic';
+
 export default async function MyTodo({
   params,
 }: {

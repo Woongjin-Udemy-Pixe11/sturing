@@ -1,6 +1,6 @@
 'use client';
 
-import { postTodoInfo } from '@/lib/actions/todoAction';
+import { postTodo } from '@/lib/actions/todoAction';
 import { useCalendarStore } from '@/store/calendarStore';
 import { useMyStudyStore } from '@/store/myStudyStore';
 import { useEffect, useLayoutEffect, useState } from 'react';
@@ -9,6 +9,7 @@ import Todo from './Todo';
 export default function Todos() {
   const { studyId, userId } = useMyStudyStore();
   const { date, todoList, fetchTodoList } = useCalendarStore();
+
   let selectedDate = date.toDateString();
 
   const [todoInfo, setTodoInfo] = useState({
@@ -16,7 +17,7 @@ export default function Todos() {
     userId,
     todoContent: '',
     todoCompleted: false,
-    date,
+    date: date,
   });
   const [count, setCout] = useState(0);
 
@@ -28,7 +29,7 @@ export default function Todos() {
   };
   const onSubmitTodo = async () => {
     try {
-      const result = await postTodoInfo(todoInfo);
+      const result = await postTodo(todoInfo);
       console.log(result);
       if (result.success) {
         setTodoInfo((prev) => ({
@@ -54,8 +55,9 @@ export default function Todos() {
       ...prev,
       studyId,
       userId,
+      date,
     }));
-  }, [studyId, userId]);
+  }, [studyId, userId, date]);
 
   return (
     <>
@@ -96,12 +98,7 @@ export default function Todos() {
                     value={todoInfo.todoContent}
                     onChange={onChangeTodo}
                   ></input>
-                  <button
-                    type="submit"
-                    // onClick={() => {
-                    //   postTodo(todoInfo);
-                    // }}
-                  >
+                  <button type="submit">
                     <img
                       className="absolute top-6 right-6"
                       src="/images/studyLabel/check.svg"

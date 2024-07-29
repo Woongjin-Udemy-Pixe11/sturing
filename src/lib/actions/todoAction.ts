@@ -1,11 +1,8 @@
 export async function fetchTodos(studyId: string, userId: string) {
   try {
-    const res = await fetch(
-      `${process.env.LOCAL_URL}/api/study-todo?study=${studyId}&user=${userId}`,
-      {
-        cache: 'no-store',
-      },
-    );
+    const res = await fetch(`/api/study-todo?study=${studyId}&user=${userId}`, {
+      cache: 'no-store',
+    });
     return res.json();
   } catch (error) {
     console.error('Fetch error:', error);
@@ -20,10 +17,10 @@ type TTodo = {
   todoCompleted: boolean;
   date: Date;
 };
-export async function postTodoInfo(data: TTodo) {
+export async function postTodo(data: TTodo) {
   console.log('🥑', data);
   try {
-    const response = await fetch(`${process.env.LOCAL_URL}/api/study-todo`, {
+    const response = await fetch(`/api/study-todo`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +38,7 @@ export async function postTodoInfo(data: TTodo) {
 }
 export async function patchTodoInfo(data: any) {
   try {
-    const response = await fetch(`${process.env.LOCAL_URL}/api/study-todo`, {
+    const response = await fetch(`/api/study-todo`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +54,7 @@ export async function patchTodoInfo(data: any) {
 
 export async function deleteTodoInfo(data: any) {
   try {
-    const response = await fetch(`${process.env.LOCAL_URL}/api/study-todo`, {
+    const response = await fetch(`/api/study-todo`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

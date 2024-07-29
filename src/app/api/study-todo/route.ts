@@ -3,6 +3,7 @@ import { StudyTodo } from '@/lib/schemas/studyTodoSchema';
 
 export async function GET(req: Request) {
   connectDB();
+  console.log('get');
   const url = new URL(req.url);
   const studyId = url.searchParams.get('study');
   const userId = url.searchParams.get('user');
