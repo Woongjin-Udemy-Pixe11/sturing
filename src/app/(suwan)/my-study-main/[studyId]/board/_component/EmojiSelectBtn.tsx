@@ -1,5 +1,5 @@
 'use client';
-import { fetchIcon, postIcon } from '@/utils/my-study-main/fetch';
+import { fetchIcon, postIcon } from '@/lib/actions/studyMainAction';
 import { useEffect, useState } from 'react';
 
 const taskIcons = [

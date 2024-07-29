@@ -1,5 +1,5 @@
 import Header from '../_components/Header';
-import { fetchStudy } from '@/utils/my-study-main/fetch';
+import { fetchStudy } from '@/lib/actions/studyMainAction';
 import { getSession } from '@/utils/getSessions';
 import Calendar from '../_components/Calendar';
 import Todos from './_components/Todos';

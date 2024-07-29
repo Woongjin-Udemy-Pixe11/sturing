@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 
 import AttendanceCheck from './component/AttendanceCheck';
-import { fetchMember } from '@/utils/my-study-main/fetch';
 import { useMyStudyStore } from '@/store/myStudyStore';
 import { useMemberStore } from '@/store/memberStore';
 
@@ -22,7 +21,6 @@ export default function Attend(props: any) {
       member.attendance.includes(today),
     ).length;
     setAttendNum(initialAttendNum);
-    //fetchmember
   }, [memberList]);
 
   return (

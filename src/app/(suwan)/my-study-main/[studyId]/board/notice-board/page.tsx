@@ -1,7 +1,7 @@
 'use server';
 import BoardTop from '../_component/BoardTop';
 import NoticeBoardList from '../_component/NoticeBoardList';
-import { fetchBoardList, fetchStudy } from '@/utils/my-study-main/fetch';
+import { fetchBoardList, fetchStudy } from '@/lib/actions/studyMainAction';
 import { getSession } from '@/utils/getSessions';
 
 export default async function page({

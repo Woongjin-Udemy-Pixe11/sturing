@@ -6,7 +6,7 @@ import { getSession } from '@/utils/getSessions';
 import { redirect } from 'next/navigation';
 import NoticeForm from '../../../_component/NoticeForm';
 import SubHeader from '@/components/common/SubHeader';
-import { fetchBlackboard } from '@/utils/my-study-main/fetch';
+import { fetchBlackboard } from '@/lib/actions/studyMainAction';
 import { TFormData } from '@/types/TStudyBoard';
 
 export default async function page({

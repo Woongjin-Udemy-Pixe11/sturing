@@ -1,7 +1,7 @@
 import NoticeBoardDetail from '@/app/(suwan)/my-study-main/[studyId]/board/_component/NoticeBoardDetail';
 
 import { getSession } from '@/utils/getSessions';
-import { fetchBlackboard, patchView } from '@/utils/my-study-main/fetch';
+import { fetchBlackboard, patchView } from '@/lib/actions/studyMainAction';
 
 export default async function page({
   params,
