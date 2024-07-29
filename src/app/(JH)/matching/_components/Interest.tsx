@@ -1,7 +1,7 @@
 'use client';
+import FlexContainer from '@/components/(JH)/matching/FlexContainer';
 import SelectMatching from '@/components/(JH)/matching/SelectMatching';
 import { searchLabelList } from '@/constant/searchLabelList';
-import FlexContainer from '@/components/(JH)/matching/FlexContainer';
 
 type TInterestProps = {
   interest: string[];
@@ -41,7 +41,7 @@ export default function Interest(props: TInterestProps) {
                   <div>{label.title}</div>
                 </SelectMatching>
                 {count !== -1 && (
-                  <div className="text-blue-600 border border-blue-600 p-2 rounded-full absolute top-1 right-2 text-content-2 w-[12px] h-[12px] flex items-center justify-center">
+                  <div className="text-blue-600 border border-blue-600 p-[.7rem] rounded-full absolute top-[.7rem] right-[.8rem] text-content-2 w-[12px] h-[12px] flex items-center justify-center">
                     {count + 1}
                   </div>
                 )}
