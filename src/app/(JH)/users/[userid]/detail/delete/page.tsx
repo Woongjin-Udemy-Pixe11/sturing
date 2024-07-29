@@ -21,7 +21,7 @@ export default function page(props: TdeleteProps) {
     <main>
       <DelteUserModal id={id} show={isOpen} onClose={onCloseModal} />
       <MyPageHeader>회원 탈퇴</MyPageHeader>
-      <section className="text-headline-2 font-bold px-[1.6rem] py-[3.2rem]">
+      <section className="text-headline-2 font-semibold px-[1.6rem] py-[3.2rem]">
         <h1>정말 탈퇴하시겠어요?</h1>
         <h1>탈퇴하기 전에 확인해주세요!</h1>
       </section>

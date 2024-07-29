@@ -11,8 +11,8 @@ export default function FilterButton(props: TFilterButtonProps) {
         className={`
         ${
           isBlue
-            ? 'text-main-600 border-main-400 font-bold'
-            : 'text-gray-700 border-gray-400'
+            ? 'text-main-600 border-main-400 font-medium'
+            : 'text-gray-700 border-main-200'
         }
         px-[1.6rem] py-[1rem] rounded-[.5rem] text-content-1 border whitespace-nowrap
       `}

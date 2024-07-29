@@ -46,7 +46,7 @@ export default function MyApplyCilent({ studyForm }: { studyForm: any }) {
       <div>
         <StudyTop content="내가 작성한 지원서" />
         <div className="flex justify-center bg-gray-100 p-[1.8rem] mb-[2.3rem]">
-          <h2 className="text-content-1 text-gray-1000 font-semibold">
+          <h2 className="text-content-1 text-gray-1000 font-medium">
             {studyForm.studyId.studyName}
           </h2>
         </div>
@@ -58,7 +58,7 @@ export default function MyApplyCilent({ studyForm }: { studyForm: any }) {
                 alt=""
                 className="bg-gray-500 object-cover w-[4rem] h-[4rem] mr-[0.4rem] border border-gray-300 rounded-full"
               />
-              <span className="text-content-1 text-gray-900 font-bold">
+              <span className="text-content-1 text-gray-900 font-semibold">
                 {studyForm.userId.nickname}
               </span>
               {studyForm.userId?.matchingInfo?.level && (

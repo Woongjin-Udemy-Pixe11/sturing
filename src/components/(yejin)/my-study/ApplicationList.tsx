@@ -45,13 +45,13 @@ export default async function ApplicationList({
         <Tabs.List className="flex justify-between border-b px-[1.6rem] border-gray-300 [&>*]:text-[1.4rem]">
           <Tabs.Trigger
             value="제출한 지원서"
-            className="w-[calc(50%-0.6rem)] py-[1.2rem] data-[state=active]:border-b-[0.2rem] border-main-600 box-border data-[state=active]:text-main-600 data-[state=active]:font-semibold"
+            className="w-[calc(50%-0.6rem)] py-[1.2rem] data-[state=active]:border-b-[0.2rem] border-main-600 box-border data-[state=active]:text-main-600 data-[state=active]:font-medium"
           >
             제출한 지원서 <span>{my.length}</span>
           </Tabs.Trigger>
           <Tabs.Trigger
             value="받은 지원서"
-            className="w-[calc(50%-0.6rem)] data-[state=active]:border-b-[0.2rem] border-main-600 box-border data-[state=active]:text-main-600 data-[state=active]:font-semibold"
+            className="w-[calc(50%-0.6rem)] data-[state=active]:border-b-[0.2rem] border-main-600 box-border data-[state=active]:text-main-600 data-[state=active]:font-medium"
           >
             받은 지원서 <span>{receive.length}</span>
           </Tabs.Trigger>
@@ -107,11 +107,11 @@ export default async function ApplicationList({
                           {study.studyId?.studyPlace}
                         </span>
                       </div>
-                      <h3 className="font-semibold text-[1.6rem] border-b border-gray-300 pb-[1.2rem] text-gray-1000 truncate">
+                      <h3 className="font-medium text-[1.6rem] border-b border-gray-300 pb-[1.2rem] text-gray-1000 truncate">
                         {study.studyId?.studyName}
                       </h3>
                       <Link href={`/apply/my/${study._id}`} className="w-full">
-                        <button className="w-full mt-[0.8rem] px-[2rem] py-[1rem] text-content-1 text-gray-1000 font-semibold border border-gray-400 rounded-[0.5rem]">
+                        <button className="w-full mt-[0.8rem] px-[2rem] py-[1rem] text-content-1 text-gray-1000 font-medium border border-gray-400 rounded-[0.5rem]">
                           지원서 보기
                         </button>
                       </Link>
@@ -157,7 +157,7 @@ export default async function ApplicationList({
                         지원
                       </span>
                     </div>
-                    <h3 className="font-semibold text-content-1 pb-[1.6rem] border-b border-gray-300 text-gray-1000 truncate">
+                    <h3 className="font-medium text-content-1 pb-[1.6rem] border-b border-gray-300 text-gray-1000 truncate">
                       {study.study?.studyName}
                     </h3>
                     <div className="flex">
@@ -188,13 +188,13 @@ export default async function ApplicationList({
                             </>
                           )}
                         </div>
-                        <p className="text-content-2 text-gray-900 font-semibold">
+                        <p className="text-content-2 text-gray-900 font-medium">
                           {study.studyFormTitle}
                         </p>
                       </div>
                     </div>
                     <Link href={`/apply/other/${study._id}`} className="w-full">
-                      <button className="w-full mt-[0.8rem] px-[2rem] py-[1rem] text-content-1 text-gray-1000 font-semibold border border-gray-400 rounded-[0.5rem]">
+                      <button className="w-full mt-[0.8rem] px-[2rem] py-[1rem] text-content-1 text-gray-1000 font-medium border border-gray-400 rounded-[0.5rem]">
                         지원서 보기
                       </button>
                     </Link>

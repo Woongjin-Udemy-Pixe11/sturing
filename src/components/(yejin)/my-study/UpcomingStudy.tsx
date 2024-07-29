@@ -52,7 +52,7 @@ export default function UpcomingStudy(props: StudyProps) {
 
   return (
     <div className="w-full bg-gradient-to-tr from-[rgba(217,227,255,0.4)] to-[rgba(255,228,224,0.4)] px-[1.6rem] py-[2.8rem]">
-      <h2 className="font-semibold text-[2.0rem] mb-[2rem]">다가오는 스터디</h2>
+      <h2 className="font-medium text-[2.0rem] mb-[2rem]">다가오는 스터디</h2>
       {upcomingStudies.length === 0 ? (
         <div className="bg-white w-full flex flex-col gap-[0.8rem] px-[2rem] py-[2.4rem] rounded-[0.8rem]">
           <p className="text-content-1 text-gray-700">
@@ -80,7 +80,7 @@ export default function UpcomingStudy(props: StudyProps) {
                     />
                     <Label children={formatDate2(study.studyStart)} />
                   </div>
-                  <h3 className="font-semibold text-[1.6rem] text-gray-900 truncate">
+                  <h3 className="font-medium text-[1.6rem] text-gray-900 truncate">
                     {study.studyName}
                   </h3>
                   <div className="flex bg-gray-100 p-[0.8rem] gap-[0.8rem] [&>span]:text-content-2 rounded-[0.3rem]">

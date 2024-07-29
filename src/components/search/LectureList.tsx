@@ -1,9 +1,9 @@
 'use client';
+import { TLectureDetail } from '@/types/TLecture';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import GrayFullLink from './GrayFullLink';
-import { TLectureDetail } from '@/types/TLecture';
 const LectureCard = dynamic(() => import('./LectureCard'));
 
 type TLectureListProps = {
@@ -38,7 +38,7 @@ export default function LectureList(props: TLectureListProps) {
     <>
       <div className=" pb-[4rem]">
         {!isDetail && (
-          <span className="block text-headline-3 font-semibold py-[2rem]">
+          <span className="block text-headline-3 font-medium py-[2rem]">
             강의
           </span>
         )}

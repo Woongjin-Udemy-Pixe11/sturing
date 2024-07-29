@@ -1,16 +1,15 @@
 'use client';
 //TODO: 체크박스 공통스타일로 뺄것인가?
 //TODO: Select 공통스타일로 뺄것인가?
-import Label from '@/components/common/label/Label';
 import SizeUpLabel from '@/components/common/label/SizeUpLabel';
-import { emojiLabelList } from '@/constant/emojiLabelList';
-import SelectInput from './SelectInput';
-import { useEffect, useState, useMemo } from 'react';
 import LongButton from '@/components/common/LongButton';
+import { emojiLabelList } from '@/constant/emojiLabelList';
+import { addDays, format } from 'date-fns';
+import { useEffect, useMemo, useState } from 'react';
 import { DateRange } from 'react-day-picker';
-import { differenceInDays, format, addDays } from 'date-fns';
 import { FiCheck } from 'react-icons/fi';
 import Calendar from './Calendar';
+import SelectInput from './SelectInput';
 
 export default function StudyDetailInfoForm(props: any) {
   const { step, setStep, study, onClickStepThree } = props;
@@ -77,7 +76,7 @@ export default function StudyDetailInfoForm(props: any) {
   return (
     <>
       <section className="px-[1.6rem] py-[2rem] overflow-auto">
-        <h1 className="font-bold text-headline-3">
+        <h1 className="font-semibold text-headline-3">
           스터디 상세 정보를 입력해 주세요.
         </h1>
         <article className="border-b border-gray-300">
@@ -91,7 +90,9 @@ export default function StudyDetailInfoForm(props: any) {
           </h2>
         </article>
         <article className="py-[3rem] border-b border-gray-300">
-          <h2 className="font-bold text-content-1">스터디 진행 요일 및 시간</h2>
+          <h2 className="font-semibold text-content-1">
+            스터디 진행 요일 및 시간
+          </h2>
           <div className="flex gap-3 mt-[1rem]">
             <SelectInput
               type="date"
@@ -127,7 +128,7 @@ export default function StudyDetailInfoForm(props: any) {
           </label>
         </article>
         <article className="py-[3rem]">
-          <h1 className="font-bold text-headline-3">
+          <h1 className="font-semibold text-headline-3">
             스터디 분위기 키워드 (선택)
           </h1>
           <h3 className="py-[1.2rem] text-gray-500 text-content-1">

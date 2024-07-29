@@ -1,10 +1,10 @@
 'use client';
-import { useLayoutEffect, useState } from 'react';
 import { fetchTodos } from '@/lib/actions/todoAction';
-import { FaCircleCheck } from 'react-icons/fa6';
+import { useMemberStore } from '@/store/memberStore';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import { useMemberStore } from '@/store/memberStore';
+import { useLayoutEffect, useState } from 'react';
+import { FaCircleCheck } from 'react-icons/fa6';
 
 export default function TeamTodo(props: any) {
   const { studyId, leaderId } = props;
@@ -34,7 +34,7 @@ export default function TeamTodo(props: any) {
       <div className="flex flex-col justify-center items-center w-[90%] mt-[2rem] rounded-[5px] bg-white border border-gray-300">
         <div className=" bg-white p-6 rounded-lg w-full px-[2rem]">
           <div className="flex justify-between items-center border-b-[0.1rem] border-gray-300 pb-4">
-            <h2 className="text-[1.6rem] font-semibold">팀원별 현황</h2>
+            <h2 className="text-[1.6rem] font-medium">팀원별 현황</h2>
             <span className="text-[1.4rem] text-gray-500">
               {format(today, 'MM.dd(EEE)', { locale: ko })}
             </span>

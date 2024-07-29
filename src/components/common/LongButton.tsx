@@ -27,7 +27,7 @@ export default function LongButton({
 
   return (
     <button
-      className={`${colorVariants[color]} ${width} py-[1.2rem] px-[1.6rem] rounded-[0.5rem] text-[1.6rem] font-semibold ${className}`}
+      className={`${colorVariants[color]} ${width} py-[1.2rem] px-[1.6rem] rounded-[0.5rem] text-[1.6rem] font-medium ${className}`}
       onClick={onClick}
     >
       {children}

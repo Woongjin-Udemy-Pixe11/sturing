@@ -10,9 +10,9 @@ export default function SearchLabelList() {
           <li key={label.title}>
             <Link
               href={`/search/result?field=${label.title}`}
-              className="flex gap-[0.8rem] px-[0.8rem] py-[0.6rem] rounded-[2.5rem] border-2 cursor-pointer"
+              className="flex gap-[0.8rem] px-[1rem] py-[0.6rem] rounded-[2.5rem] border border-gray-400 cursor-pointer items-center justify-center"
             >
-              <figure className="relative w-[2.4rem] h-[2.4rem] bg-gray-200 rounded-[50%] flex items-center  justify-center">
+              <figure className="relative w-[3.2rem] h-[3.2rem] bg-gray-200 rounded-[50%] flex items-center justify-center">
                 <img
                   src={label.imgSrc}
                   alt={label.imgAlt}
@@ -22,7 +22,9 @@ export default function SearchLabelList() {
                   {label.title}를 검색하러 이동합니다.
                 </figcaption>
               </figure>
-              <span className="whitespace-nowrap">{label.title}</span>
+              <span className="whitespace-nowrap text-content-1">
+                {label.title}
+              </span>
             </Link>
           </li>
         ))}

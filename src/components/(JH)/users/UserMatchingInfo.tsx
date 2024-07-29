@@ -10,7 +10,7 @@ export default async function UserMatchingInfo({ data }: any) {
     <main className="border-t-8 border-gray-200 mt-[4rem] py-[3.6rem] ">
       <div className="px-[1.6rem]">
         <header className="flex justify-between">
-          <h1 className="font-bold text-headline-3">매칭정보</h1>
+          <h1 className="font-semibold text-headline-3">매칭정보</h1>
           <Link href="/matching">
             <button className="text-[1.6rem] text-main-600">수정</button>
           </Link>

@@ -3,10 +3,10 @@
 import SubHeader from '@/components/common/SubHeader';
 import Label from '@/components/common/label/Label';
 import { deleteNotice } from '@/lib/actions/studyMainAction';
-import EmojiSelectBtn from './EmojiSelectBtn';
-import { useRouter } from 'next/navigation';
-import { dateCalculate } from '@/utils/dateCalculate';
 import { TBlackboard } from '@/types/TStudyBoard';
+import { dateCalculate } from '@/utils/dateCalculate';
+import { useRouter } from 'next/navigation';
+import EmojiSelectBtn from './EmojiSelectBtn';
 
 type TProps = {
   blackboard: TBlackboard;
@@ -58,7 +58,7 @@ export default function NoticeBoardDetail(props: TProps) {
             </div>
             <div className="text-content-2 text-gray-700">
               <span className="flex gap-[0.4rem] items-center">
-                <h3 className="text-content-1 font-semibold text-gray-900">
+                <h3 className="text-content-1 font-medium text-gray-900">
                   {blackboard.writerId.nickname}
                 </h3>
                 <p>팀장</p>
@@ -72,7 +72,9 @@ export default function NoticeBoardDetail(props: TProps) {
           </div>
         </div>
         <div>
-          <h2 className="font-bold text-headline-3 text-gray-900">{title}</h2>
+          <h2 className="font-semibold text-headline-3 text-gray-900">
+            {title}
+          </h2>
           <p className="text-content-1  text-gray-600 border-gray-300 py-[1.6rem] pb-[2.5rem]">
             {content}
           </p>

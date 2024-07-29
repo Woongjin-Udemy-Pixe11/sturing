@@ -1,13 +1,11 @@
 'use client';
 
-import { GoChevronLeft } from 'react-icons/go';
-import EmojiSelectBtn from './EmojiSelectBtn';
 import SubHeader from '@/components/common/SubHeader';
-import { useRouter } from 'next/navigation';
-import { deleteNotice, postIcon } from '@/lib/actions/studyMainAction';
-import KebabModal from '@/components/common/modal/KebabModal';
-import { dateCalculate } from '@/utils/dateCalculate';
+import { deleteNotice } from '@/lib/actions/studyMainAction';
 import { TBlackboard } from '@/types/TStudyBoard';
+import { dateCalculate } from '@/utils/dateCalculate';
+import { useRouter } from 'next/navigation';
+import EmojiSelectBtn from './EmojiSelectBtn';
 
 type TProps = {
   task: TBlackboard;
@@ -51,7 +49,7 @@ export default function TaskDetail(props: TProps) {
           />
           <div className="ml-[1rem] text-content-2 text-gray-700">
             <span className="flex gap-[0.4rem] items-center">
-              <h3 className="text-content-1 font-semibold text-gray-900">
+              <h3 className="text-content-1 font-medium text-gray-900">
                 {task.writerId.nickname}
               </h3>
             </span>
@@ -62,7 +60,7 @@ export default function TaskDetail(props: TProps) {
 
         <div className="flex flex-col gap-y-[2rem]">
           <div className="flex flex-col justify-start gap-y-[2rem]">
-            <h1 className="text-[1.8rem] text-gray-900 font-semibold">
+            <h1 className="text-[1.8rem] text-gray-900 font-medium">
               {task.title}
             </h1>
             <p className="text-gray-700">{task.content}</p>

@@ -31,7 +31,7 @@ export default function TaskBoardList(props: TTaskListProps) {
                         alt=""
                         className="border border-gray-300 w-[3.8rem] rounded-full aspect-square object-cover"
                       />
-                      <span className="text-gray-900 text-content-1 font-semibold">
+                      <span className="text-gray-900 text-content-1 font-medium">
                         {task.writerId.nickname}
                       </span>
                     </span>
@@ -41,7 +41,7 @@ export default function TaskBoardList(props: TTaskListProps) {
                   </div>
                   <div className="w-full flex justify-between gap-[1.2rem]">
                     <div className="flex flex-col gap-[0.4rem] h-[6.2rem]">
-                      <h3 className="text-content-1 text-gray-900 font-semibold">
+                      <h3 className="text-content-1 text-gray-900 font-medium">
                         {task.title}
                       </h3>
                       <p className="h-[3.6rem] text-content-2 text-gray-700 line-clamp-2">

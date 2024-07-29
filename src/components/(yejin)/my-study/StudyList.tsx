@@ -39,13 +39,13 @@ export default async function StudyList(props: StudyProps) {
         <Tabs.List className="flex justify-between border-b px-[1.6rem] border-gray-300 [&>*]:text-[1.4rem]">
           <Tabs.Trigger
             value="진행"
-            className="w-[calc(50%-0.6rem)] py-[1.2rem] data-[state=active]:border-b-[0.2rem] border-main-600 box-border data-[state=active]:text-main-600 data-[state=active]:font-semibold"
+            className="w-[calc(50%-0.6rem)] py-[1.2rem] data-[state=active]:border-b-[0.2rem] border-main-600 box-border data-[state=active]:text-main-600 data-[state=active]:font-medium"
           >
             진행 <span>{activeStudies.length}</span>
           </Tabs.Trigger>
           <Tabs.Trigger
             value="종료"
-            className="w-[calc(50%-0.6rem)] data-[state=active]:border-b-[0.2rem] border-main-600 box-border data-[state=active]:text-main-600 data-[state=active]:font-semibold"
+            className="w-[calc(50%-0.6rem)] data-[state=active]:border-b-[0.2rem] border-main-600 box-border data-[state=active]:text-main-600 data-[state=active]:font-medium"
           >
             종료 <span>{completedStudies.length}</span>
           </Tabs.Trigger>
@@ -78,7 +78,7 @@ export default async function StudyList(props: StudyProps) {
                           {study.studyPlace}
                         </span>
                       </div>
-                      <h3 className="font-semibold text-[1.6rem] border-b border-gray-400 pb-[1.6rem] mb-[0.8rem] text-gray-1000 truncate">
+                      <h3 className="font-medium text-[1.6rem] border-b border-gray-400 pb-[1.6rem] mb-[0.8rem] text-gray-1000 truncate">
                         {study.studyName}
                       </h3>
                       <div className="flex justify-around bg-gray-100 px-[2.4rem] py-[0.8rem] gap-[1.6rem] [&>span]:text-content-1 rounded-[0.3rem]">
@@ -126,10 +126,10 @@ export default async function StudyList(props: StudyProps) {
                       <span className="text-gray-500">|</span>
                       <span className="text-gray-700">{study.studyPlace}</span>
                     </div>
-                    <h3 className="font-semibold text-[1.6rem] text-gray-1000 truncate">
+                    <h3 className="font-medium text-[1.6rem] text-gray-1000 truncate">
                       {study.studyName}
                     </h3>
-                    <button className="mt-[1.2rem] px-[2rem] py-[1rem] text-content-1 text-gray-1000 font-semibold border border-gray-400 rounded-[0.5rem]">
+                    <button className="mt-[1.2rem] px-[2rem] py-[1rem] text-content-1 text-gray-1000 font-medium border border-gray-400 rounded-[0.5rem]">
                       강의 후기 작성하기
                     </button>
                     <span className="border-b border-gray-300 pt-[1.2rem] mb-[1.2rem]"></span>

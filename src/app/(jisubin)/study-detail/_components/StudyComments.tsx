@@ -1,8 +1,8 @@
+import { getComments } from '@/lib/actions/commentAction';
 import { TGetComments } from '@/types/TStudyComment';
+import { getSession } from '@/utils/getSessions';
 import CommentForm from './CommentForm';
 import StudyComment from './StudyComment';
-import { getComments } from '@/lib/actions/commentAction';
-import { getSession } from '@/utils/getSessions';
 
 type TStudyCommentsProps = {
   id: string;
@@ -22,7 +22,7 @@ export default async function StudyComments(props: TStudyCommentsProps) {
       <div className=" bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[2.4rem]">
         <div className="flex flex-col justify-center">
           <div className="flex flex-row items-center justify-between mt-[2.4rem] pb-[1.2rem]">
-            <h2 className="mx-[2rem] font-semibold text-gray-950">댓글</h2>
+            <h2 className="mx-[2rem] font-medium text-gray-950">댓글</h2>
           </div>
 
           <hr className="mx-[2rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>

@@ -24,7 +24,7 @@ export default function DetailTabBar(props: TDetailTabBarProps) {
         <li
           key={tab.name}
           className={`${
-            pathname === tab.href ? 'font-bold text-main-600' : ''
+            pathname === tab.href ? 'font-semibold text-main-600' : ''
           } w-[33%] py-[1.2rem]`}
         >
           <Link href={tab.href}>{tab.name}</Link>

@@ -2,7 +2,7 @@ import LongButton from '@/components/common/LongButton';
 import SizeUpLabel from '@/components/common/label/SizeUpLabel';
 import { searchLabelList } from '@/constant/searchLabelList';
 import { TFetchStudy } from '@/types/TStudy';
-import React, { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { TLectureData } from './CollectStudyClient';
 
 type TProps = {
@@ -31,7 +31,9 @@ export default function SelectCateGory(props: TProps) {
       <section>
         {lectureData && (
           <>
-            <h1 className="font-bold text-headline-2 mb-[2rem]">선택한 강의</h1>
+            <h1 className="font-semibold text-headline-2 mb-[2rem]">
+              선택한 강의
+            </h1>
             <article className="bg-gray-200 px-[2rem] py-[1.2rem] rounded-md border border-gray-300">
               <h2>{lectureData.lectureName}</h2>
               <h3 className="text-gray-600 text-content-1 mt-[.4rem]">

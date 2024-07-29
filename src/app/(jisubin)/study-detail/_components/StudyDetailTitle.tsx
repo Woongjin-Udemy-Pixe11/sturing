@@ -22,7 +22,7 @@ export default function StudyDetailTitle(props: TStudyDetailTitleProps) {
         <Label isBlue={false}>{category}</Label>
       </div>
       <div className="w-[30rem] h-[5.4rem] mt-[1.8rem]">
-        <h1 className="text-center font-semibold">{name} </h1>
+        <h1 className="text-center font-medium">{name} </h1>
       </div>
       <div className="flex flex-row items-center justify-center text-content-2">
         <span>{meeting}</span>

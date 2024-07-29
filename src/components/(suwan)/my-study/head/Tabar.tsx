@@ -12,12 +12,12 @@ export default function TabBar({ studyId }: any) {
   ];
 
   return (
-    <ul className="w-full px-[1.6rem] flex justify-center items-center text-center border-b-2 border-t-2 bg-white">
+    <ul className="w-full px-[1.6rem] flex justify-center items-center text-center border-b border-t border-gray-300 bg-white">
       {tabs.map((tab) => (
         <li
           key={tab.name}
           className={`${
-            pathname === tab.href ? 'font-bold' : ''
+            pathname === tab.href ? 'font-semibold' : ''
           } w-[33%] py-[1.2rem]`}
         >
           <Link href={tab.href}>{tab.name}</Link>

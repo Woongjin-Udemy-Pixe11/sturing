@@ -1,4 +1,3 @@
-import { Bookmark } from '@/lib/schemas/bookmarkSchema';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -52,7 +51,7 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
-        pretendard: ['Pretendard-Regular', 'sans-serif'],
+        pretendard: ['Pretendard Variable', 'sans-serif'],
       },
     },
     boxShadow: {

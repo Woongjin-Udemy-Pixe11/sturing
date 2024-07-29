@@ -10,7 +10,7 @@ type TTitleNavigatorProps = {
 export default function TitleNavigator(props: TTitleNavigatorProps) {
   const { title, count, moveLink, children } = props;
   return (
-    <div className="flex flex-row justify-between items-center font-semibold mb-[2rem] mx-[1.6rem]">
+    <div className="flex flex-row justify-between items-center font-medium mb-[2rem] mx-[1.6rem]">
       <div className="flex flex-row justify-between items-center">
         <span className="pr-[0.5rem]">{title}</span>
         {count ? (
