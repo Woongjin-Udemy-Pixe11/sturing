@@ -1,25 +1,42 @@
-import { useCallback, useState } from 'react';
-import { TbChartCandle } from 'react-icons/tb';
+import { TSearchFilter } from '@/types/TFilter';
+import { useCallback, useEffect, useState } from 'react';
 import BottomSheetFilter from './BottomSheetFilter';
 import FilterButton from './FilterButton';
 
-export default function FilterBar({ initialFilters }: { initialFilters: any }) {
-  const [openFilter, setOpenFilter] = useState(false);
-  const [filterButtonList, setFilterButtonList] = useState(() => [
-    { title: '분야', key: 'field', isBlue: initialFilters.field.length > 0 },
-    { title: '지역', key: 'region', isBlue: initialFilters.region.length > 0 },
-    { title: '인원', key: 'people', isBlue: initialFilters.people.length > 0 },
-    { title: '기간', key: 'period', isBlue: initialFilters.period !== '' },
-    { title: '수준', key: 'level', isBlue: initialFilters.level.length > 0 },
-  ]);
+type FilterButtonType = {
+  title: string;
+  key: keyof TSearchFilter;
+  isBlue: boolean;
+};
 
-  const onClickFilter = () => {
-    setOpenFilter(!openFilter);
-    if (!openFilter) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+export default function FilterBar({
+  initialFilters,
+}: {
+  initialFilters: TSearchFilter;
+}) {
+  const [openFilter, setOpenFilter] = useState(false);
+  const [filterButtonList, setFilterButtonList] = useState<FilterButtonType[]>(
+    [],
+  );
+
+  useEffect(() => {
+    updateFilterButtonList(initialFilters);
+  }, [initialFilters]);
+
+  const updateFilterButtonList = (filters: TSearchFilter) => {
+    const newFilterButtonList: FilterButtonType[] = [
+      { title: '분야', key: 'field', isBlue: filters.field.length > 0 },
+      { title: '지역', key: 'region', isBlue: filters.region.length > 0 },
+      { title: '인원', key: 'people', isBlue: filters.people.length > 0 },
+      { title: '기간', key: 'period', isBlue: filters.period !== '' },
+      { title: '수준', key: 'level', isBlue: filters.level.length > 0 },
+    ];
+    setFilterButtonList(newFilterButtonList);
+  };
+
+  const toggleFilter = () => {
+    setOpenFilter((prev) => !prev);
+    document.body.style.overflow = openFilter ? 'auto' : 'hidden';
   };
 
   const closeFilter = () => {
@@ -40,12 +57,12 @@ export default function FilterBar({ initialFilters }: { initialFilters: any }) {
 
   return (
     <>
-      <div className=" w-full px-[1.2rem] py-[.8rem] flex justify-between items-center">
+      <div className=" w-full px-[1.6rem] py-[.8rem] flex justify-between items-center">
         <ul className="flex w-[90%] overflow-x-auto py-[.8rem]">
           {filterButtonList &&
             filterButtonList.map((filterbutton) => (
               <li key={filterbutton.key} className="inline mr-[.8rem]">
-                <button onClick={onClickFilter}>
+                <button onClick={toggleFilter}>
                   <FilterButton
                     content={filterbutton.title}
                     isBlue={filterbutton.isBlue}
@@ -54,11 +71,8 @@ export default function FilterBar({ initialFilters }: { initialFilters: any }) {
               </li>
             ))}
         </ul>
-        <button>
-          <TbChartCandle
-            className="w-[2.4rem] h-[2.4rem] rotate-90"
-            onClick={onClickFilter}
-          />
+        <button onClick={toggleFilter}>
+          <img src="/filter.svg" alt="" />
         </button>
       </div>
       {openFilter && (

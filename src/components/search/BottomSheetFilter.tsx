@@ -47,7 +47,7 @@ export default function BottomSheetFilter({
     try {
       let data;
       data = await (
-        await fetch(`${process.env.LOCAL_URL}/api/search/filter`, {
+        await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/api/search/filter`, {
           cache: 'no-store',
         })
       ).json();

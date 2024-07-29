@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { IoClose } from 'react-icons/io5';
+import { VscClose } from 'react-icons/vsc';
 import SideBarToggle from './SideBarToggle';
 import UserProfile from './UserProfile';
 
@@ -12,12 +12,12 @@ export default function SideBar(props: TSideBarProps) {
 
   return (
     <>
-      <div className="block bg-white fixed overflow-auto left-0 w-[32.4rem] px-[2.4rem] h-screen z-10 ">
+      <div className="block bg-white fixed overflow-auto left-0 w-[32.4rem] px-[2.4rem] h-screen z-[9999] ">
         <button
-          className="absolute top-[4rem] right-[2.4rem] w-[2.4rem] h-[2.4rem]"
+          className="absolute top-[2.4rem] right-[2.4rem] w-[3.2rem] h-[3.2rem]"
           onClick={onClose}
         >
-          <IoClose />
+          <VscClose className="text-large-title" />
         </button>
         <UserProfile user={user} onClose={onClose} />
         <div className="py-[4rem] border-y-2 my-[4rem] w-full flex justify-center flex-col gap-[2.4rem]">
@@ -37,7 +37,7 @@ export default function SideBar(props: TSideBarProps) {
             </Link>
           )}
         </div>
-        <div className="w-full flex justify-center flex-col gap-[2.4rem]">
+        <div className="w-full flex justify-center flex-col gap-[2.4rem] mb-[4rem]">
           <Link className="block w-full text-headline-3" href="/notice">
             <span onClick={onClose}> 공지사항</span>
           </Link>

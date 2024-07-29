@@ -12,7 +12,7 @@ export default function UserProfile(props: TUserProfileProps) {
   const isLogined = user._id ? true : false;
   return (
     <>
-      <div className="mt-[10rem]">
+      <div className="mt-[9rem]">
         {!isLogined && <GitHubLoginBtn />}
         {isLogined && (
           <>

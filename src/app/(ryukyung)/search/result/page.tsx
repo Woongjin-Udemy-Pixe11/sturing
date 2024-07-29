@@ -4,6 +4,7 @@ import TabContainer from '@/components/search/TabContainer';
 import TabLecture from '@/components/search/TabLecture';
 import TabStudy from '@/components/search/TabStudy';
 import { getFilteredResults } from '@/lib/actions/filterAction';
+import { TSearchFilter } from '@/types/TFilter';
 import { TLectureDetail } from '@/types/TLecture';
 import { TStudyInfo } from '@/types/TStudyInfo';
 import { getSession } from '@/utils/getSessions';
@@ -24,25 +25,35 @@ export default async function page(props: TSearchResultProps) {
   const activeTab = searchParams.tab || '전체';
   const session = await getSession();
   const userId = session?.user?.id;
-  const filters = {
-    field: searchParams.field?.split(',') || [],
-    region: searchParams.region?.split(',') || [],
-    people: searchParams.people?.split(',') || [],
-    period: searchParams.period || '',
-    level: searchParams.level?.split(',') || [],
-  };
 
   let data: TSearchResult = {
     searchstudies: [],
     searchlectures: [],
   };
+
+  let filters: TSearchFilter;
+
   if (keyword) {
     data = await (
       await fetch(`${process.env.LOCAL_URL}/api/search?keyword=${keyword}`, {
         cache: 'no-store',
       })
     ).json();
+    filters = {
+      field: [],
+      region: [],
+      people: [],
+      period: '',
+      level: [],
+    };
   } else {
+    filters = {
+      field: searchParams.field?.split(',') || [],
+      region: searchParams.region?.split(',') || [],
+      people: searchParams.people?.split(',') || [],
+      period: searchParams.period || '',
+      level: searchParams.level?.split(',') || [],
+    };
     data = await getFilteredResults(filters);
   }
 

@@ -45,7 +45,7 @@ export default function SearchPart(props: SearchPartProps) {
   };
 
   return (
-    <section className="px-[1.6rem] mt-[2rem]">
+    <section className="px-[1.6rem] pt-[1.2rem]">
       <SearchInput
         placeholderText="관심 스터디 분야나 강의명을 검색해 보세요"
         value={inputValue}

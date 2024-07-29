@@ -1,10 +1,10 @@
 import TabBar from '@/components/main/TabBar';
 
-import RecommendSearch from '@/components/search/RecommendSearch';
-import CurrentStudy from '@/components/search/CurrentStudy';
-import SearchPart from '../pages/SearchPart';
 import CreateStudyButton from '@/components/common/CreateStudyButton';
+import CurrentStudy from '@/components/search/CurrentStudy';
+import RecommendSearch from '@/components/search/RecommendSearch';
 import { getSession } from '@/utils/getSessions';
+import SearchPart from '../pages/SearchPart';
 
 export default async function Search() {
   const session = await getSession();
@@ -13,7 +13,9 @@ export default async function Search() {
   return (
     <>
       <TabBar />
-      <SearchPart isList={true} />
+      <div className="mt-[.8rem]">
+        <SearchPart isList={true} />
+      </div>
       <RecommendSearch />
       <CurrentStudy />
       {userId && <CreateStudyButton />}

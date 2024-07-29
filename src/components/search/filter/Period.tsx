@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { DateRange } from 'react-day-picker';
 
 export default function Period() {
-  const { setPeriod } = useFilterStore();
+  const { period, setPeriod } = useFilterStore();
 
   const handleDateChange = (dateRange: DateRange | undefined) => {
     if (dateRange?.from) {
@@ -16,12 +16,17 @@ export default function Period() {
           )}`
         : format(dateRange.from, 'y.MM.d');
       setPeriod(dateString);
+    } else {
+      setPeriod('');
     }
   };
 
   return (
     <div className="border p-[2rem]">
-      <RangeCalendar onChangeDate={handleDateChange} />
+      <RangeCalendar
+        onChangeDate={handleDateChange}
+        initialDateRange={period}
+      />
     </div>
   );
 }
