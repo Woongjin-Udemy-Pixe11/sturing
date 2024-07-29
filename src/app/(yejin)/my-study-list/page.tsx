@@ -4,17 +4,25 @@ import StudyList from '@/components/(yejin)/my-study/StudyList';
 import UpcomingStudy from '@/components/(yejin)/my-study/UpcomingStudy';
 import CreateStudyButton from '@/components/common/CreateStudyButton';
 import TabBar from '@/components/main/TabBar';
+import { TStudy } from '@/types/TStudy';
+
 import { getSession } from '@/utils/getSessions';
+import OpenLoginModal from './_components/OpenLoginModal';
+import LectureDetail from '@/app/(jisubin)/lecture-detail/[id]/page';
 
 export default async function page() {
   const session = await getSession();
-  const userId = session.user.id;
-
-  if (!session || !session.user || !userId) {
-    return <div>로그인이 필요합니다.</div>;
+  let studies;
+  //const userId = session.user.id;
+  if (!session?.user?.id) {
+    return (
+      <>
+        <OpenLoginModal />
+      </>
+    );
+  } else {
+    studies = await getUserStudies(session.user.id);
   }
-
-  const studies = await getUserStudies(userId);
 
   return (
     <>
@@ -24,7 +32,7 @@ export default async function page() {
         activeStudies={studies.active}
         completedStudies={studies.completed}
       />
-      <ApplicationList userId={userId} />
+      <ApplicationList userId={session.user.id} />
       <CreateStudyButton />
     </>
   );
