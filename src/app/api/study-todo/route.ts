@@ -53,8 +53,7 @@ export async function PATCH(request: Request) {
 export async function DELETE(request: Request) {
   await connectDB();
 
-  const res = await request.json();
-  let test = await StudyTodo.deleteOne({ _id: res });
-  // return new Response(JSON.stringify({ test }));
+  const todoId = await request.json();
+  let test = await StudyTodo.deleteOne({ _id: todoId });
   return Response.json(test);
 }

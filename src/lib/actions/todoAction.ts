@@ -5,7 +5,7 @@ export async function fetchTodos(studyId: string, userId: string) {
     });
     return res.json();
   } catch (error) {
-    console.error('Fetch error:', error);
+    console.error('Fetch todo error:', error);
   }
 }
 
@@ -18,7 +18,6 @@ type TTodo = {
   date: Date;
 };
 export async function postTodo(data: TTodo) {
-  console.log('🥑', data);
   try {
     const response = await fetch(`/api/study-todo`, {
       method: 'POST',
@@ -32,34 +31,34 @@ export async function postTodo(data: TTodo) {
 
     return { success: true, result };
   } catch (error) {
-    console.log('Error checkList info', error);
-    return { success: false, message: 'Error Post Comment' };
+    console.log('Error postTodo', error);
+    return { success: false, message: 'Error Post Todo' };
   }
 }
-export async function patchTodoInfo(data: any) {
+export async function patchTodoInfo(todoId: string) {
   try {
     const response = await fetch(`/api/study-todo`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(todoId),
     });
 
     return Response.json({ message: '성공' });
   } catch (error) {
-    console.log('Error checkList info', error);
+    console.log('Error patch todo', error);
   }
 }
 
-export async function deleteTodoInfo(data: any) {
+export async function deleteTodoInfo(todoId: string) {
   try {
     const response = await fetch(`/api/study-todo`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(todoId),
     });
     return Response.json({ message: '성공' });
   } catch (error) {
