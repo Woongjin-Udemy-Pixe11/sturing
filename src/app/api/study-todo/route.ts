@@ -3,6 +3,7 @@ import { StudyTodo } from '@/lib/schemas/studyTodoSchema';
 
 export async function GET(req: Request) {
   connectDB();
+  console.log('get');
   const url = new URL(req.url);
   const studyId = url.searchParams.get('study');
   const userId = url.searchParams.get('user');
@@ -52,8 +53,7 @@ export async function PATCH(request: Request) {
 export async function DELETE(request: Request) {
   await connectDB();
 
-  const res = await request.json();
-  let test = await StudyTodo.deleteOne({ _id: res });
-  // return new Response(JSON.stringify({ test }));
+  const todoId = await request.json();
+  let test = await StudyTodo.deleteOne({ _id: todoId });
   return Response.json(test);
 }

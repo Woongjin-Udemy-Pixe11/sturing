@@ -17,8 +17,9 @@ export default function TabBar({ studyId }: any) {
         <li
           key={tab.name}
           className={`${
-            pathname === tab.href ? 'font-semibold' : ''
-          } w-[33%] py-[1.2rem]`}
+            pathname === tab.href &&
+            'font-semibold text-main-600 border-b-[0.2rem] border-main-600'
+          } w-[33%] py-[1.2rem] `}
         >
           <Link href={tab.href}>{tab.name}</Link>
         </li>

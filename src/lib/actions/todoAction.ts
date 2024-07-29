@@ -1,14 +1,11 @@
 export async function fetchTodos(studyId: string, userId: string) {
   try {
-    const res = await fetch(
-      `${process.env.LOCAL_URL}/api/study-todo?study=${studyId}&user=${userId}`,
-      {
-        cache: 'no-store',
-      },
-    );
+    const res = await fetch(`/api/study-todo?study=${studyId}&user=${userId}`, {
+      cache: 'no-store',
+    });
     return res.json();
   } catch (error) {
-    console.error('Fetch error:', error);
+    console.error('Fetch todo error:', error);
   }
 }
 
@@ -20,10 +17,9 @@ type TTodo = {
   todoCompleted: boolean;
   date: Date;
 };
-export async function postTodoInfo(data: TTodo) {
-  console.log('🥑', data);
+export async function postTodo(data: TTodo) {
   try {
-    const response = await fetch(`${process.env.LOCAL_URL}/api/study-todo`, {
+    const response = await fetch(`/api/study-todo`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,34 +31,34 @@ export async function postTodoInfo(data: TTodo) {
 
     return { success: true, result };
   } catch (error) {
-    console.log('Error checkList info', error);
-    return { success: false, message: 'Error Post Comment' };
+    console.log('Error postTodo', error);
+    return { success: false, message: 'Error Post Todo' };
   }
 }
-export async function patchTodoInfo(data: any) {
+export async function patchTodoInfo(todoId: string) {
   try {
-    const response = await fetch(`${process.env.LOCAL_URL}/api/study-todo`, {
+    const response = await fetch(`/api/study-todo`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(todoId),
     });
 
     return Response.json({ message: '성공' });
   } catch (error) {
-    console.log('Error checkList info', error);
+    console.log('Error patch todo', error);
   }
 }
 
-export async function deleteTodoInfo(data: any) {
+export async function deleteTodoInfo(todoId: string) {
   try {
-    const response = await fetch(`${process.env.LOCAL_URL}/api/study-todo`, {
+    const response = await fetch(`/api/study-todo`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(todoId),
     });
     return Response.json({ message: '성공' });
   } catch (error) {
