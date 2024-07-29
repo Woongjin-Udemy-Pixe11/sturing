@@ -158,12 +158,12 @@ export default async function ApplicationList({
                       </span>
                     </div>
                     <h3 className="font-semibold text-content-1 pb-[1.6rem] border-b border-gray-300 text-gray-1000 truncate">
-                      {study.studyId?.studyName}
+                      {study.study?.studyName}
                     </h3>
                     <div className="flex">
                       <div className="w-[4rem] h-[4rem] rounded-full mr-[1.2rem] overflow-hidden">
                         <img
-                          src={`${study.userId?.image}`}
+                          src={`${study.user?.image}`}
                           alt=""
                           className="object-cover h-full w-full"
                         />
@@ -171,17 +171,17 @@ export default async function ApplicationList({
                       <div>
                         <div className="flex gap-[0.8rem] mb-[0.1rem] [&>span]:text-content-2 [&>span]:font-medium">
                           <span className="text-gray-700">
-                            {study.userId?.nickname}
+                            {study.user?.nickname}
                           </span>
-                          {study.userId?.matchingInfo?.level && (
+                          {study.user?.matchingInfo?.level && (
                             <>
                               <span className="text-content-1 text-gray-400">
                                 |
                               </span>
                               <span className="text-content-1 text-gray-600">
                                 {
-                                  study.userId?.matchingInfo?.level[
-                                    `${study.userId.matchingInfo.interests[0]}`
+                                  study.user?.matchingInfo?.level[
+                                    `${study.user.matchingInfo.interests[0]}`
                                   ]
                                 }
                               </span>
