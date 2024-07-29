@@ -19,23 +19,75 @@ export async function GET(request: Request) {
     }).select('_id');
     const myStudyId = myStudies.map((study) => study._id);
 
-    const receivedApplication = await StudyForm.find({
-      studyId: { $in: myStudyId },
-    })
-      .populate({
-        path: 'studyId',
-        select: 'studyName',
-      })
-      .populate({
-        path: 'userId',
-        select: 'nickname image matchingInfo',
-        populate: {
-          path: 'matchingInfo',
-          model: 'matching',
-          select: 'level interests',
+    const receivedApplication = await StudyForm.aggregate([
+      {
+        $match: {
+          studyId: { $in: myStudyId },
         },
-      })
-      .sort({ createdAt: -1 });
+      },
+      {
+        $lookup: {
+          from: 'studies',
+          localField: 'studyId',
+          foreignField: '_id',
+          as: 'study',
+        },
+      },
+      {
+        $unwind: '$study',
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'userId',
+          foreignField: '_id',
+          as: 'user',
+        },
+      },
+      {
+        $unwind: '$user',
+      },
+      {
+        $lookup: {
+          from: 'matchings',
+          localField: 'user.matchingInfo',
+          foreignField: 'matchingInfo',
+          as: 'matchingInfo',
+        },
+      },
+      {
+        $unwind: {
+          path: '$matchingInfo',
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          studyId: 1,
+          userId: 1,
+          studyFormTitle: 1,
+          studyFormContent: 1,
+          studyFormRead: 1,
+          studyFormSure: 1,
+          createdAt: 1,
+          'study.studyName': 1,
+          user: {
+            nickname: '$user.nickname',
+            image: '$user.image',
+            matchingInfo: '$matchingInfo',
+          },
+          matchingInfo: {
+            interests: 1,
+            level: 1,
+          },
+        },
+      },
+      {
+        $sort: { createdAt: -1 },
+      },
+    ]);
+    console.log('🍕', receivedApplication);
 
     return Response.json(receivedApplication);
   } catch (error) {
