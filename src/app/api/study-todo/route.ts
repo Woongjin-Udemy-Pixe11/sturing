@@ -29,12 +29,10 @@ function ISODate(arg0: string) {
 export async function PATCH(request: Request) {
   connectDB();
   const todoId = await request.json();
-  console.log(todoId);
-
   const todo = await StudyTodo.findOne({ _id: todoId });
 
   if (!todo) {
-    throw new Error('Todo not found');
+    return Response.json({ error: 'Todo not found' }, { status: 404 });
   }
   // 현재 상태를 반전시킵니다.
   const newTodoCompleted = !todo.todoCompleted;
@@ -48,7 +46,7 @@ export async function PATCH(request: Request) {
   );
 
   console.log('Update Result:', updateResult);
-  return updateResult;
+  return Response.json(updateResult);
 }
 
 export async function DELETE(request: Request) {
@@ -56,5 +54,6 @@ export async function DELETE(request: Request) {
 
   const res = await request.json();
   let test = await StudyTodo.deleteOne({ _id: res });
-  return new Response(JSON.stringify({ test }));
+  // return new Response(JSON.stringify({ test }));
+  return Response.json(test);
 }
