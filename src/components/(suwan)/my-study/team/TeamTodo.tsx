@@ -1,9 +1,5 @@
 'use client';
 import { useLayoutEffect, useState } from 'react';
-
-import { studyMemberTodo } from '@/dummy/studyMemberTodo';
-import Todo from '@/app/(suwan)/my-study-main/[studyId]/my-todo/_components/Todo';
-import { useCalendarStore } from '@/store/calendarStore';
 import { fetchTodos } from '@/lib/actions/todoAction';
 import { FaCircleCheck } from 'react-icons/fa6';
 import { format } from 'date-fns';

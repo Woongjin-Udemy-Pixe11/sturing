@@ -42,7 +42,7 @@ export default async function StudyDetailLayout(
 
   const study: TStudyInfo = await fetchStudyDetail(id);
 
-  let lecture: TLectureDetail = null;
+  let lecture: TLectureDetail | null = null;
 
   if (study.studyLecture) {
     lecture = await fetchLectureDetail(study.studyLecture);
