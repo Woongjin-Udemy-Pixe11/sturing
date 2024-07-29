@@ -11,13 +11,13 @@ export type TStudyInfo = {
   studyLecture: string;
   studyCategory: string;
   studyViews: number;
-  studyDeadline: string;
+  studyDeadline?: string;
   studyStart: string;
   studyEnd: string;
   studyPlace: string;
   studyMeetings: string;
   studyMood: string[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
 };

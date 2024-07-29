@@ -1,6 +1,6 @@
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import Card from '@/components/common/Card';
-import { getUserStudies } from '@/app/api/study/user/route';
+import { getUserStudies } from '@/lib/actions/userStudies';
 import { TgetUserStudies } from '@/types/TgetUserStudy';
 
 type TstudyLogPorps = {
