@@ -18,6 +18,13 @@ export default function Percent() {
       ></div>
     </div>
   );
+
+  const sortedMemberList = [...memberList].sort(
+    (a, b) => b.studyProgress - a.studyProgress,
+  );
+  const hightest =
+    sortedMemberList.length > 0 && sortedMemberList[0].studyProgress;
+
   return (
     <>
       <div className="flex flex-col justify-center items-center w-[90%] mt-[2rem] rounded-[5px] bg-white border border-gray-300">
@@ -27,7 +34,7 @@ export default function Percent() {
           </div>
 
           <div className="space-y-[2rem] py-[2rem]">
-            {memberList.map((member: any) => (
+            {sortedMemberList.map((member: any) => (
               <div
                 key={member._id}
                 className="flex items-center space-x-[1rem]"
@@ -42,8 +49,8 @@ export default function Percent() {
                       {member.userId.nickname}
                     </span>
                     <span className="text-gray-500 m-[.4rem]">
-                      {member.isLeader && (
-                        <img src="/images/studyLabel/crown.svg"></img>
+                      {member.studyProgress === hightest && (
+                        <img src="/images/studyLabel/crown.svg" />
                       )}
                     </span>
                     <span className="ml-auto font-medium ">
