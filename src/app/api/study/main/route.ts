@@ -1,4 +1,4 @@
-import { getStudies } from '@/lib/actions/userStudies';
+import { getStudies } from '@/lib/actions/userMainStudies';
 import connectDB from '@/lib/db';
 import { Study } from '@/lib/schemas/studySchema';
 
