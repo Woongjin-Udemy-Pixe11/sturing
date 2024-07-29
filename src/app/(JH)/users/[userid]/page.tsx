@@ -1,6 +1,6 @@
+import { getUserStudies } from '@/lib/actions/userStudies';
 import { getSession } from '@/utils/getSessions';
 import MyPage from './_pages/MyPage';
-import { getUserStudies } from '@/app/api/study/user/route';
 
 export default async function page({ params }: { params: { userid: string } }) {
   const session = await getSession();
