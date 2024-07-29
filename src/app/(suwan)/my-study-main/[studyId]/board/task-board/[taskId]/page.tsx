@@ -2,7 +2,7 @@ import {
   fetchBlackboard,
   fetchComment,
   patchView,
-} from '@/utils/my-study-main/fetch';
+} from '@/lib/actions/studyMainAction';
 import TaskDetail from '../../_component/TaskDetail';
 import { getSession } from '@/utils/getSessions';
 import BoardComment from '../../_component/BoardComment';

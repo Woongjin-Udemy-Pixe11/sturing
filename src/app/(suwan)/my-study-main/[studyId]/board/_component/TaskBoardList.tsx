@@ -1,5 +1,5 @@
 import { TBlackboard } from '@/types/TStudyBoard';
-import { dateCalculate } from '@/utils/my-study-main/dateCalculate';
+import { dateCalculate } from '@/utils/dateCalculate';
 import Link from 'next/link';
 
 type TTaskListProps = {

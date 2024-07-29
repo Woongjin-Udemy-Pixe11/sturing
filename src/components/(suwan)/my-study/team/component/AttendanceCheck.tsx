@@ -1,6 +1,6 @@
 import { useMemberStore } from '@/store/memberStore';
 import { useMyStudyStore } from '@/store/myStudyStore';
-import { patchMember } from '@/utils/my-study-main/fetch';
+import { patchMember } from '@/lib/actions/studyMainAction';
 import { useEffect, useState } from 'react';
 import { FaCircleCheck } from 'react-icons/fa6';
 

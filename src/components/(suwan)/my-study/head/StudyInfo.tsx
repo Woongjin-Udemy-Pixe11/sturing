@@ -2,7 +2,7 @@ import Label from '@/components/common/label/Label';
 import CourseLink from '../../../common/CourseLink';
 import { differenceInDays, format } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import { fetchLecture } from '@/utils/my-study-main/fetch';
+import { fetchLecture } from '@/lib/actions/studyMainAction';
 
 export default async function StudyInfo({ data }: any) {
   const lectureId = data.studyLecture;

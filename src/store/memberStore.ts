@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { useMyStudyStore } from './myStudyStore';
-import { fetchMember } from '@/utils/my-study-main/fetch';
+import { fetchMember } from '@/lib/actions/studyMainAction';
 
 type TMemberStore = {
   memberList: any[];

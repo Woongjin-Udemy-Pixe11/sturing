@@ -1,10 +1,7 @@
 'use client';
 import LongButton from '@/components/common/LongButton';
-
 import SizeUpLabel from '@/components/common/label/SizeUpLabel';
-import { useRouter } from 'next/navigation';
 import { useState, useMemo } from 'react';
-import { postStudy } from '@/utils/study/studyUtils';
 
 const levelOptions: string[] = [
   '비기너',

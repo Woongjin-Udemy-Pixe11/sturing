@@ -1,7 +1,7 @@
 'use client';
 
-import { dateCalculate } from '@/utils/my-study-main/dateCalculate';
-import { updateComment } from '@/utils/my-study-main/fetch';
+import { dateCalculate } from '@/utils/dateCalculate';
+import { updateComment } from '@/lib/actions/studyMainAction';
 import { useEffect, useRef, useState } from 'react';
 import { HiEllipsisVertical } from 'react-icons/hi2';
 import { useRouter } from 'next/navigation';

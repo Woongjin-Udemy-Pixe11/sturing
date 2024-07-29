@@ -1,20 +1,18 @@
 'use client';
-//TODO: 이미지 기본값 넣기
 //TODO: reducer만 써보기
 
-import supabase from '@/lib/supabaseClient';
-import LongButton from '@/components/common/LongButton';
 import { useState, useReducer } from 'react';
+import { useRouter } from 'next/navigation';
+import supabase from '@/lib/supabaseClient';
 import SelectCateGory from './SelectCateGory';
 import StudyDetailInfoForm from './StudyDetailInfoForm';
 import StudyInfoForm from './StudyInfoForm';
 import StudyTeammateForm from './StudyTeammateForm';
-import { postStudy } from '@/utils/study/studyUtils';
-import { TFetchStudy } from '@/types/TStudy';
-
-import { studyReducer } from '@/utils/study/studyReducer';
-import { useRouter } from 'next/navigation';
 import DefaultModal from '@/components/common/modal/DefaultModal';
+
+import { TFetchStudy } from '@/types/TStudy';
+import { studyReducer } from '@/utils/reducers/studyReducer';
+import { postStudy } from '@/lib/actions/makeStudyAction';
 
 export type TLectureData = {
   lectureName: string;
@@ -40,7 +38,7 @@ export default function CollectStudyClient(props: TProps) {
       studyContent: '',
       studyType: '',
       studyLevel: '',
-      studyMember: 0,
+      studyMember: 3,
       studyLecture: lectureId,
       studyCategory: lectureData.lectureCategory,
       studyDeadline: '',

@@ -3,7 +3,7 @@ import {
   postComment,
   fetchComment,
   deleteComment,
-} from '@/utils/my-study-main/fetch';
+} from '@/lib/actions/studyMainAction';
 import { useState } from 'react';
 import Comment from './Comment';
 import { TComment } from '@/types/TStudyBoard';
