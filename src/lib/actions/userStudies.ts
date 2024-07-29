@@ -1,60 +1,52 @@
-import { Matching } from '../schemas/matchingSchema';
+import { Types } from 'mongoose';
+import { StudyMember } from '../schemas/studyMemberSchema';
 import { Study } from '../schemas/studySchema';
 
-type SortOption = 'type' | 'category' | 'popular' | 'recent' | undefined;
+export async function getUserStudies(userId: string) {
+  const currentDate = new Date();
 
-export async function getStudies(sort: SortOption, userId?: string) {
-  let query = Study.find({
-    leaderId: { $ne: userId },
-    studyEnd: { $gt: new Date() },
-    studyStart: { $gt: new Date() },
+  // const studies = await Study.find({
+  //   leaderId: new Types.ObjectId(userId),
+  // }).sort({ studyStart: -1 });
+
+  const objectId = new Types.ObjectId(userId);
+
+  // 사용자가 만든 스터디
+  const leaderStudies = await Study.find({ leaderId: objectId });
+
+  // 사용자가 참여하고 있는 스터디
+  const studyMembers = await StudyMember.find({ userId: objectId }).populate(
+    'studyId',
+  );
+  let myStudies: any = studyMembers.map((member) => member.studyId);
+
+  const allStudies = [...myStudies, ...leaderStudies].filter((s) => s !== null);
+
+  const uniqueStudies = Array.from(
+    new Set(allStudies.map((s) => s._id.toString())),
+  ).map((id) => allStudies.find((s) => s._id.toString() === id));
+
+  const activeStudies = uniqueStudies.filter(
+    (study) => study.studyStart <= currentDate && study.studyEnd >= currentDate,
+  );
+
+  const completedStudies = uniqueStudies.filter(
+    (study) => study.studyEnd < currentDate,
+  );
+
+  const upcomingStudies = uniqueStudies
+    .filter((study) => study.studyStart > currentDate)
+    .sort((a, b) => a.studyStart.getTime() - b.studyStart.getTime());
+
+  const formatStudy = (study: any) => ({
+    ...JSON.parse(JSON.stringify(study)),
+    studyStart: study.studyStart.toDateString(),
+    studyEnd: study.studyEnd.toDateString(),
   });
 
-  if (userId) {
-    const matching = await Matching.findOne({ userid: userId });
-    if (matching) {
-      query = applyMatchingFilters(query, matching, sort);
-    } else {
-      query = applyDefaultFilters(query, sort);
-    }
-  } else {
-    query = applyGeneralFilters(query, sort);
-  }
-
-  return query.exec();
-}
-
-function applyMatchingFilters(query: any, matching: any, sort: SortOption) {
-  switch (sort) {
-    case 'type':
-      return matching.studyType === '상관없음'
-        ? query.find({ studyType: { $in: ['온라인', '오프라인'] } }).limit(12)
-        : query.find({ studyType: matching.studyType }).limit(12);
-    case 'category':
-      return query.find({ studyCategory: matching.interests }).limit(6);
-    default:
-      return query;
-  }
-}
-
-function applyDefaultFilters(query: any, sort: SortOption) {
-  switch (sort) {
-    case 'type':
-      return query.sort({ createdAt: -1 }).limit(12);
-    case 'category':
-      return query.sort({ studyViews: -1 }).limit(6);
-    default:
-      return query;
-  }
-}
-
-function applyGeneralFilters(query: any, sort: SortOption) {
-  switch (sort) {
-    case 'popular':
-      return query.sort({ studyViews: -1 }).limit(6);
-    case 'recent':
-      return query.sort({ createdAt: -1 }).limit(12);
-    default:
-      return query;
-  }
+  return {
+    active: activeStudies.map(formatStudy),
+    completed: completedStudies.map(formatStudy),
+    upcoming: upcomingStudies.map(formatStudy),
+  };
 }
