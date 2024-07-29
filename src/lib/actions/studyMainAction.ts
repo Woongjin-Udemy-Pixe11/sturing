@@ -1,4 +1,4 @@
-export async function fetchLecture(lectureId: any) {
+export async function fetchLecture(lectureId: string) {
   const res = await fetch(
     `${process.env.LOCAL_URL}/api/lecture/${lectureId}?data=lectureName&data=lectureURL`,
   );
@@ -6,19 +6,19 @@ export async function fetchLecture(lectureId: any) {
   return res.json();
 }
 
-export async function fetchStudy(studyId: any) {
+export async function fetchStudy(studyId: string) {
   const res = await fetch(`${process.env.LOCAL_URL}/api/study?id=${studyId}`);
 
   return res.json();
 }
 
-export async function fetchMember(studyId: any) {
+export async function fetchMember(studyId: string) {
   try {
     const res = await fetch(`/api/study-member?studyId=${studyId}`);
     return res.json();
   } catch (error) {
     console.log(error);
-    return error;
+    return { message: 'fetchMember error', status: 500 };
   }
 }
 
@@ -44,6 +44,7 @@ export async function patchMember(
     return response.json();
   } catch (error) {
     console.error('Error updating attendance:', error);
+    return { message: 'patchMember error', status: 500 };
   }
 }
 
@@ -56,6 +57,7 @@ export async function fetchBoardList(boardType: string, studyId: string) {
     return res.json();
   } catch (error) {
     console.error('Fetch error:', error);
+    return { message: 'fetchBoardList error', status: 500 };
   }
 }
 
@@ -68,6 +70,7 @@ export async function fetchNotice(blackboardId: string) {
     return res.json();
   } catch (error) {
     console.error('Fetch error:', error);
+    return { message: 'fetchNotice error', status: 500 };
   }
 }
 
@@ -80,6 +83,7 @@ export async function fetchBlackboard(boardType: string, blackboardId: string) {
     return res.json();
   } catch (error) {
     console.error('Fetch error:', error);
+    return { message: 'fetchBlackboard error', status: 500 };
   }
 }
 
@@ -100,6 +104,7 @@ export async function patchView(noticeId: string, boardType: string) {
     return result;
   } catch (error) {
     console.error('Error UserEdit:', error);
+    return { message: 'patchView error', status: 500 };
   }
 }
 
@@ -140,6 +145,7 @@ export async function postIcon(props: TPostIconProps) {
     return result;
   } catch (error) {
     console.error('Error UserEdit:', error);
+    return { message: 'postIcon error', status: 500 };
   }
 }
 
@@ -162,6 +168,7 @@ export async function fetchComment(blackboardId: string) {
     return res.json();
   } catch (error) {
     console.error('Fetch error:', error);
+    return { message: 'fetchComment error', status: 500 };
   }
 }
 
