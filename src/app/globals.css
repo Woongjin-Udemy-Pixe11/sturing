@@ -34,3 +34,28 @@ body {
 .minitab-trigger[data-state='active'] {
   @apply border-b-2 border-main-600 text-main-600;
 }
+
+@keyframes custom-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.custom-spin {
+  animation: custom-spin 1.35s linear infinite;
+}
+
+@keyframes custom-ping {
+  75%,
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.custom-ping {
+  animation: custom-ping 1.4s linear infinite;
+}
