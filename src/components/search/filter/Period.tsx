@@ -1,17 +1,12 @@
 'use client';
-
 import RangeCalendar from '@/components/common/calender/RangeCalendar';
+import { useFilterStore } from '@/store/filterStore';
 import { format } from 'date-fns';
 import { DateRange } from 'react-day-picker';
 
-type PeriodProps = {
-  state: {
-    period: string;
-  };
-  onClickPeriod: (period: string) => void;
-};
+export default function Period() {
+  const { setPeriod } = useFilterStore();
 
-export default function Period({ state, onClickPeriod }: PeriodProps) {
   const handleDateChange = (dateRange: DateRange | undefined) => {
     if (dateRange?.from) {
       const dateString = dateRange.to
@@ -20,7 +15,7 @@ export default function Period({ state, onClickPeriod }: PeriodProps) {
             'y.MM.d',
           )}`
         : format(dateRange.from, 'y.MM.d');
-      onClickPeriod(dateString);
+      setPeriod(dateString);
     }
   };
 

@@ -1,10 +1,10 @@
 'use client';
 import Link from 'next/link';
 
+import { TStudyInfo } from '@/types/TStudyInfo';
 import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams } from 'next/navigation';
 import GrayFullLink from './GrayFullLink';
-import { TStudyInfo } from '@/types/TStudyInfo';
 const Card = dynamic(() => import('@/components/common/Card'));
 type TStudyListProps = {
   isDetail?: boolean;
@@ -16,7 +16,7 @@ type TStudyListProps = {
 };
 //TODO:filter타입이뭔지모르겠다.
 
-export default async function StudyList(props: TStudyListProps) {
+export default function StudyList(props: TStudyListProps) {
   const { isDetail, data, limit, keyword, filters, userId } = props;
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -45,7 +45,7 @@ export default async function StudyList(props: TStudyListProps) {
         <ul className="w-full grid grid-cols-2 justify-stretch items-start flex-wrap gap-x-[1.6rem] gap-y-[1.6rem] py-[2rem]">
           {cardList && cardList.length > 0 ? (
             cardList.map((card: any) => (
-              <Link href={`/study-detail/${card._id}`}>
+              <Link href={`/study-detail/${card._id}`} key={card._id}>
                 <Card
                   key={card.id}
                   userId={userId}

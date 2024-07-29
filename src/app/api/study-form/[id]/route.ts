@@ -26,10 +26,6 @@ export async function GET(
       .populate({
         path: 'userId',
         select: 'nickname image sturingPercent matchingInfo',
-        populate: {
-          path: 'matchingInfo',
-          select: 'level interests',
-        },
       });
 
     if (!studyForm) {
@@ -112,7 +108,6 @@ export async function PATCH(
         );
       }
 
-      await StudyForm.findByIdAndDelete(id);
       revalidatePath('/my-study-list');
       return Response.json({ message: '지원이 수락되었습니다.' });
     }
