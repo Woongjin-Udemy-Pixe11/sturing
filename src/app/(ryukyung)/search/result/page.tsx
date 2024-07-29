@@ -15,7 +15,7 @@ type TSearchResultProps = {
 
 type TSearchResult = {
   searchstudies: TStudyInfo[];
-  searchlectures: TLectureDetail[];
+  searchlectures?: TLectureDetail[];
 };
 
 export default async function page(props: TSearchResultProps) {
@@ -32,7 +32,10 @@ export default async function page(props: TSearchResultProps) {
     level: searchParams.level?.split(',') || [],
   };
 
-  let data: TSearchResult = null;
+  let data: TSearchResult = {
+    searchstudies: [],
+    searchlectures: [],
+  };
   if (keyword) {
     data = await (
       await fetch(`http://localhost:3000/api/search?keyword=${keyword}`, {

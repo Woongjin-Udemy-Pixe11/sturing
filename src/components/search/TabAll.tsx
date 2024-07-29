@@ -1,7 +1,7 @@
+import { TLectureDetail } from '@/types/TLecture';
 import { TStudyInfo } from '@/types/TStudyInfo';
 import LectureList from './LectureList';
 import StudyList from './StudyList';
-import { TLectureDetail } from '@/types/TLecture';
 
 type TtabAllProps = {
   study: TStudyInfo[];
