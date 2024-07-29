@@ -4,7 +4,7 @@ import Header from '../_components/Header';
 import { fetchStudy } from '@/utils/my-study-main/fetch';
 import Calendar from '../_components/Calendar';
 import Schedule from './_components/Schedule';
-import CalendarInitializer from './_components/CalendarInitializer';
+import RenderCalendar from './_components/RenderCalendar';
 
 export default async function Calender({
   params,
@@ -21,7 +21,7 @@ export default async function Calender({
   return (
     <>
       <Header studyId={studyId} data={data} />
-      <CalendarInitializer studyId={studyId} />
+      <RenderCalendar studyId={studyId} />
       <div className="bg-gray-100 p-[2rem] h-[100%]">
         <Calendar type="schedule" />
         <Schedule isLeader={isLeader} userid={userid} />

@@ -5,10 +5,12 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import { useCalendarStore } from '@/store/calendarStore';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
+import { useMyStudyStore } from '@/store/myStudyStore';
 
 export default function Schedule(props: any) {
   const { isLeader, userId } = props;
-  const { scheduleList, studyId, fetchScheduleList } = useCalendarStore();
+  const { scheduleList, fetchScheduleList } = useCalendarStore();
+  const { studyId } = useMyStudyStore();
 
   const [clicked, setClicked] = useState(false);
   const [start, setStart] = useState('');

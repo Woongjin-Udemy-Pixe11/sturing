@@ -13,18 +13,12 @@ export default function CalendarComponent(props: any) {
     }
   };
 
-  let day;
+  let day: Date[];
   if (type === 'schedule') {
     day = scheduleList.map((data) => new Date(data.date));
   } else if (type === 'todo') {
     day = todoList.map((data) => new Date(data.date));
   }
-
-  const dottedStyle = {
-    day: {
-      backgroundColor: '#c5e8ff93',
-    },
-  } as const;
 
   return (
     <>
@@ -35,8 +29,10 @@ export default function CalendarComponent(props: any) {
             selected={date}
             onSelect={handleDateChange}
             className="rounded-md border"
-            modifiers={{ day: day, selected: date }}
-            modifiersStyles={dottedStyle}
+            modifiers={{ day: day }}
+            modifiersClassNames={{
+              day: 'bg-gray-200',
+            }}
           />
         </div>
       </div>
