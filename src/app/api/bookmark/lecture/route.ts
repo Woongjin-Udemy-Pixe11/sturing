@@ -4,6 +4,8 @@ import { Lecture } from '@/lib/schemas/lectureSchema';
 import { TBookmark } from '@/types/TBookmark';
 import { TLectureDetail } from '@/types/TLecture';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: Request) {
   connectDB();
   try {

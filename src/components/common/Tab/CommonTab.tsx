@@ -11,7 +11,7 @@ export default function CommonTab({ regions, onClickRegion }: any) {
   const [currentTab, setCurrentTab] = useState('서울');
 
   // Create a mapping of all regions to their parent keys
-  const regionMapping = {};
+  const regionMapping: { [key: string]: string } = {};
   Object.keys(area).forEach((key) => {
     area[key].forEach((region) => {
       regionMapping[region] = key;
@@ -31,7 +31,7 @@ export default function CommonTab({ regions, onClickRegion }: any) {
   }, [keyword]);
 
   // Function to check if a region matches the keyword
-  const matchesKeyword = (region) => {
+  const matchesKeyword = (region: string) => {
     return region.toLowerCase().includes(keyword.toLowerCase());
   };
 

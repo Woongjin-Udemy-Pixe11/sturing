@@ -1,6 +1,8 @@
 import connectDB from '@/lib/db';
 import { Study } from '@/lib/schemas/studySchema';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: Request) {
   connectDB();
 

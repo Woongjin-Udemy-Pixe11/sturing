@@ -1,4 +1,4 @@
-import { Tmatching } from '@/app/(JH)/matching/_components/ClientMatching';
+import { Tmatching } from '@/types/TSession';
 
 export type TActionType =
   | { type: 'setInterest'; payload: string }
@@ -99,7 +99,8 @@ export default function matchingreducer(state: Tmatching, action: TActionType) {
     }
     case 'clearlevel': {
       const newinterest: string[] = action.payload.interests;
-      const prevLevel = action.payload.personlevel;
+      const prevLevel = action.payload.personlevel as { [key: string]: string };
+      console.log('🔴', typeof prevLevel);
       for (const key of Object.keys(prevLevel)) {
         if (!newinterest.includes(key)) {
           delete prevLevel[`${key}`];

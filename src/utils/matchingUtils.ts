@@ -1,4 +1,4 @@
-import { Tmatching } from '@/app/(JH)/matching/_components/ClientMatching';
+import { Tmatching } from '@/types/TSession';
 
 export async function postMatchingInfo(data: Tmatching) {
   try {

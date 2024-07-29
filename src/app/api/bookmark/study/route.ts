@@ -3,6 +3,8 @@ import { Bookmark } from '@/lib/schemas/bookmarkSchema';
 import { Study } from '@/lib/schemas/studySchema';
 import { TBookmark } from '@/types/TBookmark';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: Request) {
   connectDB();
   try {
