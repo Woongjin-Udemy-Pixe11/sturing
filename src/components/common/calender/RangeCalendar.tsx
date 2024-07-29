@@ -8,11 +8,19 @@ import { Calendar } from './ui/calendar';
 
 type TRangeCalendarProps = {
   onChangeDate?: (dateRange: DateRange | undefined) => void;
+  initialDateRange?: string;
 };
 
 export default function RangeCalendar(props: TRangeCalendarProps) {
-  const { onChangeDate } = props;
-  const [date, setDate] = React.useState<DateRange | undefined>();
+  const { onChangeDate, initialDateRange } = props;
+  const [date, setDate] = React.useState<DateRange | undefined>(
+    initialDateRange
+      ? {
+          from: new Date(initialDateRange.split(' - ')[0]),
+          to: new Date(initialDateRange.split(' - ')[1]),
+        }
+      : undefined,
+  );
 
   React.useEffect(() => {
     if (onChangeDate) {

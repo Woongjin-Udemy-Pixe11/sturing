@@ -1,6 +1,8 @@
 'use client';
 
+import { useFilterStore } from '@/store/filterStore';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import TabBarBlue from './TabBarBlue';
 
 type TTabList = {
@@ -30,6 +32,13 @@ export default function TabContainer({
 }: TTabListProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { reset } = useFilterStore();
+
+  useEffect(() => {
+    if (keyword) {
+      reset();
+    }
+  }, [keyword, reset]);
 
   const handleTabChange = (tabName: string) => {
     const currentParams = new URLSearchParams(searchParams.toString());
