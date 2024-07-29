@@ -13,7 +13,7 @@ export default function CalendarComponent(props: any) {
     }
   };
 
-  let day: Date[];
+  let day: Date[] = [];
   if (type === 'schedule') {
     day = scheduleList.map((data) => new Date(data.date));
   } else if (type === 'todo') {
