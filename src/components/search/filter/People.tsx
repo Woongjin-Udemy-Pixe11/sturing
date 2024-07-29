@@ -1,3 +1,4 @@
+import { useFilterStore } from '@/store/filterStore';
 import CheckBox from './CheckBox';
 
 const defaultCheckList = [
@@ -7,8 +8,12 @@ const defaultCheckList = [
   { name: '상관없음', isChecked: false },
 ];
 
-export default function People({ state, onClickPeople, filterCounts }: any) {
-  const people = state.people;
+type PeopleProps = {
+  filterCounts: Record<string, number>;
+};
+
+export default function People({ filterCounts }: PeopleProps) {
+  const { people, setPeople } = useFilterStore();
 
   const checkList = defaultCheckList.map((item) => ({
     ...item,
@@ -25,27 +30,25 @@ export default function People({ state, onClickPeople, filterCounts }: any) {
         newField = [name];
       } else {
         newField = people.includes(name)
-          ? people.filter((item: any) => item !== name)
+          ? people.filter((item) => item !== name)
           : [...people, name];
       }
     }
-    onClickPeople(newField);
+    setPeople(newField);
   };
 
   return (
-    <>
-      <ul className="w-full flex flex-col gap-[.8rem]">
-        {checkList.map((checkbox) => (
-          <li key={checkbox.name}>
-            <CheckBox
-              name={checkbox.name}
-              count={checkbox.count}
-              isChecked={people.includes(checkbox.name)}
-              onClick={handlePeopleClick}
-            />
-          </li>
-        ))}
-      </ul>
-    </>
+    <ul className="w-full flex flex-col gap-[.8rem]">
+      {checkList.map((checkbox) => (
+        <li key={checkbox.name}>
+          <CheckBox
+            name={checkbox.name}
+            count={checkbox.count}
+            isChecked={people.includes(checkbox.name)}
+            onClick={handlePeopleClick}
+          />
+        </li>
+      ))}
+    </ul>
   );
 }

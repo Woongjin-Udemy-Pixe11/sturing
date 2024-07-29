@@ -1,13 +1,13 @@
 'use client';
 import FilterTab from '@/components/common/Tab/FilterTab';
+import { useFilterStore } from '@/store/filterStore';
 
-export default function Region({ state, onClickRegion }: any) {
-  const region = state.region;
+export default function Region() {
+  const { region, setRegion } = useFilterStore();
 
   const handleRegionSelect = (selectedRegions: string[]) => {
-    region.forEach((item: string) => onClickRegion(item));
-
-    selectedRegions.forEach((item: string) => onClickRegion(item));
+    region.forEach((item) => setRegion(item));
+    selectedRegions.forEach((item) => setRegion(item));
   };
 
   return (

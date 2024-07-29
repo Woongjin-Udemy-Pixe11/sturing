@@ -1,3 +1,4 @@
+import { useFilterStore } from '@/store/filterStore';
 import CheckBox from './CheckBox';
 
 const defaultCheckList = [
@@ -8,8 +9,12 @@ const defaultCheckList = [
   { name: '상관없음', isChecked: false },
 ];
 
-export default function Level({ state, onClickLevel, filterCounts }: any) {
-  const level = state.level;
+type LevelProps = {
+  filterCounts: Record<string, number>;
+};
+
+export default function Level({ filterCounts }: LevelProps) {
+  const { level, setLevel } = useFilterStore();
 
   const checkList = defaultCheckList.map((item) => ({
     ...item,
@@ -19,17 +24,16 @@ export default function Level({ state, onClickLevel, filterCounts }: any) {
 
   return (
     <ul className="w-full flex flex-col gap-[.8rem]">
-      {checkList &&
-        checkList.map((checkbox) => (
-          <li key={checkbox.name}>
-            <CheckBox
-              name={checkbox.name}
-              count={checkbox.count}
-              isChecked={level.includes(checkbox.name)}
-              onClick={onClickLevel}
-            />
-          </li>
-        ))}
+      {checkList.map((checkbox) => (
+        <li key={checkbox.name}>
+          <CheckBox
+            name={checkbox.name}
+            count={checkbox.count}
+            isChecked={level.includes(checkbox.name)}
+            onClick={setLevel}
+          />
+        </li>
+      ))}
     </ul>
   );
 }

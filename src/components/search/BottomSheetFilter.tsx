@@ -1,7 +1,7 @@
 'use client';
-import filterReducer from '@/utils/filterReducer';
+import { useFilterStore } from '@/store/filterStore';
 import { useRouter } from 'next/navigation';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GrPowerReset } from 'react-icons/gr';
 import TabBarUnderBlue from './TabBarUnderBlue';
 import Field from './filter/Field';
@@ -22,6 +22,20 @@ export default function BottomSheetFilter({
   initialFilters,
 }: TBottomSheetFilter) {
   const router = useRouter();
+  const {
+    field,
+    region,
+    people,
+    period,
+    level,
+    setField,
+    setRegion,
+    setPeople,
+    setPeriod,
+    setLevel,
+    reset,
+  } = useFilterStore();
+
   const [filterCounts, setFilterCounts] = useState({
     totalCount: 0,
     fields: {},
@@ -51,86 +65,41 @@ export default function BottomSheetFilter({
     e.preventDefault();
 
     const params = new URLSearchParams();
-    if (state.field.length) params.append('field', state.field.join(','));
-    if (state.region.length) params.append('region', state.region.join(','));
-    if (state.people.length) params.append('people', state.people.join(','));
-    if (state.period) params.append('period', state.period);
-    if (state.level.length) params.append('level', state.level.join(','));
+    if (field.length) params.append('field', field.join(','));
+    if (region.length) params.append('region', region.join(','));
+    if (people.length) params.append('people', people.join(','));
+    if (period) params.append('period', period);
+    if (level.length) params.append('level', level.join(','));
 
     onClose();
 
     router.push(`/search/result?${params.toString()}`);
   };
 
-  const [state, dispatch] = useReducer(filterReducer, {
-    field: initialFilters.field || [],
-    region: initialFilters.region || [],
-    people: initialFilters.people || [],
-    period: initialFilters.period || '',
-    level: initialFilters.level || [],
-  });
-
-  const onClickField = (newField: string[]) => {
-    dispatch({ type: 'setField', payload: newField });
-  };
-
-  const onClickRegion = (region: string) =>
-    dispatch({ type: 'setRegion', payload: region });
-
-  const onClickPeople = (newPeople: string[]) =>
-    dispatch({ type: 'setPeople', payload: newPeople });
-
-  const onClickPeriod = (period: string) =>
-    dispatch({ type: 'setPeriod', payload: period });
-
-  const onClickLevel = (level: string) =>
-    dispatch({ type: 'setLevel', payload: level });
-
-  const resetFilters = () => dispatch({ type: 'reset' });
-
   useEffect(() => {
-    const stateJSON = JSON.stringify(state);
-    onFilterChange(JSON.parse(stateJSON));
-  }, [state]);
+    onFilterChange({ field, region, people, period, level });
+  }, [field, region, people, period, level, onFilterChange]);
 
   const tabList = [
     {
       name: '분야',
-      component: (
-        <Field
-          state={state}
-          onClickField={onClickField}
-          filterCounts={filterCounts.fields}
-        />
-      ),
+      component: <Field filterCounts={filterCounts.fields} />,
     },
     {
       name: '지역',
-      component: <Region state={state} onClickRegion={onClickRegion} />,
+      component: <Region />,
     },
     {
       name: '인원',
-      component: (
-        <People
-          state={state}
-          onClickPeople={onClickPeople}
-          filterCounts={filterCounts.people}
-        />
-      ),
+      component: <People filterCounts={filterCounts.people} />,
     },
     {
       name: '기간',
-      component: <Period state={state} onClickPeriod={onClickPeriod} />,
+      component: <Period />,
     },
     {
       name: '수준',
-      component: (
-        <Level
-          state={state}
-          onClickLevel={onClickLevel}
-          filterCounts={filterCounts.levels}
-        />
-      ),
+      component: <Level filterCounts={filterCounts.levels} />,
     },
   ];
 
@@ -146,7 +115,7 @@ export default function BottomSheetFilter({
         <div className=" w-full flex justify-center gap-[.8rem] pb-[1.8rem]">
           <button
             type="button"
-            onClick={resetFilters}
+            onClick={reset}
             className="px-[2.4rem] py-[1.2rem] text-gray-600 text-[1.6rem] flex items-center justify-center gap-[.4rem] border border-gray-400 rounded-[.5rem]"
           >
             <GrPowerReset />

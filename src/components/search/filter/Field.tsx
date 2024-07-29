@@ -1,3 +1,4 @@
+import { useFilterStore } from '@/store/filterStore';
 import CheckBox from './CheckBox';
 
 const defaultCheckList = [
@@ -13,8 +14,12 @@ const defaultCheckList = [
   { name: '기타', isChecked: false },
 ];
 
-export default function Field({ state, onClickField, filterCounts }: any) {
-  const field = state.field;
+type FieldProps = {
+  filterCounts: Record<string, number>;
+};
+
+export default function Field({ filterCounts }: FieldProps) {
+  const { field, setField } = useFilterStore();
 
   const checkList = defaultCheckList.map((item) => ({
     ...item,
@@ -31,28 +36,25 @@ export default function Field({ state, onClickField, filterCounts }: any) {
         newField = [name];
       } else {
         newField = field.includes(name)
-          ? field.filter((item: any) => item !== name)
+          ? field.filter((item) => item !== name)
           : [...field, name];
       }
     }
-    onClickField(newField);
+    setField(newField);
   };
 
   return (
-    <>
-      <ul className="w-full flex gap-[.8rem] flex-col">
-        {checkList &&
-          checkList.map((checkbox) => (
-            <li key={checkbox.name}>
-              <CheckBox
-                name={checkbox.name}
-                count={checkbox.count}
-                isChecked={field.includes(checkbox.name)}
-                onClick={handleFieldClick}
-              />
-            </li>
-          ))}
-      </ul>
-    </>
+    <ul className="w-full flex gap-[.8rem] flex-col">
+      {checkList.map((checkbox) => (
+        <li key={checkbox.name}>
+          <CheckBox
+            name={checkbox.name}
+            count={checkbox.count}
+            isChecked={field.includes(checkbox.name)}
+            onClick={handleFieldClick}
+          />
+        </li>
+      ))}
+    </ul>
   );
 }
