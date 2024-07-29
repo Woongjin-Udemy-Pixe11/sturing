@@ -11,7 +11,7 @@ import StudyTeammateForm from './StudyTeammateForm';
 import DefaultModal from '@/components/common/modal/DefaultModal';
 
 import { TFetchStudy } from '@/types/TStudy';
-import { studyReducer } from '@/utils/study/studyReducer';
+import { studyReducer } from '@/utils/reducers/studyReducer';
 import { postStudy } from '@/lib/actions/makeStudyAction';
 
 export type TLectureData = {
