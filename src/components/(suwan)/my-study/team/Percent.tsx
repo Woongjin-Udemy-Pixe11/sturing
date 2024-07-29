@@ -1,5 +1,4 @@
 'use client';
-import { studyMember } from '@/dummy/studyMember';
 import { useMemberStore } from '@/store/memberStore';
 type TStudyMember = {
   name: string;

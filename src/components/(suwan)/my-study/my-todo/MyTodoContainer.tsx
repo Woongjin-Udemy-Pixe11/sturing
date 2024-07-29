@@ -1,7 +1,4 @@
 import Calendar from '@/components/(suwan)/my-study/common/Calendar';
-import Todos from '@/components/(suwan)/my-study/my-todo/Todos';
-
-import { studyMemberTodo } from '@/dummy/studyMemberTodo';
 
 export default async function MyTodoContainer({
   studyId,

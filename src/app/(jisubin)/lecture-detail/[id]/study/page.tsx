@@ -1,6 +1,3 @@
-import { dummyCardList } from '@/dummy/lectureStudy';
-import Card from '@/components/common/Card';
-import TitleNavigator from '@/components/(jisubin)/lectureStudyDetail/TitleNavigator';
 import LectureStudy from '@/app/(jisubin)/lecture-detail/_components/LectureStudy';
 
 type TLectureDetailStudyPageProps = {
