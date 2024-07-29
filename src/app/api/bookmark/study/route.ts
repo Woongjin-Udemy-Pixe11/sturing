@@ -1,19 +1,20 @@
 import connectDB from '@/lib/db';
 import { Bookmark } from '@/lib/schemas/bookmarkSchema';
 import { Study } from '@/lib/schemas/studySchema';
+import { TBookmark } from '@/types/TBookmark';
 
 export async function GET(req: Request) {
   connectDB();
   try {
     const url = new URL(req.url);
     const id = url.searchParams.get('id');
-    let bookmarks: any = await Bookmark.find({
+    let bookmarks: TBookmark[] = await Bookmark.find({
       userId: `${id}`,
       checked: true,
     });
     //TODO: Promise All 체크하는거 꼭 알고넘어가기
     let studyList: any[] = await Promise.all(
-      bookmarks.map(async (bookmark: any) => {
+      bookmarks.map(async (bookmark: TBookmark) => {
         let bookmarkid = bookmark.targetId;
         let data = await Study.findOne({
           _id: bookmarkid,

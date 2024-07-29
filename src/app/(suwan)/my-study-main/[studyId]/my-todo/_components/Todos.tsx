@@ -1,5 +1,4 @@
 'use client';
-import { TTdo } from '@/dummy/studyMemberTodo';
 
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Todo from './Todo';
