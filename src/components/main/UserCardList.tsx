@@ -29,13 +29,15 @@ export default async function UserCardList() {
   const topUsers = await getTopUsers();
 
   return (
-    <ScrollableContainer>
-      {topUsers &&
-        topUsers.map((user: TUser) => (
-          <li key={user._id}>
-            <UserCard user={user} />
-          </li>
-        ))}
-    </ScrollableContainer>
+    <div className="px-[1.6rem] mb-[4rem]">
+      <ScrollableContainer>
+        {topUsers &&
+          topUsers.map((user: TUser) => (
+            <li key={user._id}>
+              <UserCard user={user} />
+            </li>
+          ))}
+      </ScrollableContainer>
+    </div>
   );
 }
