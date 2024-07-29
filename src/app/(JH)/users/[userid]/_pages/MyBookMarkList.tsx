@@ -3,6 +3,7 @@ import Card from '@/components/common/Card';
 import LectureCard from '@/components/search/LectureCard';
 import { TStudyInfo } from '@/types/TStudyInfo';
 import { Tsession } from '@/types/TSession';
+import { TLectureDetail } from '@/types/TLecture';
 import { getSession } from '@/utils/getSessions';
 import * as Tabs from '@radix-ui/react-tabs';
 import Link from 'next/link';
@@ -68,8 +69,11 @@ export default async function MyBookMarkList() {
             <div className="flex flex-col gap-y-[1rem] m-auto w-full">
               {lectureBookmarkList &&
                 lectureBookmarkList
-                  .filter((lecture, index: number) => lecture !== null)
-                  .map((lecture: any, index: any) => (
+                  .filter(
+                    (lecture: TLectureDetail, index: number) =>
+                      lecture !== null,
+                  )
+                  .map((lecture: TLectureDetail, index: number) => (
                     <div key={lecture._id}>
                       <Link href={`/lecture-detail/${lecture._id}`}>
                         <LectureCard
