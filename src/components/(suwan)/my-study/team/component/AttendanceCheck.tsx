@@ -51,7 +51,7 @@ export default function AttendanceCheck(props: TAttendanceCheckProps) {
   };
   return (
     <>
-      <div className="flex flex-col justify-center items-center space-y-[.8rem]">
+      <div className="flex flex-col items-center space-y-[.8rem] min-w-[6.4rem] sm:w-full">
         <div className="inline-flex items-center relative">
           <input
             id={member._id}
@@ -70,7 +70,7 @@ export default function AttendanceCheck(props: TAttendanceCheckProps) {
             />
           </label>
         </div>
-        <span className="text-content-1 text-semibold">
+        <span className="block text-center w-full min-w-[4rem] den whitespace-nowrap text-ellipsis overflow-hidden">
           {member.userId.nickname}
         </span>
       </div>

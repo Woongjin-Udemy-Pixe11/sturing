@@ -1,4 +1,5 @@
 'use client';
+import ScrollableContainer from '@/components/common/ScrollableContainer';
 import { fetchTodos } from '@/lib/actions/todoAction';
 import { useMemberStore } from '@/store/memberStore';
 import { format } from 'date-fns';
@@ -41,25 +42,29 @@ export default function TeamTodo(props: any) {
           </div>
 
           <div className="text-[1.4rem] pt-[2rem]">
-            <div className="flex justify-around items-center text-[1.4rem] gap-[1rem] pb-[1rem]">
-              {memberList.map((member: any) => (
-                <div
-                  onClick={() => onClickMember(member.userId._id)}
-                  key={member.userId._id}
-                  className={`flex flex-col items-center justify-around w-[6.4rem] h-[8rem] ${
-                    member.userId._id === clickedMember &&
-                    `border border-main-600 rounded-md
+            <ScrollableContainer>
+              <div className="w-full flex justify-around items-center text-[1.4rem] gap-[1rem]">
+                {memberList.map((member: any) => (
+                  <div
+                    onClick={() => onClickMember(member.userId._id)}
+                    key={member.userId._id}
+                    className={`flex flex-col items-center justify-around min-w-[6.4rem] h-[8rem] sm:w-full ${
+                      member.userId._id === clickedMember &&
+                      `border border-main-600 rounded-md
                   bg-main-100`
-                  }`}
-                >
-                  <img
-                    src={member.userId.image}
-                    className="border border-gray-300 w-[4rem] h-[4rem] rounded-full object-cover"
-                  />
-                  <span className="mt-2">{member.userId.nickname}</span>
-                </div>
-              ))}
-            </div>
+                    }`}
+                  >
+                    <img
+                      src={member.userId.image}
+                      className="border border-gray-300 w-[4rem] h-[4rem] rounded-full object-cover"
+                    />
+                    <span className="mt-2 block w-full text-center whitespace-nowrap text-ellipsis overflow-hidden">
+                      {member.userId.nickname}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </ScrollableContainer>
 
             <div className="flex flex-col text-[1.4rem]">
               {todos.length > 0
