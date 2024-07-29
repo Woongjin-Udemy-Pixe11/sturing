@@ -16,7 +16,7 @@ type TUser = {
 };
 
 async function getTopUsers() {
-  const res = await fetch('http://localhost:3000/api/users/main', {
+  const res = await fetch(`${process.env.LOCAL_URL}/api/users/main`, {
     cache: 'no-store',
   });
   if (!res.ok) {

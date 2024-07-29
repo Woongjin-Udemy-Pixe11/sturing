@@ -1,11 +1,11 @@
 'use client';
 import SelectInput from '@/app/(suwan)/make-study-form/_component/SelectInput';
 import { deleteSchedule, postSchedule } from '@/lib/actions/fetchMyStudy';
-import { useEffect, useLayoutEffect, useState } from 'react';
 import { useCalendarStore } from '@/store/calendarStore';
+import { useMyStudyStore } from '@/store/myStudyStore';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import { useMyStudyStore } from '@/store/myStudyStore';
+import { useLayoutEffect, useState } from 'react';
 
 export default function Schedule(props: any) {
   const { isLeader, userId } = props;
@@ -76,8 +76,8 @@ export default function Schedule(props: any) {
       <div className="flex flex-col justify-center items-center w-full rounded-[5px] mt-[2rem] px-[2rem] py-[2.4rem] bg-white border border-gray-300">
         <div className=" bg-white rounded-lg w-full ">
           <div className="flex items-center border-b-[0.1rem] border-gray-300 pb-4">
-            <h2 className="text-[1.6rem] font-semibold">{today}</h2>
-            <span className="text-[1.4rem] font-semibold text-main-600 px-[1rem]">
+            <h2 className="text-[1.6rem] font-medium">{today}</h2>
+            <span className="text-[1.4rem] font-medium text-main-600 px-[1rem]">
               {count}
             </span>
             {isLeader && (
@@ -133,7 +133,7 @@ export default function Schedule(props: any) {
                   new Date(schedule.date).toDateString() === selectedDate && (
                     <div key={schedule._id}>
                       <div className="flex justify-between items-center py-[1.2rem]">
-                        <div className="text-[1.6rem] font-semibold">
+                        <div className="text-[1.6rem] font-medium">
                           {schedule.title}
                         </div>
                         <div className="flex gap-[1rem]">

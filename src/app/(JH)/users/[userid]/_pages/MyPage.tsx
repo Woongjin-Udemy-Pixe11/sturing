@@ -16,7 +16,7 @@ export default async function MyPage(props: TmypageProps) {
   const { auth, userid, activestudy, completedstudy } = props;
   const loginbg = `bg-gradient-to-tr from-[rgba(217,227,255,0.5)] to-[rgba(255,228,224,0.5)]`;
   const data = await (
-    await fetch(`http://localhost:3000/api/mypage?id=${userid}`, {
+    await fetch(`${process.env.LOCAL_URL}/api/mypage?id=${userid}`, {
       cache: 'no-store',
     })
   ).json();
@@ -42,7 +42,7 @@ export default async function MyPage(props: TmypageProps) {
       <SturingRate data={data} />
       <div className="border mt-[2rem]">
         <Link href={`/users/${userid}/mystudyreview`}>
-          <div className="w-full px-[1.6rem] py-[2rem] flex justify-between items-center text-headline-3 font-semibold">
+          <div className="w-full px-[1.6rem] py-[2rem] flex justify-between items-center text-headline-3 font-medium">
             <span className="flex gap-[.8rem]">
               받은 스터디 평가{' '}
               <span className="text-main-600 ">{`${
@@ -57,7 +57,7 @@ export default async function MyPage(props: TmypageProps) {
       {!auth && (
         <div className="border-b">
           <Link href={`/users/${userid}/mystudylog`}>
-            <div className="w-full px-[1.6rem] py-[2rem] flex justify-between items-center text-headline-3 font-semibold">
+            <div className="w-full px-[1.6rem] py-[2rem] flex justify-between items-center text-headline-3 font-medium">
               <span className="flex gap-[.8rem]">
                 스터디 이력{' '}
                 <span className="text-main-600 ">{`${completedstudy}`}</span>

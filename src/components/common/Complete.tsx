@@ -38,7 +38,7 @@ export default function Complete({
           </defs>
         </svg>
       </div>
-      <h1 className="text-large-title font-semibold mb-[0.8rem] tracking-[-0.03rem]">
+      <h1 className="text-large-title font-medium mb-[0.8rem] tracking-[-0.03rem]">
         {heading}
       </h1>
       <p className="text-content-1 text-gray-700 text-center whitespace-pre-line">

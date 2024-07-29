@@ -105,7 +105,7 @@ export default function Card(props: TStudy) {
         <Label children={studyCategory} />
       </div>
       <div className="mb-[0.8rem]">
-        <div className="font-bold mt-[0.1rem] mb-[1.2rem]">{studyName}</div>
+        <div className="font-medium mt-[0.1rem] mb-[1.2rem]">{studyName}</div>
         <div className="flex items-center mb-1 text-gray-600 text-content-2 pb-[.8rem] border-b border-gray-300">
           <div className="flex flex-row pr-[0.8rem]">
             <svg

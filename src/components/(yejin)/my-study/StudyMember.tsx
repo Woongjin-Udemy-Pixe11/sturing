@@ -45,7 +45,7 @@ export default async function StudyMember({
     <div className="flex flex-col gap-[2rem]">
       {members.map((member: Member) => (
         <div key={member._id} className="flex justify-between items-center">
-          <span className="text-gray-900 font-semibold text-content-1">
+          <span className="text-gray-900 font-medium text-content-1">
             {member.userId?.nickname}님
           </span>
           <Link

@@ -13,7 +13,7 @@ export default function RecommendSearch() {
                 href={`${recommendSearch.moveLink}keyword=${recommendSearch.content}`}
                 key={recommendSearch.content}
               >
-                <li className="border border-main-300 rounded-[.5rem] px-[1.6rem] py-[.8rem] text-main-500">
+                <li className="border border-main-300 rounded-[.5rem] px-[1.6rem] py-[.8rem] text-content-1 text-main-500">
                   {recommendSearch.content}
                 </li>
               </Link>

@@ -5,7 +5,7 @@ import {
   updateBookmark,
 } from '@/utils/bookmark/bookmarkUtils';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
 type TBookmarkBtnNavigationBarProps = {
   isApply: boolean;
@@ -59,7 +59,7 @@ export default function BookmarkBtnNavigationBar(
       )}
 
       {isApply ? (
-        <button className="w-full ml-[2rem] h-[5rem] rounded-[0.5rem] bg-main-600 font-semibold text-white select-none">
+        <button className="w-full ml-[2rem] h-[5rem] rounded-[0.5rem] bg-main-600 font-medium text-white select-none">
           {target == 'lecture' ? (
             <Link href={link}>이 강의로 스터디 개설하기</Link>
           ) : (
@@ -68,7 +68,7 @@ export default function BookmarkBtnNavigationBar(
         </button>
       ) : (
         <button
-          className="w-full ml-[2rem] h-[5rem] rounded-[0.5rem] bg-gray-600 font-semibold text-white select-none"
+          className="w-full ml-[2rem] h-[5rem] rounded-[0.5rem] bg-gray-600 font-medium text-white select-none"
           disabled
         >
           모집 완료

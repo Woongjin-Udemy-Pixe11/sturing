@@ -1,11 +1,10 @@
 'use client';
 import LongButton from '@/components/common/LongButton';
-import { convertBase64 } from '@/utils/convertBase64';
-import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
-import { CgClose } from 'react-icons/cg';
-import { TFormData } from '@/types/TStudyBoard';
 import supabase from '@/lib/supabaseClient';
+import { TFormData } from '@/types/TStudyBoard';
+import { useRouter } from 'next/navigation';
+import { useMemo, useState } from 'react';
+import { CgClose } from 'react-icons/cg';
 
 type NoticeFormProps = {
   boardType?: string;
@@ -97,7 +96,7 @@ export default function NoticeForm(props: NoticeFormProps) {
   return (
     <>
       <form action={onSubmit}>
-        <h1 className="font-semibold text-[2.0rem] tracking-[-0.03rem] text-gray-1000 mb-[2.0rem]">
+        <h1 className="font-medium text-[2.0rem] tracking-[-0.03rem] text-gray-1000 mb-[2.0rem]">
           {heading}
         </h1>
         {imageUpload && (

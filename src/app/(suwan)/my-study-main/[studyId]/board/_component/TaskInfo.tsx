@@ -22,7 +22,7 @@ export default function TaskInfo(props: any) {
             className="border border-gray-300 w-[2.8rem] rounded-full aspect-square object-cover"
           />
           <div className="flex flex-row items-center justify-center gap-x-[0.4rem]">
-            <div className="text-content-1 text-gray-900 ml-[0.8rem] font-semibold">
+            <div className="text-content-1 text-gray-900 ml-[0.8rem] font-medium">
               {task.writerId.nickname}
             </div>
             {task.writerId._id === leaderId ? (
@@ -39,7 +39,7 @@ export default function TaskInfo(props: any) {
       </div>
       <div className="flex flex-row justify-between gap-x-[1.2rem]">
         <div className="flex flex-col gap-x-[1.2rem] gap-y-[0.4rem]">
-          <div className="text-content-1 text-gray-900 font-semibold">
+          <div className="text-content-1 text-gray-900 font-medium">
             {task.title}
           </div>
           <p className="text-content-2 text-gray-700">{task.content}</p>

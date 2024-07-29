@@ -64,7 +64,7 @@ export default async function MatchingCompleted(
             </defs>
           </svg>
         </div>
-        <h1 className="text-large-title font-semibold mb-[0.8rem] tracking-[-0.03rem]">
+        <h1 className="text-large-title font-medium mb-[0.8rem] tracking-[-0.03rem]">
           매칭 선택을 완료했습니다.
         </h1>
         <p className="text-content-1 text-gray-700 text-center whitespace-pre-line">

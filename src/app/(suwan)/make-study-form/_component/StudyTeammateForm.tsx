@@ -1,7 +1,7 @@
 'use client';
 import LongButton from '@/components/common/LongButton';
 import SizeUpLabel from '@/components/common/label/SizeUpLabel';
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 const levelOptions: string[] = [
   '비기너',
@@ -38,10 +38,10 @@ export default function StudyTemmateForm(props: any) {
     <>
       <section>
         <article className="px-[1rem] py-[2rem] border-b border-gray-300">
-          <h1 className="font-bold text-headline-2 py-[2rem] px-[0.6rem]">
+          <h1 className="font-semibold text-headline-2 py-[2rem] px-[0.6rem]">
             원하는 팀원의 정보를 입력해 주세요
           </h1>
-          <h2 className="font-bold text-content-1 px-[0.6rem]">
+          <h2 className="font-semibold text-content-1 px-[0.6rem]">
             함께하고 싶은 팀원
           </h2>
           <div className="flex flex-wrap gap-[0.8rem] py-[1.3rem]">
@@ -59,7 +59,7 @@ export default function StudyTemmateForm(props: any) {
           </div>
         </article>
         <article className="px-[1.6rem] py-[3rem] border-b border-gray-300">
-          <h2 className="font-bold text-content-1 px-[0.6rem]">
+          <h2 className="font-semibold text-content-1 px-[0.6rem]">
             스터디 총 인원 수(본인 포함)
           </h2>
           <div className="flex w-full">

@@ -1,4 +1,5 @@
 import Ismatching from '@/components/(JH)/Ismatching';
+import CreateStudyButton from '@/components/common/CreateStudyButton';
 import Footer from '@/components/common/Footer';
 import { MatchingBanner } from '@/components/common/MatchingBanner';
 import SectionNavigator from '@/components/common/SectionNavigator';
@@ -9,7 +10,6 @@ import UserCardList from '@/components/main/UserCardList';
 import { getSession } from '@/utils/getSessions';
 import dynamic from 'next/dynamic';
 import SearchPart from './(ryukyung)/pages/SearchPart';
-import CreateStudyButton from '@/components/common/CreateStudyButton';
 const StudyCardList = dynamic(
   () => import('@/components/common/StudyCardList'),
 );
@@ -20,7 +20,7 @@ export default async function page() {
   let user = session?.user;
   let id = user?.id;
   const data = await (
-    await fetch(`http://localhost:3000/api/mypage?id=${id}`, {
+    await fetch(`${process.env.LOCAL_URL}/api/mypage?id=${id}`, {
       cache: 'no-store',
     })
   ).json();
@@ -61,7 +61,7 @@ export default async function page() {
           <StudyCardList userId={user?.id} sort={'type'} />
         </>
       )}
-      <span className="w-full px-[1.6rem] flex justify-between items-center text-headline-3 font-semibold mb-[2rem] mt-[4rem]">
+      <span className="w-full px-[1.6rem] flex justify-between items-center text-headline-3 font-medium mb-[2rem] mt-[4rem]">
         스터링 활동 우수 팀원
       </span>
       <UserCardList />

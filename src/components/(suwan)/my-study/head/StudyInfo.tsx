@@ -1,8 +1,8 @@
 import Label from '@/components/common/label/Label';
-import CourseLink from '../../../common/CourseLink';
+import { fetchLecture } from '@/lib/actions/studyMainAction';
 import { differenceInDays, format } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import { fetchLecture } from '@/lib/actions/studyMainAction';
+import CourseLink from '../../../common/CourseLink';
 
 export default async function StudyInfo({ data }: any) {
   const lectureId = data.studyLecture;
@@ -37,7 +37,7 @@ export default async function StudyInfo({ data }: any) {
               {START} - {END}
             </span>
           </div>
-          <h1 className="text-[2rem] font-semibold">{NAME}</h1>
+          <h1 className="text-[2rem] font-medium">{NAME}</h1>
           {LECTURE && (
             <CourseLink courseTitle={LECTURE} courseLink={LECTURE_URL} />
           )}

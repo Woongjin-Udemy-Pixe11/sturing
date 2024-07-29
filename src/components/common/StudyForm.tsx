@@ -1,5 +1,4 @@
 'use client';
-import supabase from '@/lib/supabaseClient';
 import { useState } from 'react';
 import { CgClose } from 'react-icons/cg';
 
@@ -84,7 +83,7 @@ export default function StudyForm(props: TStudyFormProps) {
 
   return (
     <form className="w-full">
-      <h1 className="font-semibold text-[2.0rem] tracking-[-0.03rem] text-gray-1000 mb-[2.0rem]">
+      <h1 className="font-medium text-[2.0rem] tracking-[-0.03rem] text-gray-1000 mb-[2.0rem]">
         {heading}
       </h1>
       {imageUpload && (

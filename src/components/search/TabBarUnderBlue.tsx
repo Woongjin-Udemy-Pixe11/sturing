@@ -21,7 +21,7 @@ export default function TabBarUnderBlue(props: TTabBarBlueProps) {
             key={tab.name}
             className={`${
               activeTab === tab.name
-                ? 'font-bold text-blue-600  border-b-main-600 border-b-2'
+                ? 'font-semibold text-blue-600  border-b-main-600 border-b-2'
                 : ''
             } w-full py-[1.2rem]`}
             onClick={() => setActiveTab(tab.name)}

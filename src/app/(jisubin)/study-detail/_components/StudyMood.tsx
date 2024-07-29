@@ -1,6 +1,5 @@
 import { emojiLabelList } from '@/constant/emojiLabelList';
 
-
 type TStudyMoodProps = {
   mood: string[];
 };
@@ -13,7 +12,7 @@ export default function StudyMood(props: TStudyMoodProps) {
   return (
     <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[2.4rem]">
       <div className="flex flex-col justify-center">
-        <h2 className="mx-[2rem] mt-[2.4rem] pb-[1.2rem] font-semibold text-gray-950">
+        <h2 className="mx-[2rem] mt-[2.4rem] pb-[1.2rem] font-medium text-gray-950">
           해당 스터디의 분위기
         </h2>
         <hr className="mx-[2rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>

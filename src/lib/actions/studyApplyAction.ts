@@ -1,7 +1,7 @@
 'use server';
 export async function AgreeStudyApply(data: any) {
   try {
-    const response = await fetch('http://localhost:3000/api/studyapply', {
+    const response = await fetch(`${process.env.LOCAL_URL}/api/studyapply`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

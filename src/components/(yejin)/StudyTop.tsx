@@ -27,7 +27,7 @@ export default function StudyTop(props: TStudyTopProps) {
           />
         </svg>
       </button>
-      <h1 className="text-headline-3 font-semibold">{content}</h1>
+      <h1 className="text-headline-3 font-medium">{content}</h1>
       <span className="w-[2.4rem]"></span>
     </div>
   );

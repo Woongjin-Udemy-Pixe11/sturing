@@ -15,7 +15,7 @@ export default function StudyReviewCard(props: TstudyReviewCardProps) {
         ></img>
       </div>
       <div className="w-[29.7rem] flex flex-col gap-[.6rem] text-content-1">
-        <h1 className="font-bold ">{review.userId.nickname}</h1>
+        <h1 className="font-semibold ">{review.userId.nickname}</h1>
         <p>{review.studyReviewContent}</p>
       </div>
     </section>

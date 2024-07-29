@@ -25,7 +25,7 @@ export default function StudyStatus({
   return (
     <div className="flex">
       <span
-        className={`${colorVariants[color]} flex items-center gap-[0.4rem] py-[0.2rem] px-[0.6rem] rounded-[0.3rem] text-[1.2rem] font-semibold`}
+        className={`${colorVariants[color]} flex items-center gap-[0.4rem] py-[0.2rem] px-[0.6rem] rounded-[0.3rem] text-[1.2rem] font-medium`}
       >
         <span
           className={`${subColorVariants[subColor]} flex w-[0.5rem] h-[0.5rem] rounded-full`}

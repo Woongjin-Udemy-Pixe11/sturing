@@ -39,7 +39,7 @@ export default function UserCard({ user }: TUserCardProps) {
             className="w-full h-full object-cover"
           />
         </div>
-        <span className="text-body-1 font-semibold mt-[.8rem] mb-[.4rem]">
+        <span className="text-body-1 font-medium mt-[.8rem] mb-[.4rem]">
           {nickname}
         </span>
         <p className="w-full flex justify-center gap-[.4rem] text-content-1">
@@ -48,9 +48,9 @@ export default function UserCard({ user }: TUserCardProps) {
         </p>
       </div>
       <ul className="text-content-2 w-full flex justify-center text-gray-600">
-        <li className="font-semibold">{level}</li>
+        <li className="font-medium">{level}</li>
         <li className="relative before:content-['|'] before:ml-[0.5rem] before:mr-[0.5rem] before:text-gray-600">
-          스터디 <b className="font-semibold">{studyCount}회</b>
+          스터디 <b className="font-medium">{studyCount}회</b>
         </li>
       </ul>
       <ul className="w-full flex justify-center whitespace-nowrap">

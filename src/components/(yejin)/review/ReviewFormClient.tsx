@@ -69,7 +69,7 @@ export default function ReviewFormClient({
           />
         </div>
         <div>
-          <span className="text-gray-900 font-semibold text-[1.6rem] mb-[1rem]">
+          <span className="text-gray-900 font-medium text-[1.6rem] mb-[1rem]">
             {evaluatedUser?.nickname}
           </span>
           <p className="text-content-2 text-gray-700 font-medium">
@@ -80,7 +80,7 @@ export default function ReviewFormClient({
 
       <div className="flex flex-col px-[1.6rem]">
         <div className="mt-[4.4rem] mb-[5.4rem]">
-          <h2 className="mb-[2rem] text-[2rem] font-semibold text-gray-1000">
+          <h2 className="mb-[2rem] text-[2rem] font-medium text-gray-1000">
             {evaluatedUser?.nickname}님과의 스터디는 어떠셨나요?
           </h2>
           <div className="flex justify-between">
@@ -103,7 +103,7 @@ export default function ReviewFormClient({
           </div>
         </div>
         <div>
-          <h2 className="mb-[0.5rem] text-[2rem] font-semibold text-gray-1000">
+          <h2 className="mb-[0.5rem] text-[2rem] font-medium text-gray-1000">
             팀원 후기를 알려주세요.
           </h2>
           <p className="text-content-1 mb-[2rem] text-gray-700">

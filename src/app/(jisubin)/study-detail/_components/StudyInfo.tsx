@@ -98,7 +98,7 @@ export default function StudyInfo(props: TStudyInfoProps) {
       </div>
       <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] mx-[1.6rem] mt-[2rem] pb-[2.2rem]">
         <div className="flex flex-col justify-center">
-          <h2 className="mx-[2rem] mt-[2.4rem] pb-[1.2rem] font-semibold text-gray-950">
+          <h2 className="mx-[2rem] mt-[2.4rem] pb-[1.2rem] font-medium text-gray-950">
             스터디 소개
           </h2>
           <hr className="mx-[2rem] mb-[1.2rem] border-b-gray-300 border-b-1"></hr>

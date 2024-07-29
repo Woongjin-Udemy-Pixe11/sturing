@@ -20,7 +20,7 @@ function Calendar({
         month: 'space-y-4',
         caption:
           'flex justify-center relative items-center py-[1.5rem] border-gray-300 border-b',
-        caption_label: 'text-[1.6rem] font-semibold',
+        caption_label: 'text-[1.6rem] font-medium',
         nav: 'space-x-1 flex items-center ',
         nav_button:
           'flex items-center h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',

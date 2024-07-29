@@ -1,9 +1,8 @@
 'use client';
-import { useState } from 'react';
-import { IoIosArrowDown } from 'react-icons/io';
-import { IoIosArrowUp } from 'react-icons/io';
 import { searchLabelList } from '@/constant/searchLabelList';
 import Link from 'next/link';
+import { useState } from 'react';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
 export default function SideBarToggle() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +27,7 @@ export default function SideBarToggle() {
                   href={`/search/result?field=${label.title}`}
                   key={label.title}
                 >
-                  <li className="flex gap-[0.8rem] px-[0.8rem] py-[0.6rem] rounded-[2.5rem] border-2 cursor-pointer">
+                  <li className="flex gap-[0.8rem] px-[0.8rem] py-[0.6rem] rounded-[2.5rem] border border-gray-400 cursor-pointer">
                     <figure className="w-[2.4rem] h-[2.4rem] bg-gray-200 rounded-[50%] flex items-center  justify-center">
                       <img
                         src={label.imgSrc}

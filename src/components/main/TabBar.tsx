@@ -11,13 +11,15 @@ export default function TabBar() {
   ];
 
   return (
-    <ul className="w-full px-[1.6rem] flex justify-center items-center text-center border-b-2 border-t-2">
+    <ul className="w-full px-[1.6rem] flex justify-center items-center text-center border-b border-t border-gray-300">
       {tabs.map((tab) => (
         <li
           key={tab.name}
           className={`${
-            pathname === tab.href ? 'font-bold' : ''
-          } w-[33%] py-[1.2rem]`}
+            pathname === tab.href
+              ? 'font-medium text-gray-1000'
+              : 'text-gray-700'
+          } w-[33%] py-[1.2rem] `}
         >
           <Link href={tab.href}>{tab.name}</Link>
         </li>

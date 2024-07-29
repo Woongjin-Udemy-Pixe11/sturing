@@ -38,7 +38,7 @@ export default function StudyList(props: TStudyListProps) {
     <>
       <div>
         {!isDetail && (
-          <span className="block text-headline-3 font-semibold pt-[2rem]">
+          <span className="block text-headline-3 font-medium pt-[2rem]">
             스터디
           </span>
         )}

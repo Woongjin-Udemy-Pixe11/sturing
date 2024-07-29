@@ -42,7 +42,7 @@ export default function TabBarBlue(props: TTabBarBlueProps) {
           <li
             key={tab.name}
             className={`${
-              currentTab === tab.name ? 'font-bold text-blue-600' : ''
+              currentTab === tab.name ? 'font-medium text-blue-600' : ''
             } w-full py-[1.2rem]`}
             onClick={() => handleTabChange(tab.name)}
           >

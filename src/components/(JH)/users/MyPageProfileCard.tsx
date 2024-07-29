@@ -23,12 +23,14 @@ export default async function MyPageProfileCard({
           href={`/users/${data.users._id}/detail`}
           className="flex gap-[.5rem] mb-[.2rem]"
         >
-          <h1 className="font-bold text-headline-3">{data.users.nickname}</h1>
+          <h1 className="font-semibold text-headline-3">
+            {data.users.nickname}
+          </h1>
           {auth && <UserDetailButton id={data.users._id} />}
         </Link>
         {data.matchinginfo && (
           <>
-            <h3 className="text-content-2 font-semibold">
+            <h3 className="text-content-2 font-medium">
               {data.matchinginfo.level[`${data.matchinginfo.interests[0]}`]}
             </h3>
             <div className="flex gap-2 mt-2">

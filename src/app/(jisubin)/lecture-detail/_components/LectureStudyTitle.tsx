@@ -12,7 +12,7 @@ export default function LectureStudyTitle(props: TLectureStudyTitleProps) {
         {rating}
       </Label>
       <div className="w-[30rem] h-[5.4rem] mt-[1.8rem] mb-[4rem]">
-        <h1 className="text-center font-semibold">{title}</h1>
+        <h1 className="text-center font-medium">{title}</h1>
       </div>
     </div>
   );

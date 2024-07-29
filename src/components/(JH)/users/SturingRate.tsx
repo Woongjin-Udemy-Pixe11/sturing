@@ -1,7 +1,7 @@
 export default async function SturingRate({ data }: any) {
   return (
     <div className="flex flex-col gap-[1.8rem] px-[1.6rem]">
-      <h2 className="mt-[3rem] text-headline-3 font-bold">스터링 지수</h2>
+      <h2 className="mt-[3rem] text-headline-3 font-medium">스터링 지수</h2>
       {/* TODO://위치 이동시키기 퍼센트따라서 */}
       <section className="flex flex-col py-[3.5rem] border-[0.1rem] border-gray-300 ">
         <article className="px-[2.4rem] py-[3.9rem] pb-[.5rem] rounded-md">

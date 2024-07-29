@@ -2,7 +2,8 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { GoBell } from 'react-icons/go';
-import { IoMenu, IoPersonOutline } from 'react-icons/io5';
+import { GrMenu } from 'react-icons/gr';
+import { IoPersonOutline } from 'react-icons/io5';
 import LoginModal from '../(jisubin)/login/LoginModal';
 import SideBar from '../sidebar/SideBar';
 
@@ -46,10 +47,10 @@ export default function Header({ user }: { user?: any }) {
       )}
       {isOpenMenu && <SideBar onClose={onClickMenu} user={user} />}
       {isOpenModal && <LoginModal onClose={onClickLogin} />}
-      <header className="w-full h-[5.4rem] flex justify-between items-center px-[0.8rem] text-gray-1000 m-0 bg-white ">
+      <header className="w-full h-[5.4rem] flex justify-between items-center px-[1.6rem] text-gray-1000 m-0 bg-white z-90">
         <div className="w-[50%] flex justify-start items-center gap-[0.8rem]">
           <button onClick={onClickMenu}>
-            <IoMenu className="w-[2.8rem] h-[2.8rem]" />
+            <GrMenu className="w-[2.2rem] h-[2.2rem]" />
           </button>
           <Link href="/">
             <h1 className="w-[7.8rem] h-[2.4rem] cursor-pointer">

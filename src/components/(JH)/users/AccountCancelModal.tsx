@@ -4,9 +4,9 @@ export default function AccountCancelMoadl() {
   return (
     <main>
       <MyPageHeader>
-        <h1 className="font-bold text-headline-3">회원 탈퇴</h1>
+        <h1 className="font-semibold text-headline-3">회원 탈퇴</h1>
       </MyPageHeader>
-      <section className="font-bold text-headline-3 pl-[1.6rem] py-[3.1rem]">
+      <section className="font-semibold text-headline-3 pl-[1.6rem] py-[3.1rem]">
         <h1>정말 탈퇴하시겠어요?</h1>
         <h1>탈퇴하기 전에 확인해주세요!</h1>
       </section>

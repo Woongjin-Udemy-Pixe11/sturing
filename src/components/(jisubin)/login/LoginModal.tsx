@@ -78,7 +78,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
           <div className="flex flex-col items-center justify-center text-content-1">
             <span className="text-gray-800">
               사람과 스터디,{' '}
-              <span className="font-semibold text-gray-900">
+              <span className="font-medium text-gray-900">
                 강의를 한 고리로
               </span>
             </span>

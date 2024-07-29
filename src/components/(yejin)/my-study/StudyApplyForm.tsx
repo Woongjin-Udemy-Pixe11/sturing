@@ -100,7 +100,7 @@ export default function StudyApplyForm(props: TStudyFormProps) {
   return (
     <form action={handleSubmit} className="w-full">
       {/* <input type="hidden" name="studyId" value={studyId} /> */}
-      <h1 className="font-semibold text-[2.0rem] tracking-[-0.03rem] text-gray-1000 mb-[2.0rem]">
+      <h1 className="font-medium text-[2.0rem] tracking-[-0.03rem] text-gray-1000 mb-[2.0rem]">
         {heading}
       </h1>
       {imageUpload && (
