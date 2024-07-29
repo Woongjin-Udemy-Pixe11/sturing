@@ -3,6 +3,8 @@ import { Lecture } from '@/lib/schemas/lectureSchema';
 import { Study } from '@/lib/schemas/studySchema';
 //TODO: 강의검색쿼리집어넣어야함
 
+export const dynamic = 'force-dynamic';
+
 const searchByKeyword = async (keyword: string) => {
   const searchstudies = await Study.find({
     studyName: { $regex: new RegExp(keyword, 'i') },
