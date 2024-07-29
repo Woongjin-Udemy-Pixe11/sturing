@@ -58,22 +58,28 @@ export async function getFilteredResults(filterState: FilterState) {
 
     return {
       searchstudies: studies.map((study) => ({
-        studyId: (study._id as Types.ObjectId).toString(),
         _id: (study._id as Types.ObjectId).toString(),
-        studyName: study.studyName,
-        studyType: study.studyType,
-        studyCategory: study.studyCategory,
-        studyImage: study.studyImage,
+        leaderId: study.leaderId?.toString() || '',
+        studyImage: study.studyImage || '',
+        studyName: study.studyName || '',
+        studyContent: study.studyContent || '',
+        studyType: study.studyType || '',
+        studyLevel: study.studyLevel || '',
+        studyMember: study.studyMember || 0,
+        studyJoinMember: study.studyJoinMember || 0,
+        studyLecture: study.studyLecture || '',
+        studyCategory: study.studyCategory || '',
+        studyViews: study.studyViews || 0,
         studyStart: new Date(study.studyStart).toISOString(),
         studyEnd: new Date(study.studyEnd).toISOString(),
-        studyMember: study.studyMember,
-        studyJoinMember: study.studyJoinMember,
-        studyMeetings: study.studyMeetings,
-        studyPlace: study.studyPlace,
+        studyPlace: study.studyPlace || '',
+        studyMeetings: study.studyMeetings || '',
+        studyMood: study.studyMood || [],
       })),
+      searchlectures: [],
     };
   } catch (error) {
     console.error('Error fetching filtered results:', error);
-    return { searchstudies: [] };
+    return { searchstudies: [], searchlectures: [] };
   }
 }
