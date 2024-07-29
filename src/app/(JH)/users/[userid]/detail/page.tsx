@@ -1,7 +1,7 @@
-import { getSession } from '@/utils/getSessions';
-import MyPageDetail from '../_pages/MyPageDetail';
 import { Tsession } from '@/types/TSession';
 import { TmypageDetails } from '@/types/TmypageDetail';
+import { getSession } from '@/utils/getSessions';
+import MyPageDetail from '../_pages/MyPageDetail';
 export default async function page({ params }: any) {
   const session: Tsession = await getSession();
   const userid = session?.user?.id;
@@ -13,7 +13,7 @@ export default async function page({ params }: any) {
     auth = false;
   }
   const data: TmypageDetails = await (
-    await fetch(`http://localhost:3000/api/mypage?id=${params.userid}`, {
+    await fetch(`${process.env.LOCAL_URL}/api/mypage?id=${params.userid}`, {
       cache: 'no-store',
     })
   ).json();

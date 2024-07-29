@@ -38,7 +38,7 @@ export default async function page(props: TSearchResultProps) {
   };
   if (keyword) {
     data = await (
-      await fetch(`http://localhost:3000/api/search?keyword=${keyword}`, {
+      await fetch(`${process.env.LOCAL_URL}/api/search?keyword=${keyword}`, {
         cache: 'no-store',
       })
     ).json();

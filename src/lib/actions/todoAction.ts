@@ -1,7 +1,7 @@
 export async function fetchTodos(studyId: string, userId: string) {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/study-todo?study=${studyId}&user=${userId}`,
+      `${process.env.LOCAL_URL}/api/study-todo?study=${studyId}&user=${userId}`,
       {
         cache: 'no-store',
       },
@@ -23,7 +23,7 @@ type TTodo = {
 export async function postTodoInfo(data: TTodo) {
   console.log('🥑', data);
   try {
-    const response = await fetch(`http://localhost:3000/api/study-todo`, {
+    const response = await fetch(`${process.env.LOCAL_URL}/api/study-todo`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export async function postTodoInfo(data: TTodo) {
 }
 export async function patchTodoInfo(data: any) {
   try {
-    const response = await fetch(`http://localhost:3000/api/study-todo`, {
+    const response = await fetch(`${process.env.LOCAL_URL}/api/study-todo`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ export async function patchTodoInfo(data: any) {
 
 export async function deleteTodoInfo(data: any) {
   try {
-    const response = await fetch(`http://localhost:3000/api/study-todo`, {
+    const response = await fetch(`${process.env.LOCAL_URL}/api/study-todo`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

@@ -16,7 +16,7 @@ export default async function MyPage(props: TmypageProps) {
   const { auth, userid, activestudy, completedstudy } = props;
   const loginbg = `bg-gradient-to-tr from-[rgba(217,227,255,0.5)] to-[rgba(255,228,224,0.5)]`;
   const data = await (
-    await fetch(`http://localhost:3000/api/mypage?id=${userid}`, {
+    await fetch(`${process.env.LOCAL_URL}/api/mypage?id=${userid}`, {
       cache: 'no-store',
     })
   ).json();

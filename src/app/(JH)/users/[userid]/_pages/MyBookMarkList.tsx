@@ -1,9 +1,9 @@
 import MyPageHeader from '@/components/(JH)/users/MypageHeader';
 import Card from '@/components/common/Card';
 import LectureCard from '@/components/search/LectureCard';
-import { TStudyInfo } from '@/types/TStudyInfo';
-import { Tsession } from '@/types/TSession';
 import { TLectureDetail } from '@/types/TLecture';
+import { Tsession } from '@/types/TSession';
+import { TStudyInfo } from '@/types/TStudyInfo';
 import { getSession } from '@/utils/getSessions';
 import * as Tabs from '@radix-ui/react-tabs';
 import Link from 'next/link';
@@ -12,13 +12,13 @@ export default async function MyBookMarkList() {
   const session: Tsession = await getSession();
   const userId = session?.user?.id;
   const studyBookmarkList: TStudyInfo[] = await (
-    await fetch(`http://localhost:3000/api/bookmark/study/?id=${userId}`, {
+    await fetch(`${process.env.LOCAL_URL}/api/bookmark/study/?id=${userId}`, {
       cache: 'no-store',
     })
   ).json();
 
   const lectureBookmarkList = await (
-    await fetch(`http://localhost:3000/api/bookmark/lecture/?id=${userId}`, {
+    await fetch(`${process.env.LOCAL_URL}/api/bookmark/lecture/?id=${userId}`, {
       cache: 'no-store',
     })
   ).json();

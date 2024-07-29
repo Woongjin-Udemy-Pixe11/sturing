@@ -20,7 +20,7 @@ export default async function page() {
   let user = session?.user;
   let id = user?.id;
   const data = await (
-    await fetch(`http://localhost:3000/api/mypage?id=${id}`, {
+    await fetch(`${process.env.LOCAL_URL}/api/mypage?id=${id}`, {
       cache: 'no-store',
     })
   ).json();
