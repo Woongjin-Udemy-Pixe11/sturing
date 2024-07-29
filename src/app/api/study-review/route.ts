@@ -12,8 +12,6 @@ export async function GET(request: Request) {
     const id: any = url.searchParams.get('id');
     const evaluatedUserId = url.searchParams.get('evaluatedUserId');
     const studyId = url.searchParams.get('studyId');
-    // const objectId = new mongoose.Types.ObjectId(id);
-    // console.log(objectId);
 
     // 마이페이지 리뷰
     if (id) {
@@ -21,8 +19,8 @@ export async function GET(request: Request) {
         evaluateduser: `${id}`,
       }).populate({ path: 'userId', select: 'nickname image' });
       console.log(reviewList);
-      if (reviewList === null) {
-        return null;
+      if (reviewList.length === 0) {
+        return Response.json({ message: 'No reviews found' }, { status: 404 });
       }
 
       return new Response(JSON.stringify(reviewList), {
