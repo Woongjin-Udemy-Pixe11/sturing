@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { useMemberStore } from '@/store/memberStore';
 import AttendanceCheck from './component/AttendanceCheck';
+import ScrollableContainer from '@/components/common/ScrollableContainer';
 
 export default function Attend(props: any) {
   const { memberList } = useMemberStore();
@@ -33,15 +34,17 @@ export default function Attend(props: any) {
             </span>
           </div>
 
-          <div className="w-full flex flex-row justify-between text-[1.4rem] p-[2rem]">
-            {memberList.map((member: any) => (
-              <AttendanceCheck
-                key={member.userId._id}
-                member={member}
-                updateAttendNum={updateAttendNum}
-              />
-            ))}
-          </div>
+          <ScrollableContainer>
+            <div className="w-full flex flex-row justify-around text-[1.4rem] py-[2rem]">
+              {memberList.map((member: any) => (
+                <AttendanceCheck
+                  key={member.userId._id}
+                  member={member}
+                  updateAttendNum={updateAttendNum}
+                />
+              ))}
+            </div>
+          </ScrollableContainer>
         </div>
       </div>
     </>
