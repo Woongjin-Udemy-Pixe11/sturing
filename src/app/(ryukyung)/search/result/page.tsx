@@ -4,10 +4,10 @@ import TabContainer from '@/components/search/TabContainer';
 import TabLecture from '@/components/search/TabLecture';
 import TabStudy from '@/components/search/TabStudy';
 import { getFilteredResults } from '@/lib/actions/filterAction';
-import BackSearchBar from './_components/BackSearchBar';
-import { getSession } from '@/utils/getSessions';
-import { TStudyInfo } from '@/types/TStudyInfo';
 import { TLectureDetail } from '@/types/TLecture';
+import { TStudyInfo } from '@/types/TStudyInfo';
+import { getSession } from '@/utils/getSessions';
+import BackSearchBar from './_components/BackSearchBar';
 
 type TSearchResultProps = {
   searchParams: { [key: string]: string };
@@ -15,7 +15,7 @@ type TSearchResultProps = {
 
 type TSearchResult = {
   searchstudies: TStudyInfo[];
-  searchlectures?: TLectureDetail[];
+  searchlectures: TLectureDetail[];
 };
 
 export default async function page(props: TSearchResultProps) {
@@ -43,8 +43,8 @@ export default async function page(props: TSearchResultProps) {
     data = await getFilteredResults(filters);
   }
 
-  let searchstudies = data.searchstudies;
-  let searchlectures = data.searchlectures;
+  const searchstudies = data.searchstudies || [];
+  const searchlectures = data.searchlectures || [];
 
   const tabList = [
     {
