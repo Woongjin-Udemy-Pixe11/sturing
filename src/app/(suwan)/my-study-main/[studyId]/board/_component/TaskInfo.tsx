@@ -1,4 +1,4 @@
-import { dateCalculate } from '@/utils/my-study-main/dateCalculate';
+import { dateCalculate } from '@/utils/dateCalculate';
 
 type TTaskInfoProps = {
   userImg: string;

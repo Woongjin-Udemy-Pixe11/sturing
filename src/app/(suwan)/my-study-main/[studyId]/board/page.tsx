@@ -1,6 +1,6 @@
 import TaskInfo from './_component/TaskInfo';
 import Header from '../_components/Header';
-import { fetchBoardList, fetchStudy } from '@/utils/my-study-main/fetch';
+import { fetchBoardList, fetchStudy } from '@/lib/actions/studyMainAction';
 import { getSession } from '@/utils/getSessions';
 import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';

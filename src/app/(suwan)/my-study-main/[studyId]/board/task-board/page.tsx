@@ -1,6 +1,6 @@
 import BoardTop from '../_component/BoardTop';
 import TaskBoardList from '../_component/TaskBoardList';
-import { fetchBoardList } from '@/utils/my-study-main/fetch';
+import { fetchBoardList } from '@/lib/actions/studyMainAction';
 
 export default async function page({
   params,

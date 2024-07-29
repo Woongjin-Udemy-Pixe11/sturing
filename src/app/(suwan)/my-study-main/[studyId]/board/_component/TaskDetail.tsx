@@ -4,9 +4,9 @@ import { GoChevronLeft } from 'react-icons/go';
 import EmojiSelectBtn from './EmojiSelectBtn';
 import SubHeader from '@/components/common/SubHeader';
 import { useRouter } from 'next/navigation';
-import { deleteNotice, postIcon } from '@/utils/my-study-main/fetch';
+import { deleteNotice, postIcon } from '@/lib/actions/studyMainAction';
 import KebabModal from '@/components/common/modal/KebabModal';
-import { dateCalculate } from '@/utils/my-study-main/dateCalculate';
+import { dateCalculate } from '@/utils/dateCalculate';
 import { TBlackboard } from '@/types/TStudyBoard';
 
 type TProps = {

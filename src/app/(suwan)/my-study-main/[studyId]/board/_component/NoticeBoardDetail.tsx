@@ -2,10 +2,10 @@
 
 import SubHeader from '@/components/common/SubHeader';
 import Label from '@/components/common/label/Label';
-import { deleteNotice } from '@/utils/my-study-main/fetch';
+import { deleteNotice } from '@/lib/actions/studyMainAction';
 import EmojiSelectBtn from './EmojiSelectBtn';
 import { useRouter } from 'next/navigation';
-import { dateCalculate } from '@/utils/my-study-main/dateCalculate';
+import { dateCalculate } from '@/utils/dateCalculate';
 import { TBlackboard } from '@/types/TStudyBoard';
 
 type TProps = {

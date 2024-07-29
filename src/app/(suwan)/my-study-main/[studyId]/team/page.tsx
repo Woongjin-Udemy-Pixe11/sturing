@@ -8,7 +8,7 @@ import {
   fetchStudy,
   fetchMember,
   fetchBoardList,
-} from '@/utils/my-study-main/fetch';
+} from '@/lib/actions/studyMainAction';
 import RenderTeam from './components/RenderTeam';
 
 export default async function Page({
