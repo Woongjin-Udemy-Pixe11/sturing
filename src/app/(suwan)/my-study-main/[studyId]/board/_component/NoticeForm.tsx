@@ -71,7 +71,7 @@ export default function NoticeForm(props: NoticeFormProps) {
     const content = formData.get('content') as string;
     let img;
 
-    if (typeof selectedImg === 'object') {
+    if (selectedImg !== null) {
       const fileName = `${Date.now()}-${Math.random()}`;
       const { data, error } = await supabase.storage
         .from('images')
