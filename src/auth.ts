@@ -22,5 +22,4 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
-  trustHost: true,
 });
