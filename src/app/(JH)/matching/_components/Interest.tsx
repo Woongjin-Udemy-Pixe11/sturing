@@ -15,8 +15,10 @@ export default function Interest(props: TInterestProps) {
   return (
     <div className="w-full px-[1.6rem] py-[2rem]">
       <section>
-        <h1 className="font-black text-headline-3">{nickname}님 안녕하세요.</h1>{' '}
-        <h1 className="font-black text-headline-3">
+        <h1 className="font-semibold text-headline-3">
+          {nickname}님 안녕하세요.
+        </h1>{' '}
+        <h1 className="font-semibold text-headline-3">
           현재 관심있는 분야는 무엇인가요?
         </h1>
         <p className="text-gray-700 mt-2 text-content-2">
