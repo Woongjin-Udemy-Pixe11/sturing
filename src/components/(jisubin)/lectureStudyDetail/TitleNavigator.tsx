@@ -4,7 +4,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 type TTitleNavigatorProps = {
   title: string;
   count?: number;
-  moveLink: string;
+  moveLink?: string;
   children?: React.ReactNode;
 };
 export default function TitleNavigator(props: TTitleNavigatorProps) {
@@ -20,9 +20,11 @@ export default function TitleNavigator(props: TTitleNavigatorProps) {
         )}
         {children}
       </div>
-      <Link href={moveLink}>
-        <IoIosArrowForward />
-      </Link>
+      {moveLink && (
+        <Link href={moveLink}>
+          <IoIosArrowForward />
+        </Link>
+      )}
     </div>
   );
 }

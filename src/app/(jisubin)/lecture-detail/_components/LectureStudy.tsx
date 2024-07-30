@@ -1,6 +1,7 @@
 import TitleNavigator from '@/components/(jisubin)/lectureStudyDetail/TitleNavigator';
 import Card from '@/components/common/Card';
 import { TStudyInfo } from '@/types/TStudyInfo';
+import { getSession } from '@/utils/getSessions';
 import Link from 'next/link';
 
 type TLectureStudyProps = {
@@ -17,22 +18,23 @@ async function fetchLectureStudy(id: string) {
 export default async function LectureStudy(props: TLectureStudyProps) {
   const { id } = props;
   const studies: TStudyInfo[] = await fetchLectureStudy(id);
+  const session = await getSession();
+  const userId = session?.user?.id;
   return (
     <div className="w-full">
       <div className="mt-[5rem]">
         <TitleNavigator
           title="이 강의를 수강하는 스터디"
           count={studies.length}
-          moveLink="/"
         />
       </div>
 
       <div className="min-w-[34.4rem] grid grid-cols-2 gap-[2rem] mx-[1.6rem]">
-        {/* //TODO:북마크가 안뜨는게맞나? */}
         {studies &&
           studies.map((study) => (
             <Link href={`/study-detail/${study._id}`} key={study._id}>
               <Card
+                userId={userId}
                 studyId={study._id}
                 studyImage={study.studyImage}
                 studyMeetings={study.studyMeetings}

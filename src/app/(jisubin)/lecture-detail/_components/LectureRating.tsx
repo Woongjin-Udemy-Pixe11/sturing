@@ -20,7 +20,7 @@ export default async function LectureRating(props: TLectureRatingProps) {
   return (
     <>
       <div className="mt-[5rem]">
-        <TitleNavigator title="강의평점" count={reviews.length} moveLink="/">
+        <TitleNavigator title="강의평점" count={reviews.length}>
           <Label isBlue={false} isStar={true}>
             {lecture.lectureRating}
           </Label>
@@ -30,7 +30,7 @@ export default async function LectureRating(props: TLectureRatingProps) {
       <div className="mx-[1.6rem] mb-[10rem] flex flex-col justify-center">
         {reviews &&
           reviews.map((review) => (
-            <div className="mt-[1.6rem] py-[1.6rem] rounded-[0.8rem] border border-gray-300 flex items-center text-content-1 mb=-[1.6rem] pl-[1.6rem]">
+            <div className="mt-[1.6rem] py-[1.6rem] rounded-[0.8rem] border border-gray-300 flex items-center text-content-1 mb=-[1.6rem] px-[1.6rem]">
               <div className="flex flex-col gap-y-[0.6rem]">
                 <div>
                   <span>{review.reviewName}</span>
