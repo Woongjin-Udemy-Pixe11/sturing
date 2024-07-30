@@ -1,4 +1,3 @@
-import LectureDetailRatingPage from './rating/page';
 import LectureStudyInfo from '../_components/LectureStudyInfo';
 import LectureStudy from '../_components/LectureStudy';
 import LectureRating from '../_components/LectureRating';
@@ -20,7 +19,6 @@ export default async function LectureDetail(props: TLectureDetailProps) {
   const id = params.id;
 
   const lecture: TLectureDetail = await fetchLectureDetail(id);
-  console.log(lecture, '✅');
   return (
     <div className="flex flex-col mt-[2.8rem]">
       <LectureStudyInfo
