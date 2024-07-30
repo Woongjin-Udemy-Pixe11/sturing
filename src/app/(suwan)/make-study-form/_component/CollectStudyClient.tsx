@@ -198,7 +198,8 @@ export default function CollectStudyClient(props: TProps) {
             <DefaultModal
               onConfirm={onClickModalYes}
               onCancel={onClickModalNo}
-              message={`정말로 취소하시겠습니까?\n작성한 정보가 저장되지 않습니다.`}
+              message={`정말로 취소하시겠습니까?\n
+                작성한 정보가 저장되지 않습니다.`}
             />
           </div>
         )}
