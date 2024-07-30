@@ -47,7 +47,7 @@ export default function Header({ user }: { user?: any }) {
       )}
       {isOpenMenu && <SideBar onClose={onClickMenu} user={user} />}
       {isOpenModal && <LoginModal onClose={onClickLogin} />}
-      <header className="w-full h-[5.4rem] flex justify-between items-center px-[1.6rem] text-gray-1000 m-0 bg-white z-90">
+      <header className="fixed z-30 top-0 w-full h-[5.4rem] flex justify-between items-center px-[1.6rem] text-gray-1000 m-0 bg-white z-90">
         <div className="w-[50%] flex justify-start items-center gap-[0.8rem]">
           <button onClick={onClickMenu}>
             <GrMenu className="w-[2.2rem] h-[2.2rem]" />
