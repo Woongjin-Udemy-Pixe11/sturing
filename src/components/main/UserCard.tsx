@@ -39,7 +39,7 @@ export default function UserCard({ user }: TUserCardProps) {
             className="w-full h-full object-cover"
           />
         </div>
-        <span className="text-body-1 font-medium mt-[.8rem] mb-[.4rem]">
+        <span className="block  w-full text-center whitespace-nowrap text-ellipsis overflow-hidden text-body-1 font-medium mt-[.8rem] mb-[.4rem]">
           {nickname}
         </span>
         <p className="w-full flex justify-center gap-[.4rem] text-content-1">
