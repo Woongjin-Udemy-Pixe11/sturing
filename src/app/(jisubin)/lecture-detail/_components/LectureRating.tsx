@@ -20,7 +20,7 @@ export default async function LectureRating(props: TLectureRatingProps) {
   return (
     <>
       <div className="mt-[5rem]">
-        <TitleNavigator title="강의평점" count={reviews.length} moveLink="/">
+        <TitleNavigator title="강의평점" count={reviews.length}>
           <Label isBlue={false} isStar={true}>
             {lecture.lectureRating}
           </Label>
