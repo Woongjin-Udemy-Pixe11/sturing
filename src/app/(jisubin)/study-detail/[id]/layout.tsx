@@ -105,13 +105,15 @@ export default async function StudyDetailLayout(
         {children}
       </div>
 
-      <BookmarkBtnNavigationBar
-        isApply={isApply}
-        link={`/study-apply/${id}`}
-        targetId={id}
-        userId={userId}
-        target="study"
-      />
+      <div className="fixed bottom-0 z-20 bg-white w-full">
+        <BookmarkBtnNavigationBar
+          isApply={isApply}
+          link={`/study-apply/${id}`}
+          targetId={id}
+          userId={userId}
+          target="study"
+        />
+      </div>
     </>
   );
 }

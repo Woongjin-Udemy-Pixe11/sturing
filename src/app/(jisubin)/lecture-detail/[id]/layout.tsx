@@ -59,7 +59,8 @@ export default async function LectureDetailLayout(
       </div>
 
       {children}
-      <div className="flex justify-center">
+
+      <div className="fixed bottom-0 z-20 bg-white w-full">
         <BookmarkBtnNavigationBar
           isApply={true}
           link={`/make-study-form/${id}`}
