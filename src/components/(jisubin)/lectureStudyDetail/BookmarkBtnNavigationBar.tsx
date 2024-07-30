@@ -47,7 +47,7 @@ export default function BookmarkBtnNavigationBar(
   }, [isBookmarked]);
 
   return (
-    <div className="w-full mb-[1.6rem] px-[1.6rem] my-[4.6rem] flex flex-row items-center justify-between">
+    <div className="w-full mb-[1.6rem] px-[1.6rem] my-[1.6rem] flex flex-row items-center justify-between">
       {userId && (
         <div className="m-[1.2rem] text-main-600" onClick={onClickBookmark}>
           {isBookmarked ? (
