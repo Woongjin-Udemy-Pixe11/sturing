@@ -31,7 +31,7 @@ export default function UserCard({ user }: TUserCardProps) {
       href={`/users/${_id}`}
       className="w-[13.4rem] flex flex-col gap-[.8rem] mr-[.8rem]"
     >
-      <div className="w-full bg-main-200 rounded-[.5rem] p-[1.6rem] flex justify-center items-center flex-col">
+      <div className="w-full bg-main-100 rounded-[.5rem] p-[1.6rem] flex justify-center items-center flex-col">
         <div className="w-[6rem] h-[6rem] rounded-[50%] overflow-hidden">
           <img
             src={image}

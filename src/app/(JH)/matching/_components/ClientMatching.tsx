@@ -3,7 +3,7 @@
 import MatchingFooter from '@/components/(JH)/matching/MatchingFooter';
 import { postMatchingInfo, updateMatchingInfo } from '@/utils/matchingUtils';
 import matchingreducer, { TActionType } from '@/utils/matchingreducer';
-import { useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { GoChevronLeft } from 'react-icons/go';
 import Field from './Field';
 import Interest from './Interest';
@@ -35,6 +35,7 @@ export default function ClientMatching(props: TClientMatchingProps) {
   );
 
   const [step, setStep] = useState<number>(1);
+  const [active, setActive] = useState<boolean>(false);
 
   const onClickInterest = (field: string) => {
     dispatch({ type: 'setInterest', payload: field });
@@ -58,6 +59,7 @@ export default function ClientMatching(props: TClientMatchingProps) {
     dispatch({ type: 'clearlevel', payload: { personlevel, interests } });
   };
   const onClickForwardStep = () => {
+    setActive(false);
     if (step === 6) {
       return;
     }
@@ -131,6 +133,25 @@ export default function ClientMatching(props: TClientMatchingProps) {
     6: <MatchingCompleted username={nickname} userId={id} />,
   };
 
+  useEffect(() => {
+    if (state.interests.length > 0 && step === 1) {
+      setActive(true);
+    } else if (
+      Object.keys(state.level).length === state.interests.length &&
+      step === 2
+    ) {
+      setActive(true);
+    } else if (state.studyType !== '' && step === 3) {
+      setActive(true);
+    } else if (state.preferRegion.length > 0 && step === 4) {
+      setActive(true);
+    } else if (state.preferMood.length > 0 && step === 5) {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  }, [step, state]);
+
   return (
     <main className="flex flex-col w-full  relative  ">
       <header>
@@ -153,6 +174,7 @@ export default function ClientMatching(props: TClientMatchingProps) {
         {stepComponet[step]}
         {step <= 5 && (
           <MatchingFooter
+            active={active}
             step={step}
             Forward={() => {
               onClickForwardStep();

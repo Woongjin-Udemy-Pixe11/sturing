@@ -13,7 +13,7 @@ export default function CourseLink(props: TCourseLinkProps) {
         <span className="flex-shrink-0 px-[0.6rem] py-[0.2rem] bg-main-200 text-[1.2rem] text-main-500 font-medium rounded-[0.3rem] box-border">
           강의
         </span>
-        <span className="flex-grow text-content-1 text-gray-300 w-[22.7rem] font-medium truncate">
+        <span className="flex-grow text-content-1 text-gray-300 w-[22.7rem] truncate">
           {courseTitle}
         </span>
         <Link

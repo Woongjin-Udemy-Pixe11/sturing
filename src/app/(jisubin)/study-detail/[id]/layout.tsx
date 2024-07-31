@@ -34,6 +34,13 @@ async function fetchLectureDetail(id: string) {
   return res.json();
 }
 
+async function fetchStudyForm(userId: string, studyId: string) {
+  const res = await fetch(
+    `${process.env.LOCAL_URL}/api/study-form/detail?studyid=${studyId}&userid=${userId}`,
+  );
+  return res.json();
+}
+
 export default async function StudyDetailLayout(
   props: TStudyDetailLayoutProps,
 ) {
@@ -50,6 +57,7 @@ export default async function StudyDetailLayout(
 
   const session: Tsession = await getSession();
   const userId = session?.user?.id;
+  const studyForm = await fetchStudyForm(userId, id);
 
   let isApply: boolean = true;
   if (
@@ -58,19 +66,23 @@ export default async function StudyDetailLayout(
   ) {
     isApply = false;
   }
+  let isExistApply = false;
+  if (studyForm && studyForm.studyFormSure) {
+    isExistApply = true;
+  }
 
   return (
     <>
       <div
         style={{
-          backgroundImage: `url(${study.studyImage})`,
+          backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5) ), url(${study.studyImage})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
         }}
         className={`text-white object-cover`}
       >
-        <BackShareHeader />
+        <BackShareHeader iconColor="white" />
         <StudyDetailTitle
           type={study.studyType}
           category={study.studyCategory}
@@ -112,6 +124,7 @@ export default async function StudyDetailLayout(
           targetId={id}
           userId={userId}
           target="study"
+          isExist={isExistApply}
         />
       </div>
     </>
