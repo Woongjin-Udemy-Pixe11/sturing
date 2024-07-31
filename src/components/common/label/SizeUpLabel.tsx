@@ -11,7 +11,7 @@ export default function SizeUpLabel(props: TSizeUpLabelPros) {
     <>
       <div
         className={`
-        flex justify-center items-center border text-gray-600 border-gray-300 px-[1.2rem] py-[0.4rem] text-content-1 rounded
+        flex justify-center whitespace-nowrap items-center border text-gray-600 border-gray-300 px-[1.2rem] py-[0.4rem] text-content-1 rounded
         ${
           isClicked &&
           'text-main-600 bg-main-100 border-main-600 border-[.1rem]'
