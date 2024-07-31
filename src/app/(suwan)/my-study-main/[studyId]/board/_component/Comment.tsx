@@ -5,6 +5,7 @@ import { updateComment } from '@/lib/actions/studyMainAction';
 import { useEffect, useRef, useState } from 'react';
 import { HiEllipsisVertical } from 'react-icons/hi2';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Comment(props: any) {
   const { comment, userId, studyId, onClickDelete, taskId } = props;
@@ -56,11 +57,13 @@ export default function Comment(props: any) {
       <div className="mb-[2.4rem]">
         <div className="flex flex-row justify-between mb-[0.4rem] items-center">
           <div className="flex flex-row justify-start">
-            <img
-              src={comment.userId.image}
-              alt="Picture of the user"
-              className="border border-gray-300 w-[3.8rem] rounded-full aspect-square object-cover"
-            />
+            <Link href={`/users/${comment.userId._id}`}>
+              <img
+                src={comment.userId.image}
+                alt="Picture of the user"
+                className="border border-gray-300 w-[3.8rem] rounded-full aspect-square object-cover"
+              />
+            </Link>
             <div className="flex flex-col pl-[0.8rem]">
               <div className="text-content-1 text-gray-900">
                 {comment.userId.nickname}
