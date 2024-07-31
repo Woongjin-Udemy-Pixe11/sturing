@@ -130,7 +130,7 @@ export default function StudyDetailInfoForm(props: any) {
           </article>
           <article className="py-[3rem]">
             <h1 className="font-semibold text-headline-3">
-              스터디 분위기 키워드 (선택)
+              스터디 분위기 키워드
             </h1>
             <h3 className="py-[1.2rem] text-gray-500 text-content-1">
               3개까지 선택 가능합니다.
