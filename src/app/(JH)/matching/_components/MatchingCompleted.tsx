@@ -72,13 +72,11 @@ export default async function MatchingCompleted(
           <br /> {username}님을 위한 스터디 추천에 반영됩니다.
         </p>
       </section>
-      <section className="flex flex-col gap-[2rem] ">
-        <h1 className="pl-[1.6rem] font-medium">
-          {username}님과 딱 맞는 스터디 추천
-        </h1>
+      <section className="flex flex-col gap-[2rem] px-[1.6rem]">
+        <h1 className="font-medium">{username}님과 딱 맞는 스터디 추천</h1>
         <ScrollableContainer>
           {relatedStudies.map((study, index) => (
-            <div key={index} className="px-[1.6rem]">
+            <div key={index} className="">
               <Card
                 studyId={study._id!}
                 studyImage={study.studyImage}
