@@ -1,6 +1,7 @@
 import { TStudyInfo } from '@/types/TStudyInfo';
 import { TStudyMember } from '@/types/TStudyMember';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type TStudyTeamMembersProps = {
   id: string;
@@ -65,25 +66,27 @@ export default async function StudyTeamMembers(props: TStudyTeamMembersProps) {
           <div className="flex flex-col mx-[2rem] gap-x-[0.4rem] gap-y-[0.4rem] text-content-1">
             {members &&
               members.map((member: any) => (
-                <div className="flex flex-row items-center gap-x-[0.8rem] mb-[0.8rem]">
-                  <div className="w-[3.8rem] h-[3.8rem] relative">
-                    <Image
-                      fill={true}
-                      src={member.userId.image}
-                      sizes="(max-width: 3rem), (min-height: 3rem)"
-                      alt="User Image"
-                      className="rounded-full border-gray-300 border-[0.1rem] object-cover"
-                    />
-                  </div>
+                <Link href={`/users/${member.userId._id}`}>
+                  <div className="flex flex-row items-center gap-x-[0.8rem] mb-[0.8rem]">
+                    <div className="w-[3.8rem] h-[3.8rem] relative">
+                      <Image
+                        fill={true}
+                        src={member.userId.image}
+                        sizes="(max-width: 3rem), (min-height: 3rem)"
+                        alt="User Image"
+                        className="rounded-full border-gray-300 border-[0.1rem] object-cover"
+                      />
+                    </div>
 
-                  <span>{member.userId.nickname}</span>
-                  {member.userId._id == study.leaderId && (
-                    <>
-                      <div className="rounded-full w-[0.3rem] h-[0.3rem] bg-main-600"></div>
-                      <span className="text-content-2">팀장</span>
-                    </>
-                  )}
-                </div>
+                    <span>{member.userId.nickname}</span>
+                    {member.userId._id == study.leaderId && (
+                      <>
+                        <div className="rounded-full w-[0.3rem] h-[0.3rem] bg-main-600"></div>
+                        <span className="text-content-2">팀장</span>
+                      </>
+                    )}
+                  </div>
+                </Link>
               ))}
           </div>
         </div>
