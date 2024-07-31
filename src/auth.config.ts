@@ -10,18 +10,9 @@ export const authConfig = {
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
-      // const isLoggedIn = !!auth?.user;
-      // const isOnUsers = nextUrl.pathname.startsWith('/');
-      // if (isOnUsers) {
-      //   if (isLoggedIn) return true;
-      //   return false; // Redirect unauthenticated users to login page
-      // } else if (isLoggedIn) {
-      //   return Response.redirect(new URL('/', nextUrl));
-      // }
       return true;
     },
     signIn: async ({ user, account }: { user: any; account: any }) => {
-      // console.log('signIn', user, account);
       if (account?.provider === 'github') {
         const { name, email } = user;
         await connectDB();
@@ -39,7 +30,6 @@ export const authConfig = {
             sturingPercent: 50,
             studyCount: 0,
             authProviderId: 'github',
-            // role: 'user',
           });
         }
         const socialUser = await User.findOne({

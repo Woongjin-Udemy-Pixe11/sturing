@@ -1,6 +1,5 @@
 'use client';
 import LoginModal from '@/components/(jisubin)/login/LoginModal';
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function OpenLoginModal() {
