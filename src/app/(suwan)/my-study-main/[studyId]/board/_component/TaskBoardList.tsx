@@ -25,7 +25,10 @@ export default function TaskBoardList(props: TTaskListProps) {
               >
                 <div className="w-full">
                   <div className="flex justify-between pb-[1.2rem]">
-                    <span className="flex items-center gap-[0.8rem]">
+                    <Link
+                      href={`/users/${task.writerId._id}`}
+                      className="flex items-center gap-[0.8rem]"
+                    >
                       <img
                         src={task.writerId.image}
                         alt=""
@@ -34,7 +37,8 @@ export default function TaskBoardList(props: TTaskListProps) {
                       <span className="text-gray-900 text-content-1 font-medium">
                         {task.writerId.nickname}
                       </span>
-                    </span>
+                    </Link>
+
                     <span className="text-content-2 text-gray-600">
                       {dateCalculate(task.createdAt)}
                     </span>
