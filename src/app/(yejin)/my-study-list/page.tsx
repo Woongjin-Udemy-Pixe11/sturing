@@ -7,6 +7,7 @@ import TabBar from '@/components/main/TabBar';
 import { getUserStudies } from '@/lib/actions/userStudies';
 import { getSession } from '@/utils/getSessions';
 import OpenLoginModal from './_components/OpenLoginModal';
+import { Tsession } from '@/types/TSession';
 
 export default async function page() {
   const session: Tsession = await getSession();
