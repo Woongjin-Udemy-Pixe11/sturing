@@ -99,14 +99,14 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
   const studyFormId = studyForm._id;
   const userId = studyForm.userId._id;
   const studyId = studyForm.studyId._id;
-  const studyFormSure = studyForm.studyFromSure;
+  const studyFormSure = studyForm.studyFormSure;
 
   const data = {
     formId: studyFormId,
     userId: userId,
     studyId: studyId,
   };
-
+  console.log('🍎', studyFormSure);
   return (
     <div className="w-full h-screen flex flex-col justify-between ">
       <div>
@@ -196,12 +196,12 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
         </div>
       </div>
       <div className="flex p-[1.6rem] items-end gap-[1rem]">
-        {studyFormSure ? (
+        {!studyFormSure ? (
           <LongButton onClick={handleRejectClick} color="white">
             거절하기
           </LongButton>
         ) : null}
-        {studyFormSure ? (
+        {!studyFormSure ? (
           <LongButton onClick={handleAcceptClick} color="blue">
             수락하기
           </LongButton>
@@ -210,7 +210,7 @@ export default function OtherApplyClient({ studyForm }: { studyForm: any }) {
         )}
       </div>
       {isAcceptModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[50]">
           <DefaultModal
             message={`정말로 수락하시겠습니까?`}
             onConfirm={handleAccept}

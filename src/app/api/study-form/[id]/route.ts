@@ -83,7 +83,7 @@ export async function PATCH(
           { status: 400 },
         );
       }
-      if ((studyForm.studyFormSure = false)) {
+      if (!studyForm.studyFormSure) {
         studyForm.studyFormSure = true;
         await studyForm.save();
         await StudyMember.create({
@@ -106,11 +106,11 @@ export async function PATCH(
             { status: 400 },
           );
         }
+        revalidatePath('/my-study-list');
+        return Response.json({ message: '이미 수락된 지원서입니다.' });
+      } else {
+        throw new Error('이미 수락한 지원서입니다.');
       }
-
-      revalidatePath('/my-study-list');
-      throw new Error('이미 수락한 지원서입니다.');
-      // return Response.json({ message: '이미 수락된 지원서입니다.' });
     }
 
     if (!studyForm) {
