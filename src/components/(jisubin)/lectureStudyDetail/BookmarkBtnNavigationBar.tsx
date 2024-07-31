@@ -15,12 +15,13 @@ type TBookmarkBtnNavigationBarProps = {
   targetId: string;
   userId: string;
   target: string;
+  isExist: boolean;
 };
 
 export default function BookmarkBtnNavigationBar(
   props: TBookmarkBtnNavigationBarProps,
 ) {
-  const { isApply, link, targetId, userId, target } = props;
+  const { isApply, link, targetId, userId, target, isExist } = props;
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isClickBtn, setIsClickBtn] = useState(false);
 
@@ -48,6 +49,7 @@ export default function BookmarkBtnNavigationBar(
       });
     }
   }, [isBookmarked]);
+  const isExistcolor = isExist === true ? 'bg-gray-600' : 'bg-main-600';
 
   const onClickStudyBtn = () => {
     setIsClickBtn(true);
@@ -75,14 +77,20 @@ export default function BookmarkBtnNavigationBar(
 
       {isApply ? (
         <button
-          className="w-full ml-[2rem] h-[5rem] rounded-[0.5rem] bg-main-600 font-medium text-white select-none"
+          className={`w-full ml-[2rem] h-[5rem] rounded-[0.5rem] bg-main-600 font-medium text-white select-none ${isExistcolor}`}
           onClick={onClickStudyBtn}
         >
           {userId ? (
             target == 'lecture' ? (
               <Link href={link}>이 강의로 스터디 개설하기</Link>
             ) : (
-              <Link href={link}>스터디 지원하기</Link>
+              <>
+                {isExist === false ? (
+                  <Link href={link}>스터디 지원하기</Link>
+                ) : (
+                  <div>이미 수락된 스터디입니다.</div>
+                )}
+              </>
             )
           ) : target == 'lecture' ? (
             <>이 강의로 스터디 개설하기</>

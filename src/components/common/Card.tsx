@@ -155,7 +155,6 @@ export default function Card(props: TStudy) {
           </div>
         </div>
       </div>
-      <div className="my-2 border-t border-white"></div>
       <p className="text-gray-700 text-content-2">
         {isStudyEnd ? '종료' : '모집 중'} {studyJoinMember}/{studyMember}
       </p>

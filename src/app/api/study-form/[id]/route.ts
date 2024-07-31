@@ -83,33 +83,34 @@ export async function PATCH(
           { status: 400 },
         );
       }
-
-      studyForm.studyFormSure = true;
-      await studyForm.save();
-
-      await StudyMember.create({
-        studyId: studyForm.studyId,
-        userId: studyForm.userId,
-      });
-
-      const updatedStudy = await Study.findByIdAndUpdate(
-        studyForm.studyId,
-        { $inc: { studyJoinMember: 1 } },
-        { new: true },
-      );
-
-      if (updatedStudy.studyJoinMember > updatedStudy.studyMember) {
-        await Study.findByIdAndUpdate(studyForm.studyId, {
-          $inc: { studyJoinMember: -1 },
+      if ((studyForm.studyFormSure = false)) {
+        studyForm.studyFormSure = true;
+        await studyForm.save();
+        await StudyMember.create({
+          studyId: studyForm.studyId,
+          userId: studyForm.userId,
         });
-        return Response.json(
-          { error: '스터디 정원이 초과되었습니다.' },
-          { status: 400 },
+
+        const updatedStudy = await Study.findByIdAndUpdate(
+          studyForm.studyId,
+          { $inc: { studyJoinMember: 1 } },
+          { new: true },
         );
+
+        if (updatedStudy.studyJoinMember > updatedStudy.studyMember) {
+          await Study.findByIdAndUpdate(studyForm.studyId, {
+            $inc: { studyJoinMember: -1 },
+          });
+          return Response.json(
+            { error: '스터디 정원이 초과되었습니다.' },
+            { status: 400 },
+          );
+        }
       }
 
       revalidatePath('/my-study-list');
-      return Response.json({ message: '지원이 수락되었습니다.' });
+      throw new Error('이미 수락한 지원서입니다.');
+      // return Response.json({ message: '이미 수락된 지원서입니다.' });
     }
 
     if (!studyForm) {
@@ -121,7 +122,7 @@ export async function PATCH(
   } catch (error) {
     console.error(error);
     return Response.json(
-      { error: '서버 오류가 발생했습니다.' },
+      { error: '이미 수락한 지원서입니다.' },
       { status: 500 },
     );
   }

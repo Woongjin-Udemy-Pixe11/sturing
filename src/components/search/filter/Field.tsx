@@ -44,7 +44,7 @@ export default function Field({ filterCounts }: FieldProps) {
   };
 
   return (
-    <ul className="w-full flex gap-[.8rem] flex-col">
+    <ul className="w-full flex gap-[1.2rem] flex-col">
       {checkList.map((checkbox) => (
         <li key={checkbox.name}>
           <CheckBox

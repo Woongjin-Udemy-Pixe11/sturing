@@ -13,10 +13,8 @@ export default function Mood(props: Tmoodprops) {
   return (
     <div className="w-full px-[1.6rem] py-[2rem]">
       <section>
-        <h1 className="font-semibold text-headline-3">
-          {nickname}님이 선호하는
-        </h1>
-        <h1 className="font-semibold text-headline-3">
+        <h1 className="font-medium text-[2rem]">{nickname}님이 선호하는</h1>
+        <h1 className="font-medium text-[2rem]">
           스터디 분위기를 선택해 주세요.
         </h1>
         <p className="text-gray-700 mt-4 text-content-2">
