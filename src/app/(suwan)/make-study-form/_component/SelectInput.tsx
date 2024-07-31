@@ -17,12 +17,12 @@ export default function SelectInput(props: TSelectInputProps) {
           value={checked ? '' : value}
           onChange={(e) => onChange(e.target.value)}
           disabled={checked}
-          className={`border-gray-300 border py-[1.3rem] px-[1rem] flex-1 rounded-md w-full ${
+          className={`flex-1 select-arrow border-gray-300 border py-[1.3rem] pl-[1rem] pr-[2rem] rounded-md w-full ${
             checked && 'bg-gray-200 text-gray-600'
           }`}
         >
           <option selected disabled value="">
-            시간을 선택해주세요.
+            시간을 선택해주세요
           </option>
           <option value="오전 12:00">오전 12:00</option>
           <option value="오전 01:00">오전 1:00</option>
@@ -57,12 +57,12 @@ export default function SelectInput(props: TSelectInputProps) {
           value={checked ? '' : value}
           onChange={(e) => onChange(e.target.value)}
           disabled={checked}
-          className={`border-gray-300 border py-[1.3rem] px-[1.6rem] flex-1 rounded-md ${
+          className={`flex-1 select-arrow border-gray-300 border py-[1rem] pl-[1rem] pr-[2rem]  rounded-md ${
             checked && 'bg-gray-200 text-gray-600'
           }`}
         >
           <option selected disabled value="">
-            요일을 선택해주세요.
+            요일을 선택해주세요
           </option>
           <option value="월요일">월요일</option>
           <option value="화요일">화요일</option>
