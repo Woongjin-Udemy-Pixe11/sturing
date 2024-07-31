@@ -63,14 +63,14 @@ export default async function StudyDetailLayout(
     <>
       <div
         style={{
-          backgroundImage: `url(${study.studyImage})`,
+          backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5) ), url(${study.studyImage})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
         }}
         className={`text-white object-cover`}
       >
-        <BackShareHeader />
+        <BackShareHeader iconColor="white" />
         <StudyDetailTitle
           type={study.studyType}
           category={study.studyCategory}
