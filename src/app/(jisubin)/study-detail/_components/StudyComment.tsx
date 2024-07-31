@@ -1,13 +1,13 @@
 'use client';
-import Image from 'next/image';
-import { HiEllipsisVertical } from 'react-icons/hi2';
-import { useEffect, useState } from 'react';
 import {
   deleteComment,
   getComment,
   updateComment,
 } from '@/lib/actions/commentAction';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { HiEllipsisVertical } from 'react-icons/hi2';
 
 type TStudyCommentProps = {
   commentId: string;
@@ -102,13 +102,15 @@ export default function StudyComment(props: TStudyCommentProps) {
         <div className="flex flex-col text-content-2  mx-[2rem]">
           <div className="flex flex-row items-center gap-x-[0.8rem] justify-between">
             <div className="flex flex-row items-center justify-center">
-              <Image
-                src={userImage}
-                width={28}
-                height={28}
-                alt="User Image"
-                className="rounded-full border-gray-300 border-[0.1rem]"
-              />
+              <div className="w-[3rem] h-[3rem] overflow-hidden">
+                <Image
+                  src={userImage}
+                  width={28}
+                  height={28}
+                  alt="User Image"
+                  className="rounded-full object-cover w-full h-full border-gray-300 border-[0.1rem]"
+                />
+              </div>
               <span className="ml-[0.5rem] text-gray-900">{nickname}</span>
             </div>
             {/* <CommentContent content={content} date={convertDate} /> */}
