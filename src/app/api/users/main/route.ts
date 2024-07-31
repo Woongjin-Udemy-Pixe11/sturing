@@ -1,6 +1,8 @@
 import connectDB from '@/lib/db';
 import { User } from '@/lib/schemas/userSchema';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
   await connectDB();
 

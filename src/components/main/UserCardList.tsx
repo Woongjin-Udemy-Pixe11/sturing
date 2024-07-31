@@ -1,6 +1,8 @@
 import ScrollableContainer from '../common/ScrollableContainer';
 import UserCard from './UserCard';
 
+export const dynamic = 'force-dynamic';
+
 type TUser = {
   _id: string;
   nickname: string;

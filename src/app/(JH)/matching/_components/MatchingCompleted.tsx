@@ -36,7 +36,7 @@ export default async function MatchingCompleted(
 
   return (
     <div className="flex flex-col gap-[7rem]">
-      <section className="flex flex-col items-center w-full  relative pt-[5rem]">
+      <section className="flex flex-col items-center w-full relative pt-[5rem]">
         <div className="mb-[1.4rem]">
           <svg
             width="62"
@@ -73,10 +73,12 @@ export default async function MatchingCompleted(
         </p>
       </section>
       <section className="flex flex-col gap-[2rem] ">
-        <h1 className="pl-[1.6rem]">{username}님과 딱맞는 스터디 추천</h1>
+        <h1 className="pl-[1.6rem] font-medium">
+          {username}님과 딱 맞는 스터디 추천
+        </h1>
         <ScrollableContainer>
           {relatedStudies.map((study, index) => (
-            <div key={index}>
+            <div key={index} className="px-[1.6rem]">
               <Card
                 studyId={study._id!}
                 studyImage={study.studyImage}
