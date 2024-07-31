@@ -15,7 +15,7 @@ type TBookmarkBtnNavigationBarProps = {
   targetId: string;
   userId: string;
   target: string;
-  isExist: boolean;
+  isExist?: boolean;
 };
 
 export default function BookmarkBtnNavigationBar(
