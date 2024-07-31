@@ -3,7 +3,7 @@ import SearchPart from '@/app/(ryukyung)/pages/SearchPart';
 import { useRouter } from 'next/navigation';
 import { IoIosArrowBack } from 'react-icons/io';
 
-export default function BackSearchBar() {
+export default function BackSearchBar({ keyword }: { keyword: string }) {
   const router = useRouter();
 
   return (
@@ -12,7 +12,7 @@ export default function BackSearchBar() {
         <IoIosArrowBack className="w-[2.4rem] h-[2.4rem]" />
       </button>
       <div className="flex-grow max-w-[97%] mb-[1.2rem]">
-        <SearchPart isList={false} />
+        <SearchPart isList={false} initialKeyword={keyword} />
       </div>
     </div>
   );
