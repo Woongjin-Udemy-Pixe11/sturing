@@ -5,6 +5,7 @@ import { TFormData } from '@/types/TStudyBoard';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { CgClose } from 'react-icons/cg';
+import { useFormStatus } from 'react-dom';
 
 type NoticeFormProps = {
   boardType?: string;
@@ -21,6 +22,16 @@ type NoticeFormProps = {
   onImageChange?: (file: File | null) => void;
 };
 
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <LongButton color="blue" disabled={pending}>
+      {pending ? '제출 중...' : '등록하기'}
+    </LongButton>
+  );
+}
+
 export default function NoticeForm(props: NoticeFormProps) {
   const {
     boardType,
@@ -35,6 +46,7 @@ export default function NoticeForm(props: NoticeFormProps) {
     onImageChange,
   } = props;
   const router = useRouter();
+  const { pending } = useFormStatus();
 
   const [title, setTitle] = useState(defaultTitle ? defaultTitle : '');
   const [content, setContent] = useState(defaultContent ? defaultContent : '');
@@ -66,33 +78,41 @@ export default function NoticeForm(props: NoticeFormProps) {
   }, [title, content]);
 
   const onSubmit = async (formData: FormData) => {
-    const title = formData.get('title') as string;
-    const content = formData.get('content') as string;
-    let img;
+    try {
+      const title = formData.get('title') as string;
+      const content = formData.get('content') as string;
+      let img;
 
-    if (selectedImg !== null) {
-      const fileName = `${Date.now()}-${Math.random()}`;
-      const { data, error } = await supabase.storage
-        .from('images')
-        .upload(fileName, selectedImg);
-      const url: any = supabase.storage.from('images').getPublicUrl(fileName);
-      img = url.data.publicUrl;
-      setPreviewUrl(url.data.publicUrl);
-    } else {
-      img = selectedImg;
-    }
-
-    const board = boardType == 'notice' ? 'notice-board' : 'task-board';
-    const result = await handleSubmit({ title, content, img });
-    if (result.blackboardId) {
-      router.replace(
-        `/my-study-main/${studyId}/board/${board}/${result.blackboardId}`,
-      );
-      router.refresh();
-    } else if (result.error) {
-      console.error(result.error);
+      if (selectedImg !== null) {
+        if (selectedImg !== defaultImage) {
+          const fileName = `${Date.now()}-${Math.random()}`;
+          const { data, error } = await supabase.storage
+            .from('images')
+            .upload(fileName, selectedImg);
+          const url: any = supabase.storage
+            .from('images')
+            .getPublicUrl(fileName);
+          img = url.data.publicUrl;
+          setPreviewUrl(url.data.publicUrl);
+        }
+      } else {
+        img = selectedImg;
+      }
+      const board = boardType == 'notice' ? 'notice-board' : 'task-board';
+      const result = await handleSubmit({ title, content, img });
+      if (result.blackboardId) {
+        router.replace(
+          `/my-study-main/${studyId}/board/${board}/${result.blackboardId}`,
+        );
+        router.refresh();
+      } else if (result.error) {
+        console.error(result.error);
+      }
+    } catch (error) {
+      console.error('제출 중 오류 발생:', error);
     }
   };
+
   return (
     <>
       <form action={onSubmit}>
@@ -194,9 +214,7 @@ export default function NoticeForm(props: NoticeFormProps) {
             등록하기
           </LongButton>
         ) : (
-          <LongButton className={'mt-[4rem]'} color="blue">
-            등록하기
-          </LongButton>
+          <SubmitButton />
         )}
       </form>
     </>

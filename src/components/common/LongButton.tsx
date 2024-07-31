@@ -5,6 +5,7 @@ type TButtonProps = {
   width?: string;
   children: ReactNode;
   className?: string;
+  disabled?: boolean;
   onClick?: () => void;
 };
 
@@ -15,6 +16,7 @@ export default function LongButton({
   color,
   width = 'w-full',
   children,
+  disabled,
   onClick,
   className,
 }: TButtonProps) {
@@ -29,6 +31,7 @@ export default function LongButton({
     <button
       className={`${colorVariants[color]} ${width} py-[1.2rem] px-[1.6rem] rounded-[0.5rem] text-[1.6rem] font-medium ${className}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

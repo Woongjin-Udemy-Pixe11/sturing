@@ -6,6 +6,7 @@ import { TBlackboard } from '@/types/TStudyBoard';
 import { dateCalculate } from '@/utils/dateCalculate';
 import { useRouter } from 'next/navigation';
 import EmojiSelectBtn from './EmojiSelectBtn';
+import Link from 'next/link';
 
 type TProps = {
   task: TBlackboard;
@@ -42,11 +43,13 @@ export default function TaskDetail(props: TProps) {
 
       <div className="bg-white px-[2rem] flex flex-col gap-y-[2rem] py-[2rem]">
         <div className="flex flex-row items-center">
-          <img
-            src={task.writerId.image}
-            alt="Picture of the author"
-            className="border border-gray-300 w-[3.8rem] rounded-full aspect-square object-cover"
-          />
+          <Link href={`/users/${task.writerId._id}`}>
+            <img
+              src={task.writerId.image}
+              alt="Picture of the author"
+              className="border border-gray-300 w-[3.8rem] rounded-full aspect-square object-cover"
+            />
+          </Link>
           <div className="ml-[1rem] text-content-2 text-gray-700">
             <span className="flex gap-[0.4rem] items-center">
               <h3 className="text-content-1 font-medium text-gray-900">
