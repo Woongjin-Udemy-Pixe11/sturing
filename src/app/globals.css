@@ -56,3 +56,9 @@ body {
 .custom-ping {
   animation: custom-ping 1.4s linear infinite;
 }
+
+@layer components {
+  .select-arrow {
+    @apply appearance-none bg-select bg-no-repeat bg-right-arrow bg-2;
+  }
+}

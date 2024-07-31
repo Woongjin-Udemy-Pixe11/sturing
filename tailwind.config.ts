@@ -60,6 +60,23 @@ const config: Config = {
     dropShadow: {
       bookmark: '0 1px 1px rgba(0, 0, 0, 0.25)',
     },
+    backgroundImage: {
+      select: "url('/images/studyLabel/arrow_down.svg')",
+    },
+    backgroundPosition: {
+      bottom: 'bottom',
+      center: 'center',
+      left: 'left',
+      right: 'right',
+      top: 'top',
+      'right-arrow': 'center right .8rem',
+    },
+    backgroundSize: {
+      auto: 'auto',
+      cover: 'cover',
+      contain: 'contain',
+      '2': '2rem',
+    },
   },
   plugins: [],
 };
