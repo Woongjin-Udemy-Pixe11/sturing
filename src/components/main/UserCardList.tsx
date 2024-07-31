@@ -35,7 +35,7 @@ export default async function UserCardList() {
       <ScrollableContainer>
         {topUsers &&
           topUsers.map((user: TUser) => (
-            <li key={user._id}>
+            <li key={user._id} className="mr-[.8rem] last:mr-0">
               <UserCard user={user} />
             </li>
           ))}

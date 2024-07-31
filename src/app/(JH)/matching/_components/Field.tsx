@@ -16,7 +16,7 @@ export default function Field(props: Tfieldprops) {
     <div className="w-full px-[1.4rem]">
       <section className="py-[2rem] ">
         <h1 className="font-medium text-[2rem]">관심 분야에 대한</h1>
-        <h1 className="font-medium text-headline-2">
+        <h1 className="font-medium text-[2rem]">
           나의 직업 수준을 선택해 주세요.
         </h1>
       </section>
