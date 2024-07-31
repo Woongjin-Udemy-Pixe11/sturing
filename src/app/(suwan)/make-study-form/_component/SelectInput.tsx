@@ -17,7 +17,7 @@ export default function SelectInput(props: TSelectInputProps) {
           value={checked ? '' : value}
           onChange={(e) => onChange(e.target.value)}
           disabled={checked}
-          className={`flex-1 select-arrow border-gray-300 border py-[1.3rem] pl-[1rem] pr-[2rem] rounded-md w-full ${
+          className={`flex-1 select-arrow border-gray-300 border py-[1.3rem] pl-[1rem] pr-[2rem] rounded-md w-full bg-white ${
             checked && 'bg-gray-200 text-gray-600'
           }`}
         >
@@ -57,7 +57,7 @@ export default function SelectInput(props: TSelectInputProps) {
           value={checked ? '' : value}
           onChange={(e) => onChange(e.target.value)}
           disabled={checked}
-          className={`flex-1 select-arrow border-gray-300 border py-[1rem] pl-[1rem] pr-[2rem]  rounded-md ${
+          className={`flex-1 select-arrow border-gray-300 border py-[1rem] pl-[1rem] pr-[2rem] rounded-md bg-white ${
             checked && 'bg-gray-200 text-gray-600'
           }`}
         >
