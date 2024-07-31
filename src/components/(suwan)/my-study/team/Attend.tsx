@@ -35,7 +35,7 @@ export default function Attend(props: any) {
           </div>
 
           <ScrollableContainer>
-            <div className="w-full flex flex-row justify-around text-[1.4rem] py-[2rem]">
+            <div className="w-full flex flex-row justify-around text-[1.4rem] gap-[1rem] py-[2rem]">
               {memberList.map((member: any) => (
                 <AttendanceCheck
                   key={member.userId._id}

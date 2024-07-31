@@ -70,7 +70,7 @@ export default function AttendanceCheck(props: TAttendanceCheckProps) {
             />
           </label>
         </div>
-        <span className="block text-center w-full min-w-[4rem] den whitespace-nowrap text-ellipsis overflow-hidden">
+        <span className="block text-center w-full min-w-[4rem] den truncate">
           {member.userId.nickname}
         </span>
       </div>
