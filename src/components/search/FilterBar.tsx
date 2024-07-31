@@ -58,7 +58,7 @@ export default function FilterBar({
   return (
     <>
       <div className=" w-full px-[1.6rem] py-[.8rem] flex justify-between items-center">
-        <ul className="flex w-[90%] overflow-x-auto py-[.8rem]">
+        <ul className="flex w-[90%] overflow-x-auto py-[1.2rem]">
           {filterButtonList &&
             filterButtonList.map((filterbutton) => (
               <li key={filterbutton.key} className="inline mr-[.8rem]">
@@ -78,10 +78,10 @@ export default function FilterBar({
       {openFilter && (
         <>
           <div
-            className="fixed inset-0 bg-black bg-opacity-35 z-10"
+            className="fixed inset-0 bg-black bg-opacity-35 z-50"
             onClick={closeFilter}
           ></div>
-          <div className="absolute bottom-0 z-10 w-full ">
+          <div className="absolute bottom-0 z-[90] w-full ">
             <BottomSheetFilter
               onClose={closeFilter}
               onFilterChange={selectedFilters}

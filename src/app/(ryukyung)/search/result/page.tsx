@@ -87,7 +87,7 @@ export default async function page(props: TSearchResultProps) {
   ];
   return (
     <>
-      <BackSearchBar />
+      <BackSearchBar keyword={keyword} />
       <TabContainer
         keyword={keyword}
         tabList={tabList}

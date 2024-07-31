@@ -4,18 +4,23 @@ import SearchInput from '@/components/common/SearchInput';
 import CurrentSearch from '@/components/search/CurrentSearch';
 import useLocalStorage from '@/utils/useLocalStorage';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface SearchPartProps {
   isList: boolean;
+  initialKeyword?: string;
 }
 
 export default function SearchPart(props: SearchPartProps) {
-  const { isList } = props;
+  const { isList, initialKeyword = '' } = props;
   const router = useRouter();
   const [inputValue, setInputValue] = useState<string>('');
   const [recentSearches, addSearchToLocalStorage, removeFromLocal, clearLocal] =
     useLocalStorage('recent', []);
+
+  useEffect(() => {
+    setInputValue(initialKeyword);
+  }, [initialKeyword]);
 
   const onSearch = () => {
     const trimmedInput = inputValue.trim();

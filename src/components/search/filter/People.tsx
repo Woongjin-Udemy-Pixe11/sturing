@@ -38,7 +38,7 @@ export default function People({ filterCounts }: PeopleProps) {
   };
 
   return (
-    <ul className="w-full flex flex-col gap-[.8rem]">
+    <ul className="w-full flex flex-col gap-[1.2rem]">
       {checkList.map((checkbox) => (
         <li key={checkbox.name}>
           <CheckBox
