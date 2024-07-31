@@ -20,11 +20,11 @@ export default function CreateStudyButton() {
     <>
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-30 z-40"
+          className="fixed inset-0 bg-black bg-opacity-30 z-30"
           onClick={handleToggle} // 배경 클릭 시 닫기
         ></div>
       )}
-      <div className="fixed bottom-[4%] right-[5%] z-50">
+      <div className="fixed bottom-[4%] right-[5%] z-40">
         <button
           onClick={handleToggle}
           className="w-[5.8rem] h-[5.8rem] bg-main-600 text-white rounded-full flex items-center justify-center shadow-lg focus:outline-none"
