@@ -12,7 +12,7 @@ export default function SideBar(props: TSideBarProps) {
 
   return (
     <>
-      <div className="block bg-white fixed overflow-auto left-0 w-[32.4rem] px-[2.4rem] h-screen z-[9999] ">
+      <div className="block bg-white fixed overflow-auto left-0 w-[32.4rem] px-[2.4rem] h-screen z-[9999] top-[0rem]">
         <button
           className="absolute top-[2.4rem] right-[2.4rem] w-[3.2rem] h-[3.2rem]"
           onClick={onClose}
