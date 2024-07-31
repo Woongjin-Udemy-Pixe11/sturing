@@ -39,6 +39,7 @@ export default function StudyApplyForm(props: TStudyFormProps) {
   const [content, setContent] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const ref = useRef<HTMLFormElement>(null);
   const router = useRouter();
 
@@ -70,6 +71,10 @@ export default function StudyApplyForm(props: TStudyFormProps) {
   };
 
   const handleSubmit = async (formData: FormData) => {
+    if (isSubmitting) {
+      return;
+    }
+    setIsSubmitting(true);
     formData.append('title', title);
     formData.append('content', content);
     if (selectedFile) {
@@ -95,6 +100,7 @@ export default function StudyApplyForm(props: TStudyFormProps) {
       // 에러 처리
       console.error(result.message);
     }
+    setIsSubmitting(false);
   };
 
   return (
