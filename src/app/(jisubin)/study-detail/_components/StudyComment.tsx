@@ -6,6 +6,7 @@ import {
 } from '@/lib/actions/commentAction';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { HiEllipsisVertical } from 'react-icons/hi2';
 
@@ -30,10 +31,6 @@ export default function StudyComment(props: TStudyCommentProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [userImage, setUserImage] = useState('/images/dummy-member-img1.png');
-
-  // commentDate = new Date(commentDate).toLocaleString('ko-KR', {
-  //   timeZone: 'Asia/Seoul',
-  // });
 
   const onClickEdit = () => {
     setIsOpen(false);
@@ -101,19 +98,20 @@ export default function StudyComment(props: TStudyCommentProps) {
       {nickname && (
         <div className="flex flex-col text-content-2  mx-[2rem]">
           <div className="flex flex-row items-center gap-x-[0.8rem] justify-between">
-            <div className="flex flex-row items-center justify-center">
-              <div className="w-[3rem] h-[3rem] overflow-hidden">
-                <Image
-                  src={userImage}
-                  width={28}
-                  height={28}
-                  alt="User Image"
-                  className="rounded-full object-cover w-full h-full border-gray-300 border-[0.1rem]"
-                />
+            <Link href={`/users/${commentWriteId}`}>
+              <div className="flex flex-row items-center justify-center">
+                <div className="w-[3rem] h-[3rem] overflow-hidden">
+                  <Image
+                    src={userImage}
+                    width={28}
+                    height={28}
+                    alt="User Image"
+                    className="rounded-full object-cover w-full h-full border-gray-300 border-[0.1rem]"
+                  />
+                </div>
+                <span className="ml-[0.5rem] text-gray-900">{nickname}</span>
               </div>
-              <span className="ml-[0.5rem] text-gray-900">{nickname}</span>
-            </div>
-            {/* <CommentContent content={content} date={convertDate} /> */}
+            </Link>
 
             {userId == commentWriteId && (
               <div className="flex flex-col items-center gap-y-[0.4rem]">
