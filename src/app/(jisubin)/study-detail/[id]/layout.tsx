@@ -57,7 +57,11 @@ export default async function StudyDetailLayout(
 
   const session: Tsession = await getSession();
   const userId = session?.user?.id;
-  const studyForm = await fetchStudyForm(userId, id);
+
+  let studyForm = null;
+  if (userId) {
+    studyForm = await fetchStudyForm(userId, id);
+  }
 
   let isApply: boolean = true;
   if (
