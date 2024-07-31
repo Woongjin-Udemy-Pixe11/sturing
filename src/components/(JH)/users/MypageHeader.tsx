@@ -14,6 +14,7 @@ export default function MyPageHeader({
       {children && (
         <h1 className="flex-1 font-medium text-headline-3">{children}</h1>
       )}
+      <div className="w-[2.4rem] h-[2.4rem]"></div>
     </header>
   );
 }
