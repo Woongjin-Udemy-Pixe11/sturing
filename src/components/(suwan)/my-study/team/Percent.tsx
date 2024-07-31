@@ -1,5 +1,6 @@
 'use client';
 import { useMemberStore } from '@/store/memberStore';
+import Link from 'next/link';
 type TStudyMember = {
   name: string;
   profileImage: string;
@@ -39,15 +40,19 @@ export default function Percent() {
                 key={member._id}
                 className="flex items-center space-x-[1rem]"
               >
-                <img
-                  src={member.userId.image}
-                  className="border border-gray-300 w-[4rem] h-[4rem] rounded-full object-cover"
-                />
+                <Link href={`/users/${member.userId._id}`}>
+                  <img
+                    src={member.userId.image}
+                    className="border border-gray-300 w-[4rem] h-[4rem] rounded-full object-cover"
+                  />
+                </Link>
                 <div className="flex-1 w-[23rem] text-[1.4rem]">
                   <div className="flex items-center">
-                    <span className="font-medium ">
-                      {member.userId.nickname}
-                    </span>
+                    <Link href={`/users/${member.userId._id}`}>
+                      <span className="font-medium ">
+                        {member.userId.nickname}
+                      </span>
+                    </Link>
                     <span className="text-gray-500 m-[.4rem]">
                       {member.studyProgress === hightest && (
                         <img src="/images/studyLabel/crown.svg" />
