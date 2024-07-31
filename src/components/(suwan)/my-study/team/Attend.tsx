@@ -1,12 +1,13 @@
 'use client';
 import { useEffect, useState } from 'react';
-
 import { useMemberStore } from '@/store/memberStore';
 import AttendanceCheck from './component/AttendanceCheck';
 import ScrollableContainer from '@/components/common/ScrollableContainer';
+import { useMyStudyStore } from '@/store/myStudyStore';
 
 export default function Attend(props: any) {
   const { memberList } = useMemberStore();
+  const { userId } = useMyStudyStore();
   const [attendNum, setAttendNum] = useState<number>(0);
 
   const updateAttendNum = (isChecked: boolean) => {
@@ -35,12 +36,13 @@ export default function Attend(props: any) {
           </div>
 
           <ScrollableContainer>
-            <div className="w-full flex flex-row justify-around text-[1.4rem] py-[2rem]">
+            <div className="w-full flex flex-row justify-around text-[1.4rem] gap-[1rem] py-[2rem]">
               {memberList.map((member: any) => (
                 <AttendanceCheck
                   key={member.userId._id}
                   member={member}
                   updateAttendNum={updateAttendNum}
+                  disabled={userId !== member.userId._id ? true : false}
                 />
               ))}
             </div>

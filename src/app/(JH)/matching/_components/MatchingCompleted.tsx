@@ -76,7 +76,7 @@ export default async function MatchingCompleted(
         <h1 className="font-medium">{username}님과 딱 맞는 스터디 추천</h1>
         <ScrollableContainer>
           {relatedStudies.map((study, index) => (
-            <div key={index} className="">
+            <div key={index} className="mr-[.8rem]">
               <Card
                 studyId={study._id!}
                 studyImage={study.studyImage}
