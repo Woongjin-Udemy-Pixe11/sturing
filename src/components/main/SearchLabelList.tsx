@@ -23,7 +23,7 @@ export default function SearchLabelList() {
                     {label.title}를 검색하러 이동합니다.
                   </figcaption>
                 </figure>
-                <span className="whitespace-nowrap text-content-1">
+                <span className="whitespace-nowrap text-content-1 font-medium">
                   {label.title}
                 </span>
               </Link>
