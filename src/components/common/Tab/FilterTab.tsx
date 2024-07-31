@@ -75,7 +75,7 @@ export default function FilterTab({
                       let newid: string = item;
 
                       const bg = selected.includes(newid)
-                        ? 'bg-[#ECF1FF] text-[#4171FF]'
+                        ? 'bg-[#ECF1FF] text-main-600'
                         : 'bg-white';
                       return (
                         <Tabs.Content
@@ -84,7 +84,15 @@ export default function FilterTab({
                           className={`${bg}  w-full h-[4.9rem] py-[1.4rem] ps-[2rem] border-b-[0.1rem] border-[#E4E4E4] text-content-1 text-gray-700`}
                           onClick={() => toggleItem(item)}
                         >
-                          <p className="w-[90%]">{item}</p>
+                          <div className="flex">
+                            <p className="w-[90%]">{item}</p>
+                            {selected.includes(newid) && (
+                              <img
+                                src="/images/studyLabel/check.svg"
+                                className="px-[2rem]"
+                              />
+                            )}
+                          </div>
                         </Tabs.Content>
                       );
                     })}

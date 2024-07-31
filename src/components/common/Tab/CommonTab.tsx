@@ -64,7 +64,7 @@ export default function CommonTab({ regions, onClickRegion }: any) {
         onValueChange={setCurrentTab}
         className="flex w-full border-t border-gray-300"
       >
-        <Tabs.List className="flex flex-col w-[38%] text-[1.4rem] text-[#909090]">
+        <Tabs.List className="flex flex-col w-[33.33%] text-[1.4rem] text-[#909090]">
           <ScrollArea.Root className=" h-[33.3rem] bg-white pl-[1.6rem]">
             <ScrollArea.Viewport className="w-full h-full">
               {Object.keys(area).map((key, index) => {
@@ -95,7 +95,7 @@ export default function CommonTab({ regions, onClickRegion }: any) {
 
                       const isMatch = matchesKeyword(item);
                       const bg = regions.includes(newid)
-                        ? 'bg-[#ECF1FF] text-[#4171FF]'
+                        ? 'bg-[#ECF1FF] text-main-600'
                         : 'bg-white';
                       const hidden = keyword && !isMatch ? 'hidden' : '';
 
@@ -109,7 +109,15 @@ export default function CommonTab({ regions, onClickRegion }: any) {
                             setKeyword('');
                           }}
                         >
-                          <p className="w-[90%]">{item}</p>
+                          <div className="flex">
+                            <p className="w-[90%]">{item}</p>
+                            {regions.includes(newid) && (
+                              <img
+                                src="/images/studyLabel/check.svg"
+                                className="px-[2rem]"
+                              />
+                            )}
+                          </div>
                         </Tabs.Content>
                       );
                     })}
