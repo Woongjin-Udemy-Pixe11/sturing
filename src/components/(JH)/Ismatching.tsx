@@ -16,6 +16,8 @@ export default function Ismatching({
 
       if (token === null) {
         localStorage.setItem('token', session.user.accessToken);
+      }
+      if (data.matchingInfo === null) {
         redirect('/matching');
       }
 
