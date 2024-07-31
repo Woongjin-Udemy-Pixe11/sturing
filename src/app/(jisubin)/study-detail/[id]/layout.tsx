@@ -124,6 +124,7 @@ export default async function StudyDetailLayout(
           targetId={id}
           userId={userId}
           target="study"
+          isExist={isExistApply}
         />
       </div>
     </>

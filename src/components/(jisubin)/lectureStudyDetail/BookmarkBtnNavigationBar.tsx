@@ -46,7 +46,7 @@ export default function BookmarkBtnNavigationBar(
       });
     }
   }, [isBookmarked]);
-  const isExistcolor = isExist === true ? 'bg-main-600' : 'bg-gray-600';
+  const isExistcolor = isExist === true ? 'bg-gray-600' : 'bg-main-600';
 
   return (
     <div className="w-full mb-[1.6rem] px-[1.6rem] my-[1.6rem] flex flex-row items-center justify-between">
