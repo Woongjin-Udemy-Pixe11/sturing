@@ -37,10 +37,10 @@ export default function TaskDetail(props: TProps) {
           onClickDelete={onClickDelete}
         />
       ) : (
-        <SubHeader />
+        <SubHeader bgGray />
       )}
 
-      <div className="bg-white px-[2rem] flex flex-col gap-y-[2rem] py-[3rem]">
+      <div className="bg-white px-[2rem] flex flex-col gap-y-[2rem] py-[2rem]">
         <div className="flex flex-row items-center">
           <img
             src={task.writerId.image}
