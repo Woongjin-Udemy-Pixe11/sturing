@@ -35,13 +35,13 @@ export default function Header({ user }: { user?: any }) {
     <>
       {isOpenMenu && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-10"
+          className="fixed inset-0 bg-black bg-opacity-50 z-50"
           onClick={onClickMenu}
         ></div>
       )}
       {isOpenModal && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-20"
+          className="fixed inset-0 bg-black bg-opacity-50 z-50"
           onClick={onClickLogin}
         ></div>
       )}

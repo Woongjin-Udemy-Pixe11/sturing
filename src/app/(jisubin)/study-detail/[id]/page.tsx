@@ -42,7 +42,7 @@ export default async function StudyDetailPage(props: TStudyDetailPageProps) {
   }
 
   return (
-    <div className="flex flex-col mt-[2.8rem] text-gray-800">
+    <div className="flex flex-col mt-[2.8rem] text-gray-800 pb-[10rem]">
       <StudyInfo
         member={study.studyMember}
         meeting={study.studyMeetings}
