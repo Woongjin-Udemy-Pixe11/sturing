@@ -12,7 +12,6 @@ async function getUser(email: string) {
   const user = await User.findOne({ email });
   return user;
 }
-
 export const { auth, signIn, signOut, handlers } = NextAuth({
   ...authConfig,
   providers: [
@@ -22,4 +21,5 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
+  trustHost: true,
 });

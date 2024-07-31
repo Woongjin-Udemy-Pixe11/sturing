@@ -29,6 +29,7 @@ export default function Card(props: TStudy) {
     studyJoinMember,
     studyMember,
   } = props;
+  console.log(studyCategory);
 
   const [isBookmarked, setIsBookmarked] = useState(false);
 
