@@ -48,6 +48,7 @@ export default async function page({
           boardType={boardType}
           studyId={studyId}
           handleSubmit={handleSubmit}
+          contentMaxLength={1000}
           heading="공지 작성"
         />
       </div>
