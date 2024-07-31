@@ -12,6 +12,8 @@ import Mood from './Mood';
 import Region from './Region';
 import Type from './Type';
 import { Tmatching, Tsession } from '@/types/TSession';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export type TClientMatchingProps = {
   data: Tmatching;
@@ -24,6 +26,9 @@ export default function ClientMatching(props: TClientMatchingProps) {
   let username = session.user.name;
   let nickname = session.user.nickname;
   const id = session.user.id;
+
+  const router = useRouter();
+
   const [state, dispatch] = useReducer<React.Reducer<Tmatching, TActionType>>(
     matchingreducer,
     data,
@@ -129,8 +134,11 @@ export default function ClientMatching(props: TClientMatchingProps) {
   return (
     <main className="flex flex-col w-full  relative  ">
       <header>
-        <GoChevronLeft size={30} className="mb-4" />
-
+        <GoChevronLeft
+          size={30}
+          className="mb-4"
+          onClick={() => router.back()}
+        />
         {step <= 5 && (
           <div className="w-full bg-gray-400 rounded-full h-[0.4rem] ">
             <div
