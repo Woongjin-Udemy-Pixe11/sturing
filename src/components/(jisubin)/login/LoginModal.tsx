@@ -2,7 +2,7 @@ import GitHubLoginBtn from '../../common/GitHubLoginBtn';
 
 export default function LoginModal({ onClose }: { onClose: () => void }) {
   return (
-    <div className="fixed z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div className="fixed z-[9999] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <div className=" w-[31.6rem] h-[32.6rem] bg-white rounded-[0.8rem]">
         <div className="relative">
           <button className="absolute top-0 right-0 m-[2rem]" onClick={onClose}>
