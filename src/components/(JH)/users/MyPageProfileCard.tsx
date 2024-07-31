@@ -10,8 +10,8 @@ export default async function MyPageProfileCard({
   auth?: boolean;
 }) {
   return (
-    <section className="flex items-center bg-white/[0.95] border border-gray-300 py-[2.4rem] px-[2rem] rounded-[.5rem]  gap-[1.2rem]">
-      <div className="w-[7rem] h-[7rem] rounded-full overflow-hidden">
+    <section className="flex items-center bg-white/[0.95] border border-gray-300 py-[2.4rem] px-[2rem] rounded-[.5rem] gap-[1.2rem]">
+      <div className="w-[7rem] h-[7rem] rounded-full overflow-hidden flex-shrink-0">
         {/* //TODO:이미지조절 */}
         <img
           src={`${data.users.image}`}

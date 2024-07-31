@@ -29,7 +29,7 @@ export default function UserCard({ user }: TUserCardProps) {
     // TODO: '남'이 보는 마이 페이지 링크 자체 or 여기서 조합해야 함
     <Link
       href={`/users/${_id}`}
-      className="w-[13.4rem] flex flex-col gap-[.8rem]"
+      className="w-[13.4rem] flex flex-col gap-[.8rem] mr-[.8rem]"
     >
       <div className="w-full bg-main-100 rounded-[.5rem] p-[1.6rem] flex justify-center items-center flex-col">
         <div className="w-[6rem] h-[6rem] rounded-[50%] overflow-hidden">
@@ -39,7 +39,7 @@ export default function UserCard({ user }: TUserCardProps) {
             className="w-full h-full object-cover"
           />
         </div>
-        <span className="block  w-full text-center whitespace-nowrap text-ellipsis overflow-hidden text-body-1 font-medium mt-[.8rem] mb-[.4rem]">
+        <span className="block w-full text-center whitespace-nowrap text-ellipsis overflow-hidden text-body-1 font-medium mt-[.8rem] mb-[.4rem]">
           {nickname}
         </span>
         <p className="w-full flex justify-center gap-[.4rem] text-content-1">

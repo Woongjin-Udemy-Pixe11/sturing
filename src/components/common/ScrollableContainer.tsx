@@ -5,6 +5,6 @@ type TScrollableContainer = {
 export default function ScrollableContainer(props: TScrollableContainer) {
   const { children } = props;
   return (
-    <ul className="w-full overflow-y-auto flex gap-[1.6rem]">{children}</ul>
+    <ul className="w-full overflow-y-auto flex gap-[.8rem]">{children}</ul>
   );
 }
