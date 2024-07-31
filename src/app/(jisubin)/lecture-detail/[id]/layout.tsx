@@ -35,7 +35,7 @@ export default async function LectureDetailLayout(
   return (
     <>
       <div className="bg-gradient-to-tr from-[#D9E3FF] to-[#FFE4E0] ">
-        <BackShareHeader />
+        <BackShareHeader iconColor="black" />
         <LectureStudyTitle
           rating={lecture.lectureRating}
           title={lecture.lectureName}
