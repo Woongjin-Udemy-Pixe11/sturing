@@ -1,9 +1,11 @@
 'use client';
+import OpenLoginModal from '@/app/(yejin)/my-study-list/_components/OpenLoginModal';
 import {
   fetchBookmark,
   postBookmark,
   updateBookmark,
 } from '@/utils/bookmark/bookmarkUtils';
+import { setMaxListeners } from 'events';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa6';
@@ -20,6 +22,7 @@ export default function BookmarkBtnNavigationBar(
 ) {
   const { isApply, link, targetId, userId, target } = props;
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isClickBtn, setIsClickBtn] = useState(false);
 
   const onClickBookmark = () => {
     fetchBookmark(target, userId, targetId).then((bookmark) => {
@@ -46,6 +49,18 @@ export default function BookmarkBtnNavigationBar(
     }
   }, [isBookmarked]);
 
+  const onClickStudyBtn = () => {
+    setIsClickBtn(true);
+  };
+
+  if (!userId && isClickBtn) {
+    return (
+      <>
+        <OpenLoginModal />
+      </>
+    );
+  }
+
   return (
     <div className="w-full mb-[1.6rem] px-[1.6rem] my-[1.6rem] flex flex-row items-center justify-between">
       {userId && (
@@ -59,11 +74,20 @@ export default function BookmarkBtnNavigationBar(
       )}
 
       {isApply ? (
-        <button className="w-full ml-[2rem] h-[5rem] rounded-[0.5rem] bg-main-600 font-medium text-white select-none">
-          {target == 'lecture' ? (
-            <Link href={link}>이 강의로 스터디 개설하기</Link>
+        <button
+          className="w-full ml-[2rem] h-[5rem] rounded-[0.5rem] bg-main-600 font-medium text-white select-none"
+          onClick={onClickStudyBtn}
+        >
+          {userId ? (
+            target == 'lecture' ? (
+              <Link href={link}>이 강의로 스터디 개설하기</Link>
+            ) : (
+              <Link href={link}>스터디 지원하기</Link>
+            )
+          ) : target == 'lecture' ? (
+            <>이 강의로 스터디 개설하기</>
           ) : (
-            <Link href={link}>스터디 지원하기</Link>
+            <>스터디 지원하기</>
           )}
         </button>
       ) : (
