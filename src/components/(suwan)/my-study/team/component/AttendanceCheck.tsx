@@ -19,10 +19,11 @@ type TMember = {
 type TAttendanceCheckProps = {
   member: TMember;
   updateAttendNum: (isChecked: boolean) => void;
+  disabled?: boolean;
 };
 
 export default function AttendanceCheck(props: TAttendanceCheckProps) {
-  const { member, updateAttendNum } = props;
+  const { member, updateAttendNum, disabled } = props;
   const { studyId } = useMyStudyStore();
   const { fetchMemberList } = useMemberStore();
 
@@ -60,6 +61,7 @@ export default function AttendanceCheck(props: TAttendanceCheckProps) {
             onChange={onChangeCheckbox}
             className="form-checkbox bg-gray-400 appearance-none
                     checked:bg-main-600 peer"
+            disabled={disabled}
           />
           <label htmlFor={member._id} className="">
             <FaCircleCheck
