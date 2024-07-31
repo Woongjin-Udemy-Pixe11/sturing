@@ -21,8 +21,8 @@ export default async function LectureStudy(props: TLectureStudyProps) {
   const session = await getSession();
   const userId = session?.user?.id;
   return (
-    <div className="w-full">
-      <div className="mt-[5rem]">
+    <div className="w-full pb-[2rem]">
+      <div className="mt-[3rem]">
         <TitleNavigator
           title="이 강의를 수강하는 스터디"
           count={studies.length}

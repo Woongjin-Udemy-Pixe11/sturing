@@ -10,8 +10,8 @@ export default async function LectureDetailStudyPage(
   const { params } = props;
   const id = params.id;
   return (
-    <>
+    <div className="pb-[10rem]">
       <LectureStudy id={id} />
-    </>
+    </div>
   );
 }
