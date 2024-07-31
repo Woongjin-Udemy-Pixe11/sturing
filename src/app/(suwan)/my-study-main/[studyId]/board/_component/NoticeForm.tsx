@@ -84,13 +84,17 @@ export default function NoticeForm(props: NoticeFormProps) {
       let img;
 
       if (selectedImg !== null) {
-        const fileName = `${Date.now()}-${Math.random()}`;
-        const { data, error } = await supabase.storage
-          .from('images')
-          .upload(fileName, selectedImg);
-        const url: any = supabase.storage.from('images').getPublicUrl(fileName);
-        img = url.data.publicUrl;
-        setPreviewUrl(url.data.publicUrl);
+        if (selectedImg !== defaultImage) {
+          const fileName = `${Date.now()}-${Math.random()}`;
+          const { data, error } = await supabase.storage
+            .from('images')
+            .upload(fileName, selectedImg);
+          const url: any = supabase.storage
+            .from('images')
+            .getPublicUrl(fileName);
+          img = url.data.publicUrl;
+          setPreviewUrl(url.data.publicUrl);
+        }
       } else {
         img = selectedImg;
       }
