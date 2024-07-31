@@ -81,7 +81,7 @@ export default async function StudyDetailLayout(
         />
       </div>
 
-      <div className="bg-gray-100">
+      <div className="bg-gray-100 pb-[10rem]">
         {lecture && (
           <div className="mx-[1.6rem] py-[2rem]">
             <CourseLink

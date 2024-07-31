@@ -168,7 +168,7 @@ export default function StudyInfoForm(props: any) {
         </label>
       )}
 
-      <footer className="flex m-auto gap-2 w-full p-4 py-[2rem]">
+      <footer className="flex m-auto gap-[1rem] w-full py-[2rem]">
         <LongButton
           color="white"
           className="w-[40%]"
