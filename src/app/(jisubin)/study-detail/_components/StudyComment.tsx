@@ -8,6 +8,7 @@ import {
   updateComment,
 } from '@/lib/actions/commentAction';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 type TStudyCommentProps = {
   commentId: string;
@@ -30,10 +31,6 @@ export default function StudyComment(props: TStudyCommentProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [userImage, setUserImage] = useState('/images/dummy-member-img1.png');
-
-  // commentDate = new Date(commentDate).toLocaleString('ko-KR', {
-  //   timeZone: 'Asia/Seoul',
-  // });
 
   const onClickEdit = () => {
     setIsOpen(false);
@@ -101,16 +98,18 @@ export default function StudyComment(props: TStudyCommentProps) {
       {nickname && (
         <div className="flex flex-col text-content-2  mx-[2rem]">
           <div className="flex flex-row items-center gap-x-[0.8rem] justify-between">
-            <div className="flex flex-row items-center justify-center">
-              <Image
-                src={userImage}
-                width={28}
-                height={28}
-                alt="User Image"
-                className="rounded-full border-gray-300 border-[0.1rem]"
-              />
-              <span className="ml-[0.5rem] text-gray-900">{nickname}</span>
-            </div>
+            <Link href={`/users/${commentWriteId}`}>
+              <div className="flex flex-row items-center justify-center">
+                <Image
+                  src={userImage}
+                  width={28}
+                  height={28}
+                  alt="User Image"
+                  className="rounded-full border-gray-300 border-[0.1rem]"
+                />
+                <span className="ml-[0.5rem] text-gray-900">{nickname}</span>
+              </div>
+            </Link>
             {/* <CommentContent content={content} date={convertDate} /> */}
 
             {userId == commentWriteId && (
