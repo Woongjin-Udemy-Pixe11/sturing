@@ -49,6 +49,7 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        select: "url('/images/studyLabel/arrow_down.svg')",
       },
       fontFamily: {
         pretendard: ['Pretendard Variable', 'sans-serif'],
@@ -59,9 +60,6 @@ const config: Config = {
     },
     dropShadow: {
       bookmark: '0 1px 1px rgba(0, 0, 0, 0.25)',
-    },
-    backgroundImage: {
-      select: "url('/images/studyLabel/arrow_down.svg')",
     },
     backgroundPosition: {
       bottom: 'bottom',
