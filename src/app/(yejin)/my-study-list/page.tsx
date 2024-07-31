@@ -9,9 +9,9 @@ import { getSession } from '@/utils/getSessions';
 import OpenLoginModal from './_components/OpenLoginModal';
 
 export default async function page() {
-  const session = await getSession();
+  const session: Tsession = await getSession();
   let studies;
-  //const userId = session.user.id;
+
   if (!session?.user?.id) {
     return (
       <>
