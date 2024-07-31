@@ -6,7 +6,7 @@ type TLecutreStudyInfoProps = {
 export default function LectureStudyInfo(props: TLecutreStudyInfoProps) {
   const { lectureInstructor, lectureDescription } = props;
   return (
-    <div className="flex flex-col gap-y-[1.2rem] mx-[1.6rem] justify-between">
+    <div className="flex flex-col gap-y-[1.2rem] mx-[1.6rem] justify-between pb-[2rem]">
       <div className="flex flex-row text-content-1">
         <div className="mr-[0.7rem]">
           <svg

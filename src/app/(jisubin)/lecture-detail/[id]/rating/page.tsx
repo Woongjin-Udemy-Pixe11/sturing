@@ -10,8 +10,8 @@ export default function LectureDetailRatingPage(
   const { params } = props;
   const id = params.id;
   return (
-    <>
+    <div>
       <LectureRating id={id} />
-    </>
+    </div>
   );
 }
