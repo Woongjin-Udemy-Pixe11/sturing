@@ -14,14 +14,15 @@ export default async function page({
   const data = await fetchStudy(studyId);
   const noticeList = await fetchBoardList('notice', studyId);
   const taskList = await fetchBoardList('task', studyId);
-  const newTaskList: any[] = taskList.slice(0, 2);
-  // let newTaskList: any[] = [];
 
-  // if (taskList.length >= 2) {
-  //   newTaskList = taskList.slice(0, 2);
-  // } else if ((taskList.length = 1)) {
-  //   newTaskList = taskList[0];
-  // }
+  // const newTaskList: any[] = taskList.slice(0, 2);
+  let newTaskList: any[] = [];
+
+  if (taskList.length >= 2) {
+    newTaskList = taskList.slice(0, 2);
+  } else if ((taskList.length = 1)) {
+    newTaskList = taskList[0];
+  }
   console.log('🔥', newTaskList);
 
   const session = await getSession();
