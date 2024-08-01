@@ -4,6 +4,7 @@ import { postTodo } from '@/lib/actions/todoAction';
 import { useCalendarStore } from '@/store/calendarStore';
 import { useMyStudyStore } from '@/store/myStudyStore';
 import { useEffect, useLayoutEffect, useState } from 'react';
+import { IoMdCheckmark } from 'react-icons/io';
 import Todo from './Todo';
 
 export default function Todos() {
@@ -99,10 +100,11 @@ export default function Todos() {
                     onChange={onChangeTodo}
                   ></input>
                   <button type="submit">
-                    <img
+                    <IoMdCheckmark className="text-main-600 text-[2rem] absolute top-5 right-6" />
+                    {/* <img
                       className="absolute top-6 right-6"
                       src="/images/studyLabel/check.svg"
-                    />
+                    /> */}
                   </button>
                 </form>
               </div>
