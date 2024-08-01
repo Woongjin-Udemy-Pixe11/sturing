@@ -18,14 +18,22 @@ export async function GET(request: Request) {
         type: boardType,
       })
         .sort({ _id: -1 })
-        .populate('writerId', 'nickname image');
+        .populate({
+          path: 'writerId',
+          select: 'nickname image',
+          model: 'User',
+        });
 
       return Response.json(boardList);
     } else if (blackboardId) {
       if (boardType == 'notice' || boardType == 'task') {
         const board = await Blackboard.findById(blackboardId)
           .populate('icons')
-          .populate('writerId', 'nickname image');
+          .populate({
+            path: 'writerId',
+            select: 'nickname image',
+            model: 'User',
+          });
 
         return Response.json(board);
       }
