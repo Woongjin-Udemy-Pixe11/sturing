@@ -29,7 +29,7 @@ export default function Todo(props: TTdo) {
   return (
     <>
       <div className="flex justify-between items-center mx-[.6rem]">
-        <label className="inline-flex items-center space-x-2 relative py-[1rem] my-[.3rem]">
+        <label className="inline-flex items-center relative py-[.8rem] gap-[.8rem]">
           <label
             htmlFor="checkbox"
             className=""

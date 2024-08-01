@@ -1,9 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { useMemberStore } from '@/store/memberStore';
-import AttendanceCheck from './component/AttendanceCheck';
 import ScrollableContainer from '@/components/common/ScrollableContainer';
+import { useMemberStore } from '@/store/memberStore';
 import { useMyStudyStore } from '@/store/myStudyStore';
+import { useEffect, useState } from 'react';
+import AttendanceCheck from './component/AttendanceCheck';
 
 export default function Attend(props: any) {
   const { memberList } = useMemberStore();

@@ -66,11 +66,11 @@ export default function TeamTodo(props: any) {
               </div>
             </ScrollableContainer>
 
-            <div className="flex flex-col text-[1.4rem]">
+            <div className="flex flex-col text-[1.4rem] mt-[1.6rem]">
               {todos.length > 0
                 ? todos.map((todo: any) => (
                     <div key={todo._id}>
-                      <label className="inline-flex items-center space-x-2 relative py-[1rem] px-[1rem]">
+                      <label className="inline-flex items-center space-x-2 gap-[.4rem] relative py-[.8rem]">
                         <label htmlFor="checkbox" className="">
                           {todo.todoCompleted ? (
                             <FaCircleCheck
