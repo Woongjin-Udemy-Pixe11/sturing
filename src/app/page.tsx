@@ -1,5 +1,6 @@
 import CreateStudyButton from '@/components/common/CreateStudyButton';
 import Footer from '@/components/common/Footer';
+import Ismatching from '@/components/common/Ismatching';
 import { MatchingBanner } from '@/components/common/MatchingBanner';
 import SectionNavigator from '@/components/common/SectionNavigator';
 import Banner from '@/components/main/Banner';
@@ -9,7 +10,6 @@ import UserCardList from '@/components/main/UserCardList';
 import { getSession } from '@/utils/getSessions';
 import dynamic from 'next/dynamic';
 import SearchPart from './search/_components/SearchPart';
-import Ismatching from '@/components/common/Ismatching';
 const StudyCardList = dynamic(
   () => import('@/components/common/StudyCardList'),
 );
@@ -24,6 +24,9 @@ export default async function page() {
       cache: 'no-store',
     })
   ).json();
+
+  const isLoggedIn = !!session;
+  const isMatched = data && data.matchinginfo !== null;
 
   return (
     <>
@@ -41,7 +44,7 @@ export default async function page() {
       <SectionNavigator title="분야별 스터디 탐색하기" moveLink="/search" />
       <SearchLabelList />
       <hr className="w-full block h-[0.8rem] bg-gray-100 border-0 my-[4rem]" />
-      {!session ? (
+      {!isLoggedIn || (isLoggedIn && !isMatched) ? (
         <>
           <SectionNavigator title="이번주 인기 스터디" moveLink="/search" />
           <StudyCardList sort={'popular'} />

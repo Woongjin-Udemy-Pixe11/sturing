@@ -96,7 +96,7 @@ export default function Card(props: TStudy) {
             )}
           </button>
         )}
-        <div className="absolute bottom-0 left-0 right-0 rounded-b-[0.8rem] bg-black bg-opacity-80 text-white text-center text-content-2 p-[0.3rem] select-none">
+        <div className="w-full absolute bottom-0 left-0 right-0 rounded-b-[0.8rem] bg-black bg-opacity-80 text-white text-center text-content-2 p-[0.3rem] select-none">
           {isStudyEnd ? '종료' : studyMeetings}
         </div>
       </div>
