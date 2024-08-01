@@ -22,10 +22,12 @@ export async function GET(
       .populate({
         path: 'studyId',
         select: 'studyName',
+        model: 'Study',
       })
       .populate({
         path: 'userId',
         select: 'nickname image sturingPercent matchingInfo',
+        model: 'User',
       });
 
     if (!studyForm) {
