@@ -28,7 +28,7 @@ export async function GET(request: Request) {
     } else if (blackboardId) {
       if (boardType == 'notice' || boardType == 'task') {
         const board = await Blackboard.findById(blackboardId)
-          .populate('icons')
+          .populate({ path: 'icons', model: 'BlackboardIcon' })
           .populate({
             path: 'writerId',
             select: 'nickname image',
