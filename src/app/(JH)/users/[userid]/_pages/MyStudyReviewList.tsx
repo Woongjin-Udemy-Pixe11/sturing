@@ -10,6 +10,9 @@ export default async function MyStudyReviewList(
   props: TmyStudyReviewListProps,
 ) {
   const { data } = props;
+  if(data===null){
+  return <div>받은 스터디평가가 없습니다.</div>
+  }
 
   return (
     <main>
