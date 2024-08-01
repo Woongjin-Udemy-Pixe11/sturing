@@ -1,6 +1,5 @@
 import connectDB from '@/lib/db';
 import { BlackboardComment } from '@/lib/schemas/blackboardCommentSchema';
-import { TComment } from '@/types/TStudyBoard';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -14,8 +13,11 @@ export async function GET(request: Request) {
   }
   try {
     const commentList = await BlackboardComment.find({ blackboardId }).populate(
-      'userId',
-      'nickname image',
+      {
+        path: 'userId',
+        model: 'User',
+        select: 'nickname image',
+      },
     );
 
     return Response.json(commentList);
@@ -36,15 +38,13 @@ export async function POST(request: Request) {
       userId,
       comment,
     });
-    await newComment
-      .save()
-      .then((comment: any) =>
-        comment.populate({
-          path: 'userId',
-          select: 'nickname image',
-          model: 'User',
-        }),
-      );
+    await newComment.save().then((comment: any) =>
+      comment.populate({
+        path: 'userId',
+        model: 'User',
+        select: 'nickname image',
+      }),
+    );
 
     return Response.json(newComment);
   } catch (error) {

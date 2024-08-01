@@ -1,8 +1,7 @@
 import connectDB from '@/lib/db';
-import { Blackboard } from '@/lib/schemas/blackboardSchema';
-import { BlackboardIcon } from '@/lib/schemas/blackboardIconSchema';
 import { BlackboardComment } from '@/lib/schemas/blackboardCommentSchema';
-import { User } from '@/lib/schemas/userSchema';
+import { BlackboardIcon } from '@/lib/schemas/blackboardIconSchema';
+import { Blackboard } from '@/lib/schemas/blackboardSchema';
 
 export async function GET(request: Request) {
   connectDB();
@@ -20,8 +19,8 @@ export async function GET(request: Request) {
         .sort({ _id: -1 })
         .populate({
           path: 'writerId',
-          select: 'nickname image',
           model: 'User',
+          select: 'nickname image',
         });
 
       return Response.json(boardList);
@@ -31,8 +30,8 @@ export async function GET(request: Request) {
           .populate({ path: 'icons', model: 'BlackboardIcon' })
           .populate({
             path: 'writerId',
-            select: 'nickname image',
             model: 'User',
+            select: 'nickname image',
           });
 
         return Response.json(board);
