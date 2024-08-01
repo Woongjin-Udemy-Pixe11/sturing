@@ -57,8 +57,8 @@ export default function FilterBar({
 
   return (
     <>
-      <div className=" w-full px-[1.6rem] py-[.8rem] flex justify-between items-center">
-        <ul className="flex w-[90%] overflow-x-auto py-[1.2rem] scrollbar-hide">
+      <div className=" w-full px-[1.6rem] py-[1rem] flex justify-between items-center">
+        <ul className="flex w-[90%] overflow-x-auto scrollbar-hide">
           {filterButtonList &&
             filterButtonList.map((filterbutton) => (
               <li key={filterbutton.key} className="inline mr-[.8rem]">
