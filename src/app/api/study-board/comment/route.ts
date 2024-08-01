@@ -38,7 +38,13 @@ export async function POST(request: Request) {
     });
     await newComment
       .save()
-      .then((comment: any) => comment.populate('userId', 'nickname image'));
+      .then((comment: any) =>
+        comment.populate({
+          path: 'userId',
+          select: 'nickname image',
+          model: 'User',
+        }),
+      );
 
     return Response.json(newComment);
   } catch (error) {
