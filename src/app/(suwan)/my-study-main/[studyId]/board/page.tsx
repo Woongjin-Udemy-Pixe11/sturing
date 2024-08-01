@@ -15,11 +15,14 @@ export default async function page({
   const noticeList = await fetchBoardList('notice', studyId);
   const taskList = await fetchBoardList('task', studyId);
 
+  const newTaskList = taskList.slice(0, 2);
+  console.log('🔥', newTaskList);
+
   const session = await getSession();
   const userid = session?.user?.id;
 
   const leaderId = data.leaderId;
-  console.log('🍆', taskList);
+  // console.log('🍆', taskList);
 
   return (
     <>
@@ -59,10 +62,8 @@ export default async function page({
 
           <hr className="border-b-gray-300 border-b-1"></hr>
 
-          {taskList &&
-            Array.isArray(taskList) &&
-            taskList.length > 0 &&
-            taskList.slice(0, 2).map((task: any) => (
+          {newTaskList &&
+            newTaskList.map((task: any) => (
               <Link href={`./board/task-board/${task._id}`}>
                 <TaskInfo key={task._id} task={task} leaderId={leaderId} />
               </Link>
