@@ -26,7 +26,7 @@ export default function SearchInput(props: TSearchInputProps) {
               localsave();
             }
           }}
-          className="w-full inline-block bg-inherit py-[1.3rem] pr-[2rem] text-content-1 placeholder-gray-700 focus:outline-none"
+          className="w-full inline-block bg-transparent py-[1.3rem] pr-[2rem] text-content-1 placeholder-gray-700 focus:outline-none"
         />
         <button onClick={localsave}>
           <IoSearch className="w-[2.4rem] h-[2.4rem] text-main-600" />
