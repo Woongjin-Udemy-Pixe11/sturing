@@ -17,7 +17,7 @@ export async function GET(request: Request) {
     if (id) {
       let reviewList: TstudyReview[] = await StudyReview.find({
         evaluateduser: `${id}`,
-      }).populate({ path: 'userId', select: 'nickname image', model: 'User' });
+      }).populate({ path: 'userId', model: 'User', select: 'nickname image' });
       console.log(reviewList);
       if (reviewList.length === 0) {
         return Response.json({ message: 'No reviews found' }, { status: 404 });

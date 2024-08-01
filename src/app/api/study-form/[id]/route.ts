@@ -21,13 +21,13 @@ export async function GET(
     const studyForm = await StudyForm.findById(new Types.ObjectId(id))
       .populate({
         path: 'studyId',
-        select: 'studyName',
         model: 'Study',
+        select: 'studyName',
       })
       .populate({
         path: 'userId',
-        select: 'nickname image sturingPercent matchingInfo',
         model: 'User',
+        select: 'nickname image sturingPercent matchingInfo',
       });
 
     if (!studyForm) {

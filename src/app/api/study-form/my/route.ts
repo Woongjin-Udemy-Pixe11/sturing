@@ -17,8 +17,8 @@ export async function GET(request: Request) {
       userId: new Types.ObjectId(userId),
     })
       .populate({
-        model: 'Study',
         path: 'studyId',
+        model: 'Study',
         select: 'studyName studyType studyStart studyEnd studyPlace',
       })
       .sort({ createdAt: -1 });

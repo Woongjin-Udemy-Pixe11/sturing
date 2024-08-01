@@ -25,8 +25,8 @@ export async function GET(request: Request) {
     })
       .populate({
         path: 'userId',
-        select: 'nickname image',
         model: 'User',
+        select: 'nickname image',
       })
       .lean();
 
