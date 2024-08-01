@@ -18,17 +18,57 @@ export async function GET(
   }
 
   try {
-    const studyForm = await StudyForm.findById(new Types.ObjectId(id))
-      .populate({
-        path: 'studyId',
-        model: 'Study',
-        select: 'studyName',
-      })
-      .populate({
-        path: 'userId',
-        model: 'User',
-        select: 'nickname image sturingPercent matchingInfo',
-      });
+    const [studyForm] = await StudyForm.aggregate([
+      {
+        $match: {
+          _id: new Types.ObjectId(id),
+        },
+      },
+      {
+        $lookup: {
+          from: 'studies',
+          localField: 'studyId',
+          foreignField: '_id',
+          as: 'study',
+        },
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'userId',
+          foreignField: '_id',
+          as: 'user',
+        },
+      },
+      {
+        $unwind: '$study',
+      },
+      {
+        $unwind: '$user',
+      },
+      {
+        $project: {
+          _id: 1,
+          studyFormTitle: 1,
+          studyFormContent: 1,
+          studyFormRead: 1,
+          studyFormSure: 1,
+          createdAt: 1,
+          updatedAt: 1,
+          studyId: {
+            _id: '$study._id',
+            studyName: '$study.studyName',
+          },
+          userId: {
+            _id: '$user._id',
+            nickname: '$user.nickname',
+            image: '$user.image',
+            sturingPercent: '$user.sturingPercent',
+            matchingInfo: '$user.matchingInfo',
+          },
+        },
+      },
+    ]);
 
     if (!studyForm) {
       return Response.json({ error: 'Study form not found' }, { status: 404 });
