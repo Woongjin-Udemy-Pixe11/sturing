@@ -76,7 +76,7 @@ const config: Config = {
       '2': '2rem',
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar-hide')],
 };
 
 export default config;
