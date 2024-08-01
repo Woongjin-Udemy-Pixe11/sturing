@@ -5,6 +5,7 @@ import * as Tabs from '@radix-ui/react-tabs';
 import { useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import TabLabel from './TabLabel';
+import { IoMdCheckmark } from 'react-icons/io';
 
 export default function CommonTab({ regions, onClickRegion }: any) {
   const [keyword, setKeyword] = useState('');
@@ -103,7 +104,7 @@ export default function CommonTab({ regions, onClickRegion }: any) {
                         <Tabs.Content
                           value={`${key}`}
                           key={index}
-                          className={`${bg} ${hidden} w-full py-[1.5rem] ps-[2rem] border-b-[0.1rem] text-content-1 text-gray-700 border-[#E4E4E4]`}
+                          className={`${bg} ${hidden} w-full py-[1.5rem] ps-[2rem] border-b-[0.1rem] text-content-1 text-gray-700 border-[#E4E4E4] relative`}
                           onClick={() => {
                             onClickRegion(item);
                             setKeyword('');
@@ -112,10 +113,7 @@ export default function CommonTab({ regions, onClickRegion }: any) {
                           <div className="flex">
                             <p className="w-[90%]">{item}</p>
                             {regions.includes(newid) && (
-                              <img
-                                src="/images/studyLabel/check.svg"
-                                className="px-[2rem]"
-                              />
+                              <IoMdCheckmark className="text-main-600 text-[2rem] right-[1.4rem] absolute" />
                             )}
                           </div>
                         </Tabs.Content>

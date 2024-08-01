@@ -4,11 +4,7 @@ import Attend from '@/components/(suwan)/my-study/team/Attend';
 import Gallery from '@/components/(suwan)/my-study/team/Gallery';
 import { getSession } from '@/utils/getSessions';
 import Header from '../_components/Header';
-import {
-  fetchStudy,
-  fetchMember,
-  fetchBoardList,
-} from '@/lib/actions/studyMainAction';
+import { fetchStudy, fetchBoardList } from '@/lib/actions/studyMainAction';
 import RenderTeam from './components/RenderTeam';
 
 export default async function Page({

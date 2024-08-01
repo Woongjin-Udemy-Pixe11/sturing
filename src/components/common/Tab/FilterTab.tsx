@@ -4,6 +4,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 import * as Tabs from '@radix-ui/react-tabs';
 import { IoSearch } from 'react-icons/io5';
 import TabLabel from './TabLabel';
+import { IoMdCheckmark } from 'react-icons/io';
 
 type TFilterTabProps = {
   selected: string[];
@@ -81,16 +82,13 @@ export default function FilterTab({
                         <Tabs.Content
                           value={`${key}`}
                           key={index}
-                          className={`${bg}  w-full h-[4.9rem] py-[1.4rem] ps-[2rem] border-b-[0.1rem] border-[#E4E4E4] text-content-1 text-gray-700`}
+                          className={`${bg}  w-full h-[4.9rem] py-[1.4rem] ps-[2rem] border-b-[0.1rem] border-[#E4E4E4] text-content-1 text-gray-700 relative`}
                           onClick={() => toggleItem(item)}
                         >
                           <div className="flex">
                             <p className="w-[90%]">{item}</p>
                             {selected.includes(newid) && (
-                              <img
-                                src="/images/studyLabel/check.svg"
-                                className="px-[2rem]"
-                              />
+                              <IoMdCheckmark className="text-main-600 text-[2rem] right-[1.4rem] absolute" />
                             )}
                           </div>
                         </Tabs.Content>

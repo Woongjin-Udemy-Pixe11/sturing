@@ -59,7 +59,7 @@ export default function AttendanceCheck(props: TAttendanceCheckProps) {
             type="checkbox"
             checked={checked}
             onChange={onChangeCheckbox}
-            className="form-checkbox bg-gray-400 appearance-none
+            className="form-checkbox bg-gray-400 appearance-none -webkit-appearance-none
                     checked:bg-main-600 peer"
             disabled={disabled}
           />
