@@ -88,7 +88,7 @@ export default function BookmarkBtnNavigationBar(
                 {isExist === false ? (
                   <Link href={link}>스터디 지원하기</Link>
                 ) : (
-                  <div>이미 수락된 스터디입니다.</div>
+                  <div>참여 중인 스터디입니다.</div>
                 )}
               </>
             )

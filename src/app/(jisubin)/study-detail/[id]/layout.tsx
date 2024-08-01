@@ -71,7 +71,7 @@ export default async function StudyDetailLayout(
     isApply = false;
   }
   let isExistApply = false;
-  if (studyForm && studyForm.studyFormSure) {
+  if ((studyForm && studyForm.studyFormSure) || study.leaderId == userId) {
     isExistApply = true;
   }
 
