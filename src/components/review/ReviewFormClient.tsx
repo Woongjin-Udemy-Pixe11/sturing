@@ -3,9 +3,9 @@ import LongButton from '@/components/common/LongButton';
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import StudyTop from '../../common/StudyTop';
 import { TReviewProps } from './ReviewForm';
 import ToggleEmoji from './ToggleEmoji';
+import StudyTop from '../common/StudyTop';
 
 export default function ReviewFormClient({
   evaluatedUser,

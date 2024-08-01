@@ -1,3 +1,5 @@
+import LectureStudy from '../../_components/LectureStudy';
+
 type TLectureDetailStudyPageProps = {
   params: { id: string };
 };
