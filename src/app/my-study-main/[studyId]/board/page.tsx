@@ -1,9 +1,9 @@
 import { fetchBoardList, fetchStudy } from '@/lib/actions/studyMainAction';
-import { getSession } from '@/utils/getSessions';
 import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
 import Header from '../_components/Header';
 import TaskInfo from './_component/TaskInfo';
+import TaskClient from './_component/TaskClient';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,13 +16,6 @@ export default async function page({
   const data = await fetchStudy(studyId);
   const noticeList = await fetchBoardList('notice', studyId);
   const taskList = await fetchBoardList('task', studyId);
-
-  let newTaskList: any[] = [];
-  if (taskList.length >= 2) {
-    newTaskList = taskList.slice(0, 2);
-  } else if (taskList.length === 1) {
-    newTaskList = taskList[0];
-  }
 
   const leaderId = data.leaderId;
 
@@ -63,14 +56,7 @@ export default async function page({
           </Link>
 
           <hr className="border-b-gray-300 border-b-1"></hr>
-
-          {newTaskList &&
-            newTaskList.length > 0 &&
-            newTaskList.map((task: any) => (
-              <Link href={`./board/task-board/${task._id}`}>
-                <TaskInfo key={task._id} task={task} leaderId={leaderId} />
-              </Link>
-            ))}
+          <TaskClient taskList={taskList} leaderId={leaderId} />
         </div>
       </div>
     </>
