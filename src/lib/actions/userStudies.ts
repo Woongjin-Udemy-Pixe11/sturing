@@ -15,9 +15,10 @@ export async function getUserStudies(userId: string) {
   const leaderStudies = await Study.find({ leaderId: objectId });
 
   // 사용자가 참여하고 있는 스터디
-  const studyMembers = await StudyMember.find({ userId: objectId }).populate(
-    'studyId',
-  );
+  const studyMembers = await StudyMember.find({ userId: objectId }).populate({
+    path: 'studyId',
+    model: 'Study',
+  });
   let myStudies: any = studyMembers.map((member) => member.studyId);
 
   const allStudies = [...myStudies, ...leaderStudies].filter((s) => s !== null);
