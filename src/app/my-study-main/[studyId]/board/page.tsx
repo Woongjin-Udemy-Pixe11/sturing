@@ -17,20 +17,14 @@ export default async function page({
   const noticeList = await fetchBoardList('notice', studyId);
   const taskList = await fetchBoardList('task', studyId);
 
-  // const newTaskList: any[] = taskList.slice(0, 2);
   let newTaskList: any[] = [];
-
   if (taskList.length >= 2) {
     newTaskList = taskList.slice(0, 2);
   } else if (taskList.length === 1) {
     newTaskList = taskList[0];
   }
-  console.log('✅', taskList);
-  console.log('🤔', taskList.length);
-  console.log('🔥', newTaskList);
 
   const leaderId = data.leaderId;
-  // console.log('🍆', taskList);
 
   return (
     <>
