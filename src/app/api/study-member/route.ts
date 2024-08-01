@@ -20,15 +20,37 @@ export async function GET(request: Request) {
   }
 
   try {
-    const studyMembers = await StudyMember.find({
-      studyId: new mongoose.Types.ObjectId(studyId),
-    })
-      .populate({
-        path: 'userId',
-        model: 'User',
-        select: 'nickname image',
-      })
-      .lean();
+    const studyMembers = await StudyMember.aggregate([
+      {
+        $match: {
+          studyId: new mongoose.Types.ObjectId(studyId),
+        },
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'userId',
+          foreignField: '_id',
+          as: 'user',
+        },
+      },
+      {
+        $unwind: '$user',
+      },
+      {
+        $project: {
+          _id: 1,
+          studyId: 1,
+          userId: {
+            _id: '$user._id',
+            nickname: '$user.nickname',
+            image: '$user.image',
+          },
+          attendance: 1,
+          studyProgress: 1,
+        },
+      },
+    ]);
 
     // 로그인한 사용자를 제외한 멤버 필터링
     const filteredMembers = studyMembers.filter(
