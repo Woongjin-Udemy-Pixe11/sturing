@@ -13,15 +13,46 @@ export async function GET(request: Request) {
   }
 
   try {
-    const myApplication = await StudyForm.find({
-      userId: new Types.ObjectId(userId),
-    })
-      .populate({
-        path: 'studyId',
-        model: 'Study',
-        select: 'studyName studyType studyStart studyEnd studyPlace',
-      })
-      .sort({ createdAt: -1 });
+    const myApplication = await StudyForm.aggregate([
+      {
+        $match: {
+          userId: new Types.ObjectId(userId),
+        },
+      },
+      {
+        $lookup: {
+          from: 'studies',
+          localField: 'studyId',
+          foreignField: '_id',
+          as: 'study',
+        },
+      },
+      {
+        $unwind: '$study',
+      },
+      {
+        $project: {
+          _id: 1,
+          studyFormTitle: 1,
+          studyFormContent: 1,
+          studyFormRead: 1,
+          studyFormSure: 1,
+          createdAt: 1,
+          updatedAt: 1,
+          studyId: {
+            _id: '$study._id',
+            studyName: '$study.studyName',
+            studyType: '$study.studyType',
+            studyStart: '$study.studyStart',
+            studyEnd: '$study.studyEnd',
+            studyPlace: '$study.studyPlace',
+          },
+        },
+      },
+      {
+        $sort: { createdAt: -1 },
+      },
+    ]);
 
     return Response.json(myApplication);
   } catch (error) {
