@@ -26,7 +26,7 @@ export default async function page({
       <div className="bg-gray-100 py-[2rem] px-[2rem]">
         <div className="px-[2rem] py-[2.4rem] bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem]  ">
           <Link href={`./board/notice-board`}>
-            <div className="pb-[1.4rem] pr-[1rem] w-full flex justify-between items-center text-headline-3 font-medium">
+            <div className="pb-[1.4rem] w-full flex justify-between items-center text-headline-3 font-medium">
               <span>공지사항</span>
               <IoIosArrowForward />
             </div>
@@ -49,7 +49,7 @@ export default async function page({
 
         <div className="bg-white rounded-[0.5rem] border-gray-300 border-[0.1rem] my-[2.4rem] px-[2rem] py-[2.4rem]">
           <Link href={`/my-study-main/${studyId}/board/task-board`}>
-            <div className="pb-[1.4rem] pr-[1rem] w-full flex justify-between items-center text-headline-3 font-medium">
+            <div className="pb-[1.4rem] w-full flex justify-between items-center text-headline-3 font-medium">
               <span>과제 게시판</span>
               <IoIosArrowForward />
             </div>
