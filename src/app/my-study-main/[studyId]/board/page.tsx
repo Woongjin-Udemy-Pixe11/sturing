@@ -68,7 +68,8 @@ export default async function page({
 
           <hr className="border-b-gray-300 border-b-1"></hr>
 
-          {newTaskList.length > 0 &&
+          {newTaskList &&
+            newTaskList.length > 0 &&
             newTaskList.map((task: any) => (
               <Link href={`./board/task-board/${task._id}`}>
                 <TaskInfo key={task._id} task={task} leaderId={leaderId} />
