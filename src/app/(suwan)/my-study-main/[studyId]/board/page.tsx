@@ -14,12 +14,17 @@ export default async function page({
   const data = await fetchStudy(studyId);
   const noticeList = await fetchBoardList('notice', studyId);
   const taskList = await fetchBoardList('task', studyId);
+  const newTaskList: any[] = taskList.slice(0, 2);
+  // let newTaskList: any[] = [];
 
-  const newTaskList = taskList.slice(0, 2);
+  // if (taskList.length >= 2) {
+  //   newTaskList = taskList.slice(0, 2);
+  // } else if ((taskList.length = 1)) {
+  //   newTaskList = taskList[0];
+  // }
   console.log('🔥', newTaskList);
 
   const session = await getSession();
-  const userid = session?.user?.id;
 
   const leaderId = data.leaderId;
   // console.log('🍆', taskList);
@@ -62,7 +67,7 @@ export default async function page({
 
           <hr className="border-b-gray-300 border-b-1"></hr>
 
-          {newTaskList &&
+          {newTaskList.length > 0 &&
             newTaskList.map((task: any) => (
               <Link href={`./board/task-board/${task._id}`}>
                 <TaskInfo key={task._id} task={task} leaderId={leaderId} />
