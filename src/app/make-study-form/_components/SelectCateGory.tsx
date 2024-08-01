@@ -23,7 +23,7 @@ export default function SelectCateGory(props: TProps) {
   };
 
   const validate = useMemo(() => {
-    return category == null;
+    return category == '';
   }, [category]);
 
   return (
