@@ -3,7 +3,7 @@ const studySchema = new mongoose.Schema(
   {
     leaderId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'user',
+      ref: 'User',
       required: true,
     },
     studyImage: {
