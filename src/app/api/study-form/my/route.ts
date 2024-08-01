@@ -17,6 +17,7 @@ export async function GET(request: Request) {
       userId: new Types.ObjectId(userId),
     })
       .populate({
+        model: 'Study',
         path: 'studyId',
         select: 'studyName studyType studyStart studyEnd studyPlace',
       })
