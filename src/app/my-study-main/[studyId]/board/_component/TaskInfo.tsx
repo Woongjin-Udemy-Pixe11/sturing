@@ -14,8 +14,8 @@ type TTaskInfoProps = {
 export default function TaskInfo(props: any) {
   const { task, leaderId } = props;
   return (
-    <div className="flex flex-col gap-y-[1.6rem] py-[1.6rem]">
-      <div className="flex flex-row items-center justify-between py-[1.2rem]">
+    <div className="flex flex-col gap-y-[1.6rem] pt-[1.6rem]">
+      <div className="flex flex-row items-center justify-between pt-[1.2rem]">
         <Link href={`/users/${task.writerId._id}`}>
           <div className="flex flex-row items-center">
             <img
@@ -45,14 +45,16 @@ export default function TaskInfo(props: any) {
           <div className="text-content-1 text-gray-900 font-medium">
             {task.title}
           </div>
-          <p className="text-content-2 text-gray-700">{task.content}</p>
+          <p className="text-content-2 text-gray-700 line-clamp-2">
+            {task.content}
+          </p>
         </div>
-        <div className="min-w-[6.4rem] min-h-[6.4rem] relative">
+        <div className="w-[7rem] h-[7rem] min-w-[6.4rem] min-h-[6.4rem] relative">
           {task.image && (
             <img
               src={task.image}
               alt="Picture of the Task"
-              className="w-[10rem] h-[10rem] object-cover rounded-[0.5rem]"
+              className="w-full h-full object-cover rounded-[0.5rem]"
             />
           )}
         </div>
