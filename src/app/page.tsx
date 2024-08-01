@@ -1,4 +1,3 @@
-import Ismatching from '@/components/(JH)/Ismatching';
 import CreateStudyButton from '@/components/common/CreateStudyButton';
 import Footer from '@/components/common/Footer';
 import { MatchingBanner } from '@/components/common/MatchingBanner';
@@ -9,7 +8,8 @@ import TabBar from '@/components/main/TabBar';
 import UserCardList from '@/components/main/UserCardList';
 import { getSession } from '@/utils/getSessions';
 import dynamic from 'next/dynamic';
-import SearchPart from './(ryukyung)/pages/SearchPart';
+import SearchPart from './search/_components/SearchPart';
+import Ismatching from '@/components/common/Ismatching';
 const StudyCardList = dynamic(
   () => import('@/components/common/StudyCardList'),
 );

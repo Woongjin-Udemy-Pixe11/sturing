@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { GoBell } from 'react-icons/go';
 import { GrMenu } from 'react-icons/gr';
 import { IoPersonOutline } from 'react-icons/io5';
-import LoginModal from '../(jisubin)/login/LoginModal';
+import LoginModal from '../login/LoginModal';
 import SideBar from '../sidebar/SideBar';
 
 export default function Header({ user }: { user?: any }) {
