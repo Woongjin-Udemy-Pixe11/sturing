@@ -71,7 +71,7 @@ export default function Todos() {
             </span>
           </div>
 
-          <div className=" bg-white p-6 rounded-lg w-full px-[1rem]">
+          <div className="bg-white rounded-lg w-full pt-[1rem]">
             <div className="text-[1.4rem]">
               <div className="flex flex-col text-[1.4rem] gap-[.4rem]">
                 {todoList &&
