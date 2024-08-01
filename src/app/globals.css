@@ -62,3 +62,8 @@ body {
     @apply appearance-none bg-select bg-no-repeat bg-right-arrow bg-2;
   }
 }
+
+.check-appearance {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
