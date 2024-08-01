@@ -5,6 +5,8 @@ import { IoIosArrowForward } from 'react-icons/io';
 import Header from '../_components/Header';
 import TaskInfo from './_component/TaskInfo';
 
+export const dynamic = 'force-dynamic';
+
 export default async function page({
   params,
 }: {
@@ -20,12 +22,12 @@ export default async function page({
 
   if (taskList.length >= 2) {
     newTaskList = taskList.slice(0, 2);
-  } else if ((taskList.length = 1)) {
+  } else if (taskList.length === 1) {
     newTaskList = taskList[0];
   }
+  console.log('✅', taskList);
+  console.log('🤔', taskList.length);
   console.log('🔥', newTaskList);
-
-  const session = await getSession();
 
   const leaderId = data.leaderId;
   // console.log('🍆', taskList);
