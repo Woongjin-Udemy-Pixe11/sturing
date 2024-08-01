@@ -9,9 +9,9 @@ import TabBar from '@/components/my-study-main/head/Tabar';
 export default async function Header({ studyId, data }: any) {
   return (
     <>
-      <div className="absolute w-full h-[40rem] backdrop-brightness-50 -z-10 "></div>
+      <div className="absolute w-full h-[40rem] backdrop-dark -z-10 "></div>
       <img
-        className="absolute inset-0 w-full h-[40rem] object-cover -z-20 backdrop-brightness-50"
+        className="absolute inset-0 w-full h-[40rem] object-cover -z-20"
         src={data.studyImage}
       />
 

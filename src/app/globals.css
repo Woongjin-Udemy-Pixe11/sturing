@@ -63,7 +63,7 @@ body {
   }
 }
 
-.check-appearance {
-  appearance: none !important;
-  -webkit-appearance: none !important;
+.backdrop-dark {
+  backdrop-filter: brightness(0.5);
+  -webkit-backdrop-filter: brightness(0.5);
 }
