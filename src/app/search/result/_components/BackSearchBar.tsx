@@ -8,10 +8,10 @@ export default function BackSearchBar({ keyword }: { keyword: string }) {
 
   return (
     <div className="w-full flex items-center px-[1.2rem] ">
-      <button onClick={() => router.back()} className="flex-shrink-0 ">
+      <button onClick={() => router.back()} className="w-[6%]">
         <IoIosArrowBack className="w-[2.4rem] h-[2.4rem]" />
       </button>
-      <div className="flex-grow max-w-[97%] mb-[1.2rem]">
+      <div className="mb-[1.2rem] w-[92%] ml-[2%]">
         <SearchPart isList={false} initialKeyword={keyword} />
       </div>
     </div>

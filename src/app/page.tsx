@@ -38,7 +38,7 @@ export default async function page() {
         <MatchingBanner user={user} />
       )}
 
-      <div className="pt-[1.6rem]">
+      <div className="pt-[1.6rem] px-[1.6rem]">
         <SearchPart isList={false} />
       </div>
       <SectionNavigator title="분야별 스터디 탐색하기" moveLink="/search" />
