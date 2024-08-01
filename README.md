@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sturing 
+<img width="539" alt="image" src="https://github.com/user-attachments/assets/03e7a032-1295-43b6-ba00-34d2331f7788">
 
-## Getting Started
+## 프로젝트 정보 및 소개
+[유데미 X 웅진씽크빅 X 스나이퍼팩토리] 프로젝트 캠프 : Next.js 과정 1기 - 유데미 스터디 서비스 프로젝트 <br/>
 
-First, run the development server:
+‘Sturing’은 ‘Study’와 ‘Spring’의 합성어로, 사람과 스터디, 강의가 한 고리로 연결되어 도약한다는 의미를 담았습니다. <br/>
+로고 아이콘은 유연한 스프링 모양에서 착안하여, 서로 부드럽게 맞물리고 화합하며, 새로운 지식과 기회를 탐구하는 과정을 상징합니다.
+![image](https://github.com/user-attachments/assets/b3aec2ba-ba21-4d78-9195-fcf5c5b12082)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 배포 URL
+https://sturing-pixe11.vercel.app/
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 개발 기간
+2024.06.17 ~ 2024.08.02
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 팀 소개
+![image](https://github.com/user-attachments/assets/b9f797ca-502e-4658-831c-090f696c4557)
 
-## Learn More
+## 기술 스택 및 시스템 아키텍쳐
+![image](https://github.com/user-attachments/assets/3391a578-4054-432e-a664-62f02563d73a)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 주요기능
