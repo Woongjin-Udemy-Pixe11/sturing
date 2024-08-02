@@ -31,32 +31,37 @@ export default function EmojiSelectBtn(props: TProps) {
   const [iconStates, setIconStates] = useState<IconState[]>(icons);
 
   const onClickIcon = async (iconName: string) => {
-    await postIcon({ blackboardId, iconName, userId });
+    try {
+      await postIcon({ blackboardId, iconName, userId });
 
-    setIconStates((prev) => {
-      if (prev.length == 0) {
-        // 새로운 아이콘을 생성하는 경우
-        const newIcon: IconState = {
-          _id: 'temp',
-          blackboardId,
-          iconName,
-          users: [userId],
-        };
-        return [...prev, newIcon];
-      } else {
-        // 기존 아이콘이 있는 경우
-        return prev.map((icon) => {
-          if (icon.iconName === iconName) {
-            const newUsers = icon.users.includes(userId)
-              ? icon.users.filter((id) => id !== userId)
-              : [...icon.users, userId];
+      setIconStates((prev) => {
+        const existingIcon = prev.find((icon) => icon.iconName === iconName);
 
-            return { ...icon, users: newUsers };
-          }
-          return icon;
-        });
-      }
-    });
+        if (existingIcon) {
+          // 기존 아이콘이 있는 경우
+          return prev.map((icon) => {
+            if (icon.iconName === iconName) {
+              const newUsers = icon.users.includes(userId)
+                ? icon.users.filter((id) => id !== userId)
+                : [...icon.users, userId];
+              return { ...icon, users: newUsers };
+            }
+            return icon;
+          });
+        } else {
+          // 새로운 아이콘을 생성하는 경우
+          const newIcon: IconState = {
+            _id: 'temp',
+            blackboardId,
+            iconName,
+            users: [userId],
+          };
+          return [...prev, newIcon];
+        }
+      });
+    } catch (error) {
+      console.error('Error updating icon:', error);
+    }
   };
 
   const getIconUserCount = (name: string) => {
