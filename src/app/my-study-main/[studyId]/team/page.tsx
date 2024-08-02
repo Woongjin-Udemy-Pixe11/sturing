@@ -18,6 +18,15 @@ export default async function Page({
 
   const studyData = await fetchStudy(studyId);
   const taskList = await fetchBoardList('task', studyId);
+
+  // if (!studyData || typeof studyData !== 'object') {
+  //   throw new Error('Invalid study data');
+  // }
+
+  // if (!Array.isArray(taskList)) {
+  //   throw new Error('Invalid task list data');
+  // }
+
   const leaderId = studyData.leaderId;
   return (
     <>
