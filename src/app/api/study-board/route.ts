@@ -2,48 +2,167 @@ import connectDB from '@/lib/db';
 import { BlackboardComment } from '@/lib/schemas/blackboardCommentSchema';
 import { BlackboardIcon } from '@/lib/schemas/blackboardIconSchema';
 import { Blackboard } from '@/lib/schemas/blackboardSchema';
+import mongoose from 'mongoose';
+
+// export async function GET(request: Request) {
+//   connectDB();
+//   const { searchParams } = new URL(request.url);
+//   const studyId = searchParams.get('studyId');
+//   const blackboardId = searchParams.get('blackboardId');
+//   const boardType = searchParams.get('boardType');
+
+//   try {
+//     if (studyId) {
+//       const boardList = await Blackboard.find({
+//         studyId: studyId,
+//         type: boardType,
+//       })
+//         .sort({ _id: -1 })
+//         .populate({
+//           path: 'writerId',
+//           model: 'User',
+//           select: 'nickname image',
+//         });
+
+//       return Response.json(boardList);
+//     } else if (blackboardId) {
+//       if (boardType == 'notice' || boardType == 'task') {
+//         const board = await Blackboard.findById(blackboardId)
+//           .populate({ path: 'icons', model: 'BlackboardIcon' })
+//           .populate({
+//             path: 'writerId',
+//             model: 'User',
+//             select: 'nickname image',
+//           });
+
+//         return Response.json(board);
+//       }
+//     } else {
+//       return Response.json(
+//         { message: 'Missing studyId or noticeId' },
+//         { status: 400 },
+//       );
+//     }
+//   } catch (error) {
+//     return Response.json({ message: 'Error get notice' });
+//   }
+// }
 
 export async function GET(request: Request) {
-  connectDB();
-  const { searchParams } = new URL(request.url);
-  const studyId = searchParams.get('studyId');
-  const blackboardId = searchParams.get('blackboardId');
-  const boardType = searchParams.get('boardType');
-
   try {
+    connectDB();
+
+    const { searchParams } = new URL(request.url);
+    const studyId = searchParams.get('studyId');
+    const blackboardId = searchParams.get('blackboardId');
+    const boardType = searchParams.get('boardType');
+
     if (studyId) {
-      const boardList = await Blackboard.find({
-        studyId: studyId,
-        type: boardType,
-      })
-        .sort({ _id: -1 })
-        .populate({
-          path: 'writerId',
-          model: 'User',
-          select: 'nickname image',
-        });
+      const boardList = await Blackboard.aggregate([
+        {
+          $match: {
+            studyId: new mongoose.Types.ObjectId(studyId),
+            type: boardType,
+          },
+        },
+        {
+          $lookup: {
+            from: 'users',
+            localField: 'writerId',
+            foreignField: '_id',
+            as: 'writer',
+          },
+        },
+        {
+          $unwind: '$writer',
+        },
+        {
+          $project: {
+            _id: 1,
+            studyId: 1,
+            type: 1,
+            title: 1,
+            content: 1,
+            image: 1,
+            views: 1,
+            createdAt: 1,
+            updatedAt: 1,
+            writerId: {
+              _id: '$writer._id',
+              nickname: '$writer.nickname',
+              image: '$writer.image',
+            },
+          },
+        },
+        {
+          $sort: { _id: -1 },
+        },
+      ]);
 
       return Response.json(boardList);
-    } else if (blackboardId) {
-      if (boardType == 'notice' || boardType == 'task') {
-        const board = await Blackboard.findById(blackboardId)
-          .populate({ path: 'icons', model: 'BlackboardIcon' })
-          .populate({
-            path: 'writerId',
-            model: 'User',
-            select: 'nickname image',
-          });
+    } else if (
+      blackboardId &&
+      (boardType === 'notice' || boardType === 'task')
+    ) {
+      const board = await Blackboard.aggregate([
+        {
+          $match: {
+            _id: new mongoose.Types.ObjectId(blackboardId),
+          },
+        },
+        {
+          $lookup: {
+            from: 'blackboardicons',
+            localField: 'icons',
+            foreignField: '_id',
+            as: 'icons',
+          },
+        },
+        {
+          $lookup: {
+            from: 'users',
+            localField: 'writerId',
+            foreignField: '_id',
+            as: 'writer',
+          },
+        },
+        {
+          $unwind: '$writer',
+        },
+        {
+          $project: {
+            _id: 1,
+            studyId: 1,
+            type: 1,
+            title: 1,
+            content: 1,
+            image: 1,
+            views: 1,
+            icons: 1,
+            createdAt: 1,
+            updatedAt: 1,
+            writerId: {
+              _id: '$writer._id',
+              nickname: '$writer.nickname',
+              image: '$writer.image',
+            },
+          },
+        },
+      ]);
 
-        return Response.json(board);
-      }
+      return Response.json(board);
     } else {
       return Response.json(
-        { message: 'Missing studyId or noticeId' },
+        { message: 'Missing studyId or invalid boardType' },
         { status: 400 },
       );
     }
   } catch (error) {
-    return Response.json({ message: 'Error get notice' });
+    console.error('Error in GET function:', error);
+    return Response.json(
+      { error: 'Failed to fetch study members' },
+      { status: 500 },
+    );
   }
 }
 

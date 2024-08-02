@@ -25,11 +25,11 @@ export default async function page({
   await patchView(taskId, 'task');
   return (
     <>
-      <TaskDetail task={task} userId={userId} />
+      <TaskDetail task={task[0]} taskId={taskId} userId={userId} />
       <BoardComment
         commentList={commentList}
         studyId={studyId}
-        boardId={task._id}
+        boardId={task[0]._id}
         taskId={taskId}
         userId={userId}
       />

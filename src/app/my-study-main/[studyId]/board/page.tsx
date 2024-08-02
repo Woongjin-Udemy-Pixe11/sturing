@@ -16,7 +16,7 @@ export default async function page({
   const data = await fetchStudy(studyId);
   const noticeList = await fetchBoardList('notice', studyId);
   const taskList = await fetchBoardList('task', studyId);
-
+  console.log('✅', taskList);
   const leaderId = data.leaderId;
 
   return (

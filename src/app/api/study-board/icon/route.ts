@@ -42,7 +42,6 @@ export async function POST(request: Request) {
 
       blackboard.icons.push(icon._id);
       await blackboard.save();
-      console.log('🩵', blackboard);
     } else {
       const userIndex = icon.users.indexOf(userId);
       if (userIndex > -1) {
