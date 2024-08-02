@@ -17,7 +17,7 @@ export default async function page({
   await patchView(noticeId, 'notice');
   return (
     <>
-      <NoticeBoardDetail blackboard={notice} userId={userId} />
+      <NoticeBoardDetail blackboard={notice[0]} userId={userId} />
     </>
   );
 }
