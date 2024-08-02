@@ -10,7 +10,8 @@ export default function TaskClient(props: any) {
 
   useEffect(() => {
     if (Array.isArray(taskList) && taskList.length) {
-      let aaaList = taskList.slice(0, 2);
+      // let aaaList = taskList.slice(0, 2);
+      let aaaList = taskList.filter((_, index) => index < 2);
       setNewTaskList(aaaList);
     }
   }, [taskList]);
