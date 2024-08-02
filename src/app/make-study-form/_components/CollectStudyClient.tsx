@@ -1,18 +1,18 @@
 'use client';
 //TODO: reducer만 써보기
 
-import { useState, useReducer } from 'react';
-import { useRouter } from 'next/navigation';
+import DefaultModal from '@/components/common/modal/DefaultModal';
 import supabase from '@/lib/supabaseClient';
+import { useRouter } from 'next/navigation';
+import { useReducer, useState } from 'react';
 import SelectCateGory from './SelectCateGory';
 import StudyDetailInfoForm from './StudyDetailInfoForm';
 import StudyInfoForm from './StudyInfoForm';
 import StudyTeammateForm from './StudyTeammateForm';
-import DefaultModal from '@/components/common/modal/DefaultModal';
 
+import { postStudy } from '@/lib/actions/makeStudyAction';
 import { TFetchStudy } from '@/types/TStudy';
 import { studyReducer } from '@/utils/reducers/studyReducer';
-import { postStudy } from '@/lib/actions/makeStudyAction';
 
 export type TLectureData = {
   lectureName: string;
@@ -194,7 +194,7 @@ export default function CollectStudyClient(props: TProps) {
           취소
         </h2>
         {isModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <DefaultModal
               onConfirm={onClickModalYes}
               onCancel={onClickModalNo}
@@ -203,7 +203,7 @@ export default function CollectStudyClient(props: TProps) {
             />
           </div>
         )}
-        <div className="w-full bg-gray-400 rounded-full h-[0.4rem]  ">
+        <div className="w-full bg-gray-400 rounded-full h-[0.4rem]">
           <div
             className="bg-main-500 h-[0.4rem] rounded-full"
             style={{ width: `${step * 25}%` }}

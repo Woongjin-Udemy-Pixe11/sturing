@@ -13,7 +13,7 @@ export default function CheckBox(props: TCheckBoxProps) {
   };
 
   return (
-    <label htmlFor={name} className="flex w-full gap-[.4rem]">
+    <label htmlFor={name} className="flex w-full gap-[.4rem] items-center">
       <input
         type="checkbox"
         id={name}

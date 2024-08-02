@@ -2,7 +2,6 @@ import { fetchBoardList, fetchStudy } from '@/lib/actions/studyMainAction';
 import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
 import Header from '../_components/Header';
-import TaskInfo from './_component/TaskInfo';
 import TaskClient from './_component/TaskClient';
 
 export const dynamic = 'force-dynamic';
@@ -35,7 +34,7 @@ export default async function page({
           <hr className="border-b-gray-300 border-b-1"></hr>
           {noticeList.length > 0 && (
             <Link href={`./board/notice-board/${noticeList[0]._id}`}>
-              <div className="flex flex-row items-center gap-x-[0.8rem] py-[1.6rem]">
+              <div className="flex flex-row items-center gap-x-[0.8rem] pt-[1.6rem]">
                 <div className="min-w-[3.3rem] min-h-[2.2rem] px-[0.6rem] py-[0.2rem] bg-main-100 rounded-[0.3rem] text-main-700 text-content-2 break-all">
                   필독
                 </div>

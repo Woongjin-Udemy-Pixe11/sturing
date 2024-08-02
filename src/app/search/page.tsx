@@ -13,7 +13,7 @@ export default async function Search() {
   return (
     <>
       <TabBar />
-      <div className="mt-[.8rem]">
+      <div className="mt-[.8rem] px-[1.6rem]">
         <SearchPart isList={true} />
       </div>
       <RecommendSearch />
